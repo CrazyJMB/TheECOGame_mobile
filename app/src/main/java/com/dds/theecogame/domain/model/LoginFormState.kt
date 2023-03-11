@@ -1,4 +1,4 @@
-package com.dds.theecogame.ui.login
+package com.dds.theecogame.domain.model
 
 /**
  * Data validation state of the login form.

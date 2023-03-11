@@ -1,4 +1,4 @@
-package com.dds.theecogame.ui.login
+package com.dds.theecogame.viewmodel
 
 import android.app.Activity
 import androidx.lifecycle.Observer
@@ -15,6 +15,9 @@ import android.widget.Toast
 import com.dds.theecogame.databinding.ActivityLoginBinding
 
 import com.dds.theecogame.R
+import com.dds.theecogame.domain.model.LoggedInUserView
+import com.dds.theecogame.domain.LoginViewModel
+import com.dds.theecogame.domain.LoginViewModelFactory
 
 class LoginActivity : AppCompatActivity() {
 

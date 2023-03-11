@@ -1,4 +1,4 @@
-package com.dds.theecogame.ui.login
+package com.dds.theecogame.domain.model
 
 /**
  * User details post authentication that is exposed to the UI

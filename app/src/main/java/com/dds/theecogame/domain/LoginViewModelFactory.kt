@@ -1,4 +1,4 @@
-package com.dds.theecogame.ui.login
+package com.dds.theecogame.domain
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

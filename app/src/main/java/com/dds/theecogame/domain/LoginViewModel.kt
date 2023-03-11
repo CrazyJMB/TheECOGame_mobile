@@ -1,4 +1,4 @@
-package com.dds.theecogame.ui.login
+package com.dds.theecogame.domain
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +8,9 @@ import com.dds.theecogame.data.LoginRepository
 import com.dds.theecogame.data.Result
 
 import com.dds.theecogame.R
+import com.dds.theecogame.domain.model.LoggedInUserView
+import com.dds.theecogame.domain.model.LoginFormState
+import com.dds.theecogame.domain.model.LoginResult
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 

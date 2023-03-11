@@ -1,4 +1,4 @@
-package com.dds.theecogame.ui.login
+package com.dds.theecogame.domain.model
 
 /**
  * Authentication result : success (user details) or error message.
