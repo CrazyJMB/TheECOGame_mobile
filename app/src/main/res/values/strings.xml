@@ -9,4 +9,16 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="volver">Volver</string>
+    <string name="reto_preguntas">Reto: Preguntas</string>
+    <string name="preguntanum">Pregunta:</string>
+    <string name="tiempo_restante">Tiempo restante:</string>
+    <string name="pregunta">Pregunta:</string>
+    <string name="imagen">ODS</string>
+    <string name="opcionA">A) </string>
+    <string name="opcionB">B) </string>
+    <string name="opcionC">C) </string>
+    <string name="opcionD">D) </string>
+    <string name="continuar">Continuar </string>
+
 </resources>
