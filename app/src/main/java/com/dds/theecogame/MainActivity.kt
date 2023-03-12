@@ -1,4 +1,4 @@
-package com.dds.theecogame.viewmodel
+package com.dds.theecogame
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,5 +7,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
     }
 }
