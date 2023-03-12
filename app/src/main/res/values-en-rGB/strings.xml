@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">TheEcoGame</string>
     <string name="app_noImplemented">No Implemented</string>
+    <string name="app_logo_description">Logo TheEcoGame</string>
     <!-- Strings related to mainScreen -->
-    <string name="app_version">Version</string>
     <string name="button_play">Play</string>
     <string name="button_statistic">Statistics</string>
     <string name="button_setting">Settings</string>

@@ -25,10 +25,12 @@
         android:layout_width="261dp"
         android:layout_height="261dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/app_logo_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/theecogame_logo"/>
+        app:srcCompat="@drawable/theecogame_logo"
+        tools:ignore="ImageContrastCheck" />
 
     <Button
         android:id="@+id/button"
@@ -70,10 +72,10 @@
         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
