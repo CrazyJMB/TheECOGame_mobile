@@ -48,8 +48,8 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:background="#000000" />
+            android:layout_height="2dp"
+            android:background="@color/background_white_green" />
     </LinearLayout>
 
     <TextView
@@ -109,9 +109,10 @@
         android:layout_width="320dp"
         android:layout_height="293dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="39dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
