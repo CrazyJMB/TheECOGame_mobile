@@ -9,7 +9,7 @@
     >
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/estadisticas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
@@ -17,11 +17,11 @@
         android:text="@string/estadistica"
         android:textColor="@color/white"
         android:textSize="34sp"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:layout_constraintStart_toEndOf="@+id/volver"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/volver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -35,7 +35,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/numPartidasJugadas"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginStart="55dp"
@@ -45,10 +45,10 @@
         android:text="@string/num_partidas_jugadas"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+        app:layout_constraintTop_toBottomOf="@+id/volver" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/numPreguntasAcertadas"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginStart="55dp"
@@ -58,10 +58,10 @@
         android:text="@string/num_preguntas_acertadas"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/tiempoTotal" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/numPreguntasIncorrectas"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginStart="55dp"
@@ -71,10 +71,10 @@
         android:text="@string/num_preguntas_incorrrectas"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/numPreguntasAcertadas" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/numPartidasGanadas"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginStart="55dp"
@@ -84,10 +84,10 @@
         android:text="@string/num_partidas_ganadas"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/numPartidasJugadas" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/numPartidasPerdidas"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginStart="55dp"
@@ -97,10 +97,10 @@
         android:text="@string/num_partidas_perdidas"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/numPartidasGanadas" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tiempoPromedio"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginStart="55dp"
@@ -110,10 +110,10 @@
         android:text="@string/tiempo_promedio"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/numPartidasPerdidas" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/tiempoTotal"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginStart="55dp"
@@ -123,10 +123,10 @@
         android:text="@string/tiempo_total"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/tiempoPromedio" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/nivelConocimientoODS"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginStart="55dp"
@@ -136,6 +136,6 @@
         android:text="@string/nivel_conocimiento_ODS"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/numPreguntasIncorrectas" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
