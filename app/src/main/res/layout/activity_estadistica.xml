@@ -37,8 +37,8 @@
 
     <TextView
         android:id="@+id/numPartidasJugadas"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/estadisticas_datos_width"
+        android:layout_height="@dimen/estadisticas_datos_height"
         android:layout_marginStart="55dp"
         android:layout_marginTop="68dp"
         android:background="@drawable/btn_shape_round"
@@ -51,8 +51,8 @@
 
     <TextView
         android:id="@+id/numPreguntasAcertadas"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/estadisticas_datos_width"
+        android:layout_height="@dimen/estadisticas_datos_height"
         android:layout_marginStart="55dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/btn_shape_round"
@@ -65,8 +65,8 @@
 
     <TextView
         android:id="@+id/numPreguntasIncorrectas"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/estadisticas_datos_width"
+        android:layout_height="@dimen/estadisticas_datos_height"
         android:layout_marginStart="55dp"
         android:layout_marginTop="29dp"
         android:background="@drawable/btn_shape_round"
@@ -79,8 +79,8 @@
 
     <TextView
         android:id="@+id/numPartidasGanadas"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/estadisticas_datos_width"
+        android:layout_height="@dimen/estadisticas_datos_height"
         android:layout_marginStart="55dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/btn_shape_round"
@@ -93,8 +93,8 @@
 
     <TextView
         android:id="@+id/numPartidasPerdidas"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/estadisticas_datos_width"
+        android:layout_height="@dimen/estadisticas_datos_height"
         android:layout_marginStart="55dp"
         android:layout_marginTop="29dp"
         android:background="@drawable/btn_shape_round"
@@ -106,23 +106,37 @@
         app:layout_constraintTop_toBottomOf="@+id/numPartidasGanadas" />
 
     <TextView
-        android:id="@+id/tiempoPromedio"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:id="@+id/numPartidasAbandonadas"
+        android:layout_width="@dimen/estadisticas_datos_width"
+        android:layout_height="@dimen/estadisticas_datos_height"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/btn_shape_round"
+        android:fontFamily="@font/varela_round"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/num_partidas_abandonadas"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numPartidasPerdidas" />
+
+    <TextView
+        android:id="@+id/tiempoPromedio"
+        android:layout_width="@dimen/estadisticas_datos_width"
+        android:layout_height="@dimen/estadisticas_datos_height"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="26dp"
         android:background="@drawable/btn_shape_round"
         android:fontFamily="@font/varela_round"
         android:gravity="center_vertical|center_horizontal"
         android:text="@string/tiempo_promedio"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numPartidasPerdidas" />
+        app:layout_constraintTop_toBottomOf="@+id/numPartidasAbandonadas" />
 
     <TextView
         android:id="@+id/tiempoTotal"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/estadisticas_datos_width"
+        android:layout_height="@dimen/estadisticas_datos_height"
         android:layout_marginStart="55dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/btn_shape_round"
@@ -135,8 +149,8 @@
 
     <TextView
         android:id="@+id/nivelConocimientoODS"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/estadisticas_datos_width"
+        android:layout_height="@dimen/estadisticas_datos_height"
         android:layout_marginStart="55dp"
         android:layout_marginTop="31dp"
         android:background="@drawable/btn_shape_round"
@@ -144,6 +158,7 @@
         android:gravity="center_vertical|center_horizontal"
         android:text="@string/nivel_conocimiento_ODS"
         android:textColor="@color/black"
+        android:textSize="@dimen/estadisticas_datos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/numPreguntasIncorrectas" />
 
