@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_estadistica"
+    android:background="@color/background_green"
+    >
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/estadistica"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/background_green"
+        android:contentDescription="@string/volver"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        app:tint="@color/black"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/btn_shape_round"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/num_partidas_jugadas"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/btn_shape_round"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/num_preguntas_acertadas"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="29dp"
+        android:background="@drawable/btn_shape_round"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/num_preguntas_incorrrectas"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/btn_shape_round"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/num_partidas_ganadas"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="29dp"
+        android:background="@drawable/btn_shape_round"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/num_partidas_perdidas"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/btn_shape_round"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/tiempo_promedio"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/btn_shape_round"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/tiempo_total"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/btn_shape_round"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/nivel_conocimiento_ODS"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
