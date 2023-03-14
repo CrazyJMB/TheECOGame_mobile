@@ -1,12 +1,12 @@
-package com.dds.theecogame.viewmodel
+package com.dds.theecogame.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.dds.theecogame.R
 
-class activity_questions : AppCompatActivity() {
+class MainScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_questions)
+        setContentView(R.layout.activity_main_screen)
     }
 }
