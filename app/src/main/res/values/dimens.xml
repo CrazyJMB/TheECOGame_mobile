@@ -4,7 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="btn_corner_radius">10dp</dimen>
     <dimen name="estadisticas">34sp</dimen>
-    <dimen name="estadisticas_datos">14sp</dimen>
-    <dimen name="estadisticas_datos_height">30dp</dimen>
-    <dimen name="estadisticas_datos_width">300dp</dimen>
+    <dimen name="estadisticas_datos">16.5sp</dimen>
+    <dimen name="estadisticas_datos_height">40dp</dimen>
+    <dimen name="estadisticas_datos_width">320dp</dimen>
 </resources>

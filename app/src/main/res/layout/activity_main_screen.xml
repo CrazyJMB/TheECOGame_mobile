@@ -46,18 +46,19 @@ android:background="@color/background_green">
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-<Button
-    android:id="@+id/button2"
-    android:layout_width="250sp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="30dp"
-    android:background="@drawable/btn_shape_round"
-    android:text="@string/button_statistic"
-    android:textStyle="bold"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.498"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/button" />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_shape_round"
+        android:onClick="goToStats"
+        android:text="@string/button_statistic"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
 <Button
     android:id="@+id/button3"
