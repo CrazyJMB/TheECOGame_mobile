@@ -4,10 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
-import androidx.databinding.DataBindingUtil
 import com.dds.theecogame.databinding.ActivityEstadisticaBinding
-import com.dds.theecogame.databinding.ActivityMainScreenBinding
 import com.dds.theecogame.ui.MainScreen
 
 class activity_estadistica : AppCompatActivity() {
