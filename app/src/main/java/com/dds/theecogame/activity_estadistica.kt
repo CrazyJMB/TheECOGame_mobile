@@ -3,7 +3,6 @@ package com.dds.theecogame
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import com.dds.theecogame.databinding.ActivityEstadisticaBinding
 import com.dds.theecogame.ui.MainScreen
 
@@ -17,12 +16,12 @@ class activity_estadistica : AppCompatActivity() {
         initializeStats()
     }
 
-    fun goToMainScreen (view: View){
+    fun goToMainScreen (){
         val mainScreen = Intent(this, MainScreen::class.java)
         startActivity(mainScreen)
     }
 
-    fun initializeStats (){
+    private fun initializeStats (){
         binding.numPartidasJugadas.setText(binding.numPartidasJugadas.text.toString() + " 0")
         binding.numPartidasGanadas.setText(binding.numPartidasGanadas.text.toString() + " 0")
         binding.numPartidasPerdidas.setText(binding.numPartidasPerdidas.text.toString() + " 0")
