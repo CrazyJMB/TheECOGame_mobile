@@ -12,7 +12,7 @@
         android:theme="@style/Theme.TheECOGame"
         tools:targetApi="31">
         <activity
-            android:name=".ui.MainScreen"
+            android:name=".ui.Questions"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
