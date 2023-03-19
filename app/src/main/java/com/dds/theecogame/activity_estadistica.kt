@@ -22,15 +22,34 @@ class activity_estadistica : AppCompatActivity() {
         startActivity(mainScreen)
     }
 
-    private fun initializeStats (){
-        binding.numPartidasJugadas.text = binding.numPartidasJugadas.text.toString() + " 0"
-        binding.numPartidasGanadas.text = binding.numPartidasGanadas.text.toString() + " 0"
-        binding.numPartidasPerdidas.text = binding.numPartidasPerdidas.text.toString() + " 0"
-        binding.numPartidasAbandonadas.text = binding.numPartidasAbandonadas.text.toString() + " 0"
-        binding.tiempoPromedio.text = binding.tiempoPromedio.text.toString() + " 0"
-        binding.tiempoTotal.text = binding.tiempoTotal.text.toString() + " 0"
-        binding.numPreguntasAcertadas.text = binding.numPreguntasAcertadas.text.toString() + " 0"
-        binding.numPreguntasIncorrectas.text = binding.numPreguntasIncorrectas.text.toString() + " 0"
-        binding.nivelConocimientoODS.text = binding.nivelConocimientoODS.text.toString() + " 0%"
+    // Initializes the statistics screen with default values.
+    private fun initializeStats() {
+        val numGamesPlayed = 0
+        binding.numPartidasJugadas.text = "${binding.numPartidasJugadas.text} $numGamesPlayed"
+
+        val numGamesWon = 0
+        binding.numPartidasGanadas.text = "${binding.numPartidasGanadas.text} $numGamesWon"
+
+        val numGamesLost = 0
+        binding.numPartidasPerdidas.text = "${binding.numPartidasPerdidas.text} $numGamesLost"
+
+        val numGamesAbandoned = 0
+        binding.numPartidasAbandonadas.text = "${binding.numPartidasAbandonadas.text} $numGamesAbandoned"
+
+        val avgTimePerGame = 0
+        binding.tiempoPromedio.text = "${binding.tiempoPromedio.text} $avgTimePerGame"
+
+        val totalTimePlayed = 0
+        binding.tiempoTotal.text = "${binding.tiempoTotal.text} $totalTimePlayed"
+
+        val numCorrectAnswers = 0
+        binding.numPreguntasAcertadas.text = "${binding.numPreguntasAcertadas.text} $numCorrectAnswers"
+
+        val numIncorrectAnswers = 0
+        binding.numPreguntasIncorrectas.text = "${binding.numPreguntasIncorrectas.text} $numIncorrectAnswers"
+
+        val odsKnowledgeLevel = "0%"
+        binding.nivelConocimientoODS.text = "${binding.nivelConocimientoODS.text} $odsKnowledgeLevel"
     }
+
 }
