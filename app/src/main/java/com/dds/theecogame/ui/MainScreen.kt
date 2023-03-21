@@ -13,7 +13,7 @@ class MainScreen : AppCompatActivity() {
         setContentView(R.layout.activity_main_screen)
     }
 
-    fun goToStats (){
+    fun goToStats (view: View){
         val statistics = Intent(this, activity_estadistica::class.java)
         startActivity(statistics)
     }
