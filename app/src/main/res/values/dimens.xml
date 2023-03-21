@@ -5,5 +5,8 @@
     <dimen name="btn_corner_radius">10dp</dimen>
     <dimen name="header_font_size">24sp</dimen>
     <dimen name="header_margin_top">21dp</dimen>
-
+    <dimen name="estadisticas">34sp</dimen>
+    <dimen name="estadisticas_datos">16.5sp</dimen>
+    <dimen name="estadisticas_datos_height">40dp</dimen>
+    <dimen name="estadisticas_datos_width">320dp</dimen>
 </resources>
