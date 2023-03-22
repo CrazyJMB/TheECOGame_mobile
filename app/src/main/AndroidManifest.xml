@@ -14,18 +14,13 @@
         android:theme="@style/Theme.TheECOGame"
         tools:targetApi="31">
         <activity
-            android:name=".views.SettingActivity"
+            android:name=".views.MainScreen"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.TheECOGame.NoActionBar" />
         <activity
             android:name=".activity_estadistica"
             android:exported="false" />
         <activity
-            android:name=".views.MainScreen"
+            android:name=".views.SettingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
