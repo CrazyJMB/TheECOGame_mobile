@@ -9,4 +9,13 @@
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/varela_round</item>
     </style>
+
+    <style name="Theme.TheECOGame.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.TheECOGame.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.TheECOGame.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
