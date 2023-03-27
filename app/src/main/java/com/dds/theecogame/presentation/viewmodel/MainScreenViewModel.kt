@@ -1,4 +1,4 @@
-package com.dds.theecogame.viewmodel
+package com.dds.theecogame.presentation.viewmodel
 
 import android.content.Intent
 import android.view.View

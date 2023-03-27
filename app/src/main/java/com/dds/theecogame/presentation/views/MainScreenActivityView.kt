@@ -1,14 +1,14 @@
-package com.dds.theecogame.views
+package com.dds.theecogame.presentation.views
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.dds.theecogame.activity_estadistica
+import com.dds.theecogame.presentation.views.activity_estadistica
 import com.dds.theecogame.databinding.ActivityMainScreenBinding
-import com.dds.theecogame.viewmodel.MainScreenViewModel
+import com.dds.theecogame.presentation.viewmodel.MainScreenViewModel
 
-class MainScreen : AppCompatActivity() {
+class MainScreenActivityView : AppCompatActivity() {
     private lateinit var binding: ActivityMainScreenBinding
 
     lateinit var viewModel: MainScreenViewModel

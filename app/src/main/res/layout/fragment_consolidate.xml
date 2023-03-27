@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment_consolidate">
+    tools:context=".presentation.views.fragment_consolidate">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_marginStart="82dp"
             android:layout_marginEnd="83dp"
             android:layout_marginBottom="29dp"
-            android:text="@string/quieres_consolidar_tus_puntos"
+            android:text="@string/consolidate_question"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="24sp"
@@ -36,7 +36,7 @@
             android:layout_marginEnd="190dp"
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/background_green"
-            android:contentDescription="@string/aviso"
+            android:contentDescription="@string/warning"
             android:src="@android:drawable/ic_menu_info_details"
             app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
             android:layout_marginEnd="61dp"
             android:layout_marginBottom="76dp"
             android:background="@drawable/btn_shape_round"
-            android:text="@string/consolidar_explicacion"
+            android:text="@string/consolidate_info"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -71,7 +71,7 @@
             android:layout_marginBottom="50dp"
             android:background="@drawable/btn_shape_round"
             android:backgroundTint="@color/background_white_green"
-            android:text="@string/si"
+            android:text="@string/yes"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:cornerRadius="15sp"
