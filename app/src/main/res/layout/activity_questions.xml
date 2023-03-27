@@ -54,7 +54,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView6"
-        android:name="com.dds.theecogame.FragmentQuestions"
+        android:name="com.dds.theecogame.presentation.views.FragmentQuestions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="331dp"
