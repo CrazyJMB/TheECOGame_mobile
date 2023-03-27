@@ -1,22 +1,14 @@
 package com.dds.theecogame.viewmodel
 
+import android.content.Intent
+import android.view.View
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
+import com.dds.theecogame.activity_estadistica
+import com.dds.theecogame.views.MainScreen
 
 class MainScreenViewModel : ViewModel() {
-    // Aquí se harían las interacciones que se hace desde la UI con el usuario.
-    // Logica de apretar un boton, etc
-
-    fun goToGame() {
-        // Go to GameActivity
-    }
-
-    fun goToStatics() {
-        // Go to StaticsActivity
-    }
-
-    fun goToSettings() {
-        // Go to SettingsActivity
-    }
+    // Logica compleja o datos que deban actualizarle en la vista
 }
 
 

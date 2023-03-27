@@ -1,5 +1,9 @@
 package com.dds.theecogame.domain.model
 
 data class User(
-    val username: String
+    val contraseña: String,
+    val correo: String,
+    val id_usuario: Int,
+    val puntosAcumulados: Any,
+    val usuario: String
 )

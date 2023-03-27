@@ -12,9 +12,4 @@ class Questions : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
     }
-
-    fun goToStats (){
-        val statistics = Intent(this, activity_estadistica::class.java)
-        startActivity(statistics)
-    }
 }

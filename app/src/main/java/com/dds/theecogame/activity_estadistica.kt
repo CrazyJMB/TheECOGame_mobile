@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.dds.theecogame.databinding.ActivityEstadisticaBinding
-import com.dds.theecogame.ui.MainScreen
+import com.dds.theecogame.views.MainScreen
 
 class activity_estadistica : AppCompatActivity() {
     private lateinit var binding: ActivityEstadisticaBinding
