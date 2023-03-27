@@ -35,10 +35,6 @@
     <string name="consolidar_explicacion">Si consolidas tus puntos...</string>
     <string name="aviso">Aviso</string>
 
-    <string name="fab_content_description">Represents a view to invoke an action</string>
-    <string name="image_view_item_transform_content_description">Represents an image view in the
-        item
-    </string>
     <string name="estadistica">Estadísticas</string>
     <string name="num_partidas_jugadas">Número de partidas jugadas:</string>
     <string name="num_partidas_ganadas">Partidas ganadas:</string>
@@ -46,17 +42,18 @@
     <string name="num_partidas_abandonadas">Partidas abandonadas:</string>
     <string name="num_preguntas_acertadas">Preguntas acertadas:</string>
     <string name="num_preguntas_incorrrectas">Preguntas incorrectas:</string>
-    <string name="tiempo_promedio">Tiempo promedio de partida:</string>
+    <string name="tiempo_promedio">Tiempo promedio de las partidas:</string>
     <string name="tiempo_total">Tiempo total de partida:</string>
     <string name="nivel_conocimiento_ODS">Nivel conocimiento de ODS:</string>
-    <string name="title_activity_main">MainActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="title_activity_main" translatable="false">MainActivity</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Inicia sesión o Regístrate</string>
+    <string name="action_sign_in_short">Inicia sesión</string>
+    <string name="welcome">Bienvenido!</string>
+    <string name="invalid_username">No es un usuario válido</string>
+    <string name="invalid_password">La contraseña debe tener más de 5 caracteres</string>
+    <string name="login_failed">Inicio de sesión fallido</string>
 
 </resources>
