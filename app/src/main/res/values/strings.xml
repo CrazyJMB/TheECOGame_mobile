@@ -29,22 +29,22 @@
         <item>ODS</item>
     </string-array>
 
-    <string name="yes">Si</string>
+    <string name="si">Si</string>
     <string name="no">No</string>
-    <string name="consolidate_question">¿Quieres consolidar tus puntos?</string>
-    <string name="consolidate_info">Si consolidas tus puntos...</string>
-    <string name="warning">Aviso</string>
+    <string name="quieres_consolidar_tus_puntos">¿Quieres consolidar tus puntos?</string>
+    <string name="consolidar_explicacion">Si consolidas tus puntos...</string>
+    <string name="aviso">Aviso</string>
 
-    <string name="statistics">Estadísticas</string>
-    <string name="num_games_played">Número de partidas jugadas:</string>
-    <string name="num_games_won">Partidas ganadas:</string>
-    <string name="num_games_lost">Partidas perdidas:</string>
-    <string name="num_abandoned_answers">Partidas abandonadas:</string>
-    <string name="num_correct_answers">Preguntas acertadas:</string>
-    <string name="num_wrong_answers">Preguntas incorrectas:</string>
-    <string name="mean_time">Tiempo promedio de las partidas:</string>
-    <string name="total_time">Tiempo total de partida:</string>
-    <string name="ODS_knowledge">Nivel conocimiento de ODS:</string>
+    <string name="estadistica">Estadísticas</string>
+    <string name="num_partidas_jugadas">Número de partidas jugadas:</string>
+    <string name="num_partidas_ganadas">Partidas ganadas:</string>
+    <string name="num_partidas_perdidas">Partidas perdidas:</string>
+    <string name="num_partidas_abandonadas">Partidas abandonadas:</string>
+    <string name="num_preguntas_acertadas">Preguntas acertadas:</string>
+    <string name="num_preguntas_incorrrectas">Preguntas incorrectas:</string>
+    <string name="tiempo_promedio">Tiempo promedio de las partidas:</string>
+    <string name="tiempo_total">Tiempo total de partida:</string>
+    <string name="nivel_conocimiento_ODS">Nivel conocimiento de ODS:</string>
     <string name="title_activity_main" translatable="false">MainActivity</string>
 
     <string name="prompt_email">Email</string>
@@ -55,12 +55,5 @@
     <string name="invalid_username">No es un usuario válido</string>
     <string name="invalid_password">La contraseña debe tener más de 5 caracteres</string>
     <string name="login_failed">Inicio de sesión fallido</string>
-    <string name="num_question" translatable="false">1</string>
-    <string name="image">Imagen</string>
-    <string name="lost">DERROTA</string>
-    <string name="victory">VICTORIA</string>
-    <string name="timePlayed">Tiempo Jugado:</string>
-    <string name="obtainedPoints">Puntos obtenidos:</string>
-    <string name="answeredQuestions">Preguntas respondidas:</string>
-    <string name="finishGame">Acabar partida</string>
+
 </resources>
