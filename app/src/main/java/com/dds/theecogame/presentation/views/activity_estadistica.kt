@@ -1,11 +1,10 @@
-package com.dds.theecogame
+package com.dds.theecogame.presentation.views
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.dds.theecogame.databinding.ActivityEstadisticaBinding
-import com.dds.theecogame.views.MainScreen
 
 class activity_estadistica : AppCompatActivity() {
     private lateinit var binding: ActivityEstadisticaBinding
@@ -18,7 +17,7 @@ class activity_estadistica : AppCompatActivity() {
     }
 
     fun goToMainScreen (view: View){
-        val mainScreen = Intent(this, MainScreen::class.java)
+        val mainScreen = Intent(this, MainScreenActivityView::class.java)
         startActivity(mainScreen)
     }
 
