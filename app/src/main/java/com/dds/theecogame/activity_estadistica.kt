@@ -5,13 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.dds.theecogame.databinding.ActivityEstadisticaBinding
+import com.dds.theecogame.viewmodel.EstadisticaViewModel
 import com.dds.theecogame.views.MainScreen
 
 class activity_estadistica : AppCompatActivity() {
     private lateinit var binding: ActivityEstadisticaBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_estadistica)
         binding = ActivityEstadisticaBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initializeStats()
@@ -24,32 +24,32 @@ class activity_estadistica : AppCompatActivity() {
 
     // Initializes the statistics screen with default values.
     private fun initializeStats() {
-        val numGamesPlayed = 0
+        val numGamesPlayed = EstadisticaViewModel().getNumGamesPlayed()
         binding.numPartidasJugadas.text = "${binding.numPartidasJugadas.text} $numGamesPlayed"
 
-        val numGamesWon = 0
+        val numGamesWon = EstadisticaViewModel().getNumGamesWon()
         binding.numPartidasGanadas.text = "${binding.numPartidasGanadas.text} $numGamesWon"
 
-        val numGamesLost = 0
+        val numGamesLost = EstadisticaViewModel().getNumGamesLost()
         binding.numPartidasPerdidas.text = "${binding.numPartidasPerdidas.text} $numGamesLost"
 
-        val numGamesAbandoned = 0
+        val numGamesAbandoned = EstadisticaViewModel().getNumGamesAbandoned()
         binding.numPartidasAbandonadas.text = "${binding.numPartidasAbandonadas.text} $numGamesAbandoned"
 
-        val avgTimePerGame = 0
+        val avgTimePerGame = EstadisticaViewModel().getAvgTimePerGame()
         binding.tiempoPromedio.text = "${binding.tiempoPromedio.text} $avgTimePerGame"
 
-        val totalTimePlayed = 0
+        val totalTimePlayed = EstadisticaViewModel().getTotalTimePlayed()
         binding.tiempoTotal.text = "${binding.tiempoTotal.text} $totalTimePlayed"
 
-        val numCorrectAnswers = 0
+        val numCorrectAnswers = EstadisticaViewModel().getNumCorrectAnswers()
         binding.numPreguntasAcertadas.text = "${binding.numPreguntasAcertadas.text} $numCorrectAnswers"
 
-        val numIncorrectAnswers = 0
+        val numIncorrectAnswers = EstadisticaViewModel().getNumIncorrectAnswers()
         binding.numPreguntasIncorrectas.text = "${binding.numPreguntasIncorrectas.text} $numIncorrectAnswers"
 
-        val odsKnowledgeLevel = "0%"
-        binding.nivelConocimientoODS.text = "${binding.nivelConocimientoODS.text} $odsKnowledgeLevel"
+        val odsKnowledgeLevel = EstadisticaViewModel().getOdsKnowledgeLevel()
+        binding.nivelConocimientoODS.text = "${binding.nivelConocimientoODS.text} $odsKnowledgeLevel%"
     }
 
 }
