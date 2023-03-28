@@ -1,4 +1,4 @@
-package com.dds.theecogame.data.service
+package com.dds.theecogame.common
 
 import com.dds.theecogame.data.UserApiService
 import retrofit2.Retrofit
