@@ -57,5 +57,10 @@
     <string name="login_failed">Inicio de sesión fallido</string>
     <string name="num_question" translatable="false">1</string>
     <string name="image">Imagen</string>
-
+    <string name="lost">DERROTA</string>
+    <string name="victory">VICTORIA</string>
+    <string name="timePlayed">Tiempo Jugado:</string>
+    <string name="obtainedPoints">Puntos obtenidos:</string>
+    <string name="answeredQuestions">Preguntas respondidas:</string>
+    <string name="finishGame">Acabar partida</string>
 </resources>
