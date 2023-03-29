@@ -5,7 +5,7 @@ import com.dds.theecogame.domain.model.Question
 
 data class QuestionDto(
     val id: Int,
-    val difficulty: String,
+    val difficulty: Int,
     val time: Int,
 
     val question: String,

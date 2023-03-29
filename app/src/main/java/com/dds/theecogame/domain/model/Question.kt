@@ -2,7 +2,7 @@ package com.dds.theecogame.domain.model
 
 data class Question(
     val id: Int,
-    val difficulty: String,
+    val difficulty: Int,
     val time: Int,
 
     val question: String,
