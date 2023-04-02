@@ -47,6 +47,6 @@ class FragmentResumen : Fragment() {
         val statValues = GameViewModel().getResults()
         binding.timePlayed.text = "${binding.timePlayed.text} ${statValues[0]}"
         binding.pointsObtained.text = "${binding.pointsObtained.text} ${statValues[1]}"
-        binding.questionsAnswered.text = "${binding.questionsAnswered.text} ${statValues[2]}"
+        binding.questionsAnswered.text = "${binding.questionsAnswered.text} ${statValues[2]}/10"
     }
 }
