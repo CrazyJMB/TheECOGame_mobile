@@ -11,12 +11,12 @@
         android:id="@+id/Title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/header_margin_top"
         android:text="@string/lost"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="60sp"
-        android:layout_marginTop="@dimen/header_margin_top"
+        android:textSize="@dimen/title_font_size"
         android:typeface="normal" />
 
     <TextView
@@ -27,27 +27,27 @@
         android:text="@string/timePlayed"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="28sp" />
+        android:textSize="@dimen/header_font_size" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/pointsObtained"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="180sp"
-        android:textSize="28sp"
-        android:textAlignment="center"
         android:text="@string/obtainedPoints"
-        android:textColor="@color/black" />
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/header_font_size" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/questionsAnswered"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="240sp"
-        android:textSize="28sp"
-        android:textAlignment="center"
         android:text="@string/answeredQuestions"
-        android:textColor="@color/black" />
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/header_font_size" />
 
     <Button
         android:id="@+id/acabarPartida"
@@ -57,8 +57,9 @@
         android:layout_marginTop="500sp"
         android:layout_marginRight="50sp"
         android:layout_marginBottom="150sp"
+        android:onClick="finishGame"
         android:text="@string/finishGame"
         android:textColor="@color/black"
-        android:textSize="28sp" />
+        android:textSize="@dimen/header_font_size" />
 
 </FrameLayout>
