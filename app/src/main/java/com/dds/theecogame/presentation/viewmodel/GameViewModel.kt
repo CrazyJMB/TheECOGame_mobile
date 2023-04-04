@@ -3,6 +3,7 @@ package com.dds.theecogame.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 
 class GameViewModel: ViewModel() {
+
     internal fun sendResults() {
         //Funcionalidad a implementar mas tarde cuando haya participantes, y ahi guardamos sus stats
     }
@@ -16,6 +17,10 @@ class GameViewModel: ViewModel() {
         return summaryStats
     }
 
-
+    internal fun askIfUserWon(): Boolean {
+        //Return false si ha perdido, return true si ha ganado
+        var userWon: Boolean = false
+        return userWon
+    }
 
 }

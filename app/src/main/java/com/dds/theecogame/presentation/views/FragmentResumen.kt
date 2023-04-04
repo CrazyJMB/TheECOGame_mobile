@@ -48,5 +48,11 @@ class FragmentResumen : Fragment() {
         binding.timePlayed.text = "${binding.timePlayed.text} ${statValues[0]}"
         binding.pointsObtained.text = "${binding.pointsObtained.text} ${statValues[1]}"
         binding.questionsAnswered.text = "${binding.questionsAnswered.text} ${statValues[2]}/10"
+
+        if (GameViewModel().askIfUserWon()){
+            binding.Title.text = "@string/victory"
+        } else {
+            binding.Title.text = "@string/lost"
+        }
     }
 }
