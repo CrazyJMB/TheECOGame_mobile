@@ -20,7 +20,7 @@ class MainScreenActivityView : AppCompatActivity() {
         var viewModel = ViewModelProvider(this)[MainScreenViewModel::class.java]
 
         binding.btnPlay.setOnClickListener{
-            val intent = Intent(this, GameActivityView::class.java)
+            val intent = Intent(this, QuestionsActivityView::class.java)
             startActivity(intent)
         }
 

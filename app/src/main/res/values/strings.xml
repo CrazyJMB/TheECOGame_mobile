@@ -59,8 +59,10 @@
     <string name="image">Imagen</string>
     <string name="lost">DERROTA</string>
     <string name="victory">VICTORIA</string>
+    <string name="abandoned">ABANDONADA</string>
     <string name="timePlayed">Tiempo Jugado:</string>
     <string name="obtainedPoints">Puntos obtenidos:</string>
     <string name="answeredQuestions">Preguntas respondidas:</string>
     <string name="finishGame">Acabar partida</string>
+    <string name="congratulations">Felicidades</string>
 </resources>

@@ -57,12 +57,13 @@
         android:name="com.dds.theecogame.presentation.views.FragmentQuestions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="331dp"
-        android:layout_marginBottom="400dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_questions" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

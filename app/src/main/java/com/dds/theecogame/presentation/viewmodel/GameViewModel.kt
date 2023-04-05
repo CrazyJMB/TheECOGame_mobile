@@ -3,7 +3,7 @@ package com.dds.theecogame.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 
 class GameViewModel: ViewModel() {
-
+    /*A IMPLEMENTAR TODO*/
     internal fun sendResults() {
         //Funcionalidad a implementar mas tarde cuando haya participantes, y ahi guardamos sus stats
     }
@@ -23,4 +23,15 @@ class GameViewModel: ViewModel() {
         return userWon
     }
 
+    internal fun askIfUserHasAbandoned(): Boolean {
+        //Return false si ha abandonado return true si no ha abandonado
+        var userAbandoned: Boolean = false
+        return userAbandoned
+    }
+
+    internal fun askIfUserHasntFinished(): Boolean {
+        //Return false si ha finalizado los 10 retos, return true si aun no ha finalizado los 10
+        var userHasntFinished = true
+        return true
+    }
 }

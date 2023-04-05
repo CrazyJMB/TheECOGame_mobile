@@ -28,6 +28,12 @@
             android:name=".presentation.views.SettingActivityView"
             android:exported="false">
         </activity>
+        <activity
+            android:name=".presentation.views.QuestionsActivityView"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.views.GameActivityView"
+            android:exported="false" />
     </application>
 
 </manifest>
