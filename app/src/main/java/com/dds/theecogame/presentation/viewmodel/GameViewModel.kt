@@ -32,6 +32,6 @@ class GameViewModel: ViewModel() {
     internal fun askIfUserHasntFinished(): Boolean {
         //Return false si ha finalizado los 10 retos, return true si aun no ha finalizado los 10
         var userHasntFinished = true
-        return true
+        return userHasntFinished
     }
 }
