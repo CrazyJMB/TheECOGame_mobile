@@ -7,7 +7,7 @@
     android:background="@color/background_green">
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/Volver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -17,7 +17,7 @@
         android:backgroundTint="@color/background_green"
         android:contentDescription="@string/back"
         android:src="@android:drawable/ic_menu_revert"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintBottom_toTopOf="@+id/Linea"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +25,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/Linea"
         android:layout_width="407dp"
         android:layout_height="12dp"
         android:layout_marginStart="3dp"
@@ -42,17 +42,5 @@
             android:background="@color/background_white_green" />
 
     </LinearLayout>
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="com.dds.theecogame.presentation.views.fragment_consolidate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="445dp"
-        android:layout_marginBottom="287dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

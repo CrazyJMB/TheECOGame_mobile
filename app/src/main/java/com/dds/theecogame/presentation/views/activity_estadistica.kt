@@ -16,7 +16,7 @@ class activity_estadistica : AppCompatActivity() {
         initializeStats()
     }
 
-    fun goToMainScreen (view: View){
+    fun goToMainScreen(view: View) {
         val mainScreen = Intent(this, MainScreenActivityView::class.java)
         startActivity(mainScreen)
     }
@@ -33,7 +33,8 @@ class activity_estadistica : AppCompatActivity() {
         binding.numPartidasPerdidas.text = "${binding.numPartidasPerdidas.text} $numGamesLost"
 
         val numGamesAbandoned = 0
-        binding.numPartidasAbandonadas.text = "${binding.numPartidasAbandonadas.text} $numGamesAbandoned"
+        binding.numPartidasAbandonadas.text =
+            "${binding.numPartidasAbandonadas.text} $numGamesAbandoned"
 
         val avgTimePerGame = 0
         binding.tiempoPromedio.text = "${binding.tiempoPromedio.text} $avgTimePerGame"
@@ -42,13 +43,16 @@ class activity_estadistica : AppCompatActivity() {
         binding.tiempoTotal.text = "${binding.tiempoTotal.text} $totalTimePlayed"
 
         val numCorrectAnswers = 0
-        binding.numPreguntasAcertadas.text = "${binding.numPreguntasAcertadas.text} $numCorrectAnswers"
+        binding.numPreguntasAcertadas.text =
+            "${binding.numPreguntasAcertadas.text} $numCorrectAnswers"
 
         val numIncorrectAnswers = 0
-        binding.numPreguntasIncorrectas.text = "${binding.numPreguntasIncorrectas.text} $numIncorrectAnswers"
+        binding.numPreguntasIncorrectas.text =
+            "${binding.numPreguntasIncorrectas.text} $numIncorrectAnswers"
 
         val odsKnowledgeLevel = "0%"
-        binding.nivelConocimientoODS.text = "${binding.nivelConocimientoODS.text} $odsKnowledgeLevel"
+        binding.nivelConocimientoODS.text =
+            "${binding.nivelConocimientoODS.text} $odsKnowledgeLevel"
     }
 
 }
