@@ -1,6 +1,8 @@
 package com.dds.theecogame.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
+import org.json.JSONArray
+
 
 class GameViewModel: ViewModel() {
     /*A IMPLEMENTAR TODO*/
@@ -34,4 +36,5 @@ class GameViewModel: ViewModel() {
         var userHasntFinished = true
         return userHasntFinished
     }
+
 }
