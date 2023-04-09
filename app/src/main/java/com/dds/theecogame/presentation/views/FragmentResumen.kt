@@ -49,10 +49,10 @@ class FragmentResumen : Fragment() {
         binding.pointsObtained.text = "${binding.pointsObtained.text} ${statValues[1]}"
         binding.questionsAnswered.text = "${binding.questionsAnswered.text} ${statValues[2]}/10"
 
-        if (GameViewModel().askIfUserHasAbandoned()){
+        if (GameViewModel().hasUserAbandoned()){
             binding.Title.text = "@string/abandoned"
         } else {
-            if (GameViewModel().askIfUserWon()){
+            if (GameViewModel().hasUserWon()){
                 binding.Title.text = "@string/victory"
             } else {
                 binding.Title.text = "@string/lost"

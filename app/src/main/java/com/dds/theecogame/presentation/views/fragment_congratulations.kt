@@ -1,7 +1,5 @@
 package com.dds.theecogame.presentation.views
 
-import android.content.Intent
-import android.media.AsyncPlayer
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +9,6 @@ import android.view.ViewGroup
 import com.dds.theecogame.R
 import com.dds.theecogame.R.raw
 import com.dds.theecogame.databinding.FragmentCongratulationsBinding
-import com.dds.theecogame.databinding.FragmentResumenBinding
 import com.dds.theecogame.presentation.viewmodel.GameViewModel
 
 class fragment_congratulations : Fragment() {
@@ -37,23 +34,23 @@ class fragment_congratulations : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.title.setOnClickListener{
             mediaPlayer.stop()
-            if (GameViewModel().askIfUserHasntFinished()){
-                goToConsolidate()
-            } else {
+            if (GameViewModel().hasUserAnsweredAll()){
                 goToSummary()
+            } else {
+                goToConsolidate()
             }
         }
         mediaPlayer.setOnCompletionListener {
-            if (GameViewModel().askIfUserHasntFinished()){
-                goToConsolidate()
-            } else {
+            if (GameViewModel().hasUserAnsweredAll()){
                 goToSummary()
+            } else {
+                goToConsolidate()
             }
         }
     }
 
     private fun startMusic(){
-        if (GameViewModel().askIfUserHasntFinished()){
+        if (GameViewModel().hasUserAnsweredAll()){
             mediaPlayer = MediaPlayer.create(requireContext(), raw.ganar_reto)
         } else {
             mediaPlayer = MediaPlayer.create(requireContext(), raw.victoria)

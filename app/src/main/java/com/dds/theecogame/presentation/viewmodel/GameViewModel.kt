@@ -1,7 +1,6 @@
 package com.dds.theecogame.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
-import org.json.JSONArray
 
 
 class GameViewModel: ViewModel() {
@@ -19,22 +18,22 @@ class GameViewModel: ViewModel() {
         return summaryStats
     }
 
-    internal fun askIfUserWon(): Boolean {
+    internal fun hasUserWon(): Boolean {
         //Return false si ha perdido, return true si ha ganado
         var userWon: Boolean = false
         return userWon
     }
 
-    internal fun askIfUserHasAbandoned(): Boolean {
+    internal fun hasUserAbandoned(): Boolean {
         //Return false si ha abandonado return true si no ha abandonado
         var userAbandoned: Boolean = false
         return userAbandoned
     }
 
-    internal fun askIfUserHasntFinished(): Boolean {
+    internal fun hasUserAnsweredAll(): Boolean {
         //Return false si ha finalizado los 10 retos, return true si aun no ha finalizado los 10
-        var userHasntFinished = true
-        return userHasntFinished
+        var userAnsweredAll = false
+        return userAnsweredAll
     }
 
 }
