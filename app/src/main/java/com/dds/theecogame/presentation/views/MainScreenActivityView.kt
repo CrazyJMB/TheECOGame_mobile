@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.dds.theecogame.presentation.views.activity_estadistica
 import com.dds.theecogame.databinding.ActivityMainScreenBinding
 import com.dds.theecogame.presentation.viewmodel.MainScreenViewModel
 
@@ -19,17 +18,17 @@ class MainScreenActivityView : AppCompatActivity() {
 
         var viewModel = ViewModelProvider(this)[MainScreenViewModel::class.java]
 
-        binding.btnPlay.setOnClickListener{
+        binding.btnPlay.setOnClickListener {
             val intent = Intent(this, GameActivityView::class.java)
             startActivity(intent)
         }
 
-        binding.btnStatistics.setOnClickListener{
+        binding.btnStatistics.setOnClickListener {
             val intent = Intent(this, activity_estadistica::class.java)
             startActivity(intent)
         }
 
-        binding.btnSettings.setOnClickListener{
+        binding.btnSettings.setOnClickListener {
             val intent = Intent(this, SettingActivityView::class.java)
             startActivity(intent)
         }

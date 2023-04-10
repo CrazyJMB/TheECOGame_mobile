@@ -32,16 +32,16 @@ class fragment_congratulations : Fragment() {
 
     //Codigo para inicializar la vista (como podria ser un listener para un boton)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.title.setOnClickListener{
+        binding.title.setOnClickListener {
             mediaPlayer.stop()
-            if (GameViewModel().hasUserAnsweredAll()){
+            if (GameViewModel().hasUserAnsweredAll()) {
                 goToSummary()
             } else {
                 goToConsolidate()
             }
         }
         mediaPlayer.setOnCompletionListener {
-            if (GameViewModel().hasUserAnsweredAll()){
+            if (GameViewModel().hasUserAnsweredAll()) {
                 goToSummary()
             } else {
                 goToConsolidate()
@@ -49,8 +49,8 @@ class fragment_congratulations : Fragment() {
         }
     }
 
-    private fun startMusic(){
-        if (GameViewModel().hasUserAnsweredAll()){
+    private fun startMusic() {
+        if (GameViewModel().hasUserAnsweredAll()) {
             mediaPlayer = MediaPlayer.create(requireContext(), raw.ganar_reto)
         } else {
             mediaPlayer = MediaPlayer.create(requireContext(), raw.victoria)
@@ -59,20 +59,20 @@ class fragment_congratulations : Fragment() {
         mediaPlayer.start()
     }
 
-    private fun goToConsolidate(){
+    private fun goToConsolidate() {
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        val newFragment = fragment_consolidate()
-        fragmentTransaction.replace(R.id.fragmentContainerView, newFragment)
+        val newFragment = FragmentConsolidate()
+        fragmentTransaction.replace(id, newFragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
 
-    private fun goToSummary(){
+    private fun goToSummary() {
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         val newFragment = FragmentResumen()
-        fragmentTransaction.replace(R.id.fragmentContainerView, newFragment)
+        fragmentTransaction.replace(id, newFragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }

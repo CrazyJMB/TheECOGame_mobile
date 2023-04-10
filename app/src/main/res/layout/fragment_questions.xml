@@ -87,9 +87,7 @@
                 android:minHeight="48dp"
                 android:text="@string/optionA"
                 android:textColor="@color/black"
-                tools:ignore="DuplicateSpeakableTextCheck"
-                android:checked="@{selectedRadioButtonId == BotonA.getId()}"
-                android:onCheckedChanged="@{(group, checkedId) -> selectedRadioButtonId.set(checkedId)}" />
+                tools:ignore="DuplicateSpeakableTextCheck" />
 
             <RadioButton
                 android:id="@+id/BotonB"
@@ -99,9 +97,7 @@
                 android:background="@drawable/btn_shape_round"
                 android:minHeight="48dp"
                 android:text="@string/optionB"
-                android:textColor="@color/black"
-                android:checked="@{selectedRadioButtonId == BotonB.getId()}"
-                android:onCheckedChanged="@{(group, checkedId) -> selectedRadioButtonId.set(checkedId)}" />
+                android:textColor="@color/black" />
 
             <RadioButton
                 android:id="@+id/BotonC"
@@ -111,9 +107,7 @@
                 android:background="@drawable/btn_shape_round"
                 android:minHeight="48dp"
                 android:text="@string/optionC"
-                android:textColor="@color/black"
-                android:checked="@{selectedRadioButtonId == BotonC.getId()}"
-                android:onCheckedChanged="@{(group, checkedId) -> selectedRadioButtonId.set(checkedId)}" />
+                android:textColor="@color/black" />
 
             <RadioButton
                 android:id="@+id/BotonD"
@@ -122,9 +116,7 @@
                 android:background="@drawable/btn_shape_round"
                 android:minHeight="48dp"
                 android:text="@string/optionD"
-                android:textColor="@color/black"
-                android:checked="@{selectedRadioButtonId == BotonD.getId()}"
-                android:onCheckedChanged="@{(group, checkedId) -> selectedRadioButtonId.set(checkedId)}" />
+                android:textColor="@color/black" />
         </RadioGroup>
 
         <Button

@@ -5,13 +5,10 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
-import com.dds.theecogame.R
 import android.widget.Toast
 import androidx.databinding.ObservableInt
-import androidx.fragment.app.FragmentTransaction
 
 
 import com.dds.theecogame.databinding.ActivityEstadisticaBinding
