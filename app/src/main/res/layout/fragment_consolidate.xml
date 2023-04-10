@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.views.fragment_consolidate">
+    tools:context=".presentation.views.FragmentConsolidate">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:background="@color/background_green">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/ConsolidarPregunta"
             android:layout_width="246dp"
             android:layout_height="72dp"
             android:layout_marginStart="82dp"
@@ -22,14 +22,14 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView2"
+            app:layout_constraintBottom_toTopOf="@+id/Advertencia"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="TextSizeCheck" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/Advertencia"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginStart="189dp"
@@ -38,7 +38,7 @@
             android:backgroundTint="@color/background_green"
             android:contentDescription="@string/warning"
             android:src="@android:drawable/ic_menu_info_details"
-            app:layout_constraintBottom_toTopOf="@+id/textView5"
+            app:layout_constraintBottom_toTopOf="@+id/ExplicacionConsolidar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,24 +46,24 @@
             tools:ignore="ImageContrastCheck" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/ExplicacionConsolidar"
             android:layout_width="290dp"
             android:layout_height="111dp"
             android:layout_marginStart="61dp"
             android:layout_marginEnd="61dp"
-            android:layout_marginBottom="76dp"
+            android:layout_marginBottom="77dp"
             android:background="@drawable/btn_shape_round"
             android:text="@string/consolidate_info"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/continuar2"
+            app:layout_constraintBottom_toTopOf="@+id/Si"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/continuar2"
+            android:id="@+id/Si"
             android:layout_width="250dp"
             android:layout_height="48dp"
             android:layout_marginStart="80dp"
@@ -75,13 +75,13 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             app:cornerRadius="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/continuar4"
+            app:layout_constraintBottom_toTopOf="@+id/No"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/continuar4"
+            android:id="@+id/No"
             android:layout_width="250dp"
             android:layout_height="48dp"
             android:layout_marginStart="80dp"

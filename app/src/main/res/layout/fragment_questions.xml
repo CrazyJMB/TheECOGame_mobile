@@ -12,7 +12,7 @@
         android:background="@color/background_green">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/NumeroPregunta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tiempoRestante"
+            android:id="@+id/TiempoRestante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -34,7 +34,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/Pregunta"
             android:layout_width="290dp"
             android:layout_height="111dp"
             android:layout_marginStart="62dp"
@@ -51,7 +51,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/ImagenODS"
             android:layout_width="56dp"
             android:layout_height="49dp"
             android:layout_marginStart="178dp"
@@ -79,7 +79,7 @@
             tools:ignore="TextSizeCheck">
 
             <RadioButton
-                android:id="@+id/radioButton9"
+                android:id="@+id/BotonA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -87,40 +87,48 @@
                 android:minHeight="48dp"
                 android:text="@string/optionA"
                 android:textColor="@color/black"
-                tools:ignore="DuplicateSpeakableTextCheck" />
+                tools:ignore="DuplicateSpeakableTextCheck"
+                android:checked="@{selectedRadioButtonId == BotonA.getId()}"
+                android:onCheckedChanged="@{(group, checkedId) -> selectedRadioButtonId.set(checkedId)}" />
 
             <RadioButton
-                android:id="@+id/radioButton8"
+                android:id="@+id/BotonB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/btn_shape_round"
                 android:minHeight="48dp"
                 android:text="@string/optionB"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:checked="@{selectedRadioButtonId == BotonB.getId()}"
+                android:onCheckedChanged="@{(group, checkedId) -> selectedRadioButtonId.set(checkedId)}" />
 
             <RadioButton
-                android:id="@+id/radioButton7"
+                android:id="@+id/BotonC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/btn_shape_round"
                 android:minHeight="48dp"
                 android:text="@string/optionC"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:checked="@{selectedRadioButtonId == BotonC.getId()}"
+                android:onCheckedChanged="@{(group, checkedId) -> selectedRadioButtonId.set(checkedId)}" />
 
             <RadioButton
-                android:id="@+id/radioButton6"
+                android:id="@+id/BotonD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_shape_round"
                 android:minHeight="48dp"
                 android:text="@string/optionD"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:checked="@{selectedRadioButtonId == BotonD.getId()}"
+                android:onCheckedChanged="@{(group, checkedId) -> selectedRadioButtonId.set(checkedId)}" />
         </RadioGroup>
 
         <Button
-            android:id="@+id/continuar2"
+            android:id="@+id/Continuar"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="145dp"
