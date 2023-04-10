@@ -1,4 +1,4 @@
-package com.dds.theecogame.presentation.views
+package com.dds.theecogame.presentation.game.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,11 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.dds.theecogame.R
 import com.dds.theecogame.databinding.FragmentResumenBinding
-import com.dds.theecogame.presentation.viewmodel.GameViewModel
-import com.dds.theecogame.presentation.views.MainScreenActivityView as MainScreenActivityView
+import com.dds.theecogame.presentation.game.viewModel.GameViewModel
+import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 
-class FragmentResumen : Fragment() {
+class ResumeFragment : Fragment() {
     private lateinit var binding: FragmentResumenBinding
 
     //Codigo de inicializacion (como configurar una variable)
@@ -37,25 +38,25 @@ class FragmentResumen : Fragment() {
 
 
             //Irse al menu principal
-            val mainScreen = Intent(activity, MainScreenActivityView::class.java)
+            val mainScreen = Intent(activity, MainScreenActivity::class.java)
             startActivity(mainScreen)
             activity?.finish()
         }
     }
 
-    private fun initializeSummary (){
+    private fun initializeSummary() {
         val statValues = GameViewModel().getResults()
         binding.timePlayed.text = "${binding.timePlayed.text} ${statValues[0]}"
         binding.pointsObtained.text = "${binding.pointsObtained.text} ${statValues[1]}"
         binding.questionsAnswered.text = "${binding.questionsAnswered.text} ${statValues[2]}/10"
 
-        if (GameViewModel().hasUserAbandoned()){
-            binding.Title.text = "@string/abandoned"
+        if (GameViewModel().hasUserAbandoned()) {
+            binding.Title.setText(R.string.abandoned)
         } else {
-            if (GameViewModel().hasUserWon()){
-                binding.Title.text = "@string/victory"
+            if (GameViewModel().hasUserWon()) {
+                binding.Title.setText(R.string.victory)
             } else {
-                binding.Title.text = "@string/lost"
+                binding.Title.setText(R.string.lost)
             }
         }
     }

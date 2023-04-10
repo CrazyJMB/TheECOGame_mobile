@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_green"
-    tools:context=".presentation.views.fragment_congratulations">
+    tools:context=".presentation.game.view.CongratulationFragment">
 
     <TextView
         android:id="@+id/title"

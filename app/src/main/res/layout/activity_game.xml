@@ -40,7 +40,29 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="@color/background_white_green" />
-
     </LinearLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/GameContainerView"
+        android:name="com.dds.theecogame.presentation.game.view.QuestionFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Linea"
+        tools:layout="@layout/fragment_questions" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView2"
+        android:name="com.dds.theecogame.presentation.game.view.GameTitleFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/Linea"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Volver"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_title_question" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,9 @@
-package com.dds.theecogame.presentation.viewmodel
+package com.dds.theecogame.presentation.game.viewModel
 
 import androidx.lifecycle.ViewModel
 
 
-class GameViewModel: ViewModel() {
+class GameViewModel : ViewModel() {
     /*A IMPLEMENTAR TODO*/
     internal fun sendResults() {
         //Funcionalidad a implementar mas tarde cuando haya participantes, y ahi guardamos sus stats

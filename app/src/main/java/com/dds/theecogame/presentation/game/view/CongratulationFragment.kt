@@ -1,4 +1,4 @@
-package com.dds.theecogame.presentation.views
+package com.dds.theecogame.presentation.game.view
 
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -6,12 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dds.theecogame.R
 import com.dds.theecogame.R.raw
 import com.dds.theecogame.databinding.FragmentCongratulationsBinding
-import com.dds.theecogame.presentation.viewmodel.GameViewModel
+import com.dds.theecogame.presentation.game.view.ConsolidateFragment
+import com.dds.theecogame.presentation.game.view.ResumeFragment
+import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 
-class fragment_congratulations : Fragment() {
+class CongratulationFragment : Fragment() {
     private lateinit var binding: FragmentCongratulationsBinding
     private lateinit var mediaPlayer: MediaPlayer
 
@@ -62,7 +63,7 @@ class fragment_congratulations : Fragment() {
     private fun goToConsolidate() {
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        val newFragment = FragmentConsolidate()
+        val newFragment = ConsolidateFragment()
         fragmentTransaction.replace(id, newFragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
@@ -71,7 +72,7 @@ class fragment_congratulations : Fragment() {
     private fun goToSummary() {
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        val newFragment = FragmentResumen()
+        val newFragment = ResumeFragment()
         fragmentTransaction.replace(id, newFragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()

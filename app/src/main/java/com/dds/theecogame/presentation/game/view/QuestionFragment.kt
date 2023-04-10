@@ -1,4 +1,4 @@
-package com.dds.theecogame.presentation.views
+package com.dds.theecogame.presentation.game.view
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -9,12 +9,12 @@ import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.databinding.ObservableInt
+import com.dds.theecogame.R
 
 
-import com.dds.theecogame.databinding.ActivityEstadisticaBinding
 import com.dds.theecogame.databinding.FragmentQuestionsBinding
 
-class FragmentQuestions : Fragment() {
+class QuestionFragment : Fragment() {
 
     private lateinit var binding: FragmentQuestionsBinding
     private val selectedRadioButtonId = ObservableInt()
@@ -24,13 +24,13 @@ class FragmentQuestions : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentQuestionsBinding.inflate(inflater, container, false)
+        binding = FragmentQuestionsBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        comenzarTemporizador()
+        startTimer()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -85,7 +85,7 @@ class FragmentQuestions : Fragment() {
 
                 onViewCreated(binding.root, null)
                 segundaOportunidad = false
-                detenerTemporizador()
+                // detenerTemporizador()
                 return true
 
             } else {
@@ -106,7 +106,7 @@ class FragmentQuestions : Fragment() {
                         "Respuesta incorrecta. No tienes más oportunidades.",
                         Toast.LENGTH_SHORT
                     ).show()
-                    detenerTemporizador()
+                    // detenerTemporizador()
 
                 }
                 return false
@@ -115,26 +115,21 @@ class FragmentQuestions : Fragment() {
         }
     }
 
-    var timer: CountDownTimer? = null
-    fun comenzarTemporizador() {
-        timer = object : CountDownTimer(30000, 1000) {
-            var auxiliarTiempoRestante: String = binding.TiempoRestante.text.toString()
+    private fun startTimer() {
+        object : CountDownTimer(30000, 1000) {
+
+            // Callback function, fired on regular interval
             override fun onTick(millisUntilFinished: Long) {
-                binding.TiempoRestante.text = auxiliarTiempoRestante + " " + millisUntilFinished
+                binding.TiempoRestante.text = (millisUntilFinished / 1000).toString()
             }
 
+            // Callback function, fired
+            // when the time is up
             override fun onFinish() {
-
-                Toast.makeText(requireContext(), "Se ha agotado el tiempo", Toast.LENGTH_SHORT)
-                    .show()
-                // Realizar acción correspondiente al tiempo agotado (por ejemplo, volver al fragmento anterior)
+                binding.TiempoRestante.text = "done!"
+                TODO("Time ended, player lose!")
             }
-        }
-        timer?.start()
-    }
-
-    fun detenerTemporizador() {
-        timer?.cancel()
+        }.start()
     }
 
 }

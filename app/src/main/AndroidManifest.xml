@@ -14,7 +14,7 @@
         android:theme="@style/Theme.TheECOGame"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.views.MainScreenActivityView"
+            android:name=".presentation.mainScreen.view.MainScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,14 +22,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.views.activity_estadistica"
+            android:name=".presentation.statistics.view.StatisticsFragment"
             android:exported="false" />
         <activity
-            android:name=".presentation.views.SettingActivityView"
-            android:exported="false">
-        </activity>
+            android:name=".presentation.setting.view.SettingActivity"
+            android:exported="false"></activity>
         <activity
-            android:name=".presentation.views.GameActivityView"
+            android:name=".presentation.game.view.GameActivity"
             android:exported="false" />
     </application>
 

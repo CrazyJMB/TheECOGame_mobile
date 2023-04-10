@@ -1,13 +1,15 @@
-package com.dds.theecogame.presentation.views
+package com.dds.theecogame.presentation.mainScreen.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
 import com.dds.theecogame.databinding.ActivityMainScreenBinding
-import com.dds.theecogame.presentation.viewmodel.MainScreenViewModel
+import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
+import com.dds.theecogame.presentation.game.view.GameActivity
+import com.dds.theecogame.presentation.setting.view.SettingActivity
+import com.dds.theecogame.presentation.statistics.view.StatisticsFragment
 
-class MainScreenActivityView : AppCompatActivity() {
+class MainScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainScreenBinding
 
     lateinit var viewModel: MainScreenViewModel
@@ -16,20 +18,18 @@ class MainScreenActivityView : AppCompatActivity() {
         binding = ActivityMainScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var viewModel = ViewModelProvider(this)[MainScreenViewModel::class.java]
-
         binding.btnPlay.setOnClickListener {
-            val intent = Intent(this, GameActivityView::class.java)
+            val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
         }
 
         binding.btnStatistics.setOnClickListener {
-            val intent = Intent(this, activity_estadistica::class.java)
+            val intent = Intent(this, StatisticsFragment::class.java)
             startActivity(intent)
         }
 
         binding.btnSettings.setOnClickListener {
-            val intent = Intent(this, SettingActivityView::class.java)
+            val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
     }

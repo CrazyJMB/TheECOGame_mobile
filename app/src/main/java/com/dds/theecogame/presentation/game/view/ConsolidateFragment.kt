@@ -1,18 +1,15 @@
-package com.dds.theecogame.presentation.views
+package com.dds.theecogame.presentation.game.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.dds.theecogame.R
-import com.dds.theecogame.databinding.ActivityEstadisticaBinding
 
-class FragmentConsolidate : Fragment() {
+class ConsolidateFragment : Fragment() {
 
-    private val _binding: FragmentConsolidate? = null
+    private val _binding: ConsolidateFragment? = null
 
     private val binding get() = _binding!!
 

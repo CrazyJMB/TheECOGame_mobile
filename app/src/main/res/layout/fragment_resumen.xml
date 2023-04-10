@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_green"
-    tools:context=".presentation.views.FragmentResumen">
+    tools:context=".presentation.game.view.ResumeFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

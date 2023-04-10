@@ -1,15 +1,15 @@
-package com.dds.theecogame.presentation.views
+package com.dds.theecogame.presentation.setting.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.SeekBar
-import android.widget.Toast
 import com.dds.theecogame.R
 import com.dds.theecogame.domain.model.Settings
+import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 
-class SettingActivityView : AppCompatActivity() {
+class SettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
@@ -68,7 +68,7 @@ class SettingActivityView : AppCompatActivity() {
 
         val save: Button = findViewById(R.id.buttonSave)
         save.setOnClickListener {
-            val i = Intent(this@SettingActivityView, MainScreenActivityView::class.java)
+            val i = Intent(this@SettingActivity, MainScreenActivity::class.java)
             startActivity(i)
         }
     }

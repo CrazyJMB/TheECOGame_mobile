@@ -1,11 +1,12 @@
-package com.dds.theecogame.presentation.views
+package com.dds.theecogame.presentation.game.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.dds.theecogame.databinding.ActivityGameBinding
+import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 
-class GameActivityView : AppCompatActivity() {
+class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +15,7 @@ class GameActivityView : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.Volver.setOnClickListener {
-            val intent = Intent(this, MainScreenActivityView::class.java)
+            val intent = Intent(this, MainScreenActivity::class.java)
             startActivity(intent)
             TODO("NO se puede salir si no se ha consolidado -> Mensaje")
         }
