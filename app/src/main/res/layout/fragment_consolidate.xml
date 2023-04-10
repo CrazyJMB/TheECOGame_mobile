@@ -86,6 +86,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="80dp"
             android:layout_marginEnd="81dp"
+            android:layout_marginBottom="96dp"
             android:background="@drawable/btn_shape_round"
             android:backgroundTint="@color/background_white_green"
             android:text="@string/no"
@@ -94,6 +95,7 @@
             app:cornerRadius="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

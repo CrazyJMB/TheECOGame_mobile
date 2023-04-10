@@ -57,7 +57,12 @@
     <string name="login_failed">Inicio de sesión fallido</string>
     <string name="num_question" translatable="false">1</string>
     <string name="image">Imagen</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="lost">DERROTA</string>
+    <string name="victory">VICTORIA</string>
+    <string name="abandoned">ABANDONADA</string>
+    <string name="timePlayed">Tiempo Jugado:</string>
+    <string name="obtainedPoints">Puntos obtenidos:</string>
+    <string name="answeredQuestions">Preguntas respondidas:</string>
+    <string name="finishGame">Acabar partida</string>
+    <string name="congratulations">Felicidades</string>
 </resources>

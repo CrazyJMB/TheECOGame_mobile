@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_green"
+    tools:context=".presentation.views.FragmentResumen">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/header_margin_top"
+        android:text="@string/lost"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="@dimen/title_font_size"
+        android:typeface="normal" />
+
+    <TextView
+        android:id="@+id/timePlayed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="120sp"
+        android:text="@string/timePlayed"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/header_font_size" />
+
+    <TextView
+        android:id="@+id/pointsObtained"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="180sp"
+        android:text="@string/obtainedPoints"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/header_font_size" />
+
+    <TextView
+        android:id="@+id/questionsAnswered"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="240sp"
+        android:text="@string/answeredQuestions"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/header_font_size" />
+
+    <Button
+        android:id="@+id/acabarPartida"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="50sp"
+        android:layout_marginTop="500sp"
+        android:layout_marginRight="50sp"
+        android:layout_marginBottom="150sp"
+        android:onClick="finishGame"
+        android:text="@string/finishGame"
+        android:textColor="@color/black"
+        android:textSize="@dimen/header_font_size" />
+
+</FrameLayout>

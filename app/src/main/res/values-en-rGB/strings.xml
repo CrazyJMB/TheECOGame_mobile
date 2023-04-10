@@ -42,4 +42,12 @@
     <string name="total_time">Total time of the game:</string>
     <string name="ODS_knowledge">ODS knowledge level</string>
     <string name="image">Image</string>
+    <string name="lost">GAME OVER</string>
+    <string name="victory">VICTORY</string>
+    <string name="abandoned">ABANDONED</string>
+    <string name="timePlayed">Time played:</string>
+    <string name="obtainedPoints">Obtained points:</string>
+    <string name="answeredQuestions">Answered questions:</string>
+    <string name="finishGame">Finish Game</string>
+    <string name="congratulations">Congratulations</string>
 </resources>
