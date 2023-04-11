@@ -1,5 +1,6 @@
 package com.dds.theecogame.presentation.game.view
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -8,16 +9,18 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import android.widget.Toast
-import androidx.databinding.ObservableInt
+//import androidx.databinding.ObservableInt
 import com.dds.theecogame.R
 
 
 import com.dds.theecogame.databinding.FragmentQuestionsBinding
+import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 
 class QuestionFragment : Fragment() {
 
     private lateinit var binding: FragmentQuestionsBinding
-    private val selectedRadioButtonId = ObservableInt()
+    //private val selectedRadioButtonId = ObservableInt()
+    private lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,6 +52,7 @@ class QuestionFragment : Fragment() {
             } else {
                 // Si la respuesta es incorrecta, muestra un mensaje de error o da otra oportunidad al usuario para seleccionar la respuesta correcta
                 Toast.makeText(requireContext(), "Respuesta incorrecta", Toast.LENGTH_SHORT).show()
+
             }
         }
 
@@ -98,6 +102,7 @@ class QuestionFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                     segundaOportunidad = true
+                    playLosingMusic(true)
 
                 } else {
 
@@ -106,6 +111,7 @@ class QuestionFragment : Fragment() {
                         "Respuesta incorrecta. No tienes más oportunidades.",
                         Toast.LENGTH_SHORT
                     ).show()
+                    playLosingMusic(false)
                     // detenerTemporizador()
 
                 }
@@ -121,6 +127,9 @@ class QuestionFragment : Fragment() {
             // Callback function, fired on regular interval
             override fun onTick(millisUntilFinished: Long) {
                 binding.TiempoRestante.text = (millisUntilFinished / 1000).toString()
+                if ((millisUntilFinished/1000).toInt() == 10){
+                    playTenseMusic()
+                }
             }
 
             // Callback function, fired
@@ -130,6 +139,22 @@ class QuestionFragment : Fragment() {
                 TODO("Time ended, player lose!")
             }
         }.start()
+    }
+
+    private fun playLosingMusic(firstTime: Boolean) {
+        if (firstTime) {
+            mediaPlayer = MediaPlayer.create(requireContext(), R.raw.fallo)
+        } else {
+            mediaPlayer = MediaPlayer.create(requireContext(), R.raw.perder)
+        }
+        mediaPlayer.isLooping = false
+        mediaPlayer.start()
+    }
+
+    private fun playTenseMusic(){
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.tensa)
+        mediaPlayer.isLooping = false
+        mediaPlayer.start()
     }
 
 }
