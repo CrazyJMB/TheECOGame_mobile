@@ -21,6 +21,7 @@ class QuestionFragment : Fragment() {
     private lateinit var binding: FragmentQuestionsBinding
     //private val selectedRadioButtonId = ObservableInt()
     private lateinit var mediaPlayer: MediaPlayer
+    var segundaOportunidad = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,39 +40,20 @@ class QuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val Continuar = binding.Continuar
-
         binding.Continuar.setOnClickListener {
             val respuestaCorrecta = "" //Base de Datos
             val esCorrecta = verificarRespuesta(respuestaCorrecta)
-
             if (esCorrecta) {
-                // Si la respuesta es correcta, muestra un mensaje de éxito o pasa al siguiente fragmento
-                Toast.makeText(requireContext(), "Respuesta correcta", Toast.LENGTH_SHORT).show()
-                // Pasa al siguiente fragmento o realiza la acción correspondiente
+                //Hacer metodo sumar puntos
+                goToCongratulations()
+            } else if (!esCorrecta && !segundaOportunidad){
+                segundaOportunidad = true
             } else {
-                // Si la respuesta es incorrecta, muestra un mensaje de error o da otra oportunidad al usuario para seleccionar la respuesta correcta
-                Toast.makeText(requireContext(), "Respuesta incorrecta", Toast.LENGTH_SHORT).show()
-
+                goToSummary()
             }
         }
-
-
-        /*binding.Continuar.setOnClickListener {
-
-            val fragmentManager = requireActivity().supportFragmentManager
-
-            val fragmentTransaction = fragmentManager.beginTransaction()
-
-            fragmentTransaction.replace(R.id.Continuar, FragmentConsolidate())
-
-            fragmentTransaction.commit()
-        }*/
-
-
     }
 
-    var segundaOportunidad = false
     fun verificarRespuesta(respuestaCorrecta: String): Boolean {
         val respuestaSeleccionadaId = binding.radioGroup.checkedRadioButtonId
 
@@ -101,7 +83,6 @@ class QuestionFragment : Fragment() {
                         "Respuesta incorrecta. Tienes otra oportunidad.",
                         Toast.LENGTH_SHORT
                     ).show()
-                    segundaOportunidad = true
                     playLosingMusic(true)
 
                 } else {
@@ -136,6 +117,7 @@ class QuestionFragment : Fragment() {
             // when the time is up
             override fun onFinish() {
                 binding.TiempoRestante.text = "done!"
+                mediaPlayer.stop()
                 TODO("Time ended, player lose!")
             }
         }.start()
@@ -157,5 +139,20 @@ class QuestionFragment : Fragment() {
         mediaPlayer.start()
     }
 
+    private fun goToCongratulations(){
+        val congratulationFragment = CongratulationFragment()
+        val fragmentManager = requireActivity().supportFragmentManager
+        fragmentManager.beginTransaction()
+            .replace(R.id.GameContainerView, congratulationFragment)
+            .commit()
+    }
+
+    private fun goToSummary(){
+        val summaryFragment = ResumeFragment()
+        val fragmentManager = requireActivity().supportFragmentManager
+        fragmentManager.beginTransaction()
+            .replace(R.id.GameContainerView, summaryFragment)
+            .commit()
+    }
 }
 

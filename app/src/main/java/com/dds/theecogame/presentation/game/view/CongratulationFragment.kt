@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.dds.theecogame.R
 import com.dds.theecogame.R.raw
 import com.dds.theecogame.databinding.FragmentCongratulationsBinding
 import com.dds.theecogame.presentation.game.view.ConsolidateFragment
@@ -61,20 +62,18 @@ class CongratulationFragment : Fragment() {
     }
 
     private fun goToConsolidate() {
+        val consolidateFragment = ConsolidateFragment()
         val fragmentManager = requireActivity().supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        val newFragment = ConsolidateFragment()
-        fragmentTransaction.replace(id, newFragment)
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        fragmentManager.beginTransaction()
+            .replace(R.id.GameContainerView, consolidateFragment)
+            .commit()
     }
 
     private fun goToSummary() {
+        val summaryFragment = ResumeFragment()
         val fragmentManager = requireActivity().supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        val newFragment = ResumeFragment()
-        fragmentTransaction.replace(id, newFragment)
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        fragmentManager.beginTransaction()
+            .replace(R.id.GameContainerView, summaryFragment)
+            .commit()
     }
 }
