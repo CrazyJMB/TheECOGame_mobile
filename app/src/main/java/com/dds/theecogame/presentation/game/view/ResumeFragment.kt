@@ -17,7 +17,7 @@ class ResumeFragment : Fragment() {
     //Codigo de inicializacion (como configurar una variable)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initializeSummary()
+        //initializeSummary()
     }
 
     //Inflar el diseño del fragment y devolver la vista
@@ -25,7 +25,7 @@ class ResumeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentResumenBinding.inflate(inflater, container, false)
+        binding = FragmentResumenBinding.inflate(inflater)
         return binding.root
     }
 
@@ -35,7 +35,6 @@ class ResumeFragment : Fragment() {
         binding.acabarPartida.setOnClickListener {
             //Enviar los datos para que se guarden y tal...
             GameViewModel().sendResults()
-
 
             //Irse al menu principal
             val mainScreen = Intent(activity, MainScreenActivity::class.java)

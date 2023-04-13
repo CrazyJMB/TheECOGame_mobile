@@ -36,4 +36,8 @@ class GameViewModel : ViewModel() {
         return userAnsweredAll
     }
 
+    internal fun saveAcumulatedPoints(numberPoints: Int) {
+        var acumulatedPoints = numberPoints
+    }
+
 }

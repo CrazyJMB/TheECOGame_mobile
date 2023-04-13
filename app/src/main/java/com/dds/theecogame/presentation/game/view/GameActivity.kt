@@ -25,4 +25,6 @@ class GameActivity : AppCompatActivity() {
         super.onDestroy()
         TODO("Que pasa cuando se sale de una partida no acabada")
     }
+
+
 }
