@@ -4,7 +4,7 @@ import com.dds.theecogame.data.session.dto.UserDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface SessionApiService {
+interface SessionApi {
 
     @GET("/users")
     suspend fun getUser(): UserDto
