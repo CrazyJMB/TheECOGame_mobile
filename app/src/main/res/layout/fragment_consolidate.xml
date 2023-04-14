@@ -13,10 +13,10 @@
 
         <TextView
             android:id="@+id/ConsolidarPregunta"
-            android:layout_width="246dp"
+            android:layout_width="match_parent"
             android:layout_height="72dp"
-            android:layout_marginStart="82dp"
-            android:layout_marginEnd="83dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
             android:layout_marginBottom="29dp"
             android:text="@string/consolidate_question"
             android:textAlignment="center"
@@ -47,27 +47,29 @@
 
         <TextView
             android:id="@+id/ExplicacionConsolidar"
-            android:layout_width="290dp"
-            android:layout_height="111dp"
-            android:layout_marginStart="61dp"
-            android:layout_marginEnd="61dp"
-            android:layout_marginBottom="77dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="60dp"
             android:background="@drawable/btn_shape_round"
             android:text="@string/consolidate_info"
             android:textAlignment="center"
+            android:gravity="center"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/Si"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Advertencia" />
 
         <Button
             android:id="@+id/Si"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="81dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="109dp"
             android:layout_marginBottom="50dp"
             android:background="@drawable/btn_shape_round"
             android:backgroundTint="@color/background_white_green"
@@ -78,14 +80,15 @@
             app:layout_constraintBottom_toTopOf="@+id/No"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ExplicacionConsolidar" />
 
         <Button
             android:id="@+id/No"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="81dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginStart="70dp"
             android:layout_marginBottom="96dp"
             android:background="@drawable/btn_shape_round"
             android:backgroundTint="@color/background_white_green"

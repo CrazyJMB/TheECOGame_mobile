@@ -32,7 +32,8 @@
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="consolidate_question">¿Quieres consolidar tus puntos?</string>
-    <string name="consolidate_info">Si consolidas tus puntos...</string>
+    <string name="consolidate_info">Solo puedes consolidar tus puntos 1 vez, si consolidas tus
+        puntos al abandonar la partida conseguiras los puntos consolidados</string>
     <string name="warning">Aviso</string>
 
     <string name="statistics">Estadísticas</string>

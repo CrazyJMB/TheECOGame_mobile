@@ -47,11 +47,11 @@
 
         <TextView
             android:id="@+id/Pregunta"
-            android:layout_width="290dp"
+            android:layout_width="match_parent"
             android:layout_height="111dp"
-            android:layout_marginStart="62dp"
             android:layout_marginTop="64dp"
-            android:layout_marginEnd="59dp"
+            android:layout_marginRight="62dp"
+            android:layout_marginLeft="62dp"
             android:background="@drawable/btn_shape_round"
             android:text="@string/question"
             android:textAlignment="center"
