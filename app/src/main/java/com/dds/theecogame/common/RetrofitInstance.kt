@@ -1,7 +1,7 @@
 package com.dds.theecogame.common
 
-import com.dds.theecogame.data.challenge.manager.api.ChallengeManager
-import com.dds.theecogame.data.session.manager.api.SessionApiService
+//import com.dds.theecogame.data.challenge.manager.api.ChallengeManager
+//import com.dds.theecogame.data.session.manager.api.SessionApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -13,6 +13,6 @@ object RetrofitInstance {
             .build()
     }
 
-    val userService = retrofit.create(SessionApiService::class.java)
-    val challengeService = retrofit.create(ChallengeManager::class.java)
+    //val userService = retrofit.create(SessionApiService::class.java)
+    //val challengeService = retrofit.create(ChallengeManager::class.java)
 }

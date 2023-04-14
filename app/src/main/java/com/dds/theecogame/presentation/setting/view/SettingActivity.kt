@@ -3,16 +3,30 @@ package com.dds.theecogame.presentation.setting.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.SeekBar
+import android.widget.Spinner
 import com.dds.theecogame.R
+import com.dds.theecogame.databinding.ActivitySettingBinding
 import com.dds.theecogame.domain.model.Settings
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 
 class SettingActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySettingBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setting)
+        //setContentView(R.layout.activity_setting)
+
+        binding = ActivitySettingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.buttonSave.setOnClickListener {
+            val mainScreen = Intent(this, MainScreenActivity::class.java)
+            startActivity(mainScreen)
+        }
+
+
         val settings = Settings(0, 0, 0)
 
         val general_volume = findViewById<SeekBar>(R.id.seekBar_general_volume)
@@ -66,10 +80,14 @@ class SettingActivity : AppCompatActivity() {
 
         })
 
-        val save: Button = findViewById(R.id.buttonSave)
-        save.setOnClickListener {
-            val i = Intent(this@SettingActivity, MainScreenActivity::class.java)
-            startActivity(i)
+        //For the spinner
+        val topics = resources.getStringArray(R.array.Topics)
+
+        val spinner = findViewById<Spinner>(R.id.spinner)
+        if (spinner != null) {
+            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, topics)
+            spinner.adapter = adapter
         }
+
     }
 }

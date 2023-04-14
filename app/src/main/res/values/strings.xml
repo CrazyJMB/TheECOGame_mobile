@@ -25,10 +25,6 @@
     <string name="topic">Temática actual</string>
     <string name="save">Guardar</string>
 
-    <string-array name="topics_list">
-        <item>ODS</item>
-    </string-array>
-
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="consolidate_question">¿Quieres consolidar tus puntos?</string>
@@ -65,4 +61,9 @@
     <string name="answeredQuestions">Preguntas respondidas:</string>
     <string name="finishGame">Acabar partida</string>
     <string name="congratulations">Felicidades</string>
+
+    <!--For the spinner at SettingActivity-->
+    <string-array name="Topics">
+        <item>ODS</item>
+    </string-array>
 </resources>
