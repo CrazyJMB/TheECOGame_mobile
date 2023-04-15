@@ -10,8 +10,7 @@ import com.dds.theecogame.databinding.FragmentTitleQuestionBinding
 class GameTitleFragment : Fragment() {
 
     private lateinit var binding: FragmentTitleQuestionBinding
-
-
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

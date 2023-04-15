@@ -19,7 +19,6 @@ import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 class QuestionFragment : Fragment() {
 
     private lateinit var binding: FragmentQuestionsBinding
-    //private val selectedRadioButtonId = ObservableInt()
     private lateinit var mediaPlayer: MediaPlayer
     var segundaOportunidad = false
 
@@ -34,19 +33,20 @@ class QuestionFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         startTimer()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.Continuar.setOnClickListener {
+        binding.btnContinue.setOnClickListener {
             val respuestaCorrecta = "" //Base de Datos
             val esCorrecta = verificarRespuesta(respuestaCorrecta)
             if (esCorrecta) {
                 //Hacer metodo sumar puntos
                 goToCongratulations()
-            } else if (!esCorrecta && !segundaOportunidad){
+            } else if (!esCorrecta && !segundaOportunidad) {
                 segundaOportunidad = true
             } else {
                 goToSummary()
@@ -108,7 +108,7 @@ class QuestionFragment : Fragment() {
             // Callback function, fired on regular interval
             override fun onTick(millisUntilFinished: Long) {
                 binding.TiempoRestante.text = (millisUntilFinished / 1000).toString()
-                if ((millisUntilFinished/1000).toInt() == 10){
+                if ((millisUntilFinished / 1000).toInt() == 10) {
                     playTenseMusic()
                 }
             }
@@ -133,13 +133,13 @@ class QuestionFragment : Fragment() {
         mediaPlayer.start()
     }
 
-    private fun playTenseMusic(){
+    private fun playTenseMusic() {
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.tensa)
         mediaPlayer.isLooping = false
         mediaPlayer.start()
     }
 
-    private fun goToCongratulations(){
+    private fun goToCongratulations() {
         val congratulationFragment = CongratulationFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
@@ -147,7 +147,7 @@ class QuestionFragment : Fragment() {
             .commit()
     }
 
-    private fun goToSummary(){
+    private fun goToSummary() {
         val summaryFragment = ResumeFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()

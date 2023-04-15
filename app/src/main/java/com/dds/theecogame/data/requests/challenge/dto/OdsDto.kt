@@ -1,4 +1,4 @@
-package com.dds.theecogame.data.challenge.dto
+package com.dds.theecogame.data.requests.challenge.dto
 
 import com.dds.theecogame.domain.model.Ods
 

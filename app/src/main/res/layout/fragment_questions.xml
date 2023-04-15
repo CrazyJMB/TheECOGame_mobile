@@ -132,7 +132,7 @@
         </RadioGroup>
 
         <Button
-            android:id="@+id/Continuar"
+            android:id="@+id/btnContinue"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="145dp"

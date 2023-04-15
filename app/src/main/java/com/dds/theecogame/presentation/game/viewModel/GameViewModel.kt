@@ -1,11 +1,26 @@
 package com.dds.theecogame.presentation.game.viewModel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.dds.theecogame.domain.builder.Game
+import com.dds.theecogame.domain.builder.GameDirector
+import com.dds.theecogame.domain.builder.concreteBuilder.QuestionsGameBuilder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
-class GameViewModel : ViewModel() {
-    /*A IMPLEMENTAR TODO*/
-    internal fun sendResults() {
+class GameViewModel() : ViewModel() {
+
+    private lateinit var game: Game
+
+    fun createGame() {
+        viewModelScope.launch(Dispatchers.IO) {
+            game = GameDirector(QuestionsGameBuilder()).buildGameWith10Questions()
+        }
+    }
+
+
+    fun sendResults() {
         //Funcionalidad a implementar mas tarde cuando haya participantes, y ahi guardamos sus stats
     }
 

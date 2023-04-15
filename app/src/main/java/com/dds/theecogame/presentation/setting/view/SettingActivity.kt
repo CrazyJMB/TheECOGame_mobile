@@ -5,14 +5,23 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.SeekBar
+import androidx.activity.viewModels
 import com.dds.theecogame.R
+import com.dds.theecogame.databinding.ActivitySettingBinding
 import com.dds.theecogame.domain.model.Settings
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
+import com.dds.theecogame.presentation.setting.viewModel.SettingViewModel
 
 class SettingActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySettingBinding
+    val viewModel: SettingViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setting)
+        binding = ActivitySettingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        
         val settings = Settings(0, 0, 0)
 
         val general_volume = findViewById<SeekBar>(R.id.seekBar_general_volume)
