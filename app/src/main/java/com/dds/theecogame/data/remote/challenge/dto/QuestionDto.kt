@@ -1,6 +1,5 @@
-package com.dds.theecogame.data.requests.challenge.dto
+package com.dds.theecogame.data.remote.challenge.dto
 
-import com.dds.theecogame.domain.model.Ods
 import com.dds.theecogame.domain.model.Question
 
 data class QuestionDto(
@@ -14,7 +13,7 @@ data class QuestionDto(
     val option2: String,
     val option3: String,
 
-    val ods: List<OdsDto>
+//    val ods: List<OdsDto>
 )
 
 fun QuestionDto.toQuestion(): Question {
@@ -27,6 +26,6 @@ fun QuestionDto.toQuestion(): Question {
         option1 = option1,
         option2 = option2,
         option3 = option3,
-        ods = ods.map { it.toOds() }
+//        ods = ods.map { it.toOds() }
     )
 }

@@ -29,7 +29,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="consolidate_question">¿Do you want to consolidate your points?</string>
-    <string name="consolidate_info">If you consolidate your points...</string>
+    <string name="consolidate_info">If you consolidate your points…</string>
     <string name="warning">Warning</string>
     <string name="statistics">Statistics</string>
     <string name="num_games_played">Number of games played:</string>
@@ -50,4 +50,11 @@
     <string name="answeredQuestions">Answered questions:</string>
     <string name="finishGame">Finish Game</string>
     <string name="congratulations">Congratulations</string>
+
+    <!-- Toasts messages -->
+    <string name="msg_consolidated">You can not leave without consolidate</string>
+
+    <!-- Error messages -->
+    <string name="error_msg">An unexpected error occured</string>
+    <string name="error_msg_internet">Could not reach server. Check your internet connection</string>
 </resources>

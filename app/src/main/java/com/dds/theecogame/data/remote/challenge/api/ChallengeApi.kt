@@ -1,6 +1,6 @@
-package com.dds.theecogame.data.requests.challenge.api
+package com.dds.theecogame.data.remote.challenge.api
 
-import com.dds.theecogame.data.requests.challenge.dto.QuestionDto
+import com.dds.theecogame.data.remote.challenge.dto.QuestionDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 

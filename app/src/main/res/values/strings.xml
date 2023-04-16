@@ -65,4 +65,11 @@
     <string name="answeredQuestions">Preguntas respondidas:</string>
     <string name="finishGame">Acabar partida</string>
     <string name="congratulations">Felicidades</string>
+
+    <!-- Toasts messages -->
+    <string name="msg_consolidated">Para abandonar la partida necesitas primero consolidar</string>
+
+    <!-- Error messages -->
+    <string name="error_msg">Ha ocurrido un error inesperado</string>
+    <string name="error_msg_internet">Error de conexión. Verifique su conexión de internet</string>
 </resources>

@@ -118,7 +118,6 @@ class QuestionFragment : Fragment() {
             override fun onFinish() {
                 binding.TiempoRestante.text = "done!"
                 mediaPlayer.stop()
-                TODO("Time ended, player lose!")
             }
         }.start()
     }

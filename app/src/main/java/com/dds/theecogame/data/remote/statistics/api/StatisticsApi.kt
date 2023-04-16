@@ -1,6 +1,6 @@
-package com.dds.theecogame.data.requests.statistics.api
+package com.dds.theecogame.data.remote.statistics.api
 
-import com.dds.theecogame.data.requests.statistics.dto.StatisticsDto
+import com.dds.theecogame.data.remote.statistics.dto.StatisticsDto
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT

@@ -1,6 +1,6 @@
-package com.dds.theecogame.data.requests.session.api
+package com.dds.theecogame.data.remote.session.api
 
-import com.dds.theecogame.data.requests.session.dto.UserDto
+import com.dds.theecogame.data.remote.session.dto.UserDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 

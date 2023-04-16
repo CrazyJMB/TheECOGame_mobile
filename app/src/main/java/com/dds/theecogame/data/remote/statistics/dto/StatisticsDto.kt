@@ -1,4 +1,4 @@
-package com.dds.theecogame.data.requests.statistics.dto
+package com.dds.theecogame.data.remote.statistics.dto
 
 import com.dds.theecogame.domain.model.Statistics
 

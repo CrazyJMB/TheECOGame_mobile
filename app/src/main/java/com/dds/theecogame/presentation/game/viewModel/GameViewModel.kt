@@ -1,24 +1,46 @@
 package com.dds.theecogame.presentation.game.viewModel
 
+import android.app.Application
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dds.theecogame.common.ApiException
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameDirector
 import com.dds.theecogame.domain.builder.concreteBuilder.QuestionsGameBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 
 class GameViewModel() : ViewModel() {
 
+
     private lateinit var game: Game
 
-    fun createGame() {
-        viewModelScope.launch(Dispatchers.IO) {
-            game = GameDirector(QuestionsGameBuilder()).buildGameWith10Questions()
-        }
+    private var consolidated: Boolean = false
+    fun getConsolidated() = consolidated
+    fun setConsolidated(consolidate: Boolean) {
+        consolidated = consolidate
     }
 
+    fun createGame(context: Context) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                game = GameDirector(QuestionsGameBuilder()).buildGameWith10Questions()
+            } catch (e: HttpException) {
+                viewModelScope.launch(Dispatchers.Main) {
+                    Toast.makeText(
+                        context,
+                        e.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+        }
+    }
 
     fun sendResults() {
         //Funcionalidad a implementar mas tarde cuando haya participantes, y ahi guardamos sus stats
