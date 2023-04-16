@@ -3,6 +3,7 @@ package com.dds.theecogame.presentation.game.view
 import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +11,15 @@ import android.view.ViewGroup
 import com.dds.theecogame.R
 import com.dds.theecogame.R.raw
 import com.dds.theecogame.databinding.FragmentCongratulationsBinding
-import com.dds.theecogame.presentation.game.view.ConsolidateFragment
-import com.dds.theecogame.presentation.game.view.ResumeFragment
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 
 class CongratulationFragment : Fragment() {
     private lateinit var binding: FragmentCongratulationsBinding
     private lateinit var mediaPlayer: MediaPlayer
+
+    private var countDownTimer: CountDownTimer? = null
+
+    //private val gameViewModel: GameViewModel by activityViewModels()
 
     //Codigo de inicializacion (como configurar una variable)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +45,7 @@ class CongratulationFragment : Fragment() {
             if (GameViewModel().hasUserAnsweredAll(sharedPref)) {
                 goToSummary()
             } else {
-                if (GameViewModel().getConsolidatePoints(sharedPref) == 0){
+                if (GameViewModel().getConsolidatePoints(sharedPref) == 0) {
                     goToConsolidate()
                 } else {
                     goToQuestions()
@@ -53,7 +56,7 @@ class CongratulationFragment : Fragment() {
             if (GameViewModel().hasUserAnsweredAll(sharedPref)) {
                 goToSummary()
             } else {
-                if (GameViewModel().getConsolidatePoints(sharedPref) == 0){
+                if (GameViewModel().getConsolidatePoints(sharedPref) == 0) {
                     goToConsolidate()
                 } else {
                     goToQuestions()

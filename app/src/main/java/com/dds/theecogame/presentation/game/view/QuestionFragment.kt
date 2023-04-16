@@ -22,7 +22,6 @@ import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 class QuestionFragment : Fragment() {
     private var countDownTimer: CountDownTimer? = null
     private lateinit var binding: FragmentQuestionsBinding
-    //private val selectedRadioButtonId = ObservableInt()
     private lateinit var mediaPlayer: MediaPlayer
     var segundaOportunidad = false
 
@@ -46,11 +45,12 @@ class QuestionFragment : Fragment() {
             val respuestaCorrecta = "" //Base de Datos
             val esCorrecta = verificarRespuesta(respuestaCorrecta)
             if (esCorrecta) {
-                val sharedPref = requireActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+                val sharedPref =
+                    requireActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
                 //TODO mirar la dificultad del la pregunta y a partir de ahi añadir puntos
                 val points = 10
-                if (segundaOportunidad){
-                    GameViewModel().addPoints(sharedPref, points/2)
+                if (segundaOportunidad) {
+                    GameViewModel().addPoints(sharedPref, points / 2)
                 } else {
                     GameViewModel().addPoints(sharedPref, points)
                 }
@@ -63,6 +63,11 @@ class QuestionFragment : Fragment() {
                 goToSummary()
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        stopTimer()
     }
 
     fun verificarRespuesta(respuestaCorrecta: String): Boolean {
@@ -171,13 +176,13 @@ class QuestionFragment : Fragment() {
             .commit()
     }
 
-    private fun changeViewNumberQuestion(){
+    private fun changeViewNumberQuestion() {
         val sharedPref = requireActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
         val number = GameViewModel().getNumberQuestion(sharedPref)
         binding.NumeroPregunta.text = (number + 1).toString()
     }
 
-    private fun changeViewImage(){
+    private fun changeViewImage() {
         binding.ImagenODS.setImageResource(R.drawable.ods1)
     }
 }
