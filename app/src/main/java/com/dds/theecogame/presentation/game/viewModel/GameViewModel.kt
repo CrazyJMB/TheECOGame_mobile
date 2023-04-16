@@ -27,6 +27,7 @@ class GameViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 game = GameDirector(QuestionsGameBuilder()).buildGameWith10Questions()
+                println("He llegado aqui")
             } catch (e: HttpException) {
                 viewModelScope.launch(Dispatchers.Main) {
                     Toast.makeText(
@@ -43,7 +44,7 @@ class GameViewModel : ViewModel() {
         //Funcionalidad a implementar mas tarde cuando haya participantes, y ahi guardamos sus stats
     }
 
-    internal fun resetGameStats (sharedPref: SharedPreferences){
+    internal fun resetGameStats(sharedPref: SharedPreferences) {
         val editor = sharedPref.edit()
         val currentDate = System.currentTimeMillis()
 
@@ -65,10 +66,14 @@ class GameViewModel : ViewModel() {
         var numberChallenge = sharedPref.getInt("numberChallengesAnswered", 0)
 
         var gameStatus = sharedPref.getString("gameStatus", "")
-        if (gameStatus == "Victory"){points = sharedPref.getInt("points", 0)}
-        if (gameStatus == "Abandoned"){points = sharedPref.getInt("consolidatedPoints", 0)}
+        if (gameStatus == "Victory") {
+            points = sharedPref.getInt("points", 0)
+        }
+        if (gameStatus == "Abandoned") {
+            points = sharedPref.getInt("consolidatedPoints", 0)
+        }
 
-        val timePlayed = (dataEnd - dataStart)/1000
+        val timePlayed = (dataEnd - dataStart) / 1000
         summaryStats.add(timePlayed.toInt())
         summaryStats.add(points)
         summaryStats.add(numberChallenge)
@@ -98,20 +103,20 @@ class GameViewModel : ViewModel() {
         editor.apply()
     }
 
-    internal fun getConsolidatePoints(sharedPref: SharedPreferences): Int{
+    internal fun getConsolidatePoints(sharedPref: SharedPreferences): Int {
         var numberPoints = sharedPref.getInt("consolidatedPoints", 0)
         return numberPoints
     }
 
-    internal fun changeGameStatus (sharedPref: SharedPreferences, value:String){
-        if (value == "Defeat" || value == "Victory" || value == "Abandoned"){
+    internal fun changeGameStatus(sharedPref: SharedPreferences, value: String) {
+        if (value == "Defeat" || value == "Victory" || value == "Abandoned") {
             val editor = sharedPref.edit()
             editor.putString("gameStatus", value)
             editor.apply()
         }
     }
 
-    internal fun addPoints (sharedPref: SharedPreferences, value: Int){
+    internal fun addPoints(sharedPref: SharedPreferences, value: Int) {
         var puntos = sharedPref.getInt("points", 0)
         puntos += value
         val editor = sharedPref.edit()
@@ -119,14 +124,14 @@ class GameViewModel : ViewModel() {
         editor.apply()
     }
 
-    internal fun setTimeEnded (sharedPref: SharedPreferences){
+    internal fun setTimeEnded(sharedPref: SharedPreferences) {
         val currentDate = System.currentTimeMillis()
         val editor = sharedPref.edit()
         editor.putLong("timeEnded", currentDate)
         editor.apply()
     }
 
-    internal fun addNumberChallengesAnswered (sharedPref: SharedPreferences){
+    internal fun addNumberChallengesAnswered(sharedPref: SharedPreferences) {
         var numberChallenges = sharedPref.getInt("numberChallengesAnswered", 0)
         numberChallenges += 1
         val editor = sharedPref.edit()
@@ -134,7 +139,7 @@ class GameViewModel : ViewModel() {
         editor.apply()
     }
 
-    internal fun getNumberQuestion (sharedPref: SharedPreferences): Int{
+    internal fun getNumberQuestion(sharedPref: SharedPreferences): Int {
         var numberChallenges = sharedPref.getInt("numberChallengesAnswered", 0)
         return numberChallenges
     }
@@ -144,7 +149,7 @@ class GameViewModel : ViewModel() {
         return timeEnded
     }
 
-    internal fun askTipeOds (){
+    internal fun askTipeOds() {
         //TODO
     }
 }
