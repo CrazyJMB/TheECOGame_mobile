@@ -12,17 +12,18 @@ class Game {
     }
 
     fun sortChallengesByDifficulty() {
-        val sortedMap = challengesList.toSortedMap(compareBy {
-            challengesList[it]?.let { challenge ->
-                when (challenge) {
-                    is Challenge.QuestionModel -> challenge.questionModel.difficulty
-                    //is Challenge.HangmanBuilder -> challenge.handmanModel.difficulty
-                    else -> 10
-                }
+        val sortedChallenges = challengesList.values.sortedBy { challenge ->
+            if (challenge is Challenge.QuestionModel) {
+                challenge.questionModel.difficulty
+            } else {
+                10 // Si no es un Challenge.QuestionModel, lo dejamos al final
             }
-        })
+        }
+
         challengesList.clear()
-        challengesList.putAll(sortedMap)
+        sortedChallenges.forEachIndexed { index, challenge ->
+            challengesList[index + 1] = challenge
+        }
     }
 
     fun getNextChallenge(): Challenge? {
@@ -35,6 +36,5 @@ class Game {
             challengesList.remove(challengesList.entries.first().key)
         return firstChallenge
     }
-
 
 }

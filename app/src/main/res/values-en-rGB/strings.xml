@@ -55,6 +55,9 @@
 
     <!-- Toasts messages -->
     <string name="msg_consolidated">You can not leave without consolidate</string>
+    <string name="msg_empty_answer">You must select an answer</string>
+    <string name="msg_second_chance">Incorrect answer. You have another chance.</string>
+    <string name="msg_incorrect_answer">Incorrect answer. You have no more chance. GG</string>
 
     <!-- Error messages -->
     <string name="error_msg">An unexpected error occured</string>

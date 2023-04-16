@@ -18,6 +18,9 @@ class GameActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel.createGame(this)
+
         initialize()
 
         binding = ActivityGameBinding.inflate(layoutInflater)
@@ -38,7 +41,7 @@ class GameActivity : AppCompatActivity() {
                         .commit()
                 }
                 builder.setNegativeButton("Cancelar") { dialog, which ->
-                //No hace nada
+                    //No hace nada
                 }
                 builder.show()
             } else {

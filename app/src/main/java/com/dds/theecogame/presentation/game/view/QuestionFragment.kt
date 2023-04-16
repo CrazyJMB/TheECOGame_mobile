@@ -10,20 +10,30 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContentProviderCompat
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 //import androidx.databinding.ObservableInt
 import com.dds.theecogame.R
 
 
 import com.dds.theecogame.databinding.FragmentQuestionsBinding
+import com.dds.theecogame.domain.builder.Game
+import com.dds.theecogame.domain.model.Question
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
+import com.dds.theecogame.presentation.game.viewModel.QuestionViewModel
+import kotlin.concurrent.timer
 
 class QuestionFragment : Fragment() {
-    private var countDownTimer: CountDownTimer? = null
+
     private lateinit var binding: FragmentQuestionsBinding
     private lateinit var mediaPlayer: MediaPlayer
-    var segundaOportunidad = false
+
+    private val viewModel: QuestionViewModel by viewModels()
+    private val gameViewModel: GameViewModel by activityViewModels()
+
+    private var countDownTimer: CountDownTimer? = null
+    private var timerCancelledManually: Boolean = false
+    private lateinit var currentQuestion: Question
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,34 +41,57 @@ class QuestionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentQuestionsBinding.inflate(inflater)
+        viewModel.setSharedViewModel(gameViewModel)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Set question information
+        gameViewModel.gameLiveData.observe(viewLifecycleOwner) { game ->
+            when (val nextQuestion = game.deleteFirstChallenge()) {
+                is Game.Challenge.QuestionModel -> {
+                    currentQuestion = nextQuestion.questionModel
+
+                    nextQuestion.let {
+                        val questionList = listOf(
+                            it.questionModel.option1,
+                            it.questionModel.option2,
+                            it.questionModel.option3,
+                            it.questionModel.answer
+                        ).shuffled()
+
+                        binding.tvQuestion.text = it.questionModel.question
+                        binding.rbOptionA.text = questionList[0]
+                        binding.rbOptionB.text = questionList[1]
+                        binding.rbOptionC.text = questionList[2]
+                        binding.rbOptionD.text = questionList[3]
+                    }
+                }
+            }
+        }
+
         startTimer()
-        changeViewNumberQuestion()
+        binding.tvQuestionNumber.text = gameViewModel.getQuestionNumber().toString()
         changeViewImage()
 
         binding.btnContinue.setOnClickListener {
-            val respuestaCorrecta = "" //Base de Datos
-            val esCorrecta = verificarRespuesta(respuestaCorrecta)
-            if (esCorrecta) {
-                val sharedPref =
-                    requireActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-                //TODO mirar la dificultad del la pregunta y a partir de ahi añadir puntos
-                val points = 10
-                if (segundaOportunidad) {
-                    GameViewModel().addPoints(sharedPref, points / 2)
+            val correctAnswer = currentQuestion.answer
+            val isCorrect = checkAnswer(correctAnswer)
+            stopTimer()
+            if (isCorrect) {
+                val points = 10 * currentQuestion.difficulty
+                if (gameViewModel.getSecondChance()) {
+                    gameViewModel.addPoints(points / 2)
                 } else {
-                    GameViewModel().addPoints(sharedPref, points)
+                    gameViewModel.addPoints(points)
                 }
-                GameViewModel().addNumberChallengesAnswered(sharedPref)
-                stopTimer()
+                gameViewModel.nextQuestionNumber()
                 goToCongratulations()
-            } else if (!esCorrecta && !segundaOportunidad) {
-                segundaOportunidad = true
+
+            } else if (!gameViewModel.getSecondChance()) {
+                gameViewModel.setSecondChange(true)
             } else {
                 goToSummary()
             }
@@ -70,52 +103,40 @@ class QuestionFragment : Fragment() {
         stopTimer()
     }
 
-    fun verificarRespuesta(respuestaCorrecta: String): Boolean {
-        val respuestaSeleccionadaId = binding.radioGroup.checkedRadioButtonId
+    private fun checkAnswer(correctAnswer: String): Boolean {
+        val rbSelected = binding.radioGroup.checkedRadioButtonId
+        val answerSelected =
+            binding.radioGroup.findViewById<RadioButton>(rbSelected).text.toString()
 
-        if (respuestaSeleccionadaId == -1) {
-
-            Toast.makeText(requireContext(), "Debes seleccionar una respuesta", Toast.LENGTH_SHORT)
+        if (rbSelected == -1) {
+            Toast.makeText(requireContext(), R.string.msg_empty_answer, Toast.LENGTH_SHORT)
                 .show()
             return false
+        }
+
+        if (answerSelected.equals(correctAnswer)) {
+            onViewCreated(binding.root, null)
+            return true
+        }
+
+        if (!gameViewModel.getSecondChance()) {
+            Toast.makeText(
+                requireContext(),
+                R.string.msg_second_chance,
+                Toast.LENGTH_SHORT
+            ).show()
+            playLosingMusic(true)
+
         } else {
-
-            val respuestaSeleccionada =
-                binding.radioGroup.findViewById<RadioButton>(respuestaSeleccionadaId).text.toString()
-
-            if (respuestaSeleccionada == respuestaCorrecta) {
-
-                onViewCreated(binding.root, null)
-                segundaOportunidad = false
-                // detenerTemporizador()
-                return true
-
-            } else {
-
-                if (!segundaOportunidad) {
-
-                    Toast.makeText(
-                        requireContext(),
-                        "Respuesta incorrecta. Tienes otra oportunidad.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    playLosingMusic(true)
-
-                } else {
-
-                    Toast.makeText(
-                        requireContext(),
-                        "Respuesta incorrecta. No tienes más oportunidades.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    playLosingMusic(false)
-                    // detenerTemporizador()
-
-                }
-                return false
-            }
+            Toast.makeText(
+                requireContext(),
+                R.string.msg_incorrect_answer,
+                Toast.LENGTH_SHORT
+            ).show()
+            playLosingMusic(false)
 
         }
+        return false
     }
 
     private fun startTimer() {
@@ -123,8 +144,8 @@ class QuestionFragment : Fragment() {
 
             // Callback function, fired on regular interval
             override fun onTick(millisUntilFinished: Long) {
-                binding.TiempoRestante.text = (millisUntilFinished / 1000).toString()
-                if ((millisUntilFinished / 1000).toInt() == 10) {
+                binding.tvTimer.text = (millisUntilFinished / 1000).toString()
+                if ((millisUntilFinished / 1000).toInt() == 10 && !timerCancelledManually) {
                     playTenseMusic()
                 }
             }
@@ -132,15 +153,18 @@ class QuestionFragment : Fragment() {
             // Callback function, fired
             // when the time is up
             override fun onFinish() {
-                mediaPlayer.stop()
-                playLosingMusic(false)
-                goToSummary()
+                if (!timerCancelledManually) {
+                    mediaPlayer.stop()
+                    playLosingMusic(false)
+                    goToSummary()
+                }
             }
         }.start()
     }
 
     private fun stopTimer() {
         countDownTimer?.cancel()
+        timerCancelledManually = true
         countDownTimer = null
     }
 
@@ -176,14 +200,9 @@ class QuestionFragment : Fragment() {
             .commit()
     }
 
-    private fun changeViewNumberQuestion() {
-        val sharedPref = requireActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-        val number = GameViewModel().getNumberQuestion(sharedPref)
-        binding.NumeroPregunta.text = (number + 1).toString()
-    }
 
     private fun changeViewImage() {
-        binding.ImagenODS.setImageResource(R.drawable.ods1)
+        binding.ivODS.setImageResource(R.drawable.ods1)
     }
 }
 

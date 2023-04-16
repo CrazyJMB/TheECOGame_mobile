@@ -10,7 +10,7 @@ class GameDirector(private val builder: GameBuilder) {
         (1..10).forEach { order ->
             builder.addQuestionChallenge(
                 order,
-                RetrofitInstance.challengeService.getQuestionByDifficulty((1..4).random())
+                RetrofitInstance.challengeService.getQuestionByDifficulty((1..5).random())
                     .toQuestion()
             )
         }

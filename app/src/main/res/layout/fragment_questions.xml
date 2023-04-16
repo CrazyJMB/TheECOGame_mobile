@@ -12,7 +12,7 @@
         android:background="@color/background_green">
 
         <TextView
-            android:id="@+id/NumeroPregunta"
+            android:id="@+id/tvQuestionNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/TiempoRestante"
+            android:id="@+id/tvTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
@@ -31,11 +31,9 @@
             android:layout_marginEnd="22dp"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textoTiempoRestante"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textoTiempoRestante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -46,34 +44,58 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/Pregunta"
+            android:id="@+id/tvQuestion"
             android:layout_width="match_parent"
-            android:layout_height="111dp"
+            android:layout_height="110sp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="64dp"
-            android:layout_marginRight="62dp"
-            android:layout_marginLeft="62dp"
+            android:layout_marginEnd="20dp"
             android:background="@drawable/btn_shape_round"
+            android:gravity="center"
             android:text="@string/question"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/ImagenODS"
-            android:layout_width="56dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="178dp"
-            android:layout_marginTop="188dp"
-            android:layout_marginEnd="178dp"
+            android:id="@+id/ivODS2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:contentDescription="@string/image"
+            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/ivODS3"
+            app:layout_constraintTop_toBottomOf="@+id/tvQuestion"
+            app:layout_constraintVertical_bias="0.5"
+            tools:ignore="ImageContrastCheck"
+            tools:src="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/ivODS"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/image"
+            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvQuestion"
+            app:layout_constraintVertical_bias="0.5"
+            tools:ignore="ImageContrastCheck"
+            tools:src="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/ivODS3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/image"
+            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+            app:layout_constraintEnd_toStartOf="@+id/ivODS3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvQuestion"
+            app:layout_constraintVertical_bias="0.491"
             tools:ignore="ImageContrastCheck"
             tools:src="@tools:sample/avatars" />
 
@@ -81,17 +103,14 @@
             android:id="@+id/radioGroup"
             android:layout_width="320dp"
             android:layout_height="293dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="248dp"
-            android:layout_marginEnd="39dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnContinue"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.65"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivODS3"
             tools:ignore="TextSizeCheck">
 
             <RadioButton
-                android:id="@+id/BotonA"
+                android:id="@+id/rbOptionA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -102,7 +121,7 @@
                 tools:ignore="DuplicateSpeakableTextCheck" />
 
             <RadioButton
-                android:id="@+id/BotonB"
+                android:id="@+id/rbOptionB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -112,7 +131,7 @@
                 android:textColor="@color/black" />
 
             <RadioButton
-                android:id="@+id/BotonC"
+                android:id="@+id/rbOptionC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -122,7 +141,7 @@
                 android:textColor="@color/black" />
 
             <RadioButton
-                android:id="@+id/BotonD"
+                android:id="@+id/rbOptionD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_shape_round"
@@ -135,10 +154,6 @@
             android:id="@+id/btnContinue"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="145dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginEnd="145dp"
-            android:layout_marginBottom="51dp"
             android:background="@drawable/btn_shape_round"
             android:backgroundTint="@color/background_white_green"
             android:text="@string/continue_next"

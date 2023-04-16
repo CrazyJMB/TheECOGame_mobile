@@ -3,6 +3,8 @@ package com.dds.theecogame.presentation.game.viewModel
 import android.content.Context
 import android.widget.Toast
 import android.content.SharedPreferences
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dds.theecogame.domain.builder.Game
@@ -15,19 +17,41 @@ import retrofit2.HttpException
 
 class GameViewModel : ViewModel() {
 
-    private lateinit var game: Game
+    private val _gameLiveData = MutableLiveData<Game>()
+    val gameLiveData: LiveData<Game> = _gameLiveData
 
     private var consolidated: Boolean = false
+    private var secondChance: Boolean = false
+    private var gamePoints: Int = 0
+    private var questionNumber: Int = 1
+
     fun getConsolidated() = consolidated
+    fun getSecondChance() = secondChance
+    fun getPoints() = gamePoints
+    fun getQuestionNumber() = questionNumber
+
     fun setConsolidated(consolidate: Boolean) {
         consolidated = consolidate
+    }
+
+    fun setSecondChange(change: Boolean) {
+        secondChance = change
+    }
+
+    fun addPoints(points: Int) {
+        gamePoints += points
+    }
+
+    fun nextQuestionNumber() {
+        questionNumber += 1
     }
 
     fun createGame(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                game = GameDirector(QuestionsGameBuilder()).buildGameWith10Questions()
-                println("He llegado aqui")
+                val game = GameDirector(QuestionsGameBuilder()).buildGameWith10Questions()
+                game.sortChallengesByDifficulty()
+                _gameLiveData.postValue(game)
             } catch (e: HttpException) {
                 viewModelScope.launch(Dispatchers.Main) {
                     Toast.makeText(
@@ -91,11 +115,6 @@ class GameViewModel : ViewModel() {
         return userWon == "Abandoned"
     }
 
-    internal fun hasUserAnsweredAll(sharedPref: SharedPreferences): Boolean {
-        var userAnsweredAll = sharedPref.getInt("numberChallengesAnswered", 0)
-        return userAnsweredAll == 10
-    }
-
     internal fun addConsolidatePoints(sharedPref: SharedPreferences) {
         var accumulatedPoints = sharedPref.getInt("points", 0)
         val editor = sharedPref.edit()
@@ -116,13 +135,6 @@ class GameViewModel : ViewModel() {
         }
     }
 
-    internal fun addPoints(sharedPref: SharedPreferences, value: Int) {
-        var puntos = sharedPref.getInt("points", 0)
-        puntos += value
-        val editor = sharedPref.edit()
-        editor.putInt("points", puntos)
-        editor.apply()
-    }
 
     internal fun setTimeEnded(sharedPref: SharedPreferences) {
         val currentDate = System.currentTimeMillis()
@@ -131,18 +143,6 @@ class GameViewModel : ViewModel() {
         editor.apply()
     }
 
-    internal fun addNumberChallengesAnswered(sharedPref: SharedPreferences) {
-        var numberChallenges = sharedPref.getInt("numberChallengesAnswered", 0)
-        numberChallenges += 1
-        val editor = sharedPref.edit()
-        editor.putInt("numberChallengesAnswered", numberChallenges)
-        editor.apply()
-    }
-
-    internal fun getNumberQuestion(sharedPref: SharedPreferences): Int {
-        var numberChallenges = sharedPref.getInt("numberChallengesAnswered", 0)
-        return numberChallenges
-    }
 
     internal fun getTimeEnded(sharedPref: SharedPreferences): Long {
         var timeEnded = sharedPref.getLong("timeEnded", 0)

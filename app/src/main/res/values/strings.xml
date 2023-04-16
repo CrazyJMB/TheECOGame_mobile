@@ -69,6 +69,9 @@
 
     <!-- Toasts messages -->
     <string name="msg_consolidated">Para abandonar la partida necesitas primero consolidar</string>
+    <string name="msg_empty_answer">Debes seleccionar una respuesta</string>
+    <string name="msg_second_chance">Respuesta incorrecta. Tienes otra oportunidad.</string>
+    <string name="msg_incorrect_answer">Respuesta incorrecta. No tienes más oportunidades.</string>
 
     <!-- Error messages -->
     <string name="error_msg">Ha ocurrido un error inesperado</string>
