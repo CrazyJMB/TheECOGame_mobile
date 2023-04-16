@@ -29,7 +29,9 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="consolidate_question">¿Do you want to consolidate your points?</string>
-    <string name="consolidate_info">If you consolidate your points…</string>
+    <string name="consolidate_info">You can only consolidate 1 time, if you decide to consolidate
+        your points, once you have abandoned the challenge you will only get the points that you
+        have consolidated</string>
     <string name="warning">Warning</string>
     <string name="statistics">Statistics</string>
     <string name="num_games_played">Number of games played:</string>

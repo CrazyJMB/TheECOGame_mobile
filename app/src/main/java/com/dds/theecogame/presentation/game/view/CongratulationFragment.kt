@@ -1,5 +1,6 @@
 package com.dds.theecogame.presentation.game.view
 
+import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -34,28 +35,39 @@ class CongratulationFragment : Fragment() {
 
     //Codigo para inicializar la vista (como podria ser un listener para un boton)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val sharedPref = requireActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+
         binding.title.setOnClickListener {
             mediaPlayer.stop()
-            if (GameViewModel().hasUserAnsweredAll()) {
+            if (GameViewModel().hasUserAnsweredAll(sharedPref)) {
                 goToSummary()
             } else {
-                goToConsolidate()
+                if (GameViewModel().getConsolidatePoints(sharedPref) == 0){
+                    goToConsolidate()
+                } else {
+                    goToQuestions()
+                }
             }
         }
         mediaPlayer.setOnCompletionListener {
-            if (GameViewModel().hasUserAnsweredAll()) {
+            if (GameViewModel().hasUserAnsweredAll(sharedPref)) {
                 goToSummary()
             } else {
-                goToConsolidate()
+                if (GameViewModel().getConsolidatePoints(sharedPref) == 0){
+                    goToConsolidate()
+                } else {
+                    goToQuestions()
+                }
             }
         }
     }
 
     private fun startMusic() {
-        if (GameViewModel().hasUserAnsweredAll()) {
-            mediaPlayer = MediaPlayer.create(requireContext(), raw.ganar_reto)
-        } else {
+        val sharedPref = requireActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+        if (GameViewModel().hasUserAnsweredAll(sharedPref)) {
             mediaPlayer = MediaPlayer.create(requireContext(), raw.victoria)
+        } else {
+            mediaPlayer = MediaPlayer.create(requireContext(), raw.ganar_reto)
         }
         mediaPlayer.isLooping = false
         mediaPlayer.start()
@@ -74,6 +86,14 @@ class CongratulationFragment : Fragment() {
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
             .replace(R.id.GameContainerView, summaryFragment)
+            .commit()
+    }
+
+    private fun goToQuestions() {
+        val questionFragment = QuestionFragment()
+        val fragmentManager = requireActivity().supportFragmentManager
+        fragmentManager.beginTransaction()
+            .replace(R.id.GameContainerView, questionFragment)
             .commit()
     }
 }

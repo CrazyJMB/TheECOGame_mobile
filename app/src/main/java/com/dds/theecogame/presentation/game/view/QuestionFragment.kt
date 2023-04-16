@@ -1,5 +1,6 @@
 package com.dds.theecogame.presentation.game.view
 
+import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContentProviderCompat
 //import androidx.databinding.ObservableInt
 import com.dds.theecogame.R
 
@@ -17,8 +20,9 @@ import com.dds.theecogame.databinding.FragmentQuestionsBinding
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 
 class QuestionFragment : Fragment() {
-
+    private var countDownTimer: CountDownTimer? = null
     private lateinit var binding: FragmentQuestionsBinding
+    //private val selectedRadioButtonId = ObservableInt()
     private lateinit var mediaPlayer: MediaPlayer
     var segundaOportunidad = false
 
@@ -31,20 +35,27 @@ class QuestionFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        startTimer()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        startTimer()
+        changeViewNumberQuestion()
+        changeViewImage()
 
         binding.btnContinue.setOnClickListener {
             val respuestaCorrecta = "" //Base de Datos
             val esCorrecta = verificarRespuesta(respuestaCorrecta)
             if (esCorrecta) {
-                //Hacer metodo sumar puntos
+                val sharedPref = requireActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+                //TODO mirar la dificultad del la pregunta y a partir de ahi añadir puntos
+                val points = 10
+                if (segundaOportunidad){
+                    GameViewModel().addPoints(sharedPref, points/2)
+                } else {
+                    GameViewModel().addPoints(sharedPref, points)
+                }
+                GameViewModel().addNumberChallengesAnswered(sharedPref)
+                stopTimer()
                 goToCongratulations()
             } else if (!esCorrecta && !segundaOportunidad) {
                 segundaOportunidad = true
@@ -103,7 +114,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun startTimer() {
-        object : CountDownTimer(30000, 1000) {
+        countDownTimer = object : CountDownTimer(30000, 1000) {
 
             // Callback function, fired on regular interval
             override fun onTick(millisUntilFinished: Long) {
@@ -116,10 +127,16 @@ class QuestionFragment : Fragment() {
             // Callback function, fired
             // when the time is up
             override fun onFinish() {
-                binding.TiempoRestante.text = "done!"
                 mediaPlayer.stop()
+                playLosingMusic(false)
+                goToSummary()
             }
         }.start()
+    }
+
+    private fun stopTimer() {
+        countDownTimer?.cancel()
+        countDownTimer = null
     }
 
     private fun playLosingMusic(firstTime: Boolean) {
@@ -152,6 +169,16 @@ class QuestionFragment : Fragment() {
         fragmentManager.beginTransaction()
             .replace(R.id.GameContainerView, summaryFragment)
             .commit()
+    }
+
+    private fun changeViewNumberQuestion(){
+        val sharedPref = requireActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+        val number = GameViewModel().getNumberQuestion(sharedPref)
+        binding.NumeroPregunta.text = (number + 1).toString()
+    }
+
+    private fun changeViewImage(){
+        binding.ImagenODS.setImageResource(R.drawable.ods1)
     }
 }
 
