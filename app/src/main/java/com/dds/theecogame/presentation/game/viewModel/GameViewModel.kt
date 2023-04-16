@@ -139,6 +139,11 @@ class GameViewModel : ViewModel() {
         return numberChallenges
     }
 
+    internal fun getTimeEnded(sharedPref: SharedPreferences): Long {
+        var timeEnded = sharedPref.getLong("timeEnded", 0)
+        return timeEnded
+    }
+
     internal fun askTipeOds (){
         //TODO
     }
