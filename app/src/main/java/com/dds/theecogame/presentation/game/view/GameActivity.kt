@@ -21,7 +21,7 @@ class GameActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Create game
-        viewModel.createGame(applicationContext)
+        viewModel.createGame(this)
 
         binding.btnBack.setOnClickListener {
             when (viewModel.getConsolidated()) {

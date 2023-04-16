@@ -8,7 +8,6 @@ import android.widget.SeekBar
 import androidx.activity.viewModels
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.ActivitySettingBinding
-import com.dds.theecogame.domain.model.Settings
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.setting.viewModel.SettingViewModel
 
@@ -21,8 +20,8 @@ class SettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
-        val settings = Settings(0, 0, 0)
+
+//        val settings = Settings(0, 0, 0)
 
         val general_volume = findViewById<SeekBar>(R.id.seekBar_general_volume)
         general_volume?.setOnSeekBarChangeListener(object :
@@ -36,7 +35,7 @@ class SettingActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(general_volume: SeekBar) {
-                settings.general_volume = general_volume.progress
+                //settings.general_volume = general_volume.progress
             }
 
         })
@@ -53,7 +52,7 @@ class SettingActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(music: SeekBar) {
-                settings.music = music.progress
+//                settings.music = music.progress
             }
 
         })
@@ -70,7 +69,7 @@ class SettingActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(sounds: SeekBar) {
-                settings.sounds = sounds.progress
+//                settings.sounds = sounds.progress
             }
 
         })

@@ -1,11 +1,9 @@
 package com.dds.theecogame.presentation.game.viewModel
 
-import android.app.Application
 import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dds.theecogame.common.ApiException
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameDirector
 import com.dds.theecogame.domain.builder.concreteBuilder.QuestionsGameBuilder
@@ -38,7 +36,6 @@ class GameViewModel() : ViewModel() {
                     ).show()
                 }
             }
-
         }
     }
 
