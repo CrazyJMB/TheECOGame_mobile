@@ -8,7 +8,7 @@
     android:background="@color/background_green">
 
     <TextView
-        android:id="@+id/ConsolidarPregunta"
+        android:id="@+id/tvSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/title_top_margin"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ExplicacionConsolidar"
+        android:id="@+id/tvGeneralVolume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -30,10 +30,10 @@
         android:textSize="@dimen/settings_slider_title_font_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ConsolidarPregunta" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
 
     <TextView
-        android:id="@+id/Pregunta"
+        android:id="@+id/tvSounds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -42,10 +42,10 @@
         android:textSize="@dimen/settings_slider_title_font_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar_music" />
+        app:layout_constraintTop_toBottomOf="@+id/sbMusic" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tvActualTopic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -54,21 +54,10 @@
         android:textSize="@dimen/settings_slider_title_font_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar_sounds" />
+        app:layout_constraintTop_toBottomOf="@+id/sbSounds" />
 
     <TextView
-        android:id="@+id/topic_selected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
-        android:textSize="@dimen/settings_slider_title_font_size"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar_sounds" />
-
-    <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tvMusic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -77,10 +66,10 @@
         android:textSize="@dimen/settings_slider_title_font_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar_general_volume" />
+        app:layout_constraintTop_toBottomOf="@+id/sbGeneralVolume" />
 
     <SeekBar
-        android:id="@+id/seekBar_sounds"
+        android:id="@+id/sbSounds"
         android:layout_width="304dp"
         android:layout_height="24dp"
         android:layout_marginTop="12dp"
@@ -92,10 +81,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Pregunta" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSounds" />
 
     <SeekBar
-        android:id="@+id/seekBar_general_volume"
+        android:id="@+id/sbGeneralVolume"
         android:layout_width="304dp"
         android:layout_height="24dp"
         android:layout_marginTop="12dp"
@@ -107,10 +96,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ExplicacionConsolidar" />
+        app:layout_constraintTop_toBottomOf="@+id/tvGeneralVolume" />
 
     <SeekBar
-        android:id="@+id/seekBar_music"
+        android:id="@+id/sbMusic"
         android:layout_width="304dp"
         android:layout_height="24dp"
         android:layout_marginTop="12dp"
@@ -122,20 +111,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMusic" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spTopic"
         android:layout_width="214dp"
         android:layout_height="52dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="12dp"
-        android:contentDescription="Select your topic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/tvActualTopic" />
 
     <Button
-        android:id="@+id/buttonSave"
+        android:id="@+id/btnSave"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -145,6 +133,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/spTopic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

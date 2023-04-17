@@ -12,7 +12,7 @@
         android:background="@color/background_green">
 
         <TextView
-            android:id="@+id/ConsolidarPregunta"
+            android:id="@+id/tvSettings"
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:layout_marginLeft="70dp"
@@ -38,7 +38,7 @@
             android:backgroundTint="@color/background_green"
             android:contentDescription="@string/warning"
             android:src="@android:drawable/ic_menu_info_details"
-            app:layout_constraintBottom_toTopOf="@+id/ExplicacionConsolidar"
+            app:layout_constraintBottom_toTopOf="@+id/tvGeneralVolume"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
             tools:ignore="ImageContrastCheck" />
 
         <TextView
-            android:id="@+id/ExplicacionConsolidar"
+            android:id="@+id/tvGeneralVolume"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginStart="60dp"
@@ -81,7 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ExplicacionConsolidar" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGeneralVolume" />
 
         <Button
             android:id="@+id/No"
