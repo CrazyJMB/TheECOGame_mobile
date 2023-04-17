@@ -45,7 +45,7 @@ class ResumeFragment : Fragment() {
         val statValues = GameViewModel().getResults(sharedPref)
 
         val minutes = statValues[0]/60
-        val seconds = statValues[0]
+        val seconds = statValues[0]%60
 
         binding.timePlayed.text = "${binding.timePlayed.text} ${minutes}min ${seconds}sec"
         binding.pointsObtained.text = "${binding.pointsObtained.text} ${statValues[1]}"
