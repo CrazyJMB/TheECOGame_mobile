@@ -25,10 +25,6 @@
     <string name="topic">Temática actual</string>
     <string name="save">Guardar</string>
 
-    <string-array name="topics_list">
-        <item>ODS</item>
-    </string-array>
-
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="consolidate_question">¿Quieres consolidar tus puntos?</string>
@@ -82,4 +78,9 @@
     <!-- Error messages -->
     <string name="error_msg">Ha ocurrido un error inesperado</string>
     <string name="error_msg_internet">Error de conexión. Verifique su conexión de internet</string>
+
+    <!--For the spinner at SettingActivity-->
+    <string-array name="Topics">
+        <item>ODS</item>
+    </string-array>
 </resources>
