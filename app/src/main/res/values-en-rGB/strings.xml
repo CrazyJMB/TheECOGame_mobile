@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheEcoGame</string>
+    <string name="app_noImplemented">No Implemented</string>
+    <string name="app_logo_description">Logo TheEcoGame</string>
+    <!-- Strings related to mainScreen -->
+    <string name="button_play">Play</string>
+    <string name="button_statistic">Statistics</string>
+    <string name="button_setting">Settings</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">Welcome!</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="general_volume">General volume</string>
+    <string name="music">Music</string>
+    <string name="sounds">Sounds</string>
+    <string name="back">Come back</string>
+    <string name="question_challenge">Challenge: Questions</string>
+    <string name="question">Question:</string>
+    <string name="remaining_time">Remaining time:</string>
+    <string name="continue_next">Continue</string>
+    <string name="topic">Actual topic:</string>
+    <string name="save">Guardar</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="consolidate_question">¿Do you want to consolidate your points?</string>
+    <string name="consolidate_info">You can only consolidate 1 time, if you decide to consolidate
+        your points, once you have abandoned the challenge you will only get the points that you
+        have consolidated</string>
+    <string name="warning">Warning</string>
+    <string name="statistics">Statistics</string>
+    <string name="num_games_played">Number of games played:</string>
+    <string name="num_games_won">Games won:</string>
+    <string name="num_games_lost">Games lost:</string>
+    <string name="num_abandoned_answers">Abandoned games:</string>
+    <string name="num_correct_answers">Correct answers:</string>
+    <string name="num_wrong_answers">Wrong answers:</string>
+    <string name="mean_time">Mean time of games:</string>
+    <string name="total_time">Total time of the game:</string>
+    <string name="ODS_knowledge">ODS knowledge level</string>
+    <string name="image">Image</string>
+    <string name="lost">GAME OVER</string>
+    <string name="victory">VICTORY</string>
+    <string name="abandoned">ABANDONED</string>
+    <string name="timePlayed">Time played:</string>
+    <string name="obtainedPoints">Obtained points:</string>
+    <string name="answeredQuestions">Answered questions:</string>
+    <string name="finishGame">Finish Game</string>
+    <string name="congratulations">Congratulations</string>
+
+    <!-- AlertDialog messages -->
+    <string name="alert_title_quit">Do you want to quit?</string>
+    <string name="alert_msg_quit">Remember that if you have not saved your progress, you will receive 0 points.</string>
+    <string name="alert_confirm">Accept</string>
+    <string name="alert_cancel">Cancel</string>
+
+    <!-- Toasts messages -->
+    <string name="msg_consolidated">You can not leave without consolidate</string>
+    <string name="msg_empty_answer">You must select an answer</string>
+    <string name="msg_second_chance">Incorrect answer. You have another chance.</string>
+    <string name="msg_incorrect_answer">Incorrect answer. You have no more chance. GG</string>
+
+    <!-- Error messages -->
+    <string name="error_msg">An unexpected error occured</string>
+    <string name="error_msg_internet">Could not reach server. Check your internet connection</string>
+</resources>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.setting.view.SettingActivity"
+    android:background="@color/background_green">
+
+    <TextView
+        android:id="@+id/tvSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/title_top_margin"
+        android:text="@string/button_setting"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title_font_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvGeneralVolume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/general_volume"
+        android:textSize="@dimen/settings_slider_title_font_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
+
+    <TextView
+        android:id="@+id/tvSounds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/sounds"
+        android:textSize="@dimen/settings_slider_title_font_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sbMusic" />
+
+    <TextView
+        android:id="@+id/tvActualTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/topic"
+        android:textSize="@dimen/settings_slider_title_font_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sbSounds" />
+
+    <TextView
+        android:id="@+id/tvMusic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/music"
+        android:textSize="@dimen/settings_slider_title_font_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sbGeneralVolume" />
+
+    <SeekBar
+        android:id="@+id/sbSounds"
+        android:layout_width="304dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
+        android:max="100"
+        android:progress="30"
+        android:thumbTint="@color/black"
+        android:progressTint="@color/white"
+        android:progressBackgroundTint="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSounds" />
+
+    <SeekBar
+        android:id="@+id/sbGeneralVolume"
+        android:layout_width="304dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
+        android:max="100"
+        android:progress="50"
+        android:thumbTint="@color/black"
+        android:progressTint="@color/white"
+        android:progressBackgroundTint="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGeneralVolume" />
+
+    <SeekBar
+        android:id="@+id/sbMusic"
+        android:layout_width="304dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
+        android:max="100"
+        android:progress="70"
+        android:thumbTint="@color/black"
+        android:progressTint="@color/white"
+        android:progressBackgroundTint="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMusic" />
+
+    <Spinner
+        android:id="@+id/spTopic"
+        android:layout_width="214dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvActualTopic" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/btn_shape_round"
+        android:text="@string/save"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spTopic" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

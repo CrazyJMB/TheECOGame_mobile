@@ -1,12 +1,86 @@
 <resources>
-    <string name="app_name">TheECOGame</string>
-    <!-- Strings related to login -->
+    <!-- Generals strings -->
+    <string name="app_name">TheEcoGame</string>
+    <string name="app_logo_description">TheEcoGame logo</string>
+    <string name="app_noImplemented">No implementado</string>
+    <!-- Strings related to mainScreen -->
+    <string name="button_play">Jugar</string>
+    <string name="button_statistic">Estadísticas</string>
+    <string name="button_setting">Ajustes</string>
+    <!-- Strings related to activity_questions NAME REFACTOR -->
+    <string name="back">Volver</string>
+    <string name="question_challenge">Reto: Preguntas</string>
+    <string name="question">Pregunta:</string>
+    <string name="remaining_time">Tiempo restante:</string>
+    <string name="ods" translatable="false">ODS</string>
+    <string name="optionA" translatable="false">A) </string>
+    <string name="optionB" translatable="false">B) </string>
+    <string name="optionC" translatable="false">C) </string>
+    <string name="optionD" translatable="false">D) </string>
+    <string name="continue_next">Continuar</string>
+    <!-- Strings related to activity_settings -->
+    <string name="general_volume">Volumen general</string>
+    <string name="music">Música</string>
+    <string name="sounds">Sonidos</string>
+    <string name="topic">Temática actual</string>
+    <string name="save">Guardar</string>
+
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="consolidate_question">¿Quieres consolidar tus puntos?</string>
+    <string name="consolidate_info">Solo puedes consolidar tus puntos 1 vez, si consolidas tus
+        puntos al abandonar la partida conseguiras los puntos consolidados</string>
+    <string name="warning">Aviso</string>
+
+    <string name="statistics">Estadísticas</string>
+    <string name="num_games_played">Número de partidas jugadas:</string>
+    <string name="num_games_won">Partidas ganadas:</string>
+    <string name="num_games_lost">Partidas perdidas:</string>
+    <string name="num_abandoned_answers">Partidas abandonadas:</string>
+    <string name="num_correct_answers">Preguntas acertadas:</string>
+    <string name="num_wrong_answers">Preguntas incorrectas:</string>
+    <string name="mean_time">Tiempo promedio de las partidas:</string>
+    <string name="total_time">Tiempo total de partida:</string>
+    <string name="ODS_knowledge">Nivel conocimiento de ODS:</string>
+    <string name="title_activity_main" translatable="false">MainActivity</string>
+
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Inicia sesión o Regístrate</string>
+    <string name="action_sign_in_short">Inicia sesión</string>
+    <string name="welcome">Bienvenido!</string>
+    <string name="invalid_username">No es un usuario válido</string>
+    <string name="invalid_password">La contraseña debe tener más de 5 caracteres</string>
+    <string name="login_failed">Inicio de sesión fallido</string>
+    <string name="num_question" translatable="false">1</string>
+    <string name="image">Imagen</string>
+    <string name="lost">DERROTA</string>
+    <string name="victory">VICTORIA</string>
+    <string name="abandoned">ABANDONADA</string>
+    <string name="timePlayed">Tiempo Jugado:</string>
+    <string name="obtainedPoints">Puntos obtenidos:</string>
+    <string name="answeredQuestions">Preguntas respondidas:</string>
+    <string name="finishGame">Acabar partida</string>
+    <string name="congratulations">Felicidades</string>
+
+    <!-- AlertDialog messages -->
+    <string name="alert_title_quit">¿Deseas abandonar?</string>
+    <string name="alert_msg_quit">Recuerda que si no has consolidado, obtendras 0 puntos</string>
+    <string name="alert_confirm">Aceptar</string>
+    <string name="alert_cancel">Cancelar</string>
+
+    <!-- Toasts messages -->
+    <string name="msg_consolidated">Para abandonar la partida necesitas primero consolidar</string>
+    <string name="msg_empty_answer">Debes seleccionar una respuesta</string>
+    <string name="msg_second_chance">Respuesta incorrecta. Tienes otra oportunidad.</string>
+    <string name="msg_incorrect_answer">Respuesta incorrecta. No tienes más oportunidades.</string>
+
+    <!-- Error messages -->
+    <string name="error_msg">Ha ocurrido un error inesperado</string>
+    <string name="error_msg_internet">Error de conexión. Verifique su conexión de internet</string>
+
+    <!--For the spinner at SettingActivity-->
+    <string-array name="Topics">
+        <item>ODS</item>
+    </string-array>
 </resources>
