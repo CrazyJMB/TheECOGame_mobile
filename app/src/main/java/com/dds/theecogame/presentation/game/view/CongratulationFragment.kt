@@ -20,8 +20,8 @@ class CongratulationFragment : Fragment() {
     private lateinit var mediaPlayer: MediaPlayer
 
     private val gameViewModel: GameViewModel by activityViewModels()
-
     private var countDownTimer: CountDownTimer? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,28 +44,18 @@ class CongratulationFragment : Fragment() {
             if (gameViewModel.getQuestionNumber() == 11) {
                 goToSummary()
             } else {
-                if (GameViewModel().getConsolidatePoints(sharedPref) == 0) {
+                if (!gameViewModel.getConsolidated()) {
                     goToConsolidate()
                 } else {
                     goToQuestions()
                 }
             }
         }
-        mediaPlayer.setOnCompletionListener {
-            if (gameViewModel.getQuestionNumber() == 11) {
-                goToSummary()
-            } else {
-                if (GameViewModel().getConsolidatePoints(sharedPref) == 0) {
-                    goToConsolidate()
-                } else {
-                    goToQuestions()
-                }
-            }
-        }
+
     }
 
     private fun startMusic() {
-        mediaPlayer = if (gameViewModel.getQuestionNumber() == 10) {
+        mediaPlayer = if (gameViewModel.getQuestionNumber() == 11) {
             MediaPlayer.create(requireContext(), raw.victoria)
         } else {
             MediaPlayer.create(requireContext(), raw.ganar_reto)

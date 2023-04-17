@@ -34,6 +34,7 @@ class QuestionFragment : Fragment() {
     private var countDownTimer: CountDownTimer? = null
     private var timerCancelledManually: Boolean = false
     private lateinit var currentQuestion: Question
+    private  var tense: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,12 +88,15 @@ class QuestionFragment : Fragment() {
                 } else {
                     gameViewModel.addPoints(points)
                 }
+                if (tense){mediaPlayer.stop()}
                 gameViewModel.nextQuestionNumber()
                 goToCongratulations()
 
             } else if (!gameViewModel.getSecondChance()) {
+                playLosingMusic(true)
                 gameViewModel.setSecondChange(true)
             } else {
+                if (tense){mediaPlayer.stop()}
                 goToSummary()
             }
         }
@@ -179,6 +183,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun playTenseMusic() {
+        tense = true
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.tensa)
         mediaPlayer.isLooping = false
         mediaPlayer.start()
