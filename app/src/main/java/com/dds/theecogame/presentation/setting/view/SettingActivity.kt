@@ -6,6 +6,7 @@ import android.content.Intent
 import android.media.AudioManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.SeekBar
 import androidx.activity.viewModels
@@ -86,5 +87,13 @@ class SettingActivity : AppCompatActivity() {
             val i = Intent(this@SettingActivity, MainScreenActivity::class.java)
             startActivity(i)
         }
+
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            resources.getStringArray(R.array.Topics)
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinner.adapter = adapter
     }
 }
