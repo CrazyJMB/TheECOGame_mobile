@@ -1,22 +1,19 @@
 package com.dds.theecogame.domain.builder
 
 import com.dds.theecogame.common.RetrofitInstance
-import com.dds.theecogame.domain.model.Question
+import com.dds.theecogame.data.remote.challenge.dto.toQuestion
 
 class GameDirector(private val builder: GameBuilder) {
 
     suspend fun buildGameWith10Questions(): Game {
         builder.setNumberOfChallenges(10)
-        TODO("Not yet implemented")
-//        builder.addQuestionChallenge(RetrofitInstance.challengeService.getQuestions())
-//        builder.addQuestionChallenge()
-//        builder.addQuestionChallenge()
-//        builder.addQuestionChallenge()
-//        builder.addQuestionChallenge()
-//        builder.addQuestionChallenge()
-//        builder.addQuestionChallenge()
-
-
+        (1..10).forEach { order ->
+            builder.addQuestionChallenge(
+                order,
+                RetrofitInstance.challengeService.getQuestionByDifficulty((1..5).random())
+                    .toQuestion()
+            )
+        }
         return builder.buildGame()
     }
 }

@@ -1,4 +1,4 @@
-package com.dds.theecogame.data.session.dto
+package com.dds.theecogame.data.remote.session.dto
 
 import com.dds.theecogame.domain.model.User
 

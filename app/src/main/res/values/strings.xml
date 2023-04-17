@@ -28,7 +28,8 @@
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="consolidate_question">¿Quieres consolidar tus puntos?</string>
-    <string name="consolidate_info">Si consolidas tus puntos...</string>
+    <string name="consolidate_info">Solo puedes consolidar tus puntos 1 vez, si consolidas tus
+        puntos al abandonar la partida conseguiras los puntos consolidados</string>
     <string name="warning">Aviso</string>
 
     <string name="statistics">Estadísticas</string>
@@ -61,6 +62,16 @@
     <string name="answeredQuestions">Preguntas respondidas:</string>
     <string name="finishGame">Acabar partida</string>
     <string name="congratulations">Felicidades</string>
+
+    <!-- Toasts messages -->
+    <string name="msg_consolidated">Para abandonar la partida necesitas primero consolidar</string>
+    <string name="msg_empty_answer">Debes seleccionar una respuesta</string>
+    <string name="msg_second_chance">Respuesta incorrecta. Tienes otra oportunidad.</string>
+    <string name="msg_incorrect_answer">Respuesta incorrecta. No tienes más oportunidades.</string>
+
+    <!-- Error messages -->
+    <string name="error_msg">Ha ocurrido un error inesperado</string>
+    <string name="error_msg_internet">Error de conexión. Verifique su conexión de internet</string>
 
     <!--For the spinner at SettingActivity-->
     <string-array name="Topics">

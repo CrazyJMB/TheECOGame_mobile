@@ -1,4 +1,4 @@
-package com.dds.theecogame.data.challenge.dto
+package com.dds.theecogame.data.remote.challenge.dto
 
 import com.dds.theecogame.domain.model.Challenge
 

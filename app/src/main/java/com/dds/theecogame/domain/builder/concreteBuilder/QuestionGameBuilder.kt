@@ -12,9 +12,9 @@ class QuestionsGameBuilder : GameBuilder {
         require(numberOfChallenges == 10) { "This builder only supports 10 challenges" }
     }
 
-    override fun addQuestionChallenge(question: Question) {
+    override fun addQuestionChallenge(order: Int, question: Question) {
         val challenge = Game.Challenge.QuestionModel(question)
-        game.challengesList.add(challenge)
+        game.challengesList[order] = challenge
     }
 
     override fun buildGame(): Game {

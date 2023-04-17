@@ -1,43 +1,155 @@
 package com.dds.theecogame.presentation.game.viewModel
 
+import android.content.Context
+import android.widget.Toast
+import android.content.SharedPreferences
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.dds.theecogame.domain.builder.Game
+import com.dds.theecogame.domain.builder.GameDirector
+import com.dds.theecogame.domain.builder.concreteBuilder.QuestionsGameBuilder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 
 class GameViewModel : ViewModel() {
-    /*A IMPLEMENTAR TODO*/
-    internal fun sendResults() {
+
+    private val _gameLiveData = MutableLiveData<Game>()
+    val gameLiveData: LiveData<Game> = _gameLiveData
+
+    private var consolidated: Boolean = false
+    private var secondChance: Boolean = false
+    private var gamePoints: Int = 0
+    private var questionNumber: Int = 1
+
+    fun getConsolidated() = consolidated
+    fun getSecondChance() = secondChance
+    fun getPoints() = gamePoints
+    fun getQuestionNumber() = questionNumber
+
+    fun setConsolidated(consolidate: Boolean) {
+        consolidated = consolidate
+    }
+
+    fun setSecondChange(change: Boolean) {
+        secondChance = change
+    }
+
+    fun addPoints(points: Int) {
+        gamePoints += points
+    }
+
+    fun nextQuestionNumber() {
+        questionNumber += 1
+    }
+
+    fun createGame(context: Context) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val game = GameDirector(QuestionsGameBuilder()).buildGameWith10Questions()
+                game.sortChallengesByDifficulty()
+                _gameLiveData.postValue(game)
+            } catch (e: HttpException) {
+                viewModelScope.launch(Dispatchers.Main) {
+                    Toast.makeText(
+                        context,
+                        e.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
+    fun sendResults() {
         //Funcionalidad a implementar mas tarde cuando haya participantes, y ahi guardamos sus stats
     }
 
-    internal fun getResults(): List<Int> {
-        //Conseguir Tiempo Jugado en la Partida, Puntos Obtenidos y Num Preguntas respondidas
-        //He pensado que directamente que haya un fichero .txt donde hay pongamos eso
-        //Y a partir de ese fichero obtener esos datos
+    internal fun resetGameStats(sharedPref: SharedPreferences) {
+        val editor = sharedPref.edit()
+        val currentDate = System.currentTimeMillis()
+
+        editor.putString("gameStatus", "Defeat")
+        editor.putInt("points", 0)
+        editor.putInt("consolidatedPoints", 0)
+        editor.putLong("timeStarted", currentDate)
+        editor.putLong("timeEnded", 0)
+        editor.putInt("numberChallengesAnswered", 0)
+        editor.apply()
+    }
+
+    internal fun getResults(sharedPref: SharedPreferences): List<Int> {
         var summaryStats = mutableListOf<Int>()
-        /*IMPLEMENTAR*/
+
+        var points = 0
+        var dataStart = sharedPref.getLong("timeStarted", 0)
+        var dataEnd = sharedPref.getLong("timeEnded", 0)
+        var numberChallenge = sharedPref.getInt("numberChallengesAnswered", 0)
+
+        var gameStatus = sharedPref.getString("gameStatus", "")
+        if (gameStatus == "Victory") {
+            points = sharedPref.getInt("points", 0)
+        }
+        if (gameStatus == "Abandoned") {
+            points = sharedPref.getInt("consolidatedPoints", 0)
+        }
+
+        val timePlayed = (dataEnd - dataStart) / 1000
+        summaryStats.add(timePlayed.toInt())
+        summaryStats.add(points)
+        summaryStats.add(numberChallenge)
+
         return summaryStats
     }
 
-    internal fun hasUserWon(): Boolean {
-        //Return false si ha perdido, return true si ha ganado
-        var userWon: Boolean = false
-        return userWon
+    internal fun hasUserWon(sharedPref: SharedPreferences): Boolean {
+        var userWon = sharedPref.getString("gameStatus", "")
+        return userWon == "Victory"
     }
 
-    internal fun hasUserAbandoned(): Boolean {
-        //Return false si ha abandonado return true si no ha abandonado
-        var userAbandoned: Boolean = false
-        return userAbandoned
+    internal fun hasUserAbandoned(sharedPref: SharedPreferences): Boolean {
+        var userWon = sharedPref.getString("gameStatus", "")
+        return userWon == "Abandoned"
     }
 
-    internal fun hasUserAnsweredAll(): Boolean {
-        //Return false si ha finalizado los 10 retos, return true si aun no ha finalizado los 10
-        var userAnsweredAll = false
-        return userAnsweredAll
+    internal fun addConsolidatePoints(sharedPref: SharedPreferences) {
+        var accumulatedPoints = sharedPref.getInt("points", 0)
+        val editor = sharedPref.edit()
+        editor.putInt("consolidatedPoints", accumulatedPoints)
+        editor.apply()
     }
 
-    internal fun saveAcumulatedPoints(numberPoints: Int) {
-        var acumulatedPoints = numberPoints
+    internal fun getConsolidatePoints(sharedPref: SharedPreferences): Int {
+        var numberPoints = sharedPref.getInt("consolidatedPoints", 0)
+        return numberPoints
     }
 
+    internal fun changeGameStatus(sharedPref: SharedPreferences, value: String) {
+        if (value == "Defeat" || value == "Victory" || value == "Abandoned") {
+            val editor = sharedPref.edit()
+            editor.putString("gameStatus", value)
+            editor.apply()
+        }
+    }
+
+
+    internal fun setTimeEnded(sharedPref: SharedPreferences) {
+        val currentDate = System.currentTimeMillis()
+        val editor = sharedPref.edit()
+        editor.putLong("timeEnded", currentDate)
+        editor.apply()
+    }
+
+
+    internal fun getTimeEnded(sharedPref: SharedPreferences): Long {
+        var timeEnded = sharedPref.getLong("timeEnded", 0)
+        return timeEnded
+    }
+
+    internal fun askTipeOds() {
+        //TODO
+    }
 }
