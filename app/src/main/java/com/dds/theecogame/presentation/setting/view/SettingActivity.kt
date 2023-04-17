@@ -98,7 +98,7 @@ class SettingActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_item,
-            resources.getStringArray(R.array.topics_list)
+            resources.getStringArray(R.array.Topics)
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spTopic.adapter = adapter
