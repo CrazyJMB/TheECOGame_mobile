@@ -33,6 +33,7 @@ class QuestionFragment : Fragment() {
 
     private var countDownTimer: CountDownTimer? = null
     private var timerCancelledManually: Boolean = false
+    private var tense: Boolean = false
     private lateinit var currentQuestion: Question
 
     override fun onCreateView(
@@ -87,12 +88,20 @@ class QuestionFragment : Fragment() {
                 } else {
                     gameViewModel.addPoints(points)
                 }
+                if (tense) {
+                    mediaPlayer.stop()
+                }
+
                 gameViewModel.nextQuestionNumber()
                 goToCongratulations()
 
             } else if (!gameViewModel.getSecondChance()) {
                 gameViewModel.setSecondChange(true)
             } else {
+                if (tense) {
+                    mediaPlayer.stop()
+                }
+                gameViewModel.setGameStatus(0) // Game Lost
                 goToSummary()
             }
         }
@@ -147,6 +156,7 @@ class QuestionFragment : Fragment() {
                 binding.tvTimer.text = (millisUntilFinished / 1000).toString()
                 if ((millisUntilFinished / 1000).toInt() == 10 && !timerCancelledManually) {
                     playTenseMusic()
+                    tense = true
                 }
             }
 

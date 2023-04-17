@@ -36,12 +36,31 @@ class SettingViewModel() : ViewModel() {
         }
     }
 
-    fun getMusicVolume() {
+    fun getGeneralVolume(): Int {
         viewModelScope.launch(Dispatchers.IO) {
-            dataStore.getMusicVolume().collect() {
-
+            dataStore.getGeneralVolume().collect() {
+                return@collect
             }
         }
+        return 100
+    }
+
+    fun getMusicVolume(): Int {
+        viewModelScope.launch(Dispatchers.IO) {
+            dataStore.getMusicVolume().collect() {
+                return@collect
+            }
+        }
+        return 100
+    }
+
+    fun getSoundVolume(): Int {
+        viewModelScope.launch(Dispatchers.IO) {
+            dataStore.getSoundVolume().collect() {
+                return@collect
+            }
+        }
+        return 100
     }
 }
 

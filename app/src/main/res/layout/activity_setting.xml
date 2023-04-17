@@ -8,7 +8,7 @@
     android:background="@color/background_green">
 
     <TextView
-        android:id="@+id/ConsolidarPregunta"
+        android:id="@+id/tvConsolidateQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/title_top_margin"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ExplicacionConsolidar"
+        android:id="@+id/tvConsolidateExplanation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -30,7 +30,7 @@
         android:textSize="@dimen/settings_slider_title_font_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ConsolidarPregunta" />
+        app:layout_constraintTop_toBottomOf="@+id/tvConsolidateQuestion" />
 
     <TextView
         android:id="@+id/Pregunta"
@@ -41,6 +41,7 @@
         android:text="@string/sounds"
         android:textSize="@dimen/settings_slider_title_font_size"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar_sounds"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar_music" />
 
@@ -73,22 +74,25 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="290dp"
         android:text="@string/music"
         android:textSize="@dimen/settings_slider_title_font_size"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar_general_volume" />
 
     <SeekBar
         android:id="@+id/seekBar_sounds"
         android:layout_width="304dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
         android:max="100"
         android:progress="30"
-        android:thumbTint="@color/black"
-        android:progressTint="@color/white"
         android:progressBackgroundTint="@color/grey"
+        android:progressTint="@color/white"
+        android:thumbTint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,28 +101,30 @@
     <SeekBar
         android:id="@+id/seekBar_general_volume"
         android:layout_width="304dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
         android:max="100"
         android:progress="50"
-        android:thumbTint="@color/black"
-        android:progressTint="@color/white"
         android:progressBackgroundTint="@color/grey"
+        android:progressTint="@color/white"
+        android:thumbTint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ExplicacionConsolidar" />
+        app:layout_constraintTop_toBottomOf="@+id/tvConsolidateExplanation" />
 
     <SeekBar
         android:id="@+id/seekBar_music"
         android:layout_width="304dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
         android:max="100"
         android:progress="70"
-        android:thumbTint="@color/black"
-        android:progressTint="@color/white"
         android:progressBackgroundTint="@color/grey"
+        android:progressTint="@color/white"
+        android:thumbTint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/Pregunta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,9 +134,10 @@
         android:id="@+id/spinner"
         android:layout_width="214dp"
         android:layout_height="52dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:contentDescription="Select your topic"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -138,7 +145,7 @@
         android:id="@+id/buttonSave"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="41dp"
         android:background="@drawable/btn_shape_round"
         android:text="@string/save"
         android:textStyle="bold"

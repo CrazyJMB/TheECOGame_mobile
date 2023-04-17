@@ -21,26 +21,23 @@ class GameActivity : AppCompatActivity() {
 
         viewModel.createGame(this)
 
-        initialize()
+        viewModel.setTimeStart()
 
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnBack.setOnClickListener {
-            val sharedPref = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-            if (viewModel.getTimeEnded(sharedPref).toInt() == 0) {
+            if (!viewModel.getGameEnded()) {
                 val builder = AlertDialog.Builder(this)
-                builder.setTitle("¿Deseas abandonar?")
-                builder.setMessage("Recuerda que si no has consolidado, obtendras 0 puntos")
-                builder.setPositiveButton("Aceptar") { dialog, which ->
-                    GameViewModel().changeGameStatus(sharedPref, "Abandoned")
-                    val summaryFragment = ResumeFragment()
-                    val fragmentManager = this.supportFragmentManager
-                    fragmentManager.beginTransaction()
-                        .replace(R.id.GameContainerView, summaryFragment)
+                builder.setTitle(R.string.alert_title_quit)
+                builder.setMessage(R.string.alert_msg_quit)
+                builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
+                    viewModel.setGameStatus(1) // Game abandoned
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.GameContainerView, ResumeFragment())
                         .commit()
                 }
-                builder.setNegativeButton("Cancelar") { dialog, which ->
+                builder.setNegativeButton(R.string.alert_cancel) { _, _ ->
                     //No hace nada
                 }
                 builder.show()
@@ -59,11 +56,6 @@ class GameActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         TODO("Que pasa cuando se sale de una partida no acabada")
-    }
-
-    private fun initialize() {
-        val sharedPref = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-        GameViewModel().resetGameStats(sharedPref)
     }
 
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.FragmentConsolidateBinding
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
@@ -15,12 +16,15 @@ class ConsolidateFragment : Fragment() {
 
     private lateinit var binding: FragmentConsolidateBinding
 
+    private val gameViewModel: GameViewModel by activityViewModels()
+
     private var countDownTimer: CountDownTimer? = null
     private var timerCancelledManually: Boolean = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentConsolidateBinding.inflate(inflater)
         return binding.root
     }
@@ -29,22 +33,21 @@ class ConsolidateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         startTimer()
 
-        binding.Advertencia.setOnClickListener {
-            if (binding.ExplicacionConsolidar.visibility == View.INVISIBLE) {
-                binding.ExplicacionConsolidar.visibility = View.VISIBLE
+        binding.ivAdvice.setOnClickListener {
+            if (binding.tvConsolidateExplanation.visibility == View.INVISIBLE) {
+                binding.tvConsolidateExplanation.visibility = View.VISIBLE
             } else {
-                binding.ExplicacionConsolidar.visibility = View.INVISIBLE
+                binding.tvConsolidateExplanation.visibility = View.INVISIBLE
             }
         }
 
-        binding.Si.setOnClickListener {
-            val sharedPref =
-                requireActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-            GameViewModel().addConsolidatePoints(sharedPref)
+        binding.btnConfirm.setOnClickListener {
+            gameViewModel.setConsolidated(true)
+            gameViewModel.setConsolidatedPoints()
             stopTimer()
             goToQuestions()
         }
-        binding.No.setOnClickListener {
+        binding.btnCancel.setOnClickListener {
             stopTimer()
             goToQuestions()
         }
@@ -55,7 +58,6 @@ class ConsolidateFragment : Fragment() {
 
             // Callback function, fired on regular interval
             override fun onTick(millisUntilFinished: Long) {
-
             }
 
             // Callback function, fired

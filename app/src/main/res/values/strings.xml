@@ -67,6 +67,12 @@
     <string name="finishGame">Acabar partida</string>
     <string name="congratulations">Felicidades</string>
 
+    <!-- AlertDialog messages -->
+    <string name="alert_title_quit">¿Deseas abandonar?</string>
+    <string name="alert_msg_quit">Recuerda que si no has consolidado, obtendras 0 puntos</string>
+    <string name="alert_confirm">Aceptar</string>
+    <string name="alert_cancel">Cancelar</string>
+
     <!-- Toasts messages -->
     <string name="msg_consolidated">Para abandonar la partida necesitas primero consolidar</string>
     <string name="msg_empty_answer">Debes seleccionar una respuesta</string>

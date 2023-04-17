@@ -8,7 +8,7 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/Title"
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/header_margin_top"
@@ -20,7 +20,7 @@
         android:typeface="normal" />
 
     <TextView
-        android:id="@+id/timePlayed"
+        android:id="@+id/tvTimePlayed"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="120sp"
@@ -30,7 +30,7 @@
         android:textSize="@dimen/header_font_size" />
 
     <TextView
-        android:id="@+id/pointsObtained"
+        android:id="@+id/tvPointsObtained"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="180sp"
@@ -40,7 +40,7 @@
         android:textSize="@dimen/header_font_size" />
 
     <TextView
-        android:id="@+id/questionsAnswered"
+        android:id="@+id/tvQuestionsAnswered"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="240sp"
@@ -50,9 +50,10 @@
         android:textSize="@dimen/header_font_size" />
 
     <Button
-        android:id="@+id/acabarPartida"
+        android:id="@+id/btnEndGame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/btn_shape_round"
         android:layout_marginLeft="50sp"
         android:layout_marginTop="500sp"
         android:layout_marginRight="50sp"

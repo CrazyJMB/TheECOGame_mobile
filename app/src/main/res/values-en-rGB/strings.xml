@@ -53,6 +53,12 @@
     <string name="finishGame">Finish Game</string>
     <string name="congratulations">Congratulations</string>
 
+    <!-- AlertDialog messages -->
+    <string name="alert_title_quit">Do you want to quit?</string>
+    <string name="alert_msg_quit">Remember that if you have not saved your progress, you will receive 0 points.</string>
+    <string name="alert_confirm">Accept</string>
+    <string name="alert_cancel">Cancel</string>
+
     <!-- Toasts messages -->
     <string name="msg_consolidated">You can not leave without consolidate</string>
     <string name="msg_empty_answer">You must select an answer</string>

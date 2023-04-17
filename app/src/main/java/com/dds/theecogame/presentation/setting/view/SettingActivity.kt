@@ -1,14 +1,10 @@
 package com.dds.theecogame.presentation.setting.view
 
-import android.app.Application
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.SeekBar
 import androidx.activity.viewModels
-import com.dds.theecogame.R
-import com.dds.theecogame.data.local.DataStoreManager
 import com.dds.theecogame.databinding.ActivitySettingBinding
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.setting.viewModel.SettingViewModel
@@ -23,8 +19,18 @@ class SettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel.initialize(application)
+        viewModel.initialize(applicationContext)
+    }
 
+    override fun onStart() {
+        super.onStart()
+
+        // Initials values SeekBar
+        binding.seekBarGeneralVolume.progress = viewModel.getGeneralVolume()
+        binding.seekBarMusic.progress = viewModel.getMusicVolume()
+        binding.seekBarSounds.progress = viewModel.getSoundVolume()
+
+        // Listener
         binding.seekBarGeneralVolume.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(general_volume: SeekBar, progress: Int, p2: Boolean) {
@@ -74,8 +80,9 @@ class SettingActivity : AppCompatActivity() {
         })
 
         binding.buttonSave.setOnClickListener {
-            val i = Intent(this@SettingActivity, MainScreenActivity::class.java)
+            val i = Intent(this, MainScreenActivity::class.java)
             startActivity(i)
         }
     }
+
 }

@@ -37,35 +37,36 @@ class CongratulationFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val sharedPref = requireActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
 
         binding.title.setOnClickListener {
             mediaPlayer.stop()
             if (gameViewModel.getQuestionNumber() == 11) {
+                gameViewModel.setGameStatus(2) // Victory
                 goToSummary()
             } else {
-                if (GameViewModel().getConsolidatePoints(sharedPref) == 0) {
-                    goToConsolidate()
-                } else {
+                if (gameViewModel.getConsolidated()) {
                     goToQuestions()
+                } else {
+                    goToConsolidate()
                 }
             }
         }
         mediaPlayer.setOnCompletionListener {
             if (gameViewModel.getQuestionNumber() == 11) {
+                gameViewModel.setGameStatus(2) // Victory
                 goToSummary()
             } else {
-                if (GameViewModel().getConsolidatePoints(sharedPref) == 0) {
-                    goToConsolidate()
-                } else {
+                if (gameViewModel.getConsolidated()) {
                     goToQuestions()
+                } else {
+                    goToConsolidate()
                 }
             }
         }
     }
 
     private fun startMusic() {
-        mediaPlayer = if (gameViewModel.getQuestionNumber() == 10) {
+        mediaPlayer = if (gameViewModel.getQuestionNumber() == 11) {
             MediaPlayer.create(requireContext(), raw.victoria)
         } else {
             MediaPlayer.create(requireContext(), raw.ganar_reto)
@@ -75,26 +76,23 @@ class CongratulationFragment : Fragment() {
     }
 
     private fun goToConsolidate() {
-        val consolidateFragment = ConsolidateFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
-            .replace(R.id.GameContainerView, consolidateFragment)
+            .replace(R.id.GameContainerView, ConsolidateFragment())
             .commit()
     }
 
     private fun goToSummary() {
-        val summaryFragment = ResumeFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
-            .replace(R.id.GameContainerView, summaryFragment)
+            .replace(R.id.GameContainerView, ResumeFragment())
             .commit()
     }
 
     private fun goToQuestions() {
-        val questionFragment = QuestionFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
-            .replace(R.id.GameContainerView, questionFragment)
+            .replace(R.id.GameContainerView, QuestionFragment())
             .commit()
     }
 }

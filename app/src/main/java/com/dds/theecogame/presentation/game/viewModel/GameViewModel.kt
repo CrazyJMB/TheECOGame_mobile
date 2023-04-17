@@ -22,16 +22,34 @@ class GameViewModel : ViewModel() {
 
     private var consolidated: Boolean = false
     private var secondChance: Boolean = false
+    private var gameEnded: Boolean = false
     private var gamePoints: Int = 0
+    private var gameStatus: Int = 0
+    private var consolidatedPoints: Int = 0
     private var questionNumber: Int = 1
+    private var timeStart: Long = 0L
+    private var timeEnd: Long = 0L
 
     fun getConsolidated() = consolidated
     fun getSecondChance() = secondChance
+    fun getGameEnded() = gameEnded
     fun getPoints() = gamePoints
+    fun getGameStatus() = gameStatus
     fun getQuestionNumber() = questionNumber
+    fun getConsolidatedPoints() = consolidatedPoints
+    fun getTimeStart() = timeStart
+    fun getTimeEnd() = timeEnd
 
     fun setConsolidated(consolidate: Boolean) {
         consolidated = consolidate
+    }
+
+    fun setGameEnded() {
+        gameEnded = true
+    }
+
+    fun setConsolidatedPoints() {
+        consolidatedPoints = gamePoints
     }
 
     fun setSecondChange(change: Boolean) {
@@ -44,6 +62,21 @@ class GameViewModel : ViewModel() {
 
     fun nextQuestionNumber() {
         questionNumber += 1
+    }
+
+    fun setTimeStart() {
+        timeStart = System.currentTimeMillis()
+    }
+
+    fun setTimeEnd() {
+        timeEnd = System.currentTimeMillis()
+    }
+
+    fun setGameStatus(status: Int) {
+        // 0 -> Lost
+        // 1 -> Abandoned
+        // 2 -> Victory
+        gameStatus = status
     }
 
     fun createGame(context: Context) {
@@ -64,10 +97,6 @@ class GameViewModel : ViewModel() {
         }
     }
 
-    fun sendResults() {
-        //Funcionalidad a implementar mas tarde cuando haya participantes, y ahi guardamos sus stats
-    }
-
     internal fun resetGameStats(sharedPref: SharedPreferences) {
         val editor = sharedPref.edit()
         val currentDate = System.currentTimeMillis()
@@ -81,75 +110,24 @@ class GameViewModel : ViewModel() {
         editor.apply()
     }
 
-    internal fun getResults(sharedPref: SharedPreferences): List<Int> {
+    fun getResults(): List<Int> {
         var summaryStats = mutableListOf<Int>()
 
-        var points = 0
-        var dataStart = sharedPref.getLong("timeStarted", 0)
-        var dataEnd = sharedPref.getLong("timeEnded", 0)
-        var numberChallenge = sharedPref.getInt("numberChallengesAnswered", 0)
-
-        var gameStatus = sharedPref.getString("gameStatus", "")
-        if (gameStatus == "Victory") {
-            points = sharedPref.getInt("points", 0)
+        // Lost
+        if (gameStatus == 0) {
+            gamePoints = 0
         }
-        if (gameStatus == "Abandoned") {
-            points = sharedPref.getInt("consolidatedPoints", 0)
+        // Abandoned
+        if (gameStatus == 1) {
+            gamePoints = consolidatedPoints
         }
 
-        val timePlayed = (dataEnd - dataStart) / 1000
+        val timePlayed = (timeEnd - timeStart) / 1000
+
         summaryStats.add(timePlayed.toInt())
-        summaryStats.add(points)
-        summaryStats.add(numberChallenge)
+        summaryStats.add(gamePoints)
+        summaryStats.add(questionNumber)
 
         return summaryStats
-    }
-
-    internal fun hasUserWon(sharedPref: SharedPreferences): Boolean {
-        var userWon = sharedPref.getString("gameStatus", "")
-        return userWon == "Victory"
-    }
-
-    internal fun hasUserAbandoned(sharedPref: SharedPreferences): Boolean {
-        var userWon = sharedPref.getString("gameStatus", "")
-        return userWon == "Abandoned"
-    }
-
-    internal fun addConsolidatePoints(sharedPref: SharedPreferences) {
-        var accumulatedPoints = sharedPref.getInt("points", 0)
-        val editor = sharedPref.edit()
-        editor.putInt("consolidatedPoints", accumulatedPoints)
-        editor.apply()
-    }
-
-    internal fun getConsolidatePoints(sharedPref: SharedPreferences): Int {
-        var numberPoints = sharedPref.getInt("consolidatedPoints", 0)
-        return numberPoints
-    }
-
-    internal fun changeGameStatus(sharedPref: SharedPreferences, value: String) {
-        if (value == "Defeat" || value == "Victory" || value == "Abandoned") {
-            val editor = sharedPref.edit()
-            editor.putString("gameStatus", value)
-            editor.apply()
-        }
-    }
-
-
-    internal fun setTimeEnded(sharedPref: SharedPreferences) {
-        val currentDate = System.currentTimeMillis()
-        val editor = sharedPref.edit()
-        editor.putLong("timeEnded", currentDate)
-        editor.apply()
-    }
-
-
-    internal fun getTimeEnded(sharedPref: SharedPreferences): Long {
-        var timeEnded = sharedPref.getLong("timeEnded", 0)
-        return timeEnded
-    }
-
-    internal fun askTipeOds() {
-        //TODO
     }
 }
