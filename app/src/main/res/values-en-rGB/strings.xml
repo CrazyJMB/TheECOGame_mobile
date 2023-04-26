@@ -51,7 +51,9 @@
     <string name="obtainedPoints">Obtained points:</string>
     <string name="answeredQuestions">Answered questions:</string>
     <string name="finishGame">Finish Game</string>
-    <string name="congratulations">Congratulations</string>
+    <string name="congratulations">Congratulations!!</string>
+    <string name="abandon">Abandon</string>
+    <string name="abandon_question">Do you want to leave the game?</string>
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">Do you want to quit?</string>
