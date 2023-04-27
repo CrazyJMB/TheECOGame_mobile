@@ -54,7 +54,7 @@
     <string name="login_failed">Inicio de sesión fallido</string>
     <string name="num_question" translatable="false">1</string>
     <string name="image">Imagen</string>
-    <string name="lost">DERROTA</string>
+    <string name="lost">GAME OVER</string>
     <string name="victory">VICTORIA</string>
     <string name="abandoned">ABANDONADA</string>
     <string name="timePlayed">Tiempo Jugado:</string>
