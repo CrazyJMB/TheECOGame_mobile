@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".UserManagementActivity"
+            android:name=".presentation.userManagement.UserManagementActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.mainScreen.view.MainScreenActivity"
