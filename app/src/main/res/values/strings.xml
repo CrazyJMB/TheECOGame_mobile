@@ -83,4 +83,14 @@
     <string-array name="Topics">
         <item>ODS</item>
     </string-array>
+
+    <!-- Register Fragment -->
+    <string name="username">Nombre de usuario</string>
+    <string name="email">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="username_text">Introduzca su nombre de usuario</string>
+    <string name="email_text">Introduzca su correo</string>
+    <string name="password_text">Introduzca su contraseña</string>
+    <string name="create_user">Crear usuario</string>
+
 </resources>

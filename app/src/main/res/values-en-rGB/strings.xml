@@ -68,4 +68,11 @@
     <!-- Error messages -->
     <string name="error_msg">An unexpected error occured</string>
     <string name="error_msg_internet">Could not reach server. Check your internet connection</string>
+    <string name="username">Username</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="username_text">Introduce your username</string>
+    <string name="email_text">Introduce your e-mail</string>
+    <string name="password_text">Introduce your password</string>
+    <string name="create_user">Create user</string>
 </resources>
