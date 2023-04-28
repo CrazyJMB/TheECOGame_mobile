@@ -27,7 +27,7 @@ class SettingActivity : AppCompatActivity() {
         viewModel.initialize(applicationContext)
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
-        // Initials values SeekBar
+        // Initial values SeekBar
         binding.sbGeneralVolume.progress = viewModel.getGeneralVolume()
         binding.sbMusic.progress = viewModel.getMusicVolume()
         binding.sbSounds.progress = viewModel.getSoundVolume()
