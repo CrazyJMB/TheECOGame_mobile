@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.dds.theecogame.R
-import com.dds.theecogame.databinding.FragmentRegisterBinding
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import com.dds.theecogame.presentation.register.viewModel.RegisterViewModel
 import androidx.fragment.app.activityViewModels
