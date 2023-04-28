@@ -21,7 +21,7 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        startMusic()
+        viewModel.startMusic(this)
         viewModel.createGame(this)
         viewModel.setTimeStart()
 
@@ -52,18 +52,12 @@ class GameActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        mediaPlayer.release()
+        viewModel.releaseMusic()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mediaPlayer.release()
-    }
-
-    private fun startMusic() {
-        mediaPlayer = MediaPlayer.create(this, R.raw.fondo)
-        mediaPlayer.isLooping = true
-        mediaPlayer.start()
+        viewModel.releaseMusic()
     }
 
 }
