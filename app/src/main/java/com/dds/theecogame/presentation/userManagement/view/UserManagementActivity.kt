@@ -22,12 +22,12 @@ class UserManagementActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_management)
 
         binding.btnLogIn.setOnClickListener {
-            val intent = Intent(this, /*TODO: Fragment login*/GameActivity::class.java)
+            val intent = Intent(this, /*TODO: Activity login*/GameActivity::class.java)
             startActivity(intent)
         }
 
         binding.btnRegister.setOnClickListener {
-            val intent = Intent(this, /*TODO: Fragment register*/GameActivity::class.java)
+            val intent = Intent(this, /*TODO: Activity register*/GameActivity::class.java)
             startActivity(intent)
         }
 
