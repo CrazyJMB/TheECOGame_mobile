@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="48dp"
             android:text="@string/username"
             android:textSize="@dimen/settings_slider_title_font_size"
             android:textStyle="bold"
@@ -33,7 +33,7 @@
             android:textSize="@dimen/settings_slider_title_font_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintTop_toBottomOf="@+id/etUsername" />
 
         <TextView
             android:id="@+id/tvPassword"
@@ -45,7 +45,7 @@
             android:textSize="@dimen/settings_slider_title_font_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -61,46 +61,60 @@
             android:id="@+id/btnCreateUser"
             android:layout_width="250sp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="72dp"
             android:background="@drawable/btn_shape_round"
             android:text="@string/create_user"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/etUsername"
+            android:layout_width="320dp"
+            android:layout_height="45dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="4dp"
+            android:background="@drawable/btn_shape_rounded_square"
             android:ems="10"
+            android:hint="@string/username_hint"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColorHint="#DDDDDD"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvUsername" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/etEmail"
+            android:layout_width="320dp"
+            android:layout_height="45dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="4dp"
+            android:background="@drawable/btn_shape_rounded_square"
             android:ems="10"
+            android:hint="@string/email_hint"
             android:inputType="textEmailAddress"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColorHint="#DDDDDD"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/etPassword"
+            android:layout_width="320dp"
+            android:layout_height="45dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="4dp"
+            android:background="@drawable/btn_shape_rounded_square"
             android:ems="10"
+            android:hint="@string/password_hint"
             android:inputType="textPassword"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColorHint="#DDDDDD"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
 

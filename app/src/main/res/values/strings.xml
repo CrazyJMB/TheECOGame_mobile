@@ -88,9 +88,9 @@
     <string name="username">Nombre de usuario</string>
     <string name="email">Correo</string>
     <string name="password">Contraseña</string>
-    <string name="username_text">Introduzca su nombre de usuario</string>
-    <string name="email_text">Introduzca su correo</string>
-    <string name="password_text">Introduzca su contraseña</string>
+    <string name="username_hint">Introduzca su nombre de usuario</string>
+    <string name="email_hint">Introduzca su correo</string>
+    <string name="password_hint">Introduzca su contraseña</string>
     <string name="create_user">Crear usuario</string>
 
 </resources>
