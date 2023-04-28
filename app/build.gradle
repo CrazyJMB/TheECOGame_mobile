@@ -74,6 +74,8 @@ dependencies {
 
     // Binding
     implementation 'androidx.databinding:library:3.2.0-alpha11'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
 
     // Unit test
     testImplementation 'junit:junit:4.13.2'
