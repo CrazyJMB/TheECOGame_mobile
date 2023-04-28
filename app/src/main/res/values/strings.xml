@@ -83,4 +83,9 @@
     <string-array name="Topics">
         <item>ODS</item>
     </string-array>
+
+    <!--For User Management-->
+    <string name="log_in">Iniciar Sesión</string>
+    <string name="register">Registrarse</string>
+
 </resources>
