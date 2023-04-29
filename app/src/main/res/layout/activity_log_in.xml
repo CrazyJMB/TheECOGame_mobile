@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.mainScreen.view.LoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_green"
+        tools:context=".presentation.mainScreen.view.MainScreenActivity"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/background_green"
+            android:contentDescription="@string/back"
+            android:src="@android:drawable/ic_menu_revert"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black"
+            tools:ignore="ImageContrastCheck" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="261dp"
+            android:layout_height="261dp"
+            android:layout_marginTop="71dp"
+            android:contentDescription="@string/app_logo_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/theecogame_logo"
+            tools:ignore="ImageContrastCheck" />
+
+        <TextView
+            android:id="@+id/tvError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/login_failed"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <EditText
+            android:id="@+id/inputEmail"
+            android:layout_width="250dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="55dp"
+            android:ems="10"
+            android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvError" />
+
+        <EditText
+            android:id="@+id/inputPassword"
+            android:layout_width="249dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="33dp"
+            android:ems="10"
+            android:hint="@string/prompt_password"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="250sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/btn_shape_round"
+            android:text="@string/login"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+
+        <TextView
+            android:id="@+id/tvVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/app_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="TextContrastCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

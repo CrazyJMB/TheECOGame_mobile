@@ -54,6 +54,7 @@
     <string name="congratulations">Congratulations!!</string>
     <string name="abandon">Abandon</string>
     <string name="abandon_question">Do you want to leave the game?</string>
+    <string name="login">Login</string>
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">Do you want to quit?</string>

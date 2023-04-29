@@ -64,6 +64,8 @@
     <string name="congratulations">¡¡Felicidades!!</string>
     <string name="abandon">Abandonar</string>
     <string name="abandon_question">¿Desear abandonar la partida?</string>
+    <string name="login">Iniciar sesión</string>
+
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">¿Deseas abandonar?</string>
