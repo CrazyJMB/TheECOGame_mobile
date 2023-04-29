@@ -258,6 +258,7 @@
             android:id="@+id/btnV"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginStart="62dp"
             android:layout_marginTop="11dp"
             android:background="@drawable/btn_shape_round"
             android:text="@string/v"

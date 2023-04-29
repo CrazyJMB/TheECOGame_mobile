@@ -24,7 +24,6 @@ class KeyboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.root.setOnClickListener{
-
             val btnID = view.id
             val btnStr = resources.getResourceEntryName(btnID)
             val btnChar = btnStr.getOrNull(btnStr.length - 1)
@@ -33,7 +32,6 @@ class KeyboardFragment : Fragment() {
                 view.visibility = View.INVISIBLE
 
             }
-
         }
 
     }
