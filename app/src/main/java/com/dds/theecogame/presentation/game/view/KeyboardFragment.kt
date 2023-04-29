@@ -26,11 +26,14 @@ class KeyboardFragment : Fragment() {
         binding.root.setOnClickListener{
 
             val btnID = view.id
-            val btnChar = resources.getResourceEntryName(btnID).lastOrNull()
+            val btnStr = resources.getResourceEntryName(btnID)
+            val btnChar = btnStr.getOrNull(btnStr.length - 1)
+
             if (btnChar in 'A'..'Z'){
                 view.visibility = View.INVISIBLE
 
             }
+
         }
 
     }
