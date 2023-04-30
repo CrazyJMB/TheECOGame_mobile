@@ -4,9 +4,10 @@ import com.dds.theecogame.common.RetrofitInstance
 import com.dds.theecogame.data.remote.challenge.dto.toQuestion
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameBuilder
+import com.dds.theecogame.domain.model.challenges.toHangman
 import kotlinx.coroutines.runBlocking
 
-class QuestionGameBuilder : GameBuilder {
+class HangmanGameBuilder : GameBuilder {
 
     private val game = Game()
 
@@ -28,11 +29,11 @@ class QuestionGameBuilder : GameBuilder {
     override fun addChallenges() {
         runBlocking {
             (1..game.challengesNumber).forEach { order ->
-                game.challengesList[order] = Game.Challenge.QuestionModel(
-                    RetrofitInstance.challengeService.getRandomQuestion(
+                game.challengesList[order] = Game.Challenge.HangmanModel(
+                    RetrofitInstance.challengeService.getRandomHangman(
                         (1..5).random(),
                         game.userId
-                    ).toQuestion()
+                    ).toHangman()
                 )
             }
         }

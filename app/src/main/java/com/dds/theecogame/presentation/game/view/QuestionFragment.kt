@@ -1,6 +1,5 @@
 package com.dds.theecogame.presentation.game.view
 
-import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -18,10 +17,9 @@ import com.dds.theecogame.R
 
 import com.dds.theecogame.databinding.FragmentQuestionsBinding
 import com.dds.theecogame.domain.builder.Game
-import com.dds.theecogame.domain.model.Question
+import com.dds.theecogame.domain.model.challenges.Question
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import com.dds.theecogame.presentation.game.viewModel.QuestionViewModel
-import kotlin.concurrent.timer
 
 class QuestionFragment : Fragment() {
 

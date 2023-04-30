@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import com.dds.theecogame.databinding.ActivityMainScreenBinding
 import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
 import com.dds.theecogame.presentation.game.view.GameActivity
-import com.dds.theecogame.presentation.mainScreen.viewModel.dataStore
 import com.dds.theecogame.presentation.setting.view.SettingActivity
 import com.dds.theecogame.presentation.statistics.view.StatisticsFragment
 

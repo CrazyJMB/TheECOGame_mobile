@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameDirector
-import com.dds.theecogame.domain.builder.concreteBuilder.QuestionsGameBuilder
+import com.dds.theecogame.domain.builder.concreteBuilder.QuestionGameBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -82,7 +82,7 @@ class GameViewModel : ViewModel() {
     fun createGame(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val game = GameDirector(QuestionsGameBuilder()).buildGameWith10Questions()
+                val game = GameDirector(QuestionGameBuilder()).construct()
                 game.sortChallengesByDifficulty()
                 _gameLiveData.postValue(game)
             } catch (e: HttpException) {

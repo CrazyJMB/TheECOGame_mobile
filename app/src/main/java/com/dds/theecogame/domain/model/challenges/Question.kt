@@ -1,4 +1,4 @@
-package com.dds.theecogame.domain.model
+package com.dds.theecogame.domain.model.challenges
 
 data class Question(
     val id: Int,

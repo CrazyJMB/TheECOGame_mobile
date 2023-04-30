@@ -1,6 +1,6 @@
 package com.dds.theecogame.data.remote.challenge.dto
 
-import com.dds.theecogame.domain.model.Question
+import com.dds.theecogame.domain.model.challenges.Question
 
 data class QuestionDto(
     val id: Int,

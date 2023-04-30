@@ -5,15 +5,10 @@ import com.dds.theecogame.data.remote.challenge.dto.toQuestion
 
 class GameDirector(private val builder: GameBuilder) {
 
-    suspend fun buildGameWith10Questions(): Game {
+    fun construct(): Game {
+        builder.setUser(1)  //FIXME(Get the current user of the app)
         builder.setNumberOfChallenges(10)
-        (1..10).forEach { order ->
-            builder.addQuestionChallenge(
-                order,
-                RetrofitInstance.challengeService.getQuestionByDifficulty((1..5).random())
-                    .toQuestion()
-            )
-        }
+        builder.addChallenges()
         return builder.buildGame()
     }
 }
