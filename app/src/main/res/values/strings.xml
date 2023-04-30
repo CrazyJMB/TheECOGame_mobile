@@ -65,6 +65,8 @@
     <string name="abandon">Abandonar</string>
     <string name="abandon_question">¿Desear abandonar la partida?</string>
     <string name="login">Iniciar sesión</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="profile">Perfil</string>
 
 
     <!-- AlertDialog messages -->

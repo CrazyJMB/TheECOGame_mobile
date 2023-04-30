@@ -55,6 +55,8 @@
     <string name="abandon">Abandon</string>
     <string name="abandon_question">Do you want to leave the game?</string>
     <string name="login">Login</string>
+    <string name="logout">Logot</string>
+    <string name="profile">Profile</string>
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">Do you want to quit?</string>
