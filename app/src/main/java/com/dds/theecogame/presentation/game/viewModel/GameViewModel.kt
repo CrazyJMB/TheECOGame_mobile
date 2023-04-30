@@ -7,9 +7,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dds.theecogame.data.local.DataStoreManager
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameDirector
 import com.dds.theecogame.domain.builder.concreteBuilder.QuestionsGameBuilder
+import com.dds.theecogame.domain.model.Question
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -19,6 +21,8 @@ class GameViewModel : ViewModel() {
 
     private val _gameLiveData = MutableLiveData<Game>()
     val gameLiveData: LiveData<Game> = _gameLiveData
+    private lateinit var currentQuestion: Question
+    private lateinit var dataStore: DataStoreManager
 
     private var consolidated: Boolean = false
     private var secondChance: Boolean = false
@@ -27,6 +31,7 @@ class GameViewModel : ViewModel() {
     private var gameStatus: Int = 0
     private var consolidatedPoints: Int = 0
     private var questionNumber: Int = 1
+    private var questionPoints: Int = 0
     private var timeStart: Long = 0L
     private var timeEnd: Long = 0L
 
@@ -70,6 +75,19 @@ class GameViewModel : ViewModel() {
 
     fun setTimeEnd() {
         timeEnd = System.currentTimeMillis()
+    }
+
+    fun getQuestionPoints() {
+        questionPoints = 10 * currentQuestion.difficulty
+    }
+
+    fun putMuteSoundVolume(): Int {
+        viewModelScope.launch(Dispatchers.IO) {
+            dataStore.getSoundVolume().collect() {
+                return@collect
+            }
+        }
+        return 0
     }
 
     fun setGameStatus(status: Int) {

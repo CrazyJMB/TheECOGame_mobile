@@ -62,12 +62,46 @@
     <string name="answeredQuestions">Preguntas respondidas:</string>
     <string name="finishGame">Acabar partida</string>
     <string name="congratulations">Felicidades</string>
+    <string name="points">Puntos:</string>
+    <string name="alert_points">Puntos:</string>
+    <string name="total_points">Puntos Totales:</string>
+    <string name="consolidate_points">Puntos Consolidados:</string>
+    <string name="mute">Mute</string>
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">¿Deseas abandonar?</string>
     <string name="alert_msg_quit">Recuerda que si no has consolidado, obtendras 0 puntos</string>
     <string name="alert_confirm">Aceptar</string>
     <string name="alert_cancel">Cancelar</string>
+
+    <!-- Keyboard messages -->
+    <string name="btnA">A</string>
+    <string name="btnB">B</string>
+    <string name="btnC">C</string>
+    <string name="btnD">D</string>
+    <string name="btnE">E</string>
+    <string name="btnF">F</string>
+    <string name="btnG">G</string>
+    <string name="btnH">H</string>
+    <string name="btnI">I</string>
+    <string name="btnJ">J</string>
+    <string name="btnK">K</string>
+    <string name="btnL">L</string>
+    <string name="btnM">M</string>
+    <string name="btnN">N</string>
+    <string name="btnÑ">Ñ</string>
+    <string name="btnO">O</string>
+    <string name="btnP">P</string>
+    <string name="btnQ">Q</string>
+    <string name="btnR">R</string>
+    <string name="btnS">S</string>
+    <string name="btnT">T</string>
+    <string name="btnU">U</string>
+    <string name="btnV">V</string>
+    <string name="btnW">W</string>
+    <string name="btnX">X</string>
+    <string name="btnY">Y</string>
+    <string name="btnZ">Z</string>
 
     <!-- Toasts messages -->
     <string name="msg_consolidated">Para abandonar la partida necesitas primero consolidar</string>
@@ -79,8 +113,11 @@
     <string name="error_msg">Ha ocurrido un error inesperado</string>
     <string name="error_msg_internet">Error de conexión. Verifique su conexión de internet</string>
 
+
     <!--For the spinner at SettingActivity-->
     <string-array name="Topics">
         <item>ODS</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

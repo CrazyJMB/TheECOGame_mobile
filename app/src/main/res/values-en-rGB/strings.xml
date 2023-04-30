@@ -52,12 +52,47 @@
     <string name="answeredQuestions">Answered questions:</string>
     <string name="finishGame">Finish Game</string>
     <string name="congratulations">Congratulations</string>
+    <string name="points">Points:</string>
+    <string name="alert_points">Points:</string>
+    <string name="total_points">Total Points:</string>
+    <string name="consolidate_points">Consolidate Points:</string>
+    <string name="mute">Mute</string>
+
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">Do you want to quit?</string>
     <string name="alert_msg_quit">Remember that if you have not saved your progress, you will receive 0 points.</string>
     <string name="alert_confirm">Accept</string>
     <string name="alert_cancel">Cancel</string>
+
+    <!-- Keyboard messages -->
+    <string name="btnA">A</string>
+    <string name="btnB">B</string>
+    <string name="btnC">C</string>
+    <string name="btnD">D</string>
+    <string name="btnE">E</string>
+    <string name="btnF">F</string>
+    <string name="btnG">G</string>
+    <string name="btnH">H</string>
+    <string name="btnI">I</string>
+    <string name="btnJ">J</string>
+    <string name="btnK">K</string>
+    <string name="btnL">L</string>
+    <string name="btnM">M</string>
+    <string name="btnN">N</string>
+    <string name="btnÑ">Ñ</string>
+    <string name="btnO">O</string>
+    <string name="btnP">P</string>
+    <string name="btnQ">Q</string>
+    <string name="btnR">R</string>
+    <string name="btnS">S</string>
+    <string name="btnT">T</string>
+    <string name="btnU">U</string>
+    <string name="btnV">V</string>
+    <string name="btnW">W</string>
+    <string name="btnX">X</string>
+    <string name="btnY">Y</string>
+    <string name="btnZ">Z</string>
 
     <!-- Toasts messages -->
     <string name="msg_consolidated">You can not leave without consolidate</string>
