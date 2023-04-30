@@ -11,7 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:text="@string/app_name"
         android:textColor="@color/white"
         android:textSize="48sp"
@@ -37,7 +37,7 @@
         android:id="@+id/btnPlay"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn_shape_round"
         android:text="@string/button_play"
         android:textStyle="bold"
@@ -50,7 +50,7 @@
         android:id="@+id/btnStatistics"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn_shape_round"
         android:text="@string/button_statistic"
         android:textStyle="bold"
@@ -63,7 +63,7 @@
         android:id="@+id/btnSettings"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn_shape_round"
         android:text="@string/button_setting"
         android:textStyle="bold"
@@ -71,6 +71,19 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnStatistics" />
+
+    <Button
+        android:id="@+id/btnProfile"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_shape_round"
+        android:text="@string/profile"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSettings" />
 
     <TextView
         android:id="@+id/tvVersion"
@@ -82,5 +95,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="TextContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/btnLogout"
+        android:layout_width="75dp"
+        android:layout_height="78dp"
+        android:background="@color/background_green"
+        android:contentDescription="@string/logout"
+        app:layout_constraintBottom_toTopOf="@+id/tvVersion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/logout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.dds.theecogame.presentation.game.view
 
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -15,12 +16,13 @@ class GameActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityGameBinding
     private val viewModel: GameViewModel by viewModels()
+    private lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        viewModel.startMusic(this)
         viewModel.createGame(this)
-
         viewModel.setTimeStart()
 
         binding = ActivityGameBinding.inflate(layoutInflater)
@@ -50,12 +52,12 @@ class GameActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        //TODO("Que pasa cuando el usuario miminiza la aplicacion? Se deberia guardar el progreso actual")
+        viewModel.releaseMusic()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        TODO("Que pasa cuando se sale de una partida no acabada")
+        viewModel.releaseMusic()
     }
 
 }

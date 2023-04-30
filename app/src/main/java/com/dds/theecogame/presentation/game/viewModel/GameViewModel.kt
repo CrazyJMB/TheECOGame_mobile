@@ -3,10 +3,12 @@ package com.dds.theecogame.presentation.game.viewModel
 import android.content.Context
 import android.widget.Toast
 import android.content.SharedPreferences
+import android.media.MediaPlayer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dds.theecogame.R
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameDirector
 import com.dds.theecogame.domain.builder.concreteBuilder.QuestionGameBuilder
@@ -19,6 +21,8 @@ class GameViewModel : ViewModel() {
 
     private val _gameLiveData = MutableLiveData<Game>()
     val gameLiveData: LiveData<Game> = _gameLiveData
+
+    private lateinit var mediaPlayer: MediaPlayer
 
     private var consolidated: Boolean = false
     private var secondChance: Boolean = false
@@ -129,5 +133,23 @@ class GameViewModel : ViewModel() {
         summaryStats.add(questionNumber)
 
         return summaryStats
+    }
+
+    fun startMusic(context: Context) {
+        mediaPlayer = MediaPlayer.create(context, R.raw.fondo)
+        mediaPlayer.isLooping = true
+        mediaPlayer.start()
+    }
+
+    fun pauseMusic(){
+        mediaPlayer.pause()
+    }
+
+    fun releaseMusic(){
+        mediaPlayer.release()
+    }
+
+    fun resumeMusic(){
+        mediaPlayer.start()
     }
 }

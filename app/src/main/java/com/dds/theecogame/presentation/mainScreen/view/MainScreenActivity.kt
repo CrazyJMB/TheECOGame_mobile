@@ -34,5 +34,13 @@ class MainScreenActivity : AppCompatActivity() {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
+
+        binding.btnProfile.setOnClickListener {
+
+        }
+
+        binding.btnLogout.setOnClickListener {
+
+        }
     }
 }

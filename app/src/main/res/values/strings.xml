@@ -54,14 +54,20 @@
     <string name="login_failed">Inicio de sesión fallido</string>
     <string name="num_question" translatable="false">1</string>
     <string name="image">Imagen</string>
-    <string name="lost">DERROTA</string>
+    <string name="lost">GAME OVER</string>
     <string name="victory">VICTORIA</string>
     <string name="abandoned">ABANDONADA</string>
     <string name="timePlayed">Tiempo Jugado:</string>
     <string name="obtainedPoints">Puntos obtenidos:</string>
     <string name="answeredQuestions">Preguntas respondidas:</string>
     <string name="finishGame">Acabar partida</string>
-    <string name="congratulations">Felicidades</string>
+    <string name="congratulations">¡¡Felicidades!!</string>
+    <string name="abandon">Abandonar</string>
+    <string name="abandon_question">¿Desear abandonar la partida?</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="profile">Perfil</string>
+
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">¿Deseas abandonar?</string>
@@ -83,4 +89,32 @@
     <string-array name="Topics">
         <item>ODS</item>
     </string-array>
+
+    <string name="a">A</string>
+    <string name="b">B</string>
+    <string name="c">C</string>
+    <string name="d">D</string>
+    <string name="e">E</string>
+    <string name="f">F</string>
+    <string name="g">G</string>
+    <string name="h">H</string>
+    <string name="i">I</string>
+    <string name="j">J</string>
+    <string name="k">K</string>
+    <string name="l">L</string>
+    <string name="m">M</string>
+    <string name="n">N</string>
+    <string name="o">O</string>
+    <string name="p">P</string>
+    <string name="q">Q</string>
+    <string name="r">R</string>
+    <string name="s">S</string>
+    <string name="t">T</string>
+    <string name="u">U</string>
+    <string name="v">V</string>
+    <string name="w">W</string>
+    <string name="x">X</string>
+    <string name="y">Y</string>
+    <string name="z">Z</string>
+
 </resources>

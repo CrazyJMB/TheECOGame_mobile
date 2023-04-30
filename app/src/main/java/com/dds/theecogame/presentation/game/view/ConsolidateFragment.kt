@@ -1,6 +1,7 @@
 package com.dds.theecogame.presentation.game.view
 
 import android.content.Context
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ class ConsolidateFragment : Fragment() {
 
     private var countDownTimer: CountDownTimer? = null
     private var timerCancelledManually: Boolean = false
+    private lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +34,7 @@ class ConsolidateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         startTimer()
+        startMusic()
 
         binding.ivAdvice.setOnClickListener {
             if (binding.tvConsolidateExplanation.visibility == View.INVISIBLE) {
@@ -47,9 +50,18 @@ class ConsolidateFragment : Fragment() {
             stopTimer()
             goToQuestions()
         }
+
         binding.btnCancel.setOnClickListener {
             stopTimer()
             goToQuestions()
+        }
+
+        binding.btnAbandon.setOnClickListener {
+            gameViewModel.setGameStatus(1)
+            gameViewModel.setConsolidated(true)
+            gameViewModel.setConsolidatedPoints()
+            stopTimer()
+            goToSummary()
         }
     }
 
@@ -76,10 +88,27 @@ class ConsolidateFragment : Fragment() {
         countDownTimer = null
     }
 
+    private fun startMusic() {
+        mediaPlayer = if (gameViewModel.getQuestionNumber() == 11) {
+            MediaPlayer.create(requireContext(), R.raw.victoria)
+        } else {
+            MediaPlayer.create(requireContext(), R.raw.ganar_reto)
+        }
+        mediaPlayer.isLooping = false
+        mediaPlayer.start()
+    }
+
     private fun goToQuestions() {
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
             .replace(R.id.GameContainerView, QuestionFragment())
+            .commit()
+    }
+
+    private fun goToSummary() {
+        val fragmentManager = requireActivity().supportFragmentManager
+        fragmentManager.beginTransaction()
+            .replace(R.id.GameContainerView, ResumeFragment())
             .commit()
     }
 

@@ -51,7 +51,12 @@
     <string name="obtainedPoints">Obtained points:</string>
     <string name="answeredQuestions">Answered questions:</string>
     <string name="finishGame">Finish Game</string>
-    <string name="congratulations">Congratulations</string>
+    <string name="congratulations">Congratulations!!</string>
+    <string name="abandon">Abandon</string>
+    <string name="abandon_question">Do you want to leave the game?</string>
+    <string name="login">Login</string>
+    <string name="logout">Logot</string>
+    <string name="profile">Profile</string>
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">Do you want to quit?</string>
@@ -68,4 +73,32 @@
     <!-- Error messages -->
     <string name="error_msg">An unexpected error occured</string>
     <string name="error_msg_internet">Could not reach server. Check your internet connection</string>
+
+    <string name="a">A</string>
+    <string name="b">B</string>
+    <string name="c">C</string>
+    <string name="d">D</string>
+    <string name="e">E</string>
+    <string name="f">F</string>
+    <string name="g">G</string>
+    <string name="h">H</string>
+    <string name="i">I</string>
+    <string name="j">J</string>
+    <string name="k">K</string>
+    <string name="l">L</string>
+    <string name="m">M</string>
+    <string name="n">N</string>
+    <string name="o">O</string>
+    <string name="p">P</string>
+    <string name="q">Q</string>
+    <string name="r">R</string>
+    <string name="s">S</string>
+    <string name="t">T</string>
+    <string name="u">U</string>
+    <string name="v">V</string>
+    <string name="w">W</string>
+    <string name="x">X</string>
+    <string name="y">Y</string>
+    <string name="z">Z</string>
+
 </resources>

@@ -91,7 +91,13 @@ class QuestionFragment : Fragment() {
                 }
 
                 gameViewModel.nextQuestionNumber()
-                goToCongratulations()
+                if (gameViewModel.getQuestionNumber() == 11) {
+                    goToSummary()
+                } else if (gameViewModel.getConsolidated() == false){
+                    goToConsolidate()
+                } else {
+                    goToAbandon()
+                }
 
             } else if (!gameViewModel.getSecondChance()) {
                 gameViewModel.setSecondChange(true)
@@ -192,11 +198,11 @@ class QuestionFragment : Fragment() {
         mediaPlayer.start()
     }
 
-    private fun goToCongratulations() {
-        val congratulationFragment = CongratulationFragment()
+    private fun goToConsolidate() {
+        val consolidateFragment = ConsolidateFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
-            .replace(R.id.GameContainerView, congratulationFragment)
+            .replace(R.id.GameContainerView, consolidateFragment)
             .commit()
     }
 
@@ -208,9 +214,15 @@ class QuestionFragment : Fragment() {
             .commit()
     }
 
+    private fun goToAbandon() {
+        val abandonFragment = AbandonFragment()
+        val fragmentManager = requireActivity().supportFragmentManager
+        fragmentManager.beginTransaction()
+            .replace(R.id.GameContainerView, abandonFragment)
+            .commit()
+    }
 
     private fun changeViewImage() {
         binding.ivODS.setImageResource(R.drawable.ods1)
     }
 }
-

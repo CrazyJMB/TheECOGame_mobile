@@ -26,6 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
             tools:ignore="TextSizeCheck" />
 
         <ImageView
@@ -67,10 +68,10 @@
             android:id="@+id/btnConfirm"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginEnd="70dp"
             android:layout_marginStart="70dp"
-            android:layout_marginTop="109dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/btn_shape_round"
             android:backgroundTint="@color/background_white_green"
             android:text="@string/yes"
@@ -87,19 +88,55 @@
             android:id="@+id/btnCancel"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginEnd="70dp"
             android:layout_marginStart="70dp"
-            android:layout_marginBottom="96dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/btn_shape_round"
             android:backgroundTint="@color/background_white_green"
             android:text="@string/no"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:cornerRadius="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btnAbandon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnConfirm" />
+
+        <Button
+            android:id="@+id/btnAbandon"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_shape_round"
+            android:backgroundTint="@color/red"
+            android:text="@string/abandon"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCancel" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="53dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="53dp"
+            android:layout_marginBottom="40dp"
+            android:text="@string/congratulations"
+            android:textColor="@color/black"
+            android:textSize="48sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvConsolidateQuestion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
