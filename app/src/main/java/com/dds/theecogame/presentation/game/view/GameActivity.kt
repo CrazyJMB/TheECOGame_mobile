@@ -28,6 +28,10 @@ class GameActivity : AppCompatActivity() {
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnMute.setOnClickListener {
+            viewModel.putMuteSoundVolume()
+        }
+
         binding.btnBack.setOnClickListener {
             if (!viewModel.getGameEnded()) {
                 val builder = AlertDialog.Builder(this)

@@ -85,6 +85,7 @@ class SettingViewModel(application: Application) : ViewModel() {
         }
         return 100
     }
+
 }
 
 

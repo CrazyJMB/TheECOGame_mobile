@@ -68,6 +68,11 @@
     <string name="logout">Cerrar sesión</string>
     <string name="profile">Perfil</string>
 
+    <string name="points">Puntos:</string>
+    <string name="alert_points">Puntos:</string>
+    <string name="total_points">Puntos Totales:</string>
+    <string name="consolidate_points">Puntos Consolidados:</string>
+    <string name="mute">Mute</string>
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">¿Deseas abandonar?</string>

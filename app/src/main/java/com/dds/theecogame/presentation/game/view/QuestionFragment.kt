@@ -1,5 +1,6 @@
 package com.dds.theecogame.presentation.game.view
 
+import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -9,10 +10,13 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 //import androidx.databinding.ObservableInt
 import com.dds.theecogame.R
+import com.dds.theecogame.databinding.ActivityGameBinding
 
 
 import com.dds.theecogame.databinding.FragmentQuestionsBinding
@@ -20,6 +24,7 @@ import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.model.challenges.Question
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import com.dds.theecogame.presentation.game.viewModel.QuestionViewModel
+import kotlin.concurrent.timer
 
 class QuestionFragment : Fragment() {
 
@@ -43,6 +48,26 @@ class QuestionFragment : Fragment() {
         viewModel.setSharedViewModel(gameViewModel)
         return binding.root
     }
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//
+//        binding.ivPoints.setOnClickListener {
+//
+//            val builder = AlertDialog.Builder(requireContext())
+//            builder.setTitle(R.string.alert_points)
+//            builder.setMessage(
+//                R.string.total_points.toString() + gameViewModel.getPoints().toString()
+//                        + "\n" +
+//                        R.string.consolidate_points.toString() + gameViewModel.getConsolidatedPoints()
+//                    .toString()
+//            )
+//            builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
+//                //No hace nada
+//            }
+//            builder.show()
+//        }
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -73,6 +98,7 @@ class QuestionFragment : Fragment() {
 
         startTimer()
         binding.tvQuestionNumber.text = gameViewModel.getQuestionNumber().toString()
+        binding.tvPoints.text = gameViewModel.getQuestionPoints().toString()
         changeViewImage()
 
         binding.btnContinue.setOnClickListener {
@@ -223,6 +249,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun changeViewImage() {
-        binding.ivODS.setImageResource(R.drawable.ods1)
+        binding.ivODS3.setImageResource(R.drawable.ods1)
     }
 }
+
