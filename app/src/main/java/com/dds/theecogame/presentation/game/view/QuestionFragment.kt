@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 //import androidx.databinding.ObservableInt
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.ActivityGameBinding
@@ -49,26 +50,6 @@ class QuestionFragment : Fragment() {
         return binding.root
     }
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//        binding.ivPoints.setOnClickListener {
-//
-//            val builder = AlertDialog.Builder(requireContext())
-//            builder.setTitle(R.string.alert_points)
-//            builder.setMessage(
-//                R.string.total_points.toString() + gameViewModel.getPoints().toString()
-//                        + "\n" +
-//                        R.string.consolidate_points.toString() + gameViewModel.getConsolidatedPoints()
-//                    .toString()
-//            )
-//            builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
-//                //No hace nada
-//            }
-//            builder.show()
-//        }
-//    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -91,6 +72,8 @@ class QuestionFragment : Fragment() {
                         binding.rbOptionB.text = questionList[1]
                         binding.rbOptionC.text = questionList[2]
                         binding.rbOptionD.text = questionList[3]
+
+                        binding.tvPoints.text = (currentQuestion.difficulty * 10).toString()
                     }
                 }
             }
@@ -98,7 +81,6 @@ class QuestionFragment : Fragment() {
 
         startTimer()
         binding.tvQuestionNumber.text = gameViewModel.getQuestionNumber().toString()
-        binding.tvPoints.text = gameViewModel.getQuestionPoints().toString()
         changeViewImage()
 
         binding.btnContinue.setOnClickListener {
@@ -119,7 +101,7 @@ class QuestionFragment : Fragment() {
                 gameViewModel.nextQuestionNumber()
                 if (gameViewModel.getQuestionNumber() == 11) {
                     goToSummary()
-                } else if (gameViewModel.getConsolidated() == false){
+                } else if (gameViewModel.getConsolidated() == false) {
                     goToConsolidate()
                 } else {
                     goToAbandon()
@@ -134,6 +116,22 @@ class QuestionFragment : Fragment() {
                 gameViewModel.setGameStatus(0) // Game Lost
                 goToSummary()
             }
+        }
+
+        binding.ivPoints.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle(R.string.alert_points)
+            builder.setMessage(
+                getString(R.string.total_points) + " " +
+                        gameViewModel.getPoints().toString() +
+                        "\n\n" +
+                        getString(R.string.consolidate_points) + " " +
+                        gameViewModel.getConsolidatedPoints().toString()
+            )
+            builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
+                //No hace nada
+            }
+            builder.show()
         }
     }
 

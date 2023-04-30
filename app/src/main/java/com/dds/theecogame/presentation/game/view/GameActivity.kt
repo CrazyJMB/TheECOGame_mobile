@@ -29,7 +29,7 @@ class GameActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnMute.setOnClickListener {
-            viewModel.putMuteSoundVolume()
+            viewModel.pauseMusic()
         }
 
         binding.btnBack.setOnClickListener {

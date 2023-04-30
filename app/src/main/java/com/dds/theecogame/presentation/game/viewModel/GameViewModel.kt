@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dds.theecogame.R
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameDirector
 import com.dds.theecogame.domain.builder.concreteBuilder.QuestionGameBuilder
@@ -30,7 +31,6 @@ class GameViewModel : ViewModel() {
     private var gameStatus: Int = 0
     private var consolidatedPoints: Int = 0
     private var questionNumber: Int = 1
-    private var questionPoints: Int = 0
     private var timeStart: Long = 0L
     private var timeEnd: Long = 0L
 
@@ -75,11 +75,6 @@ class GameViewModel : ViewModel() {
     fun setTimeEnd() {
         timeEnd = System.currentTimeMillis()
     }
-
-//    fun getQuestionPoints() {
-//        questionPoints = 10 * gameLiveData.value.challengesList[0]
-//    }
-
 
     fun setGameStatus(status: Int) {
         // 0 -> Lost
@@ -146,15 +141,15 @@ class GameViewModel : ViewModel() {
         mediaPlayer.start()
     }
 
-    fun pauseMusic(){
+    fun pauseMusic() {
         mediaPlayer.pause()
     }
 
-    fun releaseMusic(){
+    fun releaseMusic() {
         mediaPlayer.release()
     }
 
-    fun resumeMusic(){
+    fun resumeMusic() {
         mediaPlayer.start()
     }
 }
