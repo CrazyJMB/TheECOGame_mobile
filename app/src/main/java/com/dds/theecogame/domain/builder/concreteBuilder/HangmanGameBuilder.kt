@@ -1,10 +1,9 @@
 package com.dds.theecogame.domain.builder.concreteBuilder
 
 import com.dds.theecogame.common.RetrofitInstance
-import com.dds.theecogame.data.remote.challenge.dto.toQuestion
+import com.dds.theecogame.data.remote.challenge.dto.toHangman
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameBuilder
-import com.dds.theecogame.domain.model.challenges.toHangman
 import kotlinx.coroutines.runBlocking
 
 class HangmanGameBuilder : GameBuilder {

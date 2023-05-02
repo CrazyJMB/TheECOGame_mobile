@@ -7,11 +7,3 @@ data class Hangman(
     val word: String,
     val difficulty: Int
 )
-
-fun HangmanDto.toHangman(): Hangman {
-    return Hangman(
-        id = id,
-        word = word,
-        difficulty = difficulty
-    )
-}

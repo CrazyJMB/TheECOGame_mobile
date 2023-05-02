@@ -1,24 +1,13 @@
 package com.dds.theecogame.data.remote.session.dto
 
-import com.dds.theecogame.domain.model.User
-
 data class UserDto(
-    val id: Int,
-    val username: String,
-    val name: String,
-    val surname: String,
-    val password: String,
+    val avatar: String,
+    val creation_date: Any,
     val email: String,
-    val score: Int,
-    val time: Int
+    val id: Int,
+    val modify_date: String,
+    val name: String,
+    val password: String,
+    val surname: String,
+    val username: String
 )
-
-fun UserDto.toUser(): User {
-    return User(
-        id = id,
-        username = username,
-        password = password,
-        email = email,
-        score = score
-    )
-}

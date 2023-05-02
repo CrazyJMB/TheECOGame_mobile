@@ -6,22 +6,41 @@ import android.media.AudioManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
-import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.databinding.ActivitySettingBinding
+import com.dds.theecogame.data.local.DataStoreManager
+import com.dds.theecogame.dataStore
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
-import com.dds.theecogame.presentation.setting.viewModel.SettingViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SettingActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingBinding
     private lateinit var audioManager: AudioManager
-    private val viewModel: SettingViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
+        val dataStoreManager = DataStoreManager(dataStore)
+
+        // Default values
+        lifecycleScope.launch(Dispatchers.IO) {
+            dataStoreManager.getGeneralVolume().collect {
+                binding.sbGeneralVolume.progress = it
+            }
+
+            dataStoreManager.getSoundVolume().collect {
+                binding.sbSounds.progress = it
+            }
+
+            dataStoreManager.getMusicVolume().collect {
+                binding.sbMusic.progress = it
+            }
+        }
 
 
         // Listener
@@ -36,7 +55,9 @@ class SettingActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(general_volume: SeekBar) {
-                viewModel.setGeneralVolume(general_volume.progress)
+                lifecycleScope.launch(Dispatchers.IO) {
+                    dataStoreManager.setGeneralVolume(general_volume.progress)
+                }
             }
 
         })
@@ -51,7 +72,9 @@ class SettingActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(music: SeekBar) {
-                viewModel.setMusicVolume(music.progress)
+                lifecycleScope.launch(Dispatchers.IO) {
+                    dataStoreManager.setMusicVolume(music.progress)
+                }
             }
 
         })
@@ -67,14 +90,15 @@ class SettingActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(sounds: SeekBar) {
-                viewModel.setSoundVolume(sounds.progress)
+                lifecycleScope.launch(Dispatchers.IO) {
+                    dataStoreManager.setSoundVolume(sounds.progress)
+                }
             }
 
         })
 
         binding.btnSave.setOnClickListener {
-            val i = Intent(this, MainScreenActivity::class.java)
-            startActivity(i)
+            startActivity(Intent(this, MainScreenActivity::class.java))
         }
     }
 
