@@ -3,16 +3,29 @@ package com.dds.theecogame.presentation.mainScreen.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dds.theecogame.common.RetrofitInstance
+import com.dds.theecogame.data.local.DataStoreManager
+import com.dds.theecogame.data.remote.session.dto.UserDto
+import com.dds.theecogame.data.remote.session.dto.input.EmailDto
 import com.dds.theecogame.domain.model.User
 
 class MainScreenViewModel() : ViewModel() {
 
-    private var _user = MutableLiveData<User>()
-    val user: LiveData<User> = _user
+    suspend fun login (email: String, password: String, dataStoreManager: DataStoreManager): Boolean{
+        //TODO: Revisar formato email
 
-    fun login (email: String, password: String): Boolean{
+        val responseDto = RetrofitInstance.userService.checkEmail(EmailDto(email))
 
-        return true
+        if (responseDto.message.equals("Email exists")){
+            val player = RetrofitInstance.userService.getUser(EmailDto(email))
+            if (player.password.equals(password)){
+                dataStoreManager.setUserId(player.id)
+                return true
+            }
+            return false
+        } else {
+            return false
+        }
     }
 
 }

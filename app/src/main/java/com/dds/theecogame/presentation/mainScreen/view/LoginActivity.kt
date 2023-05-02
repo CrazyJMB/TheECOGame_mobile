@@ -6,10 +6,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import com.dds.theecogame.R
+import com.dds.theecogame.data.local.DataStoreManager
+import com.dds.theecogame.dataStore
 import com.dds.theecogame.databinding.ActivityLogInBinding
 import com.dds.theecogame.presentation.game.view.GameActivity
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLogInBinding
@@ -29,7 +33,10 @@ class LoginActivity : AppCompatActivity() {
             email = binding.inputEmail.toString()
             password = binding.inputPassword.toString()
 
-            userIsCorrect = viewModel.login(email, password)
+            GlobalScope.launch {
+                val dataStoreManager = DataStoreManager(dataStore = dataStore)
+                userIsCorrect = viewModel.login(email, password, dataStoreManager)
+            }
 
             if (userIsCorrect) {
                 goToMainScreen()

@@ -101,19 +101,6 @@ class GameViewModel : ViewModel() {
         }
     }
 
-    internal fun resetGameStats(sharedPref: SharedPreferences) {
-        val editor = sharedPref.edit()
-        val currentDate = System.currentTimeMillis()
-
-        editor.putString("gameStatus", "Defeat")
-        editor.putInt("points", 0)
-        editor.putInt("consolidatedPoints", 0)
-        editor.putLong("timeStarted", currentDate)
-        editor.putLong("timeEnded", 0)
-        editor.putInt("numberChallengesAnswered", 0)
-        editor.apply()
-    }
-
     fun getResults(): List<Int> {
         var summaryStats = mutableListOf<Int>()
 
