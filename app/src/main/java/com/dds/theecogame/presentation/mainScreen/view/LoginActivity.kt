@@ -4,11 +4,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
+import com.dds.theecogame.R
 import com.dds.theecogame.databinding.ActivityLogInBinding
 import com.dds.theecogame.presentation.game.view.GameActivity
+import com.dds.theecogame.presentation.game.viewModel.GameViewModel
+import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLogInBinding
+    private val viewModel: MainScreenViewModel by viewModels()
+
+    private var userIsCorrect = false
     private var email = ""
     private var password = ""
 
@@ -22,12 +29,17 @@ class LoginActivity : AppCompatActivity() {
             email = binding.inputEmail.toString()
             password = binding.inputPassword.toString()
 
-            //TODO comprobar si es correcto y si lo es iniciar sesion
-            //binding.tvError.visibility = View.VISIBLE
+            userIsCorrect = viewModel.login(email, password)
+
+            if (userIsCorrect) {
+                goToMainScreen()
+            } else {
+                binding.tvError.visibility = View.VISIBLE
+            }
         }
     }
 
-    fun goToMainScreen (){
+    private fun goToMainScreen (){
         val intent = Intent(this, MainScreenActivity::class.java)
         startActivity(intent)
     }
