@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="48dp"
         android:text="@string/email"
         android:textSize="@dimen/settings_slider_title_font_size"
         android:textStyle="bold"
@@ -32,11 +32,47 @@
         app:layout_constraintTop_toBottomOf="@+id/etUsername" />
 
     <TextView
+        android:id="@+id/tvUsernameError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/email"
+        android:textSize="@dimen/settings_slider_title_font_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+
+    <TextView
+        android:id="@+id/tvPasswordError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/email"
+        android:textSize="@dimen/settings_slider_title_font_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+    <TextView
+        android:id="@+id/tvEmailError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/email"
+        android:textSize="@dimen/settings_slider_title_font_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+    <TextView
         android:id="@+id/tvPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="48dp"
         android:text="@string/password"
         android:textSize="@dimen/settings_slider_title_font_size"
         android:textStyle="bold"
@@ -45,9 +81,9 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="189dp"
-        android:layout_height="189dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="159dp"
+        android:layout_height="162dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/empty_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +93,7 @@
         android:id="@+id/btnCreateUser"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/btn_shape_round"
         android:text="@string/create_user"
         android:textStyle="bold"

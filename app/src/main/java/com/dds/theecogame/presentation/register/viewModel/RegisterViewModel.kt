@@ -4,5 +4,8 @@ import androidx.lifecycle.ViewModel
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 
 class RegisterViewModel : ViewModel() {
+    fun checkUsername(text: Editable?): CharSequence? {
+
+    }
 
 }

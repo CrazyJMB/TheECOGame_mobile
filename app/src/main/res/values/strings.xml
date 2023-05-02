@@ -92,5 +92,6 @@
     <string name="email_hint">Introduzca su correo</string>
     <string name="password_hint">Introduzca su contraseña</string>
     <string name="create_user">Crear usuario</string>
+    <string name="error">error</string>
 
 </resources>

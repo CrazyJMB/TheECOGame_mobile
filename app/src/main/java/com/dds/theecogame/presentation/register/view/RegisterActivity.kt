@@ -21,5 +21,33 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.etUsername.setOnFocusChangeListener { view, b ->
+            if (!b) {
+                var error = viewModel.checkUsername(binding.etUsername.text)
+                if (!error.isNullOrEmpty()) {
+                    binding.tvUsernameError.text = error
+                }
+            }
+        }
+
+        binding.etEmail.setOnFocusChangeListener { view, b ->
+            if (!b) {
+                var error = viewModel.checkUsername(binding.etUsername.text)
+                if (!error.isNullOrEmpty()) {
+                    binding.tvEmailError.text = error
+                }
+            }
+        }
+
+        binding.etPassword.setOnFocusChangeListener { view, b ->
+            if (!b) {
+                var error = viewModel.checkUsername(binding.etUsername.text)
+                if (!error.isNullOrEmpty()) {
+                    binding.tvPasswordError.text = error
+                }
+            }
+        }
+
     }
 }
