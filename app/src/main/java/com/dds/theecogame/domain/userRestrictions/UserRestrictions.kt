@@ -11,10 +11,6 @@ import com.dds.theecogame.R
 class UserRestrictions(val context: Context) {
 
     private var error: String = String()
-    private lateinit var etUsername: EditText
-    private lateinit var etEmail: EditText
-    private lateinit var etPassword: EditText
-    private lateinit var btnCreateUser: Button
 
     fun getError(): String {
         return error
