@@ -38,11 +38,15 @@
     <string name="num_games_won">Games won:</string>
     <string name="num_games_lost">Games lost:</string>
     <string name="num_abandoned_answers">Abandoned games:</string>
-    <string name="num_correct_answers">Correct answers:</string>
-    <string name="num_wrong_answers">Wrong answers:</string>
+    <string name="num_correct_questions">Correct questions:</string>
+    <string name="num_wrong_questions">Wrong questions:</string>
+    <string name="num_correct_hangman">Correct Hangmans:</string>
+    <string name="num_wrong_hangman">Wrong Hangmans:</string>
     <string name="mean_time">Mean time of games:</string>
     <string name="total_time">Total time of the game:</string>
     <string name="ODS_knowledge">ODS knowledge level</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
     <string name="image">Image</string>
     <string name="lost">GAME OVER</string>
     <string name="victory">VICTORY</string>
@@ -63,6 +67,22 @@
     <string name="consolidate_points">Consolidate Points:</string>
     <string name="mute">Mute</string>
 
+    <string name="edit_profile">Edit Profile</string>
+    <string name="username_profile">Name</string>
+    <string name="email_profile">Email</string>
+    <string name="password_profile">Password</string>
+    <string name="save_profile">Save</string>
+
+    <string name="background_hangman">Background</string>
+    <string name="head_hangman">Head</string>
+    <string name="body_hangman">Body</string>
+    <string name="right_arm_hangman">Right arm</string>
+    <string name="left_arm_hangman">Left arm</string>
+    <string name="right_leg_hangman">Right leg</string>
+    <string name="left_leg_hangman">Left leg</string>
+
+    <string name="one">1</string>
+    <string name="two">2</string>
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">Do you want to quit?</string>
