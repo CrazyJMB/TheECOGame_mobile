@@ -19,4 +19,5 @@
     <dimen name="tvpoints">15sp</dimen>
     <dimen name="points">20sp</dimen>
     <dimen name="letters">35sp</dimen>
+    <dimen name="profile">20sp</dimen>
 </resources>

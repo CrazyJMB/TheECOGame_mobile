@@ -12,20 +12,6 @@
         android:layout_height="match_parent"
         android:background="@color/background_green">
 
-        <ImageView
-            android:id="@+id/ivPoints"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/background_green"
-            android:contentDescription="@string/warning"
-            android:src="@android:drawable/ic_menu_info_details"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black"
-            tools:ignore="ImageContrastCheck" />
-
         <TextView
             android:id="@+id/tvQuestionNumber"
             android:layout_width="wrap_content"
@@ -39,18 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvTimer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/timer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvRestantTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
@@ -60,6 +35,31 @@
             android:textSize="@dimen/time_left"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/timer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRestantTime" />
+
+        <ImageView
+            android:id="@+id/ivPoints"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/background_green"
+            android:contentDescription="@string/warning"
+            android:src="@android:drawable/ic_menu_info_details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/tvQuestion"
@@ -80,7 +80,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTimer" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvPoints"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -92,14 +92,14 @@
             app:layout_constraintTop_toBottomOf="@+id/tvQuestion" />
 
         <TextView
-            android:id="@+id/tvPoints"
+            android:id="@+id/tvPointsNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="4dp"
             android:textColor="@color/black"
             android:textSize="@dimen/points"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toEndOf="@+id/tvPoints"
             app:layout_constraintTop_toBottomOf="@+id/tvQuestion" />
 
         <ImageView
