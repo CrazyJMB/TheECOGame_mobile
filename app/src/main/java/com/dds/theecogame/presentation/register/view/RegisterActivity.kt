@@ -15,10 +15,6 @@ class RegisterActivity : AppCompatActivity() {
     private val viewModel: RegisterViewModel by viewModels()
     private lateinit var restrictions: UserRestrictions
 
-    private var checkedUsername = false
-    private var checkedEmail = false
-    private var checkedPassword = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -28,7 +24,6 @@ class RegisterActivity : AppCompatActivity() {
         binding.etUsername.setOnFocusChangeListener { view, b ->
             if (!b) {
                 var check = restrictions.checkUsername(binding.etUsername.text.toString())
-                checkedUsername = check
                 if (!check) {
                     binding.tvUsernameError.visibility = View.VISIBLE
                     binding.tvUsernameError.text = restrictions.getError()
@@ -41,7 +36,6 @@ class RegisterActivity : AppCompatActivity() {
         binding.etEmail.setOnFocusChangeListener { view, b ->
             if (!b) {
                 var check = restrictions.checkEmail(binding.etEmail.text.toString())
-                checkedEmail = check
                 if (!check) {
                     binding.tvEmailError.visibility = View.VISIBLE
                     binding.tvEmailError.text = restrictions.getError()
@@ -54,7 +48,6 @@ class RegisterActivity : AppCompatActivity() {
         binding.etPassword.setOnFocusChangeListener { view, b ->
             if (!b) {
                 var check = restrictions.checkPassword(binding.etPassword.text.toString())
-                checkedPassword = check
                 if (!check) {
                     binding.tvPasswordError.visibility = View.VISIBLE
                     binding.tvPasswordError.text = restrictions.getError()
@@ -63,14 +56,6 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         }
-
-        //For enabling Create User button
-        /*restrictions.sendObjects(
-            binding.etUsername,
-            binding.etEmail,
-            binding.etPassword,
-            binding.btnCreateUser
-        )*/
 
         binding.etUsername.addTextChangedListener {
             binding.btnCreateUser.isEnabled = (!binding.etUsername.text.toString().isEmpty()
