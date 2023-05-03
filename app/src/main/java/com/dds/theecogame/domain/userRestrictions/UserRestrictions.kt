@@ -1,6 +1,7 @@
 package com.dds.theecogame.domain.userRestrictions
 
 import android.content.Context
+import android.provider.ContactsContract.CommonDataKinds.Email
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
@@ -46,7 +47,7 @@ class UserRestrictions(val context: Context) {
         //check principal
         val patron = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
 
-        if (email.isNullOrEmpty()) return true
+        if (email.isEmpty()) return true
 
         if (!patron.matches(email)) {
             error = context.resources.getString(R.string.email_format_error)
@@ -69,7 +70,7 @@ class UserRestrictions(val context: Context) {
         val uppercase = Regex(".*[A-Z].*")
         val number = Regex(".*[\\d].*")
 
-        if (password.isNullOrEmpty()) return true
+        if (password.isEmpty()) return true
         if (password.length < 8) {
             error = context.resources.getString(R.string.password_length_error)
             return false
@@ -91,6 +92,7 @@ class UserRestrictions(val context: Context) {
         return true
     }
 
+    /*
     fun sendObjects(
         etUsername: EditText,
         etEmail: EditText,
@@ -102,29 +104,38 @@ class UserRestrictions(val context: Context) {
         this.etPassword = etPassword
         this.btnCreateUser = btnCreateUser
     }
+    */
 
-
+    /*
     //Watcher for Create User button
     val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            if (!etUsername.text.isNullOrEmpty() &&
+            /*if (!etUsername.text.isNullOrEmpty() &&
                 !etEmail.text.isNullOrEmpty() &&
                 !etPassword.text.isNullOrEmpty() &&
-                checkUsername(etUsername.toString()) &&
-                checkEmail(etEmail.toString()) &&
-                checkPassword(etPassword.toString())
+                checkedUsername &&
+                checkedEmail &&
+                checkedPassword
             ) {
                 btnCreateUser.isEnabled = true
             } else {
                 btnCreateUser.isEnabled = false
-            }
+            }*/
+
+            btnCreateUser.isEnabled = false
+            if (etUsername.text.isNullOrEmpty()) return
+            if (etEmail.text.isNullOrEmpty()) return
+            if (etPassword.text.isNullOrEmpty()) return
+            if (!checkUsername(etUsername.toString())) return
+            if (!checkEmail(etEmail.toString())) return
+            if (!checkPassword(etPassword.toString())) return
+            btnCreateUser.isEnabled = true
         }
 
         override fun afterTextChanged(s: Editable?) {
         }
-    }
-
+    }*/
 }
