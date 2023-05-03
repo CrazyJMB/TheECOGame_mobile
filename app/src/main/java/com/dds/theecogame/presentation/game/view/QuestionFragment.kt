@@ -249,5 +249,12 @@ class QuestionFragment : Fragment() {
     private fun changeViewImage() {
         binding.ivODS3.setImageResource(R.drawable.ods1)
     }
+
+    override fun onStop() {
+        super.onStop()
+        if (tense) {
+            mediaPlayer.stop()
+        }
+    }
 }
 

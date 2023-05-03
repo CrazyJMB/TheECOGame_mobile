@@ -26,15 +26,15 @@
 
     <ImageView
         android:id="@+id/btnMute"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_width="36dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="12dp"
         android:backgroundTint="@color/background_green"
         android:contentDescription="@string/mute"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_lock_silent_mode"
+        app:srcCompat="@drawable/mute"
         app:tint="@color/black" />
 
     <LinearLayout

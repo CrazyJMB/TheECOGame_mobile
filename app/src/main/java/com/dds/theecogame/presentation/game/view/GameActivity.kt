@@ -17,11 +17,13 @@ class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameBinding
     private val viewModel: GameViewModel by viewModels()
     private lateinit var mediaPlayer: MediaPlayer
+    private var isMusicPlaying = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel.startMusic(this)
+        isMusicPlaying = true
         viewModel.createGame(this)
         viewModel.setTimeStart()
 
@@ -29,7 +31,15 @@ class GameActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnMute.setOnClickListener {
-            viewModel.pauseMusic()
+            if (isMusicPlaying) {
+                viewModel.pauseMusic()
+                binding.btnMute.setImageResource(R.drawable.sound)
+                isMusicPlaying = false
+            } else {
+                viewModel.resumeMusic()
+                binding.btnMute.setImageResource(R.drawable.mute)
+                isMusicPlaying = true
+            }
         }
 
         binding.btnBack.setOnClickListener {
