@@ -1,11 +1,19 @@
 package com.dds.theecogame.domain.userRestrictions
 
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.Button
+import android.widget.EditText
 import com.dds.theecogame.R
 
 class UserRestrictions(val context: Context) {
 
     private var error: String = String()
+    private lateinit var etUsername: EditText
+    private lateinit var etEmail: EditText
+    private lateinit var etPassword: EditText
+    private lateinit var btnCreateUser: Button
 
     fun getError(): String {
         return error
@@ -23,7 +31,6 @@ class UserRestrictions(val context: Context) {
         }
         //check con llamada a api
 
-        //return mensaje error
         return true
     }
 
@@ -47,7 +54,6 @@ class UserRestrictions(val context: Context) {
         }
         //check con llamada a api
 
-        //return mensaje error
         return true
     }
 
@@ -59,17 +65,66 @@ class UserRestrictions(val context: Context) {
     * */
     fun checkPassword(password: String): Boolean {
         //check principal
-        val minuscula = Regex("(?=.*[a-z])")
-        val mayuscula = Regex("(?=.*[A-Z])")
-        val numero = Regex("(?=.*\\d)")
+        val lowercase = Regex(".*[a-z].*")
+        val uppercase = Regex(".*[A-Z].*")
+        val number = Regex(".*[\\d].*")
 
+        if (password.isNullOrEmpty()) return true
         if (password.length < 8) {
-            error = context.resources.getString(R.string.username_format_error)
+            error = context.resources.getString(R.string.password_length_error)
+            return false
+        }
+        if (!lowercase.matches(password)) {
+            error = context.resources.getString(R.string.password_lowercase_error)
+            return false
+        }
+        if (!uppercase.matches(password)) {
+            error = context.resources.getString(R.string.password_uppercase_error)
+            return false
+        }
+        if (!number.matches(password)) {
+            error = context.resources.getString(R.string.password_number_error)
             return false
         }
         //check con llamada a api
 
-        //return mensaje error
         return true
     }
+
+    fun sendObjects(
+        etUsername: EditText,
+        etEmail: EditText,
+        etPassword: EditText,
+        btnCreateUser: Button
+    ) {
+        this.etUsername = etUsername
+        this.etEmail = etEmail
+        this.etPassword = etPassword
+        this.btnCreateUser = btnCreateUser
+    }
+
+
+    //Watcher for Create User button
+    val textWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            if (!etUsername.text.isNullOrEmpty() &&
+                !etEmail.text.isNullOrEmpty() &&
+                !etPassword.text.isNullOrEmpty() &&
+                checkUsername(etUsername.toString()) &&
+                checkEmail(etEmail.toString()) &&
+                checkPassword(etPassword.toString())
+            ) {
+                btnCreateUser.isEnabled = true
+            } else {
+                btnCreateUser.isEnabled = false
+            }
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+        }
+    }
+
 }

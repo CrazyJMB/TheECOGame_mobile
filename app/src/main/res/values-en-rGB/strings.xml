@@ -79,4 +79,8 @@
     <string name="username_format_error">Introduce less than 20 characters</string>
     <string name="username_found_error">Already exists, try with another one</string>
     <string name="email_format_error">Non valid format</string>
+    <string name="password_length_error">Must have at least 8 chracters</string>
+    <string name="password_lowercase_error">Must have at least a lowercase letter</string>
+    <string name="password_uppercase_error">"Must have at least an uppercase letter "</string>
+    <string name="password_number_error">Must have at least a number</string>
 </resources>

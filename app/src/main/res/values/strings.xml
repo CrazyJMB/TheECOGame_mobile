@@ -98,5 +98,9 @@
     <string name="username_format_error">Introduzca menos de 20 caracteres</string>
     <string name="username_found_error">Ya existe, pruebe con otro</string>
     <string name="email_format_error">Formato de correo no válido</string>
+    <string name="password_length_error">Debe contener al menos 8 caracteres</string>
+    <string name="password_lowercase_error">Debe contener al menos una minúscula</string>
+    <string name="password_uppercase_error">Debe contener al menos una mayúscula</string>
+    <string name="password_number_error">Debe contener al menos un número</string>
 
 </resources>

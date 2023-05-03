@@ -56,5 +56,16 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        //For enabling Create User button
+        restrictions.sendObjects(
+            binding.etUsername,
+            binding.etEmail,
+            binding.etPassword,
+            binding.btnCreateUser
+        )
+        binding.etUsername.addTextChangedListener(restrictions.textWatcher)
+        binding.etEmail.addTextChangedListener(restrictions.textWatcher)
+        binding.etPassword.addTextChangedListener(restrictions.textWatcher)
+
     }
 }
