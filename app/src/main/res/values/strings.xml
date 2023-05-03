@@ -74,6 +74,7 @@
     <string name="consolidate_points">Puntos Consolidados:</string>
     <string name="mute">Mute</string>
     <string name="error_email_password">Email o Contraseña incorrecta</string>
+    <string name="question_logut">Quieres cerrar sesión?</string>
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">¿Deseas abandonar?</string>

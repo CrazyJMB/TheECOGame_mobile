@@ -63,6 +63,7 @@
     <string name="consolidate_points">Consolidate Points:</string>
     <string name="mute">Mute</string>
     <string name="error_email_password">Email or Password is wrong</string>
+    <string name="question_logut">Do you want to logout?</string>
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">Do you want to quit?</string>

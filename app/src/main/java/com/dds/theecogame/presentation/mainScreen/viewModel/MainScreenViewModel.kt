@@ -19,7 +19,7 @@ class MainScreenViewModel() : ViewModel() {
         if (responseDto.message.equals("Email exists")){
             val player = RetrofitInstance.userService.getUser(EmailDto(email))
             if (player.password.equals(password)){
-                dataStoreManager.setUserId(player.id)
+                dataStoreManager.setUserId(player.email)
                 return true
             }
             return false
