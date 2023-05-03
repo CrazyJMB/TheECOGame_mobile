@@ -94,4 +94,9 @@
     <string name="create_user">Crear usuario</string>
     <string name="error">error</string>
 
+    <!-- Error messages related to user restrictions -->
+    <string name="username_format_error">Introduzca menos de 20 caracteres</string>
+    <string name="username_found_error">Ya existe, pruebe con otro</string>
+    <string name="email_format_error">Formato de correo no válido</string>
+
 </resources>
