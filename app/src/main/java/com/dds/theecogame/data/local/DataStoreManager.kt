@@ -10,13 +10,13 @@ import java.io.IOException
 class DataStoreManager(private val dataStore: DataStore<Preferences>) {
 
     companion object {
-        val userIdKey = intPreferencesKey("USER_ID")
+        val userIdKey = stringPreferencesKey("USER_ID")
         val generalVolumeKey = intPreferencesKey("GENERAL_VOLUME")
         val musicVolumeKey = intPreferencesKey("MUSIC_VOLUME")
         val soundVolumeKey = intPreferencesKey("SOUND_VOLUME")
     }
 
-    suspend fun setUserId(userId: Int) {
+    suspend fun setUserId(userId: String) {
         dataStore.edit {
             it[userIdKey] = userId
         }
@@ -40,7 +40,7 @@ class DataStoreManager(private val dataStore: DataStore<Preferences>) {
         }
     }
 
-    suspend fun getUserId(): Flow<Int> {
+    suspend fun getUserId(): Flow<String> {
         return dataStore.data
             .catch {
                 if (it is IOException) {
@@ -50,7 +50,7 @@ class DataStoreManager(private val dataStore: DataStore<Preferences>) {
                 }
             }
             .map {
-                it[userIdKey] ?: -1
+                it[userIdKey] ?: String()
             }
     }
 
