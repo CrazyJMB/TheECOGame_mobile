@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment_statistics_2">
+    tools:context=".presentation.statistics.view.fragment_statistics_2">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,14 +12,13 @@
         android:background="@color/background_green">
 
         <ImageButton
-            android:id="@+id/btnBack2"
+            android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/background_green"
             android:contentDescription="@string/back"
-            android:onClick="goToMainScreen"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_menu_revert"
@@ -37,7 +36,7 @@
             android:textColor="@color/white"
             android:textSize="60sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnBack2" />
+            app:layout_constraintTop_toBottomOf="@+id/btnBack" />
 
         <TextView
             android:id="@+id/numPreguntasAcertadas"
@@ -115,7 +114,7 @@
             app:layout_constraintTop_toBottomOf="@+id/numAhorcadosIncorrectas" />
 
         <ImageView
-            android:id="@+id/ivLeft2"
+            android:id="@+id/ivLeft"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="46dp"
@@ -140,7 +139,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ivRight2"
-            app:layout_constraintStart_toEndOf="@+id/ivLeft2" />
+            app:layout_constraintStart_toEndOf="@+id/ivLeft" />
 
         <ImageView
             android:id="@+id/ivRight2"

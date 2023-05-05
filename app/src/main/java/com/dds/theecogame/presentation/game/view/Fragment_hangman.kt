@@ -1,12 +1,13 @@
-package com.dds.theecogame
+package com.dds.theecogame.presentation.game.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.dds.theecogame.R
 
-class fragment_participant_profile : Fragment() {
+class fragment_hangman : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +18,6 @@ class fragment_participant_profile : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_participant_profile, container, false)
+        return inflater.inflate(R.layout.fragment_hangman, container, false)
     }
-
 }

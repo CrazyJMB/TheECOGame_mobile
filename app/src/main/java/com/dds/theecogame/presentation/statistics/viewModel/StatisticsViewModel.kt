@@ -1,50 +1,64 @@
 package com.dds.theecogame.presentation.statistics.viewModel
 
+import android.content.Intent
 import androidx.lifecycle.ViewModel
+import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 
 class StatisticsViewModel : ViewModel() {
-    internal fun getNumGamesPlayed(): Int {
+
+    fun getNumGamesPlayed(): Int {
         val numGammesPlayed = 0
         return numGammesPlayed
     }
 
-    internal fun getNumGamesWon(): Int {
+    fun getNumGamesWon(): Int {
         val numGamesWon = 0
         return numGamesWon
     }
 
-    internal fun getNumGamesLost(): Int {
+    fun getNumGamesLost(): Int {
         val numGamesLost = 0
         return numGamesLost
     }
 
-    internal fun getNumGamesAbandoned(): Int {
+    fun getNumGamesAbandoned(): Int {
         val numGamesAbandoned = 0
         return numGamesAbandoned
     }
 
-    internal fun getAvgTimePerGame(): Int {
+    fun getAvgTimePerGame(): Int {
         val avgTimePerGame = 0
         return avgTimePerGame
     }
 
-    internal fun getTotalTimePlayed(): Int {
+    fun getTotalTimePlayed(): Int {
         val totalTimePlayed = 0
         return totalTimePlayed
     }
 
-    internal fun getNumCorrectAnswers(): Int {
+    fun getNumCorrectQuestions(): Int {
         val numCorrectAnswers = 0
         return numCorrectAnswers
     }
 
-    internal fun getNumIncorrectAnswers(): Int {
+    fun getNumIncorrectQuestions(): Int {
         val numIncorrectAnswers = 0
         return numIncorrectAnswers
     }
 
-    internal fun getOdsKnowledgeLevel(): Int {
+    fun getNumCorrectHangman(): Int {
+        val numCorrectAnswers = 0
+        return numCorrectAnswers
+    }
+
+    fun getNumIncorrectHangman(): Int {
+        val numIncorrectAnswers = 0
+        return numIncorrectAnswers
+    }
+
+    fun getOdsKnowledgeLevel(): Int {
         val odsKnowledgeLevel = 0
         return odsKnowledgeLevel
     }
+
 }
