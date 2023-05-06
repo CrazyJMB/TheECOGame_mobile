@@ -21,11 +21,13 @@ class fragment_hangman : Fragment() {
     private lateinit var mediaPlayer: MediaPlayer
     private val gameViewModel: GameViewModel by activityViewModels()
 
-    private var mistakes = 0
     private var countDownTimer: CountDownTimer? = null
     private var timerCancelledManually: Boolean = false
     private var tense: Boolean = false
 
+    private var mistakes = 0
+    private var word = ""
+    private lateinit var listMissingChar: MutableList<Char>
 
 
     override fun onCreateView(
@@ -38,17 +40,23 @@ class fragment_hangman : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        gameViewModel.btnPressed.observe(viewLifecycleOwner){
+            if (listMissingChar.contains(it)){
+                //TODO
+            } else {
+                userMistake()
+            }
+        }
     }
 
     private fun userMistake(){
         when (mistakes){
-            1 -> {binding.ivHead.visibility = View.VISIBLE}
-            2 -> {binding.ivBody.visibility = View.VISIBLE}
-            3 -> {binding.ivLeftArm.visibility = View.VISIBLE}
-            4 -> {binding.ivRightArm.visibility = View.VISIBLE}
-            5 -> {binding.ivLeftLeg.visibility = View.VISIBLE}
-            6 -> {binding.ivRightLeg.visibility = View.VISIBLE}
+            1 -> {binding.ivHead.visibility = View.VISIBLE; playLosingMusic(true)}
+            2 -> {binding.ivBody.visibility = View.VISIBLE; playLosingMusic(true)}
+            3 -> {binding.ivLeftArm.visibility = View.VISIBLE; playLosingMusic(true)}
+            4 -> {binding.ivRightArm.visibility = View.VISIBLE; playLosingMusic(true)}
+            5 -> {binding.ivLeftLeg.visibility = View.VISIBLE; playLosingMusic(true)}
+            6 -> {binding.ivRightLeg.visibility = View.VISIBLE; playLosingMusic(true)}
             else -> {
                 stopTimer()
                 if (tense) {
