@@ -1,6 +1,6 @@
 package com.dds.theecogame.domain.repository
 
-import com.dds.theecogame.common.Resource
+import com.dds.theecogame.data.remote.api.common.Resource
 import com.dds.theecogame.domain.model.Response
 import com.dds.theecogame.domain.model.User
 import kotlinx.coroutines.flow.Flow
@@ -17,6 +17,14 @@ interface UserRepository {
     suspend fun getUser(email: String): Flow<Resource<User>>
 
     suspend fun createUser(
+        username: String,
+        name: String,
+        surname: String,
+        email: String,
+        password: String
+    ): Flow<Resource<Response>>
+
+    suspend fun updateUser(
         username: String,
         name: String,
         surname: String,

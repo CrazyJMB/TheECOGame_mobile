@@ -1,4 +1,4 @@
-package com.dds.theecogame.common
+package com.dds.theecogame.data.remote.api
 
 import okhttp3.Interceptor
 import okhttp3.Response

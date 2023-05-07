@@ -1,4 +1,4 @@
-package com.dds.theecogame.common
+package com.dds.theecogame.data.remote.api.common
 
 sealed class Resource<T>(val data: T? = null, val message: String? = null) {
     class Success<T>(data: T) : Resource<T>(data)

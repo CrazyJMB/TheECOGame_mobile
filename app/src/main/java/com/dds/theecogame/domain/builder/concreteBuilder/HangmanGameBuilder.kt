@@ -1,6 +1,6 @@
 package com.dds.theecogame.domain.builder.concreteBuilder
 
-import com.dds.theecogame.common.RetrofitInstance
+import com.dds.theecogame.data.remote.api.RetrofitInstance
 import com.dds.theecogame.data.remote.challenge.dto.toHangman
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameBuilder
