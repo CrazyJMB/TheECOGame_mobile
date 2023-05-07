@@ -12,6 +12,9 @@ import androidx.fragment.app.viewModels
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.FragmentHangmanBinding
 import com.dds.theecogame.databinding.FragmentTitleQuestionBinding
+import com.dds.theecogame.domain.builder.Game
+import com.dds.theecogame.domain.model.challenges.Hangman
+import com.dds.theecogame.domain.model.challenges.Question
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import com.dds.theecogame.presentation.game.viewModel.QuestionViewModel
 
@@ -27,9 +30,10 @@ class fragment_hangman : Fragment() {
 
     private var mistakes = 0
     private var word = ""
+    private var dificulty = 0
     private lateinit var listNotMissingChar: MutableList<Char>
     private lateinit var listMissingChar: MutableList<Char>
-
+    private lateinit var currentHangman: Hangman
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,9 +46,20 @@ class fragment_hangman : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO word = a la palabra del ahorcado, que este todo en UPERCASE
-        //TODO hacer que se muestren mas o menos letras segun la dificultad
-        //TODO las letras que se muestren se hagan invisibles en el teclado
+        gameViewModel.gameLiveData.observe(viewLifecycleOwner) { game ->
+            when (val nextQuestion = game.deleteFirstChallenge()){
+                is Game.Challenge.HangmanModel -> {
+                    currentHangman = nextQuestion.hangmanModel
+
+                    nextQuestion.let {
+                        word = currentHangman.word.uppercase()
+                        dificulty = currentHangman.difficulty
+
+                        makeWordDificulty()
+                    }
+                }
+            }
+        }
 
         startTimer()
 
@@ -80,6 +95,48 @@ class fragment_hangman : Fragment() {
             }
         }
 
+    }
+    private fun makeWordDificulty () {
+        //1 -> 50%, 2 -> 40%, 3 -> 30%, 4-> 20%, 5-> 10%
+        when (dificulty){
+            1 -> perecentageNoCharacters(0.5)
+            2 -> perecentageNoCharacters(0.6)
+            3 -> perecentageNoCharacters(0.7)
+            4 -> perecentageNoCharacters(0.8)
+            else -> perecentageNoCharacters(0.9)
+        }
+    }
+
+    private fun perecentageNoCharacters (perectange: Double){
+        val numberWords = (word.length * perectange).toInt()
+        val characters = word.substring(0, numberWords)
+        for (char in characters){
+            if (!listMissingChar.contains(char)){
+                listMissingChar.add(char)
+            }
+        }
+
+        val auxiliar = binding.tvHangmanWord.text.toString().toList().toMutableList()
+
+        listMissingChar.forEach { element ->
+            if (auxiliar.contains(element)) {
+                val indices = auxiliar.withIndex().filter { it.value == element }.map { it.index }
+                indices.forEach { index ->
+                    auxiliar[index] = '_'
+                }
+            }
+        }
+
+        binding.tvHangmanWord.text = auxiliar.joinToString("")
+
+        var i = 0
+        while (i < auxiliar.size - 1){
+            val letter = auxiliar[i]
+            if (!letter.equals("_") && !listNotMissingChar.contains(letter)) {
+                listNotMissingChar.add(letter)
+            }
+            i++
+        }
     }
 
     private fun userMistake(){
