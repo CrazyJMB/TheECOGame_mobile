@@ -34,6 +34,9 @@ class GameViewModel : ViewModel() {
     private var timeStart: Long = 0L
     private var timeEnd: Long = 0L
 
+    private val _btnPressed = MutableLiveData<Char>()
+    var btnPressed: LiveData<Char> = _btnPressed
+
     fun getConsolidated() = consolidated
     fun getSecondChance() = secondChance
     fun getGameEnded() = gameEnded
@@ -43,6 +46,7 @@ class GameViewModel : ViewModel() {
     fun getConsolidatedPoints() = consolidatedPoints
     fun getTimeStart() = timeStart
     fun getTimeEnd() = timeEnd
+    fun getBtnPressed() = btnPressed
 
     fun setConsolidated(consolidate: Boolean) {
         consolidated = consolidate
@@ -81,6 +85,10 @@ class GameViewModel : ViewModel() {
         // 1 -> Abandoned
         // 2 -> Victory
         gameStatus = status
+    }
+
+    fun addBtnPressed (char: Char){
+        _btnPressed.value = char
     }
 
     fun createGame(context: Context) {

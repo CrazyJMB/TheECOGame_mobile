@@ -68,6 +68,7 @@
     <string name="mute">Mute</string>
 
     <string name="edit_profile">Edit Profile</string>
+    <string name="edit_image">Change image</string>
     <string name="username_profile">Name</string>
     <string name="email_profile">Email</string>
     <string name="password_profile">Password</string>
@@ -83,6 +84,10 @@
 
     <string name="one">1</string>
     <string name="two">2</string>
+    <string name="clues">Clues</string>
+    <string name="clues_description">You can buy a clue for the challenge, the clue is a description,
+        once you buy it, the challenge points that you will be receiving for this challenge will
+        be halved by half </string>
     <string name="error_email_password">Email or Password is wrong</string>
     <string name="question_logut">Do you want to logout?</string>
 

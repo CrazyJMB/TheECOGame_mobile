@@ -50,7 +50,7 @@ class ResumeFragment : Fragment() {
 
         binding.tvTimePlayed.text = "${binding.tvTimePlayed.text} ${minutes}min ${seconds}sec"
         binding.tvPointsObtained.text = "${binding.tvPointsObtained.text} ${statValues[1]}"
-        binding.tvQuestionsAnswered.text = "${binding.tvQuestionsAnswered.text} ${statValues[2]}/10"
+        binding.tvQuestionsAnswered.text = "${binding.tvQuestionsAnswered.text} ${statValues[2]-1}/10"
 
         if (gameViewModel.getGameStatus() == 1) {
             binding.tvTitle.setText(R.string.abandoned)

@@ -29,13 +29,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.statistics.view.StatisticsFragment"
+            android:name=".presentation.statistics.view.ActivityStatistics"
             android:exported="false" />
         <activity
             android:name=".presentation.setting.view.SettingActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.game.view.GameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityParticipantProfile"
             android:exported="false" />
     </application>
 

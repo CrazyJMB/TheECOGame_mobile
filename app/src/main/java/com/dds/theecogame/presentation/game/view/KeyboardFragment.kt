@@ -5,11 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.FragmentKeyboardBinding
+import com.dds.theecogame.presentation.game.viewModel.GameViewModel
+import com.dds.theecogame.presentation.game.viewModel.QuestionViewModel
 
 class KeyboardFragment : Fragment() {
     private lateinit var binding: FragmentKeyboardBinding
+    private val gameViewModel: GameViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +35,7 @@ class KeyboardFragment : Fragment() {
 
             if (btnChar in 'A'..'Z'){
                 view.visibility = View.INVISIBLE
-
+                gameViewModel.addBtnPressed(btnChar!!.toChar())
             }
         }
 

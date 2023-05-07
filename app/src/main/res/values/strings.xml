@@ -33,7 +33,7 @@
     <string name="warning">Aviso</string>
 
     <string name="statistics">Estadísticas</string>
-    <string name="num_games_played">Número de partidas jugadas:</string>
+    <string name="num_games_played">Partidas jugadas:</string>
     <string name="num_games_won">Partidas ganadas:</string>
     <string name="num_games_lost">Partidas perdidas:</string>
     <string name="num_abandoned_answers">Partidas abandonadas:</string>
@@ -81,6 +81,7 @@
     <string name="question_logut">Quieres cerrar sesión?</string>
 
     <string name="edit_profile">Editar Perfil</string>
+    <string name="edit_image">Cambiar Imagen</string>
     <string name="username_profile">Nombre</string>
     <string name="email_profile">Correo</string>
     <string name="password_profile">Contraseña</string>
@@ -96,6 +97,10 @@
 
     <string name="one">1</string>
     <string name="two">2</string>
+
+    <string name="clues">Pistas</string>
+    <string name="clues_description">Puedes comprar una pista para el reto, la pista es un
+        descripción, al usarla haces que el valor de la pregunta sea la mitad </string>
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">¿Deseas abandonar?</string>

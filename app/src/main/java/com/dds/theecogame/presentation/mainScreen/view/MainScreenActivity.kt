@@ -5,17 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import com.dds.theecogame.ActivityParticipantProfile
 import com.dds.theecogame.R
-import com.dds.theecogame.data.local.DataStoreManager
-import com.dds.theecogame.dataStore
 import com.dds.theecogame.databinding.ActivityMainScreenBinding
 import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
 import com.dds.theecogame.presentation.game.view.GameActivity
-import com.dds.theecogame.presentation.game.view.ResumeFragment
 import com.dds.theecogame.presentation.setting.view.SettingActivity
-import com.dds.theecogame.presentation.statistics.view.StatisticsFragment
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.dds.theecogame.presentation.statistics.view.ActivityStatistics
 
 class MainScreenActivity : AppCompatActivity() {
 
@@ -33,7 +29,7 @@ class MainScreenActivity : AppCompatActivity() {
         }
 
         binding.btnStatistics.setOnClickListener {
-            val intent = Intent(this, StatisticsFragment::class.java)
+            val intent = Intent(this, ActivityStatistics::class.java)
             startActivity(intent)
         }
 
@@ -43,17 +39,18 @@ class MainScreenActivity : AppCompatActivity() {
         }
 
         binding.btnProfile.setOnClickListener {
-
+            val intent = Intent(this, ActivityParticipantProfile::class.java)
+            startActivity(intent)
         }
 
         binding.btnLogout.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle(R.string.question_logut)
             builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
-                GlobalScope.launch {
-                    val dataStoreManager = DataStoreManager(dataStore = dataStore)
-                    dataStoreManager.setUserId("")
-                }
+                //GlobalScope.launch {
+                //    val dataStoreManager = DataStoreManager(dataStore = dataStore)
+                //    dataStoreManager.setUserId("")
+                //}
                 //TODO: ir a la pantalla donde seleccionas iniciar sesion o regristrarse
             }
             builder.setNegativeButton(R.string.alert_cancel) { _, _ ->

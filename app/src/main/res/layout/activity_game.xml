@@ -7,7 +7,7 @@
     android:background="@color/background_green">
 
     <ImageButton
-        android:id="@+id/btnBack"
+        android:id="@+id/btnClues"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -16,7 +16,7 @@
         android:layout_marginBottom="6dp"
         android:backgroundTint="@color/background_green"
         android:contentDescription="@string/back"
-        android:src="@android:drawable/ic_menu_revert"
+        app:srcCompat="@android:drawable/ic_menu_help"
         app:layout_constraintBottom_toTopOf="@+id/Linea"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,8 +70,11 @@
         android:name="com.dds.theecogame.presentation.game.view.GameTitleFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         app:layout_constraintBottom_toTopOf="@+id/Linea"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnMute"
         app:layout_constraintStart_toEndOf="@+id/btnBack"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/fragment_title_question" />
