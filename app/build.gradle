@@ -42,7 +42,7 @@ android {
 dependencies {
     // Kotlin
     implementation 'androidx.core:core-ktx:1.10.0'
-    implementation 'androidx.fragment:fragment-ktx:1.5.7'
+    implementation 'androidx.fragment:fragment-ktx:1.5.6'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // Material Components
@@ -67,7 +67,6 @@ dependencies {
 
     // Preferences DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     // Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
@@ -75,7 +74,6 @@ dependencies {
 
     // Binding
     implementation 'androidx.databinding:library:3.2.0-alpha11'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
 
     // Unit test

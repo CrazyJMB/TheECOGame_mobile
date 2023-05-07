@@ -38,10 +38,8 @@
     <string name="num_games_won">Games won:</string>
     <string name="num_games_lost">Games lost:</string>
     <string name="num_abandoned_answers">Abandoned games:</string>
-    <string name="num_correct_questions">Correct questions:</string>
-    <string name="num_wrong_questions">Wrong questions:</string>
-    <string name="num_correct_hangman">Correct Hangmans:</string>
-    <string name="num_wrong_hangman">Wrong Hangmans:</string>
+    <string name="num_correct_answers">Correct answers:</string>
+    <string name="num_wrong_answers">Wrong answers:</string>
     <string name="mean_time">Mean time of games:</string>
     <string name="total_time">Total time of the game:</string>
     <string name="ODS_knowledge">ODS knowledge level</string>
@@ -137,4 +135,19 @@
 
     <string name="log_in">Log In</string>
     <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="username_hint">Introduce your username</string>
+    <string name="email_hint">Introduce your e-mail</string>
+    <string name="password_hint">Introduce your password</string>
+    <string name="create_user">Create user</string>
+    <string name="error">error</string>
+    <string name="username_format_error">Introduce less than 20 characters</string>
+    <string name="username_found_error">Already exists, try with another one</string>
+    <string name="email_format_error">Non valid format</string>
+    <string name="password_length_error">Must have at least 8 chracters</string>
+    <string name="password_lowercase_error">Must have at least a lowercase letter</string>
+    <string name="password_uppercase_error">"Must have at least an uppercase letter "</string>
+    <string name="password_number_error">Must have at least a number</string>
 </resources>

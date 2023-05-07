@@ -155,4 +155,24 @@
     <string name="log_in">Iniciar Sesión</string>
     <string name="register">Registrarse</string>
 
+
+    <!-- Register Fragment -->
+    <string name="username">Nombre de usuario</string>
+    <string name="email">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="username_hint">Introduzca su nombre de usuario</string>
+    <string name="email_hint">Introduzca su correo</string>
+    <string name="password_hint">Introduzca su contraseña</string>
+    <string name="create_user">Crear usuario</string>
+    <string name="error">error</string>
+
+    <!-- Error messages related to user restrictions -->
+    <string name="username_format_error">Introduzca menos de 20 caracteres</string>
+    <string name="username_found_error">Ya existe, pruebe con otro</string>
+    <string name="email_format_error">Formato de correo no válido</string>
+    <string name="password_length_error">Debe contener al menos 8 caracteres</string>
+    <string name="password_lowercase_error">Debe contener al menos una minúscula</string>
+    <string name="password_uppercase_error">Debe contener al menos una mayúscula</string>
+    <string name="password_number_error">Debe contener al menos un número</string>
+
 </resources>

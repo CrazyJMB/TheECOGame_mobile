@@ -24,9 +24,15 @@
             android:exported="false" />
         <activity
             android:name=".presentation.mainScreen.view.MainScreenActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".presentation.register.view.RegisterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

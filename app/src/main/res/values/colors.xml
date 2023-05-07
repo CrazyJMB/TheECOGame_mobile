@@ -8,4 +8,5 @@
     <color name="background_white_green">#92a88f</color>
     <color name="red">#F63521</color>
 
+    <color name="error_red">#A10000</color>
 </resources>
