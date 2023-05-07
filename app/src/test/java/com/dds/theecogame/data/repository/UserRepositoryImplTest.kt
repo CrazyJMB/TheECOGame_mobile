@@ -1,6 +1,6 @@
 package com.dds.theecogame.data.repository
 
-import com.dds.theecogame.data.remote.api.common.Resource
+import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.remote.session.dto.ResponseDto
 import com.dds.theecogame.data.remote.session.dto.toResponse
 import com.dds.theecogame.domain.repository.UserRepository

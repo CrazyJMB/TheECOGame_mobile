@@ -1,6 +1,6 @@
 package com.dds.theecogame.data.repository
 
-import com.dds.theecogame.data.remote.api.common.Resource
+import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.remote.api.RetrofitInstance
 import com.dds.theecogame.data.remote.session.dto.input.ImageDto
 import com.dds.theecogame.data.remote.session.dto.input.PasswordDto

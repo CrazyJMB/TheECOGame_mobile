@@ -1,6 +1,6 @@
 package com.dds.theecogame.domain.repository
 
-import com.dds.theecogame.data.remote.api.common.Resource
+import com.dds.theecogame.common.Resource
 import com.dds.theecogame.domain.model.challenges.Hangman
 import com.dds.theecogame.domain.model.challenges.Question
 import kotlinx.coroutines.flow.Flow

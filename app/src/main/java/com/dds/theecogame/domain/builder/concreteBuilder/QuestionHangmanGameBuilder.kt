@@ -1,13 +1,17 @@
 package com.dds.theecogame.domain.builder.concreteBuilder
 
+import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.remote.api.RetrofitInstance
 import com.dds.theecogame.data.remote.challenge.dto.toHangman
 import com.dds.theecogame.data.remote.challenge.dto.toQuestion
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameBuilder
+import com.dds.theecogame.domain.repository.ChallengesRepository
 import kotlinx.coroutines.runBlocking
 
-class QuestionHangmanGameBuilder : GameBuilder {
+class QuestionHangmanGameBuilder(
+    private val challengesRepository: ChallengesRepository
+) : GameBuilder {
 
     private val game = Game()
 
@@ -29,24 +33,33 @@ class QuestionHangmanGameBuilder : GameBuilder {
     override fun addChallenges() {
         runBlocking {
             (1..game.challengesNumber).forEach { order ->
-                game.challengesList[order] =
-                    (1..2).random().let {
-                        if (it == 1) {
-                            Game.Challenge.QuestionModel(
-                                RetrofitInstance.challengeService.getRandomQuestion(
-                                    (1..5).random(),
-                                    game.userId
-                                ).toQuestion()
-                            )
-                        } else {
-                            Game.Challenge.HangmanModel(
-                                RetrofitInstance.challengeService.getRandomHangman(
-                                    (1..5).random(),
-                                    game.userId
-                                ).toHangman()
-                            )
+                (1..2).random().let { number ->
+                    if (number == 1) {
+                        challengesRepository.getQuestion((1..5).random(), game.userId).collect {
+                            when (it) {
+                                is Resource.Loading -> {}
+                                is Resource.Success -> {
+                                    game.challengesList[order] =
+                                        Game.Challenge.QuestionModel(it.data!!)
+                                }
+
+                                is Resource.Error -> {}
+                            }
+                        }
+                    } else {
+                        challengesRepository.getHangman((1..5).random(), game.userId).collect {
+                            when (it) {
+                                is Resource.Loading -> {}
+                                is Resource.Success -> {
+                                    game.challengesList[order] =
+                                        Game.Challenge.HangmanModel(it.data!!)
+                                }
+
+                                is Resource.Error -> {}
+                            }
                         }
                     }
+                }
             }
         }
     }

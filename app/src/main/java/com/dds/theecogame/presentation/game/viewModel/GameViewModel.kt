@@ -9,9 +9,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dds.theecogame.R
+import com.dds.theecogame.data.repository.ChallengesRepositoryImpl
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameDirector
 import com.dds.theecogame.domain.builder.concreteBuilder.QuestionGameBuilder
+import com.dds.theecogame.domain.repository.ChallengesRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -21,6 +23,8 @@ class GameViewModel : ViewModel() {
 
     private val _gameLiveData = MutableLiveData<Game>()
     val gameLiveData: LiveData<Game> = _gameLiveData
+
+    private val challengesRepository: ChallengesRepository = ChallengesRepositoryImpl()
 
     private lateinit var mediaPlayer: MediaPlayer
 
@@ -92,14 +96,14 @@ class GameViewModel : ViewModel() {
         _btnPressed.value = char
     }
 
-    fun changeStartingVisibilityLetters (list: MutableList<Char>){
+    fun changeStartingVisibilityLetters(list: MutableList<Char>) {
         _visibleLetters.value = list
     }
 
     fun createGame(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val game = GameDirector(QuestionGameBuilder()).construct()
+                val game = GameDirector(QuestionGameBuilder(challengesRepository)).construct()
                 game.sortChallengesByDifficulty()
                 _gameLiveData.postValue(game)
             } catch (e: HttpException) {
