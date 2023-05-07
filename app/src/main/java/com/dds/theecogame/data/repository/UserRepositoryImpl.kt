@@ -18,7 +18,6 @@ class UserRepositoryImpl : UserRepository {
 
     private val api = RetrofitInstance.userService
 
-
     override suspend fun checkUsername(username: String): Flow<Resource<Response>> = flow {
 
         emit(Resource.Loading())
