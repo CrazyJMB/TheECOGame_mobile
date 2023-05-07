@@ -27,6 +27,7 @@ class fragment_hangman : Fragment() {
 
     private var mistakes = 0
     private var word = ""
+    private lateinit var listNotMissingChar: MutableList<Char>
     private lateinit var listMissingChar: MutableList<Char>
 
 
@@ -40,13 +41,45 @@ class fragment_hangman : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //TODO word = a la palabra del ahorcado, que este todo en UPERCASE
+        //TODO hacer que se muestren mas o menos letras segun la dificultad
+        //TODO las letras que se muestren se hagan invisibles en el teclado
+
+        startTimer()
+
         gameViewModel.btnPressed.observe(viewLifecycleOwner){
             if (listMissingChar.contains(it)){
-                //TODO
+                var listIndexChange: MutableList<Int> = mutableListOf()
+                var hangmanWord = binding.tvHangmanWord.text.toString().toMutableList()
+
+                for ((index, char) in word.withIndex()){
+                    if (char == it){
+                        listIndexChange.add(index)
+                    }
+                }
+
+                for (index in listIndexChange){
+                    hangmanWord[index] = it
+                }
+
+                binding.tvHangmanWord.text = hangmanWord.joinToString("")
+
+                if (binding.tvHangmanWord.text.equals(word)){
+                    gameViewModel.nextQuestionNumber()
+                    if (gameViewModel.getQuestionNumber() == 11) {
+                        goToSummary()
+                    } else if (gameViewModel.getConsolidated()) {
+                        goToAbandon()
+                    } else {
+                        goToConsolidate()
+                    }
+                }
             } else {
                 userMistake()
             }
         }
+
     }
 
     private fun userMistake(){
