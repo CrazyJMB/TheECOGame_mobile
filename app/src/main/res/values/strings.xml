@@ -150,4 +150,9 @@
     <string name="y">Y</string>
     <string name="z">Z</string>
 
+
+    <!--For User Management-->
+    <string name="log_in">Iniciar Sesión</string>
+    <string name="register">Registrarse</string>
+
 </resources>

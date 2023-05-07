@@ -104,7 +104,7 @@
     <string name="msg_incorrect_answer">Incorrect answer. You have no more chance. GG</string>
 
     <!-- Error messages -->
-    <string name="error_msg">An unexpected error occurred</string>
+    <string name="error_msg">An unexpected error occured</string>
     <string name="error_msg_internet">Could not reach server. Check your internet connection</string>
 
     <!-- Keyboard messages -->
@@ -135,4 +135,6 @@
     <string name="y">Y</string>
     <string name="z">Z</string>
 
+    <string name="log_in">Log In</string>
+    <string name="register">Register</string>
 </resources>
