@@ -8,6 +8,8 @@ import com.dds.theecogame.R
 import com.dds.theecogame.databinding.ActivityMainScreenBinding
 import com.dds.theecogame.databinding.ActivityUserManagementBinding
 import com.dds.theecogame.presentation.game.view.GameActivity
+import com.dds.theecogame.presentation.mainScreen.view.LoginActivity
+import com.dds.theecogame.presentation.register.view.RegisterActivity
 import com.dds.theecogame.presentation.userManagement.viewModel.UserManagementViewModel
 
 class UserManagementActivity : AppCompatActivity() {
@@ -22,12 +24,12 @@ class UserManagementActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_management)
 
         binding.btnLogIn.setOnClickListener {
-            val intent = Intent(this, /*TODO: Activity login*/GameActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
         binding.btnRegister.setOnClickListener {
-            val intent = Intent(this, /*TODO: Activity register*/GameActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 

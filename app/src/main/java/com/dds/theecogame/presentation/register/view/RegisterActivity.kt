@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
+import com.dds.theecogame.data.remote.api.RetrofitInstance
+import com.dds.theecogame.data.remote.session.dto.UserDto
 import com.dds.theecogame.presentation.register.viewModel.RegisterViewModel
 import com.dds.theecogame.databinding.ActivityRegisterBinding
 import com.dds.theecogame.domain.userRestrictions.UserRestrictions
@@ -82,6 +84,9 @@ class RegisterActivity : AppCompatActivity() {
                     && restrictions.checkPassword(binding.etPassword.text.toString()))
         }
 
-
+        binding.btnCreateUser.setOnClickListener {
+            //TODO crear usuario en la API
+            //TODO ir al MainScreenActivity, con el usuario creado ya iniciado sesión
+        }
     }
 }
