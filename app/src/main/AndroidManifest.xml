@@ -41,7 +41,7 @@
             android:name=".presentation.game.view.GameActivity"
             android:exported="false" />
         <activity
-            android:name=".ActivityParticipantProfile"
+            android:name=".presentation.editProfile.view.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.statistics.view.ActivityStatistics"
