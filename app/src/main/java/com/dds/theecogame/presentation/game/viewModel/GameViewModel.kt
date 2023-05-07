@@ -46,7 +46,6 @@ class GameViewModel : ViewModel() {
     fun getConsolidatedPoints() = consolidatedPoints
     fun getTimeStart() = timeStart
     fun getTimeEnd() = timeEnd
-    fun getBtnPressed() = btnPressed
 
     fun setConsolidated(consolidate: Boolean) {
         consolidated = consolidate
@@ -87,7 +86,7 @@ class GameViewModel : ViewModel() {
         gameStatus = status
     }
 
-    fun addBtnPressed (char: Char){
+    fun addBtnPressed(char: Char) {
         _btnPressed.value = char
     }
 
