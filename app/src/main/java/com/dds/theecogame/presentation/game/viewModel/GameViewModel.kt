@@ -36,6 +36,8 @@ class GameViewModel : ViewModel() {
 
     private val _btnPressed = MutableLiveData<Char>()
     var btnPressed: LiveData<Char> = _btnPressed
+    private val _visibleLetters = MutableLiveData<MutableList<Char>>()
+    var visibleLetters: LiveData<MutableList<Char>> = _visibleLetters
 
     fun getConsolidated() = consolidated
     fun getSecondChance() = secondChance
@@ -88,6 +90,10 @@ class GameViewModel : ViewModel() {
 
     fun addBtnPressed(char: Char) {
         _btnPressed.value = char
+    }
+
+    fun changeStartingVisibilityLetters (list: MutableList<Char>){
+        _visibleLetters.value = list
     }
 
     fun createGame(context: Context) {
