@@ -103,7 +103,7 @@ class RegisterActivity : AppCompatActivity() {
                         is Resource.Loading -> {}
                         is Resource.Success -> {
                             //Volver a ventana anterior
-                            goToUserManagement(binding.root)
+                            goToUserManagement()
                         }
                         is Resource.Error -> {
 
@@ -113,10 +113,13 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        binding.ibBack.setOnClickListener {
+            goToUserManagement()
+        }
 
     }
 
-    private fun goToUserManagement(view: View) {
+    private fun goToUserManagement() {
         val intent = Intent(this, UserManagementActivity::class.java)
         startActivity(intent)
     }

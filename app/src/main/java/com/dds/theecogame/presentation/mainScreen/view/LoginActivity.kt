@@ -12,6 +12,7 @@ import com.dds.theecogame.databinding.ActivityLogInBinding
 import com.dds.theecogame.presentation.game.view.GameActivity
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
+import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -44,10 +45,20 @@ class LoginActivity : AppCompatActivity() {
                 binding.tvError.visibility = View.VISIBLE
             }
         }
+
+        binding.ibBack.setOnClickListener {
+            goToUserManagement()
+        }
+
     }
 
-    private fun goToMainScreen (){
+    private fun goToMainScreen() {
         val intent = Intent(this, MainScreenActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToUserManagement() {
+        val intent = Intent(this, UserManagementActivity::class.java)
         startActivity(intent)
     }
 }

@@ -111,6 +111,11 @@ class EditProfileActivity : AppCompatActivity() {
                 }
             }
         }
+
+        binding.ibBack.setOnClickListener {
+            goToMainScreen(binding.root)
+        }
+
     }
 
     private fun goToMainScreen(view: View) {

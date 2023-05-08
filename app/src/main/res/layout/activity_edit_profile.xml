@@ -13,14 +13,13 @@
         android:background="@color/background_green">
 
         <ImageButton
-            android:id="@+id/btnBack"
+            android:id="@+id/ibBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/background_green"
             android:contentDescription="@string/back"
-            android:onClick="goToMainScreen"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_menu_revert"
