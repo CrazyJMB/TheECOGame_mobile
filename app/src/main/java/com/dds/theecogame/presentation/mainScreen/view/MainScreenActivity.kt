@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.ActivityMainScreenBinding
+import com.dds.theecogame.presentation.editProfile.view.EditProfileActivity
 import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
 import com.dds.theecogame.presentation.game.view.GameActivity
 import com.dds.theecogame.presentation.setting.view.SettingActivity

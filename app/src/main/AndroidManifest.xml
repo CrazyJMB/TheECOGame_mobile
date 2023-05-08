@@ -16,9 +16,8 @@
         android:theme="@style/Theme.TheECOGame"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".EditProfileActivity"
-            android:exported="false" />
+
+        <!--
         <activity
             android:name=".presentation.userManagement.view.UserManagementActivity"
             android:exported="true">
@@ -28,6 +27,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        -->
+
+        <activity
+            android:name=".presentation.editProfile.view.EditProfileActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".presentation.mainScreen.view.LoginActivity"
             android:exported="false" />
@@ -40,9 +51,11 @@
         <activity
             android:name=".presentation.game.view.GameActivity"
             android:exported="false" />
+        <!--
         <activity
             android:name=".presentation.editProfile.view.EditProfileActivity"
             android:exported="false" />
+        -->
         <activity
             android:name=".presentation.statistics.view.ActivityStatistics"
             android:exported="false" />
