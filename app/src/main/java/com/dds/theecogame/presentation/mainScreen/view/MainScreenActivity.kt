@@ -12,6 +12,7 @@ import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
 import com.dds.theecogame.presentation.game.view.GameActivity
 import com.dds.theecogame.presentation.setting.view.SettingActivity
 import com.dds.theecogame.presentation.statistics.view.ActivityStatistics
+import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
 
 class MainScreenActivity : AppCompatActivity() {
 
@@ -52,6 +53,8 @@ class MainScreenActivity : AppCompatActivity() {
                 //    dataStoreManager.setUserId("")
                 //}
                 //TODO: ir a la pantalla donde seleccionas iniciar sesion o regristrarse
+                val intent = Intent(this, UserManagementActivity::class.java)
+                startActivity(intent)
             }
             builder.setNegativeButton(R.string.alert_cancel) { _, _ ->
                 //No hace nada
