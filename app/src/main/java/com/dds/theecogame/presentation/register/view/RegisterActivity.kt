@@ -14,7 +14,9 @@ import com.dds.theecogame.domain.repository.UserRepository
 import com.dds.theecogame.domain.userRestrictions.UserRestrictions
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
+import okhttp3.Dispatcher
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -91,7 +93,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.btnCreateUser.setOnClickListener {
-            runBlocking {
+            runBlocking(Dispatchers.IO) {
                 userRepository.createUser(
                     binding.etUsername.text.toString(),
                     "name",

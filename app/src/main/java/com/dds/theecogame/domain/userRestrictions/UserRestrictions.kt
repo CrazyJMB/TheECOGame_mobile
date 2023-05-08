@@ -10,6 +10,7 @@ import com.dds.theecogame.R
 import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.repository.UserRepositoryImpl
 import com.dds.theecogame.domain.repository.UserRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
 
@@ -34,7 +35,8 @@ class UserRestrictions(val context: Context) {
             check = false
         }
         //check con llamada a api
-        runBlocking {
+
+        runBlocking(Dispatchers.IO) {
             userRepository.checkUsername(username).collect {
                 when (it) {
                     is Resource.Loading -> {}

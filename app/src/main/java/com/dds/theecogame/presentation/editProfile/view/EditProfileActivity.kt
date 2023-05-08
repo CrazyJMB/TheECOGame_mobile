@@ -92,7 +92,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.btnSave.setOnClickListener {
             runBlocking {
-                userRepository.createUser(
+                userRepository.updateUser(
                     binding.etUsername.text.toString(),
                     "name",
                     "surname",
