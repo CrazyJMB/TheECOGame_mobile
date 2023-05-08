@@ -131,8 +131,6 @@ class fragment_hangman : Fragment() {
     }
 
     private fun perecentageNoCharacters (perectange: Double){
-        println(word)
-
         val numberWords = (word.length * perectange).toInt()
         val characters = word.substring(0, numberWords)
         var i = 0
