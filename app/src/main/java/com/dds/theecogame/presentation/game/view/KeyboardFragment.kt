@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -27,6 +28,13 @@ class KeyboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        gameViewModel.visibleLetters.observe(viewLifecycleOwner){
+            for (letter in it){
+                val button = binding.root.findViewWithTag<Button>("btn$letter")
+                button.visibility = View.INVISIBLE
+            }
+        }
 
         binding.root.setOnClickListener{
             val btnID = view.id

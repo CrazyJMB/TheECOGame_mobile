@@ -1,12 +1,10 @@
 package com.dds.theecogame.data.repository
 
 import com.dds.theecogame.common.Resource
-import com.dds.theecogame.common.RetrofitInstance
-import com.dds.theecogame.data.remote.session.dto.input.EmailDto
+import com.dds.theecogame.data.remote.api.RetrofitInstance
 import com.dds.theecogame.data.remote.session.dto.input.ImageDto
 import com.dds.theecogame.data.remote.session.dto.input.PasswordDto
 import com.dds.theecogame.data.remote.session.dto.input.UserCreationDto
-import com.dds.theecogame.data.remote.session.dto.input.UsernameDto
 import com.dds.theecogame.data.remote.session.dto.toResponse
 import com.dds.theecogame.data.remote.session.dto.toUser
 import com.dds.theecogame.domain.model.Response
@@ -20,29 +18,28 @@ class UserRepositoryImpl : UserRepository {
 
     private val api = RetrofitInstance.userService
 
-
     override suspend fun checkUsername(username: String): Flow<Resource<Response>> = flow {
 
         emit(Resource.Loading())
 
-        val response = api.checkUsername(UsernameDto(username))
+        val response = api.checkUsername(username)
 
         if (response.isSuccessful)
             emit(Resource.Success(response.body()!!.toResponse()))
-
-        emit(Resource.Error(response.message()))
+        else
+            emit(Resource.Error(response.message()))
     }
 
     override suspend fun checkEmail(email: String): Flow<Resource<Response>> = flow {
 
         emit(Resource.Loading())
 
-        val response = api.checkEmail(EmailDto(email))
+        val response = api.checkEmail(email)
 
         if (response.isSuccessful)
             emit(Resource.Success(response.body()!!.toResponse()))
-
-        emit(Resource.Error(response.message()))
+        else
+            emit(Resource.Error(response.message()))
     }
 
     override suspend fun checkPassword(
@@ -56,20 +53,20 @@ class UserRepositoryImpl : UserRepository {
 
         if (response.isSuccessful)
             emit(Resource.Success(response.body()!!.toResponse()))
-
-        emit(Resource.Error(response.message()))
+        else
+            emit(Resource.Error(response.message()))
     }
 
     override suspend fun getUser(email: String): Flow<Resource<User>> = flow {
 
         emit(Resource.Loading())
 
-        val response = api.getUser(EmailDto(email))
+        val response = api.getUser(email)
 
         if (response.isSuccessful)
             emit(Resource.Success(response.body()!!.toUser()))
-
-        emit(Resource.Error(response.message()))
+        else
+            emit(Resource.Error(response.message()))
     }
 
     override suspend fun createUser(
@@ -86,8 +83,26 @@ class UserRepositoryImpl : UserRepository {
 
         if (response.isSuccessful)
             emit(Resource.Success(response.body()!!.toResponse()))
+        else
+            emit(Resource.Error(response.message()))
+    }
 
-        emit(Resource.Error(response.message()))
+    override suspend fun updateUser(
+        username: String,
+        name: String,
+        surname: String,
+        email: String,
+        password: String
+    ): Flow<Resource<Response>> = flow {
+
+        emit(Resource.Loading())
+
+        val response = api.updateUser(UserCreationDto(email, name, password, surname, username))
+
+        if (response.isSuccessful)
+            emit(Resource.Success(response.body()!!.toResponse()))
+        else
+            emit(Resource.Error(response.message()))
     }
 
     override suspend fun updateAvatar(file: File): Flow<Resource<Response>> = flow {
@@ -98,7 +113,7 @@ class UserRepositoryImpl : UserRepository {
 
         if (response.isSuccessful)
             emit(Resource.Success(response.body()!!.toResponse()))
-
-        emit(Resource.Error(response.message()))
+        else
+            emit(Resource.Error(response.message()))
     }
 }

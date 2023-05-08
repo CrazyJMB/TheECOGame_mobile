@@ -24,5 +24,13 @@ interface UserRepository {
         password: String
     ): Flow<Resource<Response>>
 
+    suspend fun updateUser(
+        username: String,
+        name: String,
+        surname: String,
+        email: String,
+        password: String
+    ): Flow<Resource<Response>>
+
     suspend fun updateAvatar(file: File): Flow<Resource<Response>>
 }

@@ -1,8 +1,5 @@
 package com.dds.theecogame.domain.builder
 
-import com.dds.theecogame.common.RetrofitInstance
-import com.dds.theecogame.data.remote.challenge.dto.toQuestion
-
 class GameDirector(private val builder: GameBuilder) {
 
     fun construct(): Game {

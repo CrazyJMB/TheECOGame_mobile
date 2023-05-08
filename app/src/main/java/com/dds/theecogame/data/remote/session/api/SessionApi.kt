@@ -2,36 +2,40 @@ package com.dds.theecogame.data.remote.session.api
 
 import com.dds.theecogame.data.remote.session.dto.ResponseDto
 import com.dds.theecogame.data.remote.session.dto.UserDto
-import com.dds.theecogame.data.remote.session.dto.input.EmailDto
 import com.dds.theecogame.data.remote.session.dto.input.ImageDto
 import com.dds.theecogame.data.remote.session.dto.input.PasswordDto
 import com.dds.theecogame.data.remote.session.dto.input.UserCreationDto
-import com.dds.theecogame.data.remote.session.dto.input.UsernameDto
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface SessionApi {
 
     @GET("/users/checkUsername")
-    suspend fun checkUsername(@Body username: UsernameDto): Response<ResponseDto>
+    suspend fun checkUsername(@Query("username") username: String): Response<ResponseDto>
 
     @GET("/users/checkEmail")
-    suspend fun checkEmail(@Body email: EmailDto): Response<ResponseDto>
+    suspend fun checkEmail(@Query("email") email: String): Response<ResponseDto>
 
-    @GET("/users/{userId}/password")
+    @PUT("/users/{userId}/password")
     suspend fun checkPassword(
         @Path("userId") userId: Int,
         @Body password: PasswordDto
     ): Response<ResponseDto>
 
     @GET("/users")
-    suspend fun getUser(@Body email: EmailDto): Response<UserDto>
+    suspend fun getUser(@Query("email") email: String): Response<UserDto>
 
     @POST("/users")
     suspend fun createUser(@Body user: UserCreationDto): Response<ResponseDto>
+
+    @PUT("/users")
+    suspend fun updateUser(@Body user: UserCreationDto): Response<ResponseDto>
 
     @POST("/users/userId/avatar")
     fun updateAvatar(@Body image: ImageDto): Response<ResponseDto>
