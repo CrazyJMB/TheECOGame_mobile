@@ -14,6 +14,7 @@ import com.dds.theecogame.domain.repository.UserRepository
 import com.dds.theecogame.domain.userRestrictions.UserRestrictions
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.userManagement.viewModel.EditProfileViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 
 class EditProfileActivity : AppCompatActivity() {
@@ -22,6 +23,7 @@ class EditProfileActivity : AppCompatActivity() {
     private val viewModel: EditProfileViewModel by viewModels()
     private lateinit var restrictions: UserRestrictions
     private val userRepository: UserRepository = UserRepositoryImpl()
+    private var userId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,34 +93,48 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         binding.btnSave.setOnClickListener {
-            runBlocking {
-                userRepository.updateUser(
-                    binding.etUsername.text.toString(),
-                    "name",
-                    "surname",
-                    binding.etEmail.text.toString(),
-                    binding.etPassword.text.toString()
-                ).collect {
+
+            runBlocking(Dispatchers.IO) {
+                userRepository.getUser(binding.etEmail.text.toString()).collect {
                     when (it) {
                         is Resource.Loading -> {}
                         is Resource.Success -> {
-                            goToMainScreen(binding.root)
+                            userId = it.data?.id!!
                         }
-                        is Resource.Error -> {
+                        is Resource.Error -> {}
+                    }
+                }
 
+                runBlocking(Dispatchers.IO) {
+                    userRepository.updateUser(
+                        userId,
+                        binding.etUsername.text.toString(),
+                        "name",
+                        "surname",
+                        binding.etEmail.text.toString(),
+                        binding.etPassword.text.toString()
+                    ).collect {
+                        when (it) {
+                            is Resource.Loading -> {}
+                            is Resource.Success -> {
+                                goToMainScreen()
+                            }
+                            is Resource.Error -> {
+
+                            }
                         }
                     }
                 }
             }
-        }
 
-        binding.ibBack.setOnClickListener {
-            goToMainScreen(binding.root)
-        }
+            binding.ibBack.setOnClickListener {
+                goToMainScreen()
+            }
 
+        }
     }
 
-    private fun goToMainScreen(view: View) {
+    private fun goToMainScreen() {
         val intent = Intent(this, MainScreenActivity::class.java)
         startActivity(intent)
     }
