@@ -88,6 +88,7 @@ class UserRepositoryImpl : UserRepository {
     }
 
     override suspend fun updateUser(
+        userId: Int,
         username: String,
         name: String,
         surname: String,
@@ -97,7 +98,8 @@ class UserRepositoryImpl : UserRepository {
 
         emit(Resource.Loading())
 
-        val response = api.updateUser(UserCreationDto(email, name, password, surname, username))
+        val response =
+            api.updateUser(userId, UserCreationDto(email, name, password, surname, username))
 
         if (response.isSuccessful)
             emit(Resource.Success(response.body()!!.toResponse()))

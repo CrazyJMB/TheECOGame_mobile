@@ -25,6 +25,7 @@ interface UserRepository {
     ): Flow<Resource<Response>>
 
     suspend fun updateUser(
+        userId: Int,
         username: String,
         name: String,
         surname: String,
