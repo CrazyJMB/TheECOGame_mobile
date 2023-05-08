@@ -79,6 +79,7 @@
     <string name="left_arm_hangman">Left arm</string>
     <string name="right_leg_hangman">Right leg</string>
     <string name="left_leg_hangman">Left leg</string>
+    <string name="challenges_answered_correctly">Completed challenges:</string>
 
     <string name="one">1</string>
     <string name="two">2</string>

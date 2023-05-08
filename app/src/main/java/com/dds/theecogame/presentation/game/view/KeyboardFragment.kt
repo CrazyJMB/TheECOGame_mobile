@@ -29,9 +29,13 @@ class KeyboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         gameViewModel.visibleLetters.observe(viewLifecycleOwner){
+            println(it)
             for (letter in it){
-                val button = binding.root.findViewWithTag<Button>("btn$letter")
+                if (!letter.equals(' ')){
+                val btnID = resources.getIdentifier("btn$letter", "id", requireContext().packageName)
+                val button = binding.root.findViewById<Button>(btnID)
                 button.visibility = View.INVISIBLE
+                }
             }
         }
 

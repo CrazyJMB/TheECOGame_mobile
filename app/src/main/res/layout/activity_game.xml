@@ -16,11 +16,12 @@
         android:layout_marginBottom="6dp"
         android:backgroundTint="@color/background_green"
         android:contentDescription="@string/back"
-        app:srcCompat="@android:drawable/ic_menu_help"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/Linea"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_help"
         app:tint="@color/black"
         tools:ignore="ImageContrastCheck" />
 

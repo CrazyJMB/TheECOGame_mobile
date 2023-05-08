@@ -101,6 +101,7 @@
     <string name="clues">Pistas</string>
     <string name="clues_description">Puedes comprar una pista para el reto, la pista es un
         descripción, al usarla haces que el valor de la pregunta sea la mitad </string>
+    <string name="challenges_answered_correctly">Retos completados:</string>
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">¿Deseas abandonar?</string>

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.dds.theecogame.R
@@ -31,8 +32,8 @@ class fragment_hangman : Fragment() {
     private var mistakes = 0
     private var word = ""
     private var dificulty = 0
-    private lateinit var listNotMissingChar: MutableList<Char>
-    private lateinit var listMissingChar: MutableList<Char>
+    private var listNotMissingChar = mutableListOf<Char>()
+    private var listMissingChar = mutableListOf<Char>()
     private lateinit var currentHangman: Hangman
 
     override fun onCreateView(
@@ -46,6 +47,22 @@ class fragment_hangman : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.ivPointsHangman.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle(R.string.alert_points)
+            builder.setMessage(
+                getString(R.string.total_points) + " " +
+                        gameViewModel.getPoints().toString() +
+                        "\n\n" +
+                        getString(R.string.consolidate_points) + " " +
+                        gameViewModel.getConsolidatedPoints().toString()
+            )
+            builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
+                //No hace nada
+            }
+            builder.show()
+        }
+
         gameViewModel.gameLiveData.observe(viewLifecycleOwner) { game ->
             when (val nextQuestion = game.deleteFirstChallenge()){
                 is Game.Challenge.HangmanModel -> {
@@ -53,13 +70,17 @@ class fragment_hangman : Fragment() {
                     word = currentHangman.word.uppercase()
                     dificulty = currentHangman.difficulty
 
-                    //makeWordDificulty()
+                    makeWordDificulty()
+
+                    binding.tvPointsNumberHangman.text = (dificulty * 10).toString()
+                    binding.tvHangmanNumber.text = gameViewModel.getQuestionNumber().toString()
                 }
             }
         }
 
         startTimer()
-        /*
+        println(word)
+
         gameViewModel.btnPressed.observe(viewLifecycleOwner){
             if (listMissingChar.contains(it)){
                 var listIndexChange: MutableList<Int> = mutableListOf()
@@ -79,18 +100,23 @@ class fragment_hangman : Fragment() {
 
                 if (binding.tvHangmanWord.text.equals(word)){
                     gameViewModel.nextQuestionNumber()
+                    gameViewModel.addPoints(dificulty*10)
                     if (gameViewModel.getQuestionNumber() == 11) {
+                        stopTimer()
                         goToSummary()
                     } else if (gameViewModel.getConsolidated()) {
+                        stopTimer()
                         goToAbandon()
                     } else {
+                        stopTimer()
                         goToConsolidate()
                     }
                 }
             } else {
+                mistakes++
                 userMistake()
             }
-        }*/
+        }
 
     }
     private fun makeWordDificulty () {
@@ -105,6 +131,8 @@ class fragment_hangman : Fragment() {
     }
 
     private fun perecentageNoCharacters (perectange: Double){
+        println(word)
+
         val numberWords = (word.length * perectange).toInt()
         val characters = word.substring(0, numberWords)
         var i = 0
@@ -115,12 +143,13 @@ class fragment_hangman : Fragment() {
             }
             i++
         }
-        /*
-        val auxiliar = binding.tvHangmanWord.text.toString().toList().toMutableList()
 
+        val auxiliar = word.toList().toMutableList()
         listMissingChar.forEach { element ->
             if (auxiliar.contains(element)) {
-                val indices = auxiliar.withIndex().filter { it.value == element }.map { it.index }
+                val indices = auxiliar.withIndex().filter { it.value == element &&
+                        it.value != 'Ñ' && it.value != 'Ú' &&
+                        it.value != ' '}.map { it.index }
                 indices.forEach { index ->
                     auxiliar[index] = '_'
                 }
@@ -129,15 +158,12 @@ class fragment_hangman : Fragment() {
 
         binding.tvHangmanWord.text = auxiliar.joinToString("")
 
-        var i = 0
-        while (i < auxiliar.size - 1){
-            val letter = auxiliar[i]
-            if (!letter.equals("_") && !listNotMissingChar.contains(letter)) {
-                listNotMissingChar.add(letter)
-            }
-            i++
-        }
-        gameViewModel.changeStartingVisibilityLetters(listNotMissingChar)*/
+        var wordList = word.toList().toMutableList()
+        wordList.retainAll { auxiliar.contains(it) }
+        wordList.toSet().toMutableList()
+
+        listNotMissingChar.addAll(wordList)
+        gameViewModel.changeStartingVisibilityLetters(listNotMissingChar)
     }
 
     private fun userMistake(){
@@ -147,8 +173,8 @@ class fragment_hangman : Fragment() {
             3 -> {binding.ivLeftArm.visibility = View.VISIBLE; playLosingMusic(true)}
             4 -> {binding.ivRightArm.visibility = View.VISIBLE; playLosingMusic(true)}
             5 -> {binding.ivLeftLeg.visibility = View.VISIBLE; playLosingMusic(true)}
-            6 -> {binding.ivRightLeg.visibility = View.VISIBLE; playLosingMusic(true)}
             else -> {
+                binding.ivRightLeg.visibility = View.VISIBLE; playLosingMusic(true)
                 stopTimer()
                 if (tense) {
                     mediaPlayer.stop()

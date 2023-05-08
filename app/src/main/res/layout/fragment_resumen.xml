@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="240sp"
-        android:text="@string/answeredQuestions"
+        android:text="@string/challenges_answered_correctly"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="@dimen/header_font_size" />

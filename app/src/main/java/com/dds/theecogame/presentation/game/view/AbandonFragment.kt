@@ -48,7 +48,6 @@ class AbandonFragment : Fragment() {
 
     private fun nextChallenge() {
         gameViewModel.gameLiveData.observe(requireActivity()){
-            println(it.challengesList)
             when (it.getNextChallenge()){
                 is Game.Challenge.HangmanModel -> {
                     goToHangman()

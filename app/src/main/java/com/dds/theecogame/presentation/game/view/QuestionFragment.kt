@@ -55,8 +55,6 @@ class QuestionFragment : Fragment() {
 
         // Set question information
         gameViewModel.gameLiveData.observe(viewLifecycleOwner) { game ->
-            println(game.challengesList.size)
-
             when (val nextQuestion = game.deleteFirstChallenge()) {
                 is Game.Challenge.QuestionModel -> {
                     currentQuestion = nextQuestion.questionModel
