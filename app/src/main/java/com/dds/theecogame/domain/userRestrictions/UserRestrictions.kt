@@ -7,10 +7,17 @@ import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import com.dds.theecogame.R
+import com.dds.theecogame.common.Resource
+import com.dds.theecogame.data.repository.UserRepositoryImpl
+import com.dds.theecogame.domain.repository.UserRepository
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.runBlocking
 
 class UserRestrictions(val context: Context) {
 
     private var error: String = String()
+    private var check: Boolean = true
+    private val userRepository: UserRepository = UserRepositoryImpl()
 
     fun getError(): String {
         return error
@@ -24,11 +31,26 @@ class UserRestrictions(val context: Context) {
         //check principal
         if (username.length > 20) {
             error = context.resources.getString(R.string.username_format_error)
-            return false
+            check = false
         }
         //check con llamada a api
+        runBlocking {
+            userRepository.checkUsername(username).collect {
+                when (it) {
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        check = true
+                    }
+                    is Resource.Error -> {
+                        error = context.resources.getString(R.string.username_db_error)
+                        //error = it.message.toString()
+                        check = false
+                    }
+                }
+            }
+        }
 
-        return true
+        return check
     }
 
     /*
@@ -50,6 +72,21 @@ class UserRestrictions(val context: Context) {
             return false
         }
         //check con llamada a api
+        runBlocking {
+            userRepository.checkEmail(email).collect {
+                when (it) {
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        check = true
+                    }
+                    is Resource.Error -> {
+                        error = context.resources.getString(R.string.email_db_error)
+                        //error = it.message.toString()
+                        check = false
+                    }
+                }
+            }
+        }
 
         return true
     }
@@ -83,7 +120,7 @@ class UserRestrictions(val context: Context) {
             error = context.resources.getString(R.string.password_number_error)
             return false
         }
-        //check con llamada a api
+        //check con llamada a api NO es necesaria
 
         return true
     }

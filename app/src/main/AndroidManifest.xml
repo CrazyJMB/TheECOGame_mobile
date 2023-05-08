@@ -30,7 +30,7 @@
         -->
 
         <activity
-            android:name=".presentation.editProfile.view.EditProfileActivity"
+            android:name=".presentation.register.view.RegisterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,9 +42,7 @@
         <activity
             android:name=".presentation.mainScreen.view.LoginActivity"
             android:exported="false" />
-        <activity
-            android:name=".presentation.register.view.RegisterActivity"
-            android:exported="false" />
+
         <activity
             android:name=".presentation.mainScreen.view.MainScreenActivity"
             android:exported="false" />
