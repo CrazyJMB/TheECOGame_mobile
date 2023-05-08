@@ -5,23 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
-import com.dds.theecogame.R
 import com.dds.theecogame.common.Application
 import com.dds.theecogame.common.Resource
-import com.dds.theecogame.data.local.DataStoreManager
-import com.dds.theecogame.data.remote.api.RetrofitInstance
 import com.dds.theecogame.data.repository.UserRepositoryImpl
-import com.dds.theecogame.dataStore
 import com.dds.theecogame.databinding.ActivityLogInBinding
 import com.dds.theecogame.domain.repository.UserRepository
-import com.dds.theecogame.presentation.game.view.GameActivity
-import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
 import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
-import retrofit2.Retrofit
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLogInBinding
@@ -77,7 +70,6 @@ class LoginActivity : AppCompatActivity() {
                                             }
                                             is Resource.Error -> {
                                                 //TODO: Popup error
-                                                binding.tvError.visibility = View.VISIBLE
                                             }
                                         }
                                     }
@@ -89,10 +81,11 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
-
-            binding.ibBack.setOnClickListener {
-                goToUserManagement()
-            }
+            binding.tvError.visibility = View.VISIBLE
+            binding.tvError.text = Application.getUser().email
+        }
+        binding.ibBack.setOnClickListener {
+            goToUserManagement()
         }
     }
 
@@ -101,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun goToUserManagement() {
+    private fun goToUserManagement() {
         val intent = Intent(this, UserManagementActivity::class.java)
         startActivity(intent)
     }
