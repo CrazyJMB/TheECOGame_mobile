@@ -49,12 +49,20 @@ class ConsolidateFragment : Fragment() {
             gameViewModel.setConsolidated(true)
             gameViewModel.setConsolidatedPoints()
             stopTimer()
-            nextChallenge()
+            if (gameViewModel.getQuestionNumber() == 11){
+                goToSummary()
+            } else {
+                nextChallenge()
+            }
         }
 
         binding.btnCancel.setOnClickListener {
             stopTimer()
-            nextChallenge()
+            if (gameViewModel.getQuestionNumber() == 11){
+                goToSummary()
+            } else {
+                nextChallenge()
+            }
         }
 
         binding.btnAbandon.setOnClickListener {

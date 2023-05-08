@@ -55,6 +55,8 @@ class QuestionFragment : Fragment() {
 
         // Set question information
         gameViewModel.gameLiveData.observe(viewLifecycleOwner) { game ->
+            println(game.challengesList.size)
+
             when (val nextQuestion = game.deleteFirstChallenge()) {
                 is Game.Challenge.QuestionModel -> {
                     currentQuestion = nextQuestion.questionModel
@@ -77,6 +79,7 @@ class QuestionFragment : Fragment() {
                     }
                 }
             }
+
         }
 
         startTimer()
@@ -141,6 +144,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun checkAnswer(correctAnswer: String): Boolean {
+        return true
         val rbSelected = binding.radioGroup.checkedRadioButtonId
         val answerSelected =
             binding.radioGroup.findViewById<RadioButton>(rbSelected).text.toString()

@@ -13,6 +13,7 @@ import com.dds.theecogame.data.repository.ChallengesRepositoryImpl
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameDirector
 import com.dds.theecogame.domain.builder.concreteBuilder.QuestionGameBuilder
+import com.dds.theecogame.domain.builder.concreteBuilder.QuestionHangmanGameBuilder
 import com.dds.theecogame.domain.repository.ChallengesRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -103,9 +104,9 @@ class GameViewModel : ViewModel() {
     fun createGame(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val game = GameDirector(QuestionGameBuilder(challengesRepository)).construct()
-                game.sortChallengesByDifficulty()
-                _gameLiveData.postValue(game)
+                val game = GameDirector(QuestionHangmanGameBuilder(challengesRepository)).construct()
+                if (game.sortChallengesByDifficulty()) {
+                _gameLiveData.postValue(game)}
             } catch (e: HttpException) {
                 viewModelScope.launch(Dispatchers.Main) {
                     Toast.makeText(

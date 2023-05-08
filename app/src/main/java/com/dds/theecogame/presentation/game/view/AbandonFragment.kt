@@ -2,6 +2,7 @@ package com.dds.theecogame.presentation.game.view
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,16 +34,21 @@ class AbandonFragment : Fragment() {
 
         binding.btnConfirm.setOnClickListener {
             gameViewModel.setGameStatus(1)
-            nextChallenge()
+            goToSummary()
         }
 
         binding.btnCancel.setOnClickListener {
-            nextChallenge()
+            if (gameViewModel.getQuestionNumber() == 11){
+                goToSummary()
+            } else {
+                nextChallenge()
+            }
         }
     }
 
     private fun nextChallenge() {
         gameViewModel.gameLiveData.observe(requireActivity()){
+            println(it.challengesList)
             when (it.getNextChallenge()){
                 is Game.Challenge.HangmanModel -> {
                     goToHangman()

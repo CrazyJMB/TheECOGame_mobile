@@ -50,19 +50,16 @@ class fragment_hangman : Fragment() {
             when (val nextQuestion = game.deleteFirstChallenge()){
                 is Game.Challenge.HangmanModel -> {
                     currentHangman = nextQuestion.hangmanModel
+                    word = currentHangman.word.uppercase()
+                    dificulty = currentHangman.difficulty
 
-                    nextQuestion.let {
-                        word = currentHangman.word.uppercase()
-                        dificulty = currentHangman.difficulty
-
-                        makeWordDificulty()
-                    }
+                    //makeWordDificulty()
                 }
             }
         }
 
         startTimer()
-
+        /*
         gameViewModel.btnPressed.observe(viewLifecycleOwner){
             if (listMissingChar.contains(it)){
                 var listIndexChange: MutableList<Int> = mutableListOf()
@@ -93,7 +90,7 @@ class fragment_hangman : Fragment() {
             } else {
                 userMistake()
             }
-        }
+        }*/
 
     }
     private fun makeWordDificulty () {
@@ -110,12 +107,15 @@ class fragment_hangman : Fragment() {
     private fun perecentageNoCharacters (perectange: Double){
         val numberWords = (word.length * perectange).toInt()
         val characters = word.substring(0, numberWords)
-        for (char in characters){
-            if (!listMissingChar.contains(char)){
-                listMissingChar.add(char)
-            }
-        }
+        var i = 0
 
+        while (i < characters.length - 1) {
+            if (!listMissingChar.contains(characters.elementAt(i))) {
+                listMissingChar.add(characters.elementAt(i))
+            }
+            i++
+        }
+        /*
         val auxiliar = binding.tvHangmanWord.text.toString().toList().toMutableList()
 
         listMissingChar.forEach { element ->
@@ -137,6 +137,7 @@ class fragment_hangman : Fragment() {
             }
             i++
         }
+        gameViewModel.changeStartingVisibilityLetters(listNotMissingChar)*/
     }
 
     private fun userMistake(){
