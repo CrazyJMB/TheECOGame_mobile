@@ -34,8 +34,11 @@ interface SessionApi {
     @POST("/users")
     suspend fun createUser(@Body user: UserCreationDto): Response<ResponseDto>
 
-    @PUT("/users")
-    suspend fun updateUser(@Body user: UserCreationDto): Response<ResponseDto>
+    @PUT("/users/{userId}")
+    suspend fun updateUser(
+        @Path("userId") userId: Int,
+        @Body user: UserCreationDto
+    ): Response<ResponseDto>
 
     @POST("/users/userId/avatar")
     fun updateAvatar(@Body image: ImageDto): Response<ResponseDto>
