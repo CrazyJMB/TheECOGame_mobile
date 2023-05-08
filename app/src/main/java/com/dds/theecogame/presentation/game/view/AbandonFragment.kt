@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.FragmentAbandonBinding
 import com.dds.theecogame.databinding.FragmentConsolidateBinding
+import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 
 class AbandonFragment : Fragment() {
@@ -29,13 +30,27 @@ class AbandonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         startMusic()
+
         binding.btnConfirm.setOnClickListener {
             gameViewModel.setGameStatus(1)
-            goToSummary()
+            nextChallenge()
         }
 
         binding.btnCancel.setOnClickListener {
-            goToQuestions()
+            nextChallenge()
+        }
+    }
+
+    private fun nextChallenge() {
+        gameViewModel.gameLiveData.observe(requireActivity()){
+            when (it.getNextChallenge()){
+                is Game.Challenge.HangmanModel -> {
+                    goToHangman()
+                }
+                is Game.Challenge.QuestionModel -> {
+                    goToQuestions()
+                }
+            }
         }
     }
 
@@ -53,6 +68,13 @@ class AbandonFragment : Fragment() {
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
             .replace(R.id.GameContainerView, QuestionFragment())
+            .commit()
+    }
+
+    private fun goToHangman() {
+        val fragmentManager = requireActivity().supportFragmentManager
+        fragmentManager.beginTransaction()
+            .replace(R.id.GameContainerView, fragment_hangman())
             .commit()
     }
 

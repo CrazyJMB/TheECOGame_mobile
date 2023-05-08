@@ -46,6 +46,11 @@ class LoginActivity : AppCompatActivity() {
                 binding.tvError.visibility = View.VISIBLE
             }
         }
+
+        binding.imageButton.setOnClickListener {
+            val intent = Intent(this, MainScreenActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun goToMainScreen (){

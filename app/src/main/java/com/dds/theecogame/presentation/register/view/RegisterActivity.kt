@@ -1,21 +1,34 @@
 package com.dds.theecogame.presentation.register.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
+import androidx.datastore.core.DataStoreFactory
+import com.dds.theecogame.data.local.DataStoreManager
 import com.dds.theecogame.data.remote.api.RetrofitInstance
 import com.dds.theecogame.data.remote.session.dto.UserDto
+import com.dds.theecogame.data.repository.ChallengesRepositoryImpl
+import com.dds.theecogame.data.repository.UserRepositoryImpl
 import com.dds.theecogame.presentation.register.viewModel.RegisterViewModel
 import com.dds.theecogame.databinding.ActivityRegisterBinding
+import com.dds.theecogame.domain.model.User
+import com.dds.theecogame.domain.repository.ChallengesRepository
+import com.dds.theecogame.domain.repository.UserRepository
 import com.dds.theecogame.domain.userRestrictions.UserRestrictions
+import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private val viewModel: RegisterViewModel by viewModels()
     private lateinit var restrictions: UserRestrictions
+
+    private val userRepository: UserRepository = UserRepositoryImpl()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,8 +98,19 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.btnCreateUser.setOnClickListener {
-            //TODO crear usuario en la API
-            //TODO ir al MainScreenActivity, con el usuario creado ya iniciado sesión
+            //TODO guardar el usuario creado en el datastore
+            GlobalScope.launch {
+                userRepository.createUser(
+                    username = binding.etUsername.toString(),
+                    password = binding.etPassword.toString(),
+                    email = binding.etEmail.toString(),
+                    name = "PABLO",
+                    surname = "ESCOBAR"
+                )
+            }
+
+            val intent = Intent(this, MainScreenActivity::class.java)
+            startActivity(intent)
         }
     }
 }

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.FragmentConsolidateBinding
+import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 
 class ConsolidateFragment : Fragment() {
@@ -48,12 +49,12 @@ class ConsolidateFragment : Fragment() {
             gameViewModel.setConsolidated(true)
             gameViewModel.setConsolidatedPoints()
             stopTimer()
-            goToQuestions()
+            nextChallenge()
         }
 
         binding.btnCancel.setOnClickListener {
             stopTimer()
-            goToQuestions()
+            nextChallenge()
         }
 
         binding.btnAbandon.setOnClickListener {
@@ -98,10 +99,30 @@ class ConsolidateFragment : Fragment() {
         mediaPlayer.start()
     }
 
+    private fun nextChallenge() {
+        gameViewModel.gameLiveData.observe(requireActivity()){
+            when (it.getNextChallenge()){
+                is Game.Challenge.HangmanModel -> {
+                    goToHangman()
+                }
+                is Game.Challenge.QuestionModel -> {
+                    goToQuestions()
+                }
+            }
+        }
+    }
+
     private fun goToQuestions() {
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
             .replace(R.id.GameContainerView, QuestionFragment())
+            .commit()
+    }
+
+    private fun goToHangman() {
+        val fragmentManager = requireActivity().supportFragmentManager
+        fragmentManager.beginTransaction()
+            .replace(R.id.GameContainerView, fragment_hangman())
             .commit()
     }
 
