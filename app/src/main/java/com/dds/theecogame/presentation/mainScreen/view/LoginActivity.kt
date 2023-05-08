@@ -66,21 +66,26 @@ class LoginActivity : AppCompatActivity() {
                         is Resource.Loading -> {}
                         is Resource.Success -> {
                             //TODO: Crear objeto User común
-
                             lifecycleScope.launch(Dispatchers.IO) {
-                                userRepository.getUser(binding.inputEmail.text.toString()).collect {
-                                    when (it) {
-                                        is Resource.Loading -> {}
-                                        is Resource.Success -> {
-                                            it.data?.let { it1 -> Application.setUser(it1) }
+                                userRepository.getUser(binding.inputEmail.text.toString())
+                                    .collect { user ->
+                                        when (user) {
+                                            is Resource.Loading -> {}
+                                            is Resource.Success -> {
+                                                Application.setUser(user.data!!)
+                                                //GlobalScope.launch { goToMainScreen() }
+                                            }
+                                            is Resource.Error -> {
+                                                //TODO: Popup error
+                                                binding.tvError.visibility = View.VISIBLE
+                                            }
                                         }
-                                        is Resource.Error -> {}
                                     }
-                                }
+
                             }
-                            goToMainScreen()
                         }
-                        is Resource.Error -> {}
+                        is Resource.Error -> {
+                        }
                     }
                 }
             }
