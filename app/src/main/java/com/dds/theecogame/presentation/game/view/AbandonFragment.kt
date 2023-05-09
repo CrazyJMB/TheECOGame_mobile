@@ -2,6 +2,7 @@ package com.dds.theecogame.presentation.game.view
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.FragmentAbandonBinding
 import com.dds.theecogame.databinding.FragmentConsolidateBinding
+import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 
 class AbandonFragment : Fragment() {
@@ -29,13 +31,31 @@ class AbandonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         startMusic()
+
         binding.btnConfirm.setOnClickListener {
             gameViewModel.setGameStatus(1)
             goToSummary()
         }
 
         binding.btnCancel.setOnClickListener {
-            goToQuestions()
+            if (gameViewModel.getQuestionNumber() == 11){
+                goToSummary()
+            } else {
+                nextChallenge()
+            }
+        }
+    }
+
+    private fun nextChallenge() {
+        gameViewModel.gameLiveData.observe(requireActivity()){
+            when (it.getNextChallenge()){
+                is Game.Challenge.HangmanModel -> {
+                    goToHangman()
+                }
+                is Game.Challenge.QuestionModel -> {
+                    goToQuestions()
+                }
+            }
         }
     }
 
@@ -53,6 +73,13 @@ class AbandonFragment : Fragment() {
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
             .replace(R.id.GameContainerView, QuestionFragment())
+            .commit()
+    }
+
+    private fun goToHangman() {
+        val fragmentManager = requireActivity().supportFragmentManager
+        fragmentManager.beginTransaction()
+            .replace(R.id.GameContainerView, fragment_hangman())
             .commit()
     }
 

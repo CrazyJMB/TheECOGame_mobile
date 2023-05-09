@@ -86,6 +86,11 @@ class LoginActivity : AppCompatActivity() {
         binding.ibBack.setOnClickListener {
             goToUserManagement()
         }
+
+        binding.imageButton.setOnClickListener {
+            val intent = Intent(this, MainScreenActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun goToMainScreen() {

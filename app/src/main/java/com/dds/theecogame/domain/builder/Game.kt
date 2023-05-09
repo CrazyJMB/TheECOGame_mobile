@@ -14,7 +14,7 @@ class Game {
         data class HangmanModel(val hangmanModel: Hangman) : Challenge()
     }
 
-    fun sortChallengesByDifficulty() {
+    fun sortChallengesByDifficulty(): Boolean {
         val sortedChallenges = challengesList.values.sortedBy { challenge ->
             when (challenge) {
                 is Challenge.QuestionModel -> challenge.questionModel.difficulty
@@ -29,6 +29,7 @@ class Game {
         sortedChallenges.forEachIndexed { index, challenge ->
             challengesList[index + 1] = challenge
         }
+        return true
     }
 
     fun getNextChallenge(): Challenge? {

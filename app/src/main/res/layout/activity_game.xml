@@ -16,11 +16,12 @@
         android:layout_marginBottom="6dp"
         android:backgroundTint="@color/background_green"
         android:contentDescription="@string/back"
-        app:srcCompat="@android:drawable/ic_menu_help"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/Linea"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_help"
         app:tint="@color/black"
         tools:ignore="ImageContrastCheck" />
 
@@ -57,7 +58,6 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/GameContainerView"
-        android:name="com.dds.theecogame.presentation.game.view.QuestionFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,7 +75,7 @@
         app:layout_constraintBottom_toTopOf="@+id/Linea"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnMute"
-        app:layout_constraintStart_toEndOf="@+id/btnBack"
+        app:layout_constraintStart_toEndOf="@+id/btnClues"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/fragment_title_question" />
 

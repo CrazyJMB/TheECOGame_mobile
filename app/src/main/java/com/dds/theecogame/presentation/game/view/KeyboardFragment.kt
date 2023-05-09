@@ -21,7 +21,6 @@ class KeyboardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentKeyboardBinding.inflate(inflater)
         return binding.root
     }
@@ -30,23 +29,196 @@ class KeyboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         gameViewModel.visibleLetters.observe(viewLifecycleOwner){
+            println(it)
             for (letter in it){
-                val button = binding.root.findViewWithTag<Button>("btn$letter")
+                if (!letter.equals(' ')){
+                val btnID = resources.getIdentifier("btn$letter", "id", requireContext().packageName)
+                val button = binding.root.findViewById<Button>(btnID)
                 button.visibility = View.INVISIBLE
+                }
             }
         }
 
-        binding.root.setOnClickListener{
-            val btnID = view.id
-            val btnStr = resources.getResourceEntryName(btnID)
-            val btnChar = btnStr.getOrNull(btnStr.length - 1)
-
-            if (btnChar in 'A'..'Z'){
-                view.visibility = View.INVISIBLE
-                gameViewModel.addBtnPressed(btnChar!!.toChar())
-            }
+        binding.btnA.setOnClickListener {
+            val aux = binding.btnA
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
         }
 
+        binding.btnB.setOnClickListener {
+            val aux = binding.btnB
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnC.setOnClickListener {
+            val aux = binding.btnC
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnD.setOnClickListener {
+            val aux = binding.btnD
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnE.setOnClickListener {
+            val aux = binding.btnE
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnF.setOnClickListener {
+            val aux = binding.btnF
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnG.setOnClickListener {
+            val aux = binding.btnG
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnH.setOnClickListener {
+            val aux = binding.btnH
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnI.setOnClickListener {
+            val aux = binding.btnI
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnJ.setOnClickListener {
+            val aux = binding.btnJ
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnK.setOnClickListener {
+            val aux = binding.btnK
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnL.setOnClickListener {
+            val aux = binding.btnL
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnM.setOnClickListener {
+            val aux = binding.btnM
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnN.setOnClickListener {
+            val aux = binding.btnN
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnO.setOnClickListener {
+            val aux = binding.btnO
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnP.setOnClickListener {
+            val aux = binding.btnP
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnQ.setOnClickListener {
+            val aux = binding.btnQ
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnR.setOnClickListener {
+            val aux = binding.btnR
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnS.setOnClickListener {
+            val aux = binding.btnS
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnT.setOnClickListener {
+            val aux = binding.btnT
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnU.setOnClickListener {
+            val aux = binding.btnU
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnV.setOnClickListener {
+            val aux = binding.btnV
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnW.setOnClickListener {
+            val aux = binding.btnW
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnX.setOnClickListener {
+            val aux = binding.btnX
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnY.setOnClickListener {
+            val aux = binding.btnY
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
+
+        binding.btnZ.setOnClickListener {
+            val aux = binding.btnZ
+            aux.visibility = View.INVISIBLE
+            val char = aux.text.last()
+            gameViewModel.addBtnPressed(char)
+        }
     }
-
 }

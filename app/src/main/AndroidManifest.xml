@@ -35,7 +35,8 @@
             android:exported="false" />
         <activity
             android:name=".presentation.mainScreen.view.MainScreenActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".presentation.game.view.GameActivity"
             android:exported="false" />
