@@ -33,5 +33,5 @@ interface UserRepository {
         password: String
     ): Flow<Resource<Response>>
 
-    suspend fun updateAvatar(file: File): Flow<Resource<Response>>
+    suspend fun updateAvatar(userId: Int, fileUrl: String): Flow<Resource<Response>>
 }

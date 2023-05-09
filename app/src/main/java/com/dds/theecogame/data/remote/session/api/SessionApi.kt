@@ -5,12 +5,14 @@ import com.dds.theecogame.data.remote.session.dto.UserDto
 import com.dds.theecogame.data.remote.session.dto.input.ImageDto
 import com.dds.theecogame.data.remote.session.dto.input.PasswordDto
 import com.dds.theecogame.data.remote.session.dto.input.UserCreationDto
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -40,6 +42,10 @@ interface SessionApi {
         @Body user: UserCreationDto
     ): Response<ResponseDto>
 
-    @POST("/users/userId/avatar")
-    fun updateAvatar(@Body image: ImageDto): Response<ResponseDto>
+    @Multipart
+    @POST("/users/{userId}/avatar")
+    fun updateAvatar(
+        @Path("userId") userId: Int,
+        @Part image: MultipartBody.Part
+    ): Response<ResponseDto>
 }

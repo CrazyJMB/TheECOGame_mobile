@@ -9,17 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.FragmentHangmanBinding
-import com.dds.theecogame.databinding.FragmentTitleQuestionBinding
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.model.challenges.Hangman
-import com.dds.theecogame.domain.model.challenges.Question
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
-import com.dds.theecogame.presentation.game.viewModel.QuestionViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class fragment_hangman : Fragment() {
+class HangmanFragment : Fragment() {
 
     private lateinit var binding: FragmentHangmanBinding
     private lateinit var mediaPlayer: MediaPlayer
@@ -64,9 +63,14 @@ class fragment_hangman : Fragment() {
         }
 
         gameViewModel.gameLiveData.observe(viewLifecycleOwner) { game ->
-            when (val nextQuestion = game.deleteFirstChallenge()){
+            when (val nextQuestion = game.deleteFirstChallenge()) {
                 is Game.Challenge.HangmanModel -> {
                     currentHangman = nextQuestion.hangmanModel
+
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        gameViewModel.registerChallenge(currentHangman.id, "HANGMAN")
+                    }
+
                     word = currentHangman.word.uppercase()
                     dificulty = currentHangman.difficulty
 
@@ -81,26 +85,29 @@ class fragment_hangman : Fragment() {
         startTimer()
         println(word)
 
-        gameViewModel.btnPressed.observe(viewLifecycleOwner){
-            if (listMissingChar.contains(it)){
+        gameViewModel.btnPressed.observe(viewLifecycleOwner) {
+            if (listMissingChar.contains(it)) {
                 var listIndexChange: MutableList<Int> = mutableListOf()
                 var hangmanWord = binding.tvHangmanWord.text.toString().toMutableList()
 
-                for ((index, char) in word.withIndex()){
-                    if (char == it){
+                for ((index, char) in word.withIndex()) {
+                    if (char == it) {
                         listIndexChange.add(index)
                     }
                 }
 
-                for (index in listIndexChange){
+                for (index in listIndexChange) {
                     hangmanWord[index] = it
                 }
 
                 binding.tvHangmanWord.text = hangmanWord.joinToString("")
 
-                if (binding.tvHangmanWord.text.equals(word)){
+                if (binding.tvHangmanWord.text.equals(word)) {
+
+                    lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerHangmanCorrect() }
+
                     gameViewModel.nextQuestionNumber()
-                    gameViewModel.addPoints(dificulty*10)
+                    gameViewModel.addPoints(dificulty * 10)
                     if (gameViewModel.getQuestionNumber() == 11) {
                         stopTimer()
                         goToSummary()
@@ -119,9 +126,10 @@ class fragment_hangman : Fragment() {
         }
 
     }
-    private fun makeWordDificulty () {
+
+    private fun makeWordDificulty() {
         //1 -> 50%, 2 -> 40%, 3 -> 30%, 4-> 20%, 5-> 10%
-        when (dificulty){
+        when (dificulty) {
             1 -> perecentageNoCharacters(0.5)
             2 -> perecentageNoCharacters(0.6)
             3 -> perecentageNoCharacters(0.7)
@@ -130,7 +138,7 @@ class fragment_hangman : Fragment() {
         }
     }
 
-    private fun perecentageNoCharacters (perectange: Double){
+    private fun perecentageNoCharacters(perectange: Double) {
         val numberWords = (word.length * perectange).toInt()
         val characters = word.substring(0, numberWords)
         var i = 0
@@ -145,9 +153,11 @@ class fragment_hangman : Fragment() {
         val auxiliar = word.toList().toMutableList()
         listMissingChar.forEach { element ->
             if (auxiliar.contains(element)) {
-                val indices = auxiliar.withIndex().filter { it.value == element &&
-                        it.value != 'Ñ' && it.value != 'Ú' &&
-                        it.value != ' '}.map { it.index }
+                val indices = auxiliar.withIndex().filter {
+                    it.value == element &&
+                            it.value != 'Ñ' && it.value != 'Ú' &&
+                            it.value != ' '
+                }.map { it.index }
                 indices.forEach { index ->
                     auxiliar[index] = '_'
                 }
@@ -164,14 +174,32 @@ class fragment_hangman : Fragment() {
         gameViewModel.changeStartingVisibilityLetters(listNotMissingChar)
     }
 
-    private fun userMistake(){
-        when (mistakes){
-            1 -> {binding.ivHead.visibility = View.VISIBLE; playLosingMusic(true)}
-            2 -> {binding.ivBody.visibility = View.VISIBLE; playLosingMusic(true)}
-            3 -> {binding.ivLeftArm.visibility = View.VISIBLE; playLosingMusic(true)}
-            4 -> {binding.ivRightArm.visibility = View.VISIBLE; playLosingMusic(true)}
-            5 -> {binding.ivLeftLeg.visibility = View.VISIBLE; playLosingMusic(true)}
+    private fun userMistake() {
+        when (mistakes) {
+            1 -> {
+                binding.ivHead.visibility = View.VISIBLE; playLosingMusic(true)
+            }
+
+            2 -> {
+                binding.ivBody.visibility = View.VISIBLE; playLosingMusic(true)
+            }
+
+            3 -> {
+                binding.ivLeftArm.visibility = View.VISIBLE; playLosingMusic(true)
+            }
+
+            4 -> {
+                binding.ivRightArm.visibility = View.VISIBLE; playLosingMusic(true)
+            }
+
+            5 -> {
+                binding.ivLeftLeg.visibility = View.VISIBLE; playLosingMusic(true)
+            }
+
             else -> {
+                
+                lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerHangmanFailed() }
+
                 binding.ivRightLeg.visibility = View.VISIBLE; playLosingMusic(true)
                 stopTimer()
                 if (tense) {

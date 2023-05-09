@@ -3,7 +3,7 @@ package com.dds.theecogame.data.remote.challenge.dto
 import com.dds.theecogame.domain.model.challenges.Question
 
 data class QuestionDto(
-    val id: Int,
+    val challenge_details_id: Int,
     val difficulty: Int,
     val time: Int,
 
@@ -18,7 +18,7 @@ data class QuestionDto(
 
 fun QuestionDto.toQuestion(): Question {
     return Question(
-        id = id,
+        id = challenge_details_id,
         difficulty = difficulty,
         time = time,
         question = question,

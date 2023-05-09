@@ -1,18 +1,14 @@
 package com.dds.theecogame.presentation.game.view
 
-import android.content.Context
-import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.ActivityGameBinding
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
-import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 
 class GameActivity : AppCompatActivity() {
 
@@ -26,15 +22,16 @@ class GameActivity : AppCompatActivity() {
         viewModel.startMusic(this)
         isMusicPlaying = true
         viewModel.createGame(this)
-        viewModel.gameLiveData.observe(this){
-            when (it.getNextChallenge()){
+        viewModel.gameLiveData.observe(this) {
+            when (it.getNextChallenge()) {
                 is Game.Challenge.HangmanModel -> {
-                    val fragment = fragment_hangman()
+                    val fragment = HangmanFragment()
                     val fragmentManager = this.supportFragmentManager
                     fragmentManager.beginTransaction()
                         .replace(R.id.GameContainerView, fragment)
                         .commit()
                 }
+
                 is Game.Challenge.QuestionModel -> {
                     val fragment = QuestionFragment()
                     val fragmentManager = this.supportFragmentManager

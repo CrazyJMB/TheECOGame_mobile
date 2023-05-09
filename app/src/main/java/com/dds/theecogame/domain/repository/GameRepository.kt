@@ -9,7 +9,6 @@ interface GameRepository {
     suspend fun createGame(userId: Int): Flow<Resource<Int>>
 
     suspend fun addChallengeToGame(
-        userId: Int,
         gameId: Int,
         challengeId: Int,
         challengeType: String

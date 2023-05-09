@@ -1,21 +1,33 @@
 package com.dds.theecogame.presentation.editProfile.view
 
+import android.content.ContentResolver
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.icu.text.SimpleDateFormat
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
-import com.dds.theecogame.R
 import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.repository.UserRepositoryImpl
 import com.dds.theecogame.databinding.ActivityEditProfileBinding
 import com.dds.theecogame.domain.repository.UserRepository
 import com.dds.theecogame.domain.userRestrictions.UserRestrictions
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
-import com.dds.theecogame.presentation.userManagement.viewModel.EditProfileViewModel
+import com.dds.theecogame.presentation.editProfile.viewModel.EditProfileViewModel
+import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.util.Date
+import java.util.Locale
 
 class EditProfileActivity : AppCompatActivity() {
 
@@ -30,6 +42,21 @@ class EditProfileActivity : AppCompatActivity() {
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         restrictions = UserRestrictions(this)
         setContentView(binding.root)
+
+        // Load default values from the user
+        val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val imageFile = File(storageDir, "avatar.jpg")
+        if (imageFile.exists()) {
+            val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
+            binding.ivProfile.setImageBitmap(bitmap)
+        }
+
+
+
+        binding.btnEditImage.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, 100)
+        }
 
         binding.etUsername.setOnFocusChangeListener { view, b ->
             if (!b) {
@@ -118,7 +145,12 @@ class EditProfileActivity : AppCompatActivity() {
                         when (it) {
                             is Resource.Loading -> {}
                             is Resource.Success -> {
-                                goToMainScreen()
+                                startActivity(
+                                    Intent(
+                                        this@EditProfileActivity,
+                                        MainScreenActivity::class.java
+                                    )
+                                )
                             }
 
                             is Resource.Error -> {
@@ -130,13 +162,41 @@ class EditProfileActivity : AppCompatActivity() {
             }
 
             binding.ibBack.setOnClickListener {
-                goToMainScreen()
+                startActivity(Intent(this, UserManagementActivity::class.java))
             }
 
         }
     }
 
-    private fun goToMainScreen() {
-        startActivity(Intent(this, MainScreenActivity::class.java))
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            val imageUri = data?.data
+            if (imageUri != null) {
+
+                // Show the imagen
+                binding.ivProfile.setImageURI(imageUri)
+
+                // Save the image
+                val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+                val imageFile = File(storageDir, "avatar.jpg")
+
+                try {
+                    val inputStream = contentResolver.openInputStream(imageUri)
+                    val outputStream = FileOutputStream(imageFile)
+                    val buf = ByteArray(1024)
+                    var len: Int
+                    while (inputStream!!.read(buf).also { len = it } > 0) {
+                        outputStream.write(buf, 0, len)
+                    }
+                    inputStream.close()
+                    outputStream.close()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+
+
+            }
+        }
     }
 }

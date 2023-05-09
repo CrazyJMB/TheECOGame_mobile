@@ -12,6 +12,9 @@ import com.dds.theecogame.domain.model.User
 import com.dds.theecogame.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import java.io.File
 
 class UserRepositoryImpl : UserRepository {
@@ -107,15 +110,20 @@ class UserRepositoryImpl : UserRepository {
             emit(Resource.Error(response.message()))
     }
 
-    override suspend fun updateAvatar(file: File): Flow<Resource<Response>> = flow {
+    override suspend fun updateAvatar(userId: Int, fileUrl: String): Flow<Resource<Response>> =
+        flow {
 
-        emit(Resource.Loading())
+            emit(Resource.Loading())
 
-        val response = api.updateAvatar(ImageDto(file))
+            val file = File(fileUrl)
+            val requestFile = RequestBody.create(MediaType.parse("image/*"), file)
+            val image = MultipartBody.Part.createFormData("image", file.name, requestFile)
 
-        if (response.isSuccessful)
-            emit(Resource.Success(response.body()!!.toResponse()))
-        else
-            emit(Resource.Error(response.message()))
-    }
+            val response = api.updateAvatar(userId, image)
+
+            if (response.isSuccessful)
+                emit(Resource.Success(response.body()!!.toResponse()))
+            else
+                emit(Resource.Error(response.message()))
+        }
 }

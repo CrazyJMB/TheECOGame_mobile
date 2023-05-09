@@ -1,6 +1,5 @@
 package com.dds.theecogame.presentation.game.view
 
-import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -49,7 +48,7 @@ class ConsolidateFragment : Fragment() {
             gameViewModel.setConsolidated(true)
             gameViewModel.setConsolidatedPoints()
             stopTimer()
-            if (gameViewModel.getQuestionNumber() == 11){
+            if (gameViewModel.getQuestionNumber() == 11) {
                 goToSummary()
             } else {
                 nextChallenge()
@@ -58,7 +57,7 @@ class ConsolidateFragment : Fragment() {
 
         binding.btnCancel.setOnClickListener {
             stopTimer()
-            if (gameViewModel.getQuestionNumber() == 11){
+            if (gameViewModel.getQuestionNumber() == 11) {
                 goToSummary()
             } else {
                 nextChallenge()
@@ -108,11 +107,12 @@ class ConsolidateFragment : Fragment() {
     }
 
     private fun nextChallenge() {
-        gameViewModel.gameLiveData.observe(requireActivity()){
-            when (it.getNextChallenge()){
+        gameViewModel.gameLiveData.observe(requireActivity()) {
+            when (it.getNextChallenge()) {
                 is Game.Challenge.HangmanModel -> {
                     goToHangman()
                 }
+
                 is Game.Challenge.QuestionModel -> {
                     goToQuestions()
                 }
@@ -130,7 +130,7 @@ class ConsolidateFragment : Fragment() {
     private fun goToHangman() {
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
-            .replace(R.id.GameContainerView, fragment_hangman())
+            .replace(R.id.GameContainerView, HangmanFragment())
             .commit()
     }
 

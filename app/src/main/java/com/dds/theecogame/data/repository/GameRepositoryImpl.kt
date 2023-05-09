@@ -26,12 +26,11 @@ class GameRepositoryImpl : GameRepository {
     }
 
     override suspend fun addChallengeToGame(
-        userId: Int,
         gameId: Int,
         challengeId: Int,
         challengeType: String
     ) {
-        api.addChallengeToGame(gameId, ChallengeDto(challengeId, challengeType, gameId))
+        api.addChallengeToGame(gameId, ChallengeDto(challengeId, challengeType))
     }
 
     override suspend fun updateScore(gameId: Int, score: Int) {

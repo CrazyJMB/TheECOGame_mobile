@@ -14,17 +14,24 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 //import androidx.databinding.ObservableInt
 import com.dds.theecogame.R
+import com.dds.theecogame.data.repository.GameRepositoryImpl
+import com.dds.theecogame.data.repository.StatisticsRepositoryImpl
 import com.dds.theecogame.databinding.ActivityGameBinding
 
 
 import com.dds.theecogame.databinding.FragmentQuestionsBinding
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.model.challenges.Question
+import com.dds.theecogame.domain.repository.GameRepository
+import com.dds.theecogame.domain.repository.StatisticsRepository
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import com.dds.theecogame.presentation.game.viewModel.QuestionViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlin.concurrent.timer
 
 class QuestionFragment : Fragment() {
@@ -58,6 +65,10 @@ class QuestionFragment : Fragment() {
             when (val nextQuestion = game.deleteFirstChallenge()) {
                 is Game.Challenge.QuestionModel -> {
                     currentQuestion = nextQuestion.questionModel
+
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        gameViewModel.registerChallenge(currentQuestion.id, "QUESTION")
+                    }
 
                     nextQuestion.let {
                         val questionList = listOf(
@@ -158,6 +169,9 @@ class QuestionFragment : Fragment() {
 
         if (answerSelected.equals(correctAnswer)) {
             onViewCreated(binding.root, null)
+
+            lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerQuestionCorrect() }
+
             return true
         }
 
@@ -178,6 +192,7 @@ class QuestionFragment : Fragment() {
             playLosingMusic(false)
 
         }
+        lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerQuestionFailed() }
         return false
     }
 

@@ -2,7 +2,6 @@ package com.dds.theecogame.presentation.game.viewModel
 
 import android.content.Context
 import android.widget.Toast
-import android.content.SharedPreferences
 import android.media.MediaPlayer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,12 +10,14 @@ import androidx.lifecycle.viewModelScope
 import com.dds.theecogame.R
 import com.dds.theecogame.data.repository.ChallengesRepositoryImpl
 import com.dds.theecogame.data.repository.GameRepositoryImpl
+import com.dds.theecogame.data.repository.StatisticsRepositoryImpl
+import com.dds.theecogame.domain.Application
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameDirector
-import com.dds.theecogame.domain.builder.concreteBuilder.QuestionGameBuilder
 import com.dds.theecogame.domain.builder.concreteBuilder.QuestionHangmanGameBuilder
 import com.dds.theecogame.domain.repository.ChallengesRepository
 import com.dds.theecogame.domain.repository.GameRepository
+import com.dds.theecogame.domain.repository.StatisticsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -29,6 +30,7 @@ class GameViewModel : ViewModel() {
 
     private val challengesRepository: ChallengesRepository = ChallengesRepositoryImpl()
     private val gameRepository: GameRepository = GameRepositoryImpl()
+    private val statisticsRepository: StatisticsRepository = StatisticsRepositoryImpl()
 
     private lateinit var mediaPlayer: MediaPlayer
 
@@ -168,5 +170,48 @@ class GameViewModel : ViewModel() {
         mediaPlayer.start()
     }
 
+    suspend fun registerChallenge(challengeId: Int, challengeType: String) {
+        gameRepository.addChallengeToGame(
+            gameLiveData.value!!.gameId,
+            challengeId,
+            challengeType
+        )
+    }
+
+    suspend fun registerScore(score: Int) {
+        gameRepository.updateScore(gameLiveData.value!!.gameId, score)
+    }
+
+    suspend fun registerWin() {
+        statisticsRepository.registerWinStatistic(Application.getUser()!!.id)
+    }
+
+    suspend fun registerLose() {
+        statisticsRepository.registerLoseStatistic(Application.getUser()!!.id)
+    }
+
+    suspend fun registerQuit() {
+        statisticsRepository.registerQuitStatistic(Application.getUser()!!.id)
+    }
+
+    suspend fun registerQuestionCorrect() {
+        statisticsRepository.registerQuestionCorrectStatistics(Application.getUser()!!.id)
+    }
+
+    suspend fun registerQuestionFailed() {
+        statisticsRepository.registerQuestionFailedStatistics(Application.getUser()!!.id)
+    }
+
+    suspend fun registerHangmanCorrect() {
+        statisticsRepository.registerHangmanCorrectStatistics(Application.getUser()!!.id)
+    }
+
+    suspend fun registerHangmanFailed() {
+        statisticsRepository.registerHangmanFailedStatistics(Application.getUser()!!.id)
+    }
+
+    suspend fun registerTime(time: Int) {
+        statisticsRepository.registerTimeStatistics(Application.getUser()!!.id, time)
+    }
 
 }
