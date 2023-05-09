@@ -8,17 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.R
+import com.dds.theecogame.common.Resource
+import com.dds.theecogame.data.repository.StatisticsRepositoryImpl
 import com.dds.theecogame.databinding.FragmentKeyboardBinding
 import com.dds.theecogame.databinding.FragmentStatistics1Binding
+import com.dds.theecogame.domain.Application
+import com.dds.theecogame.domain.repository.StatisticsRepository
 import com.dds.theecogame.presentation.game.view.QuestionFragment
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.statistics.viewModel.StatisticsViewModel
+import kotlinx.coroutines.launch
 
 class Statistics1Fragment : Fragment() {
     private lateinit var binding: FragmentStatistics1Binding
     private val viewModel: StatisticsViewModel by viewModels()
+    private val statisticsRepository: StatisticsRepository = StatisticsRepositoryImpl()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,26 +53,44 @@ class Statistics1Fragment : Fragment() {
 
     private fun initializeStats (){
         //Num partidas jugadas, partidas ganadas, partidas perdidas, partidas abandonadas, tiempo promedio, tiempo total
+        lifecycleScope.launch {
+            statisticsRepository.getStatistics(Application.getUser()!!.id).collect{
+                when (it) {
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        val stats = it.data
 
+                        val numGamesWon = stats!!.win_count
+                        binding.numPartidasGanadas.text =
+                            "${binding.numPartidasGanadas.text} $numGamesWon"
 
-        val numGamesPlayed = viewModel.getNumGamesPlayed()
-        binding.numPartidasJugadas.text = "${binding.numPartidasJugadas.text} $numGamesPlayed"
+                        val numGamesLost = stats!!.lose_count
+                        binding.numPartidasPerdidas.text =
+                            "${binding.numPartidasPerdidas.text} $numGamesLost"
 
-        val numGamesWon = StatisticsViewModel().getNumGamesWon()
-        binding.numPartidasGanadas.text = "${binding.numPartidasGanadas.text} $numGamesWon"
+                        val numGamesAbandoned = stats!!.quit_count
+                        binding.numPartidasAbandonadas.text =
+                            "${binding.numPartidasAbandonadas.text} $numGamesAbandoned"
 
-        val numGamesLost = StatisticsViewModel().getNumGamesLost()
-        binding.numPartidasPerdidas.text = "${binding.numPartidasPerdidas.text} $numGamesLost"
+                        val numGamesPlayed = numGamesLost + numGamesWon + numGamesAbandoned
+                        binding.numPartidasJugadas.text =
+                            "${binding.numPartidasJugadas.text} $numGamesPlayed"
 
-        val numGamesAbandoned = StatisticsViewModel().getNumGamesAbandoned()
-        binding.numPartidasAbandonadas.text = "${binding.numPartidasAbandonadas.text} $numGamesAbandoned"
+                        val totalTimePlayed = stats!!.time_ingame
+                        binding.tiempoTotal.text = "${binding.tiempoTotal.text} $totalTimePlayed"
 
-        val avgTimePerGame = StatisticsViewModel().getAvgTimePerGame()
-        binding.tiempoPromedio.text = "${binding.tiempoPromedio.text} $avgTimePerGame"
-
-        val totalTimePlayed = StatisticsViewModel().getTotalTimePlayed()
-        binding.tiempoTotal.text = "${binding.tiempoTotal.text} $totalTimePlayed"
-
+                        if (numGamesPlayed != 0 && totalTimePlayed != 0) {
+                            val avgTimePerGame = (totalTimePlayed/numGamesPlayed).toInt()
+                            binding.tiempoPromedio.text =
+                            "${binding.tiempoPromedio.text} $avgTimePerGame"
+                        } else {
+                            binding.tiempoPromedio.text = "${binding.tiempoPromedio.text} 0"
+                        }
+                    }
+                    is Resource.Error ->{}
+                }
+            }
+        }
     }
 
     private fun goToMainScreen (){
