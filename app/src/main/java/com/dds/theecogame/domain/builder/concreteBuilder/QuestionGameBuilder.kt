@@ -6,10 +6,12 @@ import com.dds.theecogame.data.remote.challenge.dto.toQuestion
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameBuilder
 import com.dds.theecogame.domain.repository.ChallengesRepository
+import com.dds.theecogame.domain.repository.GameRepository
 import kotlinx.coroutines.runBlocking
 
 class QuestionGameBuilder(
-    private val challengesRepository: ChallengesRepository
+    private val challengesRepository: ChallengesRepository,
+    private val gameRepository: GameRepository
 ) : GameBuilder {
 
     private val game = Game()
@@ -31,6 +33,19 @@ class QuestionGameBuilder(
 
     override fun addChallenges() {
         runBlocking {
+            // Create game register on API
+            gameRepository.createGame(game.userId).collect {
+                when (it) {
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        game.gameId = it.data!!
+                    }
+
+                    is Resource.Error -> {}
+
+                }
+            }
+            
             (1..game.challengesNumber).forEach { order ->
                 challengesRepository.getQuestion((1..5).random(), game.userId).collect {
                     when (it) {

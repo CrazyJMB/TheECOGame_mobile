@@ -6,6 +6,7 @@ import com.dds.theecogame.domain.model.challenges.Question
 class Game {
 
     var userId: Int = -1
+    var gameId: Int = -1
     var challengesNumber: Int = 0
     val challengesList = mutableMapOf<Int, Challenge>()
 

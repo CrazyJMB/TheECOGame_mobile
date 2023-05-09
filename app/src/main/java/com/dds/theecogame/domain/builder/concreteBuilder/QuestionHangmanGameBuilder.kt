@@ -1,16 +1,16 @@
 package com.dds.theecogame.domain.builder.concreteBuilder
 
 import com.dds.theecogame.common.Resource
-import com.dds.theecogame.data.remote.api.RetrofitInstance
-import com.dds.theecogame.data.remote.challenge.dto.toHangman
-import com.dds.theecogame.data.remote.challenge.dto.toQuestion
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameBuilder
 import com.dds.theecogame.domain.repository.ChallengesRepository
+import com.dds.theecogame.domain.repository.GameRepository
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
 
 class QuestionHangmanGameBuilder(
-    private val challengesRepository: ChallengesRepository
+    private val challengesRepository: ChallengesRepository,
+    private val gameRepository: GameRepository
 ) : GameBuilder {
 
     private val game = Game()
@@ -32,6 +32,19 @@ class QuestionHangmanGameBuilder(
 
     override fun addChallenges() {
         runBlocking {
+            // Create game register on API
+            gameRepository.createGame(game.userId).collect {
+                when (it) {
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        game.gameId = it.data!!
+                    }
+
+                    is Resource.Error -> {}
+
+                }
+            }
+
             (1..game.challengesNumber).forEach { order ->
                 (1..2).random().let { number ->
                     if (number == 1) {

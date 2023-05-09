@@ -2,6 +2,7 @@ package com.dds.theecogame.data.remote.game.api
 
 import com.dds.theecogame.data.remote.game.dto.ChallengeDto
 import com.dds.theecogame.data.remote.game.dto.GameDto
+import com.dds.theecogame.data.remote.game.dto.GameIdDto
 import com.dds.theecogame.data.remote.game.dto.ScoreDto
 import com.dds.theecogame.data.remote.session.dto.ResponseDto
 import retrofit2.Response
@@ -13,7 +14,7 @@ import retrofit2.http.Path
 interface GameApi {
 
     @POST("/games")
-    suspend fun createGame(@Body game: GameDto): Response<ResponseDto>
+    suspend fun createGame(@Body game: GameDto): Response<GameIdDto>
 
     @POST("/games/{gameId}/addChallenge")
     suspend fun addChallengeToGame(
