@@ -178,6 +178,7 @@ class fragment_hangman : Fragment() {
                     mediaPlayer.stop()
                 }
                 playLosingMusic(false)
+                gameViewModel.setGameStatus(0)
                 goToSummary()
             }
         }

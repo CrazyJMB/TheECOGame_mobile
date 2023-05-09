@@ -87,7 +87,7 @@ class QuestionFragment : Fragment() {
         binding.btnContinue.setOnClickListener {
             val correctAnswer = currentQuestion.answer
             val isCorrect = checkAnswer(correctAnswer)
-            stopTimer()
+
             if (isCorrect) {
                 val points = 10 * currentQuestion.difficulty
                 if (gameViewModel.getSecondChance()) {
@@ -101,10 +101,13 @@ class QuestionFragment : Fragment() {
 
                 gameViewModel.nextQuestionNumber()
                 if (gameViewModel.getQuestionNumber() == 11) {
+                    stopTimer()
                     goToSummary()
                 } else if (gameViewModel.getConsolidated() == false) {
+                    stopTimer()
                     goToConsolidate()
                 } else {
+                    stopTimer()
                     goToAbandon()
                 }
 
@@ -115,6 +118,7 @@ class QuestionFragment : Fragment() {
                     mediaPlayer.stop()
                 }
                 gameViewModel.setGameStatus(0) // Game Lost
+                stopTimer()
                 goToSummary()
             }
         }
