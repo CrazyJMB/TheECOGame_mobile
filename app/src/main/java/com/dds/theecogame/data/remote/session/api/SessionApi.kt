@@ -22,9 +22,9 @@ interface SessionApi {
     @GET("/users/checkEmail")
     suspend fun checkEmail(@Query("email") email: String): Response<ResponseDto>
 
-    @PUT("/users/{userId}/password")
+    @POST("/users/checkPassword")
     suspend fun checkPassword(
-        @Path("userId") userId: Int,
+        @Query("email") email: String,
         @Body password: PasswordDto
     ): Response<ResponseDto>
 

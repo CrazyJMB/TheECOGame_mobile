@@ -150,4 +150,10 @@
     <string name="password_lowercase_error">Must have at least a lowercase letter</string>
     <string name="password_uppercase_error">"Must have at least an uppercase letter "</string>
     <string name="password_number_error">Must have at least a number</string>
+    <string name="num_correct_questions">Correct questions:</string>
+    <string name="num_wrong_questions">Wrong questions:</string>
+    <string name="num_correct_hangman">Correct hangmans:</string>
+    <string name="num_wrong_hangman">Wrong hangmans:</string>
+    <string name="username_db_error">Non-available user</string>
+    <string name="email_db_error">Non-available email</string>
 </resources>

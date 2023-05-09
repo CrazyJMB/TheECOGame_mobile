@@ -12,7 +12,7 @@ interface UserRepository {
 
     suspend fun checkEmail(email: String): Flow<Resource<Response>>
 
-    suspend fun checkPassword(userId: Int, password: String): Flow<Resource<Response>>
+    suspend fun checkPassword(email: String, password: String): Flow<Resource<Response>>
 
     suspend fun getUser(email: String): Flow<Resource<User>>
 

@@ -21,7 +21,7 @@ class UserManagementActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserManagementBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_user_management)
+        setContentView(binding.root)
 
         binding.btnLogIn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)

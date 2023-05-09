@@ -43,13 +43,13 @@ class UserRepositoryImpl : UserRepository {
     }
 
     override suspend fun checkPassword(
-        userId: Int,
+        email: String,
         password: String
     ): Flow<Resource<Response>> = flow {
 
         emit(Resource.Loading())
 
-        val response = api.checkPassword(userId, PasswordDto(password))
+        val response = api.checkPassword(email, PasswordDto(password))
 
         if (response.isSuccessful)
             emit(Resource.Success(response.body()!!.toResponse()))

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:defaultFocusHighlightEnabled="true"
-    tools:context=".ActivityParticipantProfile">
+    tools:context=".presentation.editProfile.view.EditProfileActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,14 +13,13 @@
         android:background="@color/background_green">
 
         <ImageButton
-            android:id="@+id/btnBack"
+            android:id="@+id/ibBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/background_green"
             android:contentDescription="@string/back"
-            android:onClick="goToMainScreen"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_menu_revert"
@@ -31,53 +30,58 @@
             android:id="@+id/ivProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="141dp"
             android:layout_marginTop="50dp"
             android:contentDescription="@string/profile"
+            android:src="@drawable/empty_avatar"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ImageContrastCheck"
             tools:src="@tools:sample/avatars" />
 
         <Button
-            android:id="@+id/bnEditImage"
-            android:layout_width="151dp"
-            android:layout_height="48dp"
+            android:id="@+id/btnEditImage"
+            android:layout_width="204dp"
+            android:layout_height="46dp"
             android:layout_marginStart="141dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="140dp"
             android:background="@drawable/btn_shape_round"
             android:text="@string/edit_image"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivProfile"
             tools:ignore="TextSizeCheck" />
 
         <TextView
-            android:id="@+id/tvUserame"
+            android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="33dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
             android:text="@string/username_profile"
-            android:textColor="#212121"
+            android:textColor="@color/black_title"
             android:textSize="@dimen/profile"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bnEditImage" />
+            app:layout_constraintTop_toBottomOf="@+id/btnEditImage" />
 
         <EditText
             android:id="@+id/etUsername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="320dp"
+            android:layout_height="45dp"
             android:layout_marginStart="33dp"
             android:layout_marginTop="10dp"
+            android:background="@drawable/btn_shape_rounded_square"
             android:ems="10"
             android:hint="@string/username_profile"
             android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvUserame" />
+            app:layout_constraintTop_toBottomOf="@+id/tvUsername" />
 
         <TextView
             android:id="@+id/tvUsernameError"
@@ -85,6 +89,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="33dp"
             android:layout_marginTop="10dp"
+            android:textColor="@color/error_red"
+            android:textSize="@dimen/settings_slider_title_font_size"
+            android:textStyle="normal"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etUsername" />
 
@@ -95,7 +103,7 @@
             android:layout_marginStart="33dp"
             android:layout_marginTop="10dp"
             android:text="@string/email_profile"
-            android:textColor="#212121"
+            android:textColor="@color/black_title"
             android:textSize="@dimen/profile"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -103,14 +111,17 @@
 
         <EditText
             android:id="@+id/etEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="320dp"
+            android:layout_height="45dp"
             android:layout_marginStart="33dp"
             android:layout_marginTop="10dp"
+            android:background="@drawable/btn_shape_rounded_square"
             android:ems="10"
             android:hint="@string/prompt_email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
 
@@ -120,6 +131,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="33dp"
             android:layout_marginTop="10dp"
+            android:textColor="@color/error_red"
+            android:textSize="@dimen/settings_slider_title_font_size"
+            android:textStyle="normal"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
@@ -127,10 +142,10 @@
             android:id="@+id/tvPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="33dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
             android:text="@string/password_profile"
-            android:textColor="#212121"
+            android:textColor="@color/black_title"
             android:textSize="@dimen/profile"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -138,14 +153,17 @@
 
         <EditText
             android:id="@+id/etPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="320dp"
+            android:layout_height="45dp"
             android:layout_marginStart="33dp"
             android:layout_marginTop="10dp"
             android:ems="10"
             android:hint="@string/password_profile"
+            android:background="@drawable/btn_shape_rounded_square"
             android:inputType="textPassword"
             android:minHeight="48dp"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
 
@@ -155,15 +173,21 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="33dp"
             android:layout_marginTop="10dp"
+            android:textColor="@color/error_red"
+            android:textSize="@dimen/settings_slider_title_font_size"
+            android:textStyle="normal"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
         <Button
-            android:id="@+id/bnSave"
+            android:id="@+id/btnSave"
             android:layout_width="148dp"
             android:layout_height="48dp"
             android:layout_marginStart="128dp"
             android:layout_marginTop="20dp"
+            android:enabled="false"
+            android:textStyle="bold"
             android:background="@drawable/btn_shape_round"
             android:text="@string/save_profile"
             app:layout_constraintStart_toStartOf="parent"

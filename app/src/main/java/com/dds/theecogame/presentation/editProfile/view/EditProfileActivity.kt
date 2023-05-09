@@ -1,4 +1,4 @@
-package com.dds.theecogame.presentation.register.view
+package com.dds.theecogame.presentation.editProfile.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,28 +6,28 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
+import com.dds.theecogame.R
 import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.repository.UserRepositoryImpl
-import com.dds.theecogame.presentation.register.viewModel.RegisterViewModel
-import com.dds.theecogame.databinding.ActivityRegisterBinding
+import com.dds.theecogame.databinding.ActivityEditProfileBinding
 import com.dds.theecogame.domain.repository.UserRepository
 import com.dds.theecogame.domain.userRestrictions.UserRestrictions
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
-import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
+import com.dds.theecogame.presentation.userManagement.viewModel.EditProfileViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import okhttp3.Dispatcher
 
-class RegisterActivity : AppCompatActivity() {
+class EditProfileActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityRegisterBinding
-    private val viewModel: RegisterViewModel by viewModels()
+    private lateinit var binding: ActivityEditProfileBinding
+    private val viewModel: EditProfileViewModel by viewModels()
     private lateinit var restrictions: UserRestrictions
     private val userRepository: UserRepository = UserRepositoryImpl()
+    private var userId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        binding = ActivityEditProfileBinding.inflate(layoutInflater)
         restrictions = UserRestrictions(this)
         setContentView(binding.root)
 
@@ -68,7 +68,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.etUsername.addTextChangedListener {
-            binding.btnCreateUser.isEnabled = (!binding.etUsername.text.toString().isEmpty()
+            binding.btnSave.isEnabled = (!binding.etUsername.text.toString().isEmpty()
                     && !binding.etEmail.text.toString().isEmpty()
                     && !binding.etPassword.text.toString().isEmpty()
                     && restrictions.checkUsername(binding.etUsername.text.toString())
@@ -76,7 +76,7 @@ class RegisterActivity : AppCompatActivity() {
                     && restrictions.checkPassword(binding.etPassword.text.toString()))
         }
         binding.etEmail.addTextChangedListener {
-            binding.btnCreateUser.isEnabled = (!binding.etUsername.text.toString().isEmpty()
+            binding.btnSave.isEnabled = (!binding.etUsername.text.toString().isEmpty()
                     && !binding.etEmail.text.toString().isEmpty()
                     && !binding.etPassword.text.toString().isEmpty()
                     && restrictions.checkUsername(binding.etUsername.text.toString())
@@ -84,7 +84,7 @@ class RegisterActivity : AppCompatActivity() {
                     && restrictions.checkPassword(binding.etPassword.text.toString()))
         }
         binding.etPassword.addTextChangedListener {
-            binding.btnCreateUser.isEnabled = (!binding.etUsername.text.toString().isEmpty()
+            binding.btnSave.isEnabled = (!binding.etUsername.text.toString().isEmpty()
                     && !binding.etEmail.text.toString().isEmpty()
                     && !binding.etPassword.text.toString().isEmpty()
                     && restrictions.checkUsername(binding.etUsername.text.toString())
@@ -92,37 +92,50 @@ class RegisterActivity : AppCompatActivity() {
                     && restrictions.checkPassword(binding.etPassword.text.toString()))
         }
 
-        binding.btnCreateUser.setOnClickListener {
+        binding.btnSave.setOnClickListener {
+
             runBlocking(Dispatchers.IO) {
-                userRepository.createUser(
-                    binding.etUsername.text.toString(),
-                    "name",
-                    "surname",
-                    binding.etEmail.text.toString(),
-                    binding.etPassword.text.toString()
-                ).collect {
+                userRepository.getUser(binding.etEmail.text.toString()).collect {
                     when (it) {
                         is Resource.Loading -> {}
                         is Resource.Success -> {
-                            //Volver a ventana anterior
-                            goToUserManagement()
+                            userId = it.data?.id!!
                         }
-                        is Resource.Error -> {
+                        is Resource.Error -> {}
+                    }
+                }
 
+                runBlocking(Dispatchers.IO) {
+                    userRepository.updateUser(
+                        userId,
+                        binding.etUsername.text.toString(),
+                        "name",
+                        "surname",
+                        binding.etEmail.text.toString(),
+                        binding.etPassword.text.toString()
+                    ).collect {
+                        when (it) {
+                            is Resource.Loading -> {}
+                            is Resource.Success -> {
+                                goToMainScreen()
+                            }
+                            is Resource.Error -> {
+
+                            }
                         }
                     }
                 }
             }
-        }
 
-        binding.ibBack.setOnClickListener {
-            goToUserManagement()
-        }
+            binding.ibBack.setOnClickListener {
+                goToMainScreen()
+            }
 
+        }
     }
 
-    private fun goToUserManagement() {
-        val intent = Intent(this, UserManagementActivity::class.java)
+    private fun goToMainScreen() {
+        val intent = Intent(this, MainScreenActivity::class.java)
         startActivity(intent)
     }
 }
