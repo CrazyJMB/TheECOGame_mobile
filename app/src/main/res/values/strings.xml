@@ -77,7 +77,6 @@
     <string name="total_points">Puntos Totales:</string>
     <string name="consolidate_points">Puntos Consolidados:</string>
     <string name="mute">Mute</string>
-    <string name="error_email_password">Email o Contraseña incorrecta</string>
     <string name="question_logut">Quieres cerrar sesión?</string>
 
     <string name="edit_profile">Editar Perfil</string>
@@ -118,6 +117,7 @@
     <!-- Error messages -->
     <string name="error_msg">Ha ocurrido un error inesperado</string>
     <string name="error_msg_internet">Error de conexión. Verifique su conexión de internet</string>
+    <string name="error_msg_emailOrPassword">Email o Contraseña incorrecta</string>
 
     <!--For the spinner at SettingActivity-->
     <string-array name="Topics">
@@ -155,7 +155,6 @@
     <!--For User Management-->
     <string name="log_in">Iniciar Sesión</string>
     <string name="register">Registrarse</string>
-
 
     <!-- Register Fragment -->
     <string name="username">Nombre de usuario</string>

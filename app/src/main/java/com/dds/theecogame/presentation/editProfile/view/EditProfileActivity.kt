@@ -101,6 +101,7 @@ class EditProfileActivity : AppCompatActivity() {
                         is Resource.Success -> {
                             userId = it.data?.id!!
                         }
+
                         is Resource.Error -> {}
                     }
                 }
@@ -119,6 +120,7 @@ class EditProfileActivity : AppCompatActivity() {
                             is Resource.Success -> {
                                 goToMainScreen()
                             }
+
                             is Resource.Error -> {
 
                             }
@@ -135,7 +137,6 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun goToMainScreen() {
-        val intent = Intent(this, MainScreenActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, MainScreenActivity::class.java))
     }
 }

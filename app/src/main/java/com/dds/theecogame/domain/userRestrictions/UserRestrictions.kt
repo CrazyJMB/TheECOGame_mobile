@@ -43,9 +43,14 @@ class UserRestrictions(val context: Context) {
                     is Resource.Success -> {
                         check = true
                     }
+
                     is Resource.Error -> {
-                        error = context.resources.getString(R.string.username_db_error)
-                        //error = it.message.toString()
+                        error = if (it.message.isNullOrEmpty()) {
+                            context.resources.getString(R.string.username_db_error)
+                        } else {
+                            it.message
+                        }
+                        //error =
                         check = false
                     }
                 }
@@ -81,6 +86,7 @@ class UserRestrictions(val context: Context) {
                     is Resource.Success -> {
                         check = true
                     }
+
                     is Resource.Error -> {
                         error = context.resources.getString(R.string.email_db_error)
                         //error = it.message.toString()
