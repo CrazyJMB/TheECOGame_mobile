@@ -7,7 +7,7 @@ object Application {
 
     fun getUser() = user
 
-    fun setUser(user: User) {
+    fun setUser(user: User?) {
         this.user = user
     }
 }

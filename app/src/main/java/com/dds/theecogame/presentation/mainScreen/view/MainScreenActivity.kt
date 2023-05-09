@@ -49,11 +49,9 @@ class MainScreenActivity : AppCompatActivity() {
             val builder = AlertDialog.Builder(this)
             builder.setTitle(R.string.question_logut)
             builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
-                //GlobalScope.launch {
-                //    val dataStoreManager = DataStoreManager(dataStore = dataStore)
-                //    dataStoreManager.setUserId("")
-                //}
-                //TODO: ir a la pantalla donde seleccionas iniciar sesion o regristrarse
+
+                viewModel.endSession()
+
                 val intent = Intent(this, UserManagementActivity::class.java)
                 startActivity(intent)
             }

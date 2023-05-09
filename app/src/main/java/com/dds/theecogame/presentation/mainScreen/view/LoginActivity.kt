@@ -3,9 +3,7 @@ package com.dds.theecogame.presentation.mainScreen.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.R
 import com.dds.theecogame.domain.Application
@@ -13,7 +11,6 @@ import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.repository.UserRepositoryImpl
 import com.dds.theecogame.databinding.ActivityLogInBinding
 import com.dds.theecogame.domain.repository.UserRepository
-import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
 import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
 import kotlinx.coroutines.*
 

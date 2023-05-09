@@ -63,7 +63,7 @@ class GameActivity : AppCompatActivity() {
             builder.setTitle(R.string.clues)
             builder.setMessage(R.string.clues_description)
             builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
-                //TODO PISTAS
+                //FIXME PISTAS
             }
             builder.setNegativeButton(R.string.alert_cancel) { _, _ ->
                 //No hace nada

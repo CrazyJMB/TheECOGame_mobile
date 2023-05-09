@@ -28,8 +28,8 @@
 
         <ImageView
             android:id="@+id/ivProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
             android:layout_marginTop="50dp"
             android:contentDescription="@string/profile"
             android:src="@drawable/empty_avatar"
@@ -189,7 +189,6 @@
             android:layout_height="48dp"
             android:layout_marginStart="128dp"
             android:layout_marginTop="20dp"
-            android:enabled="false"
             android:textStyle="bold"
             android:background="@drawable/btn_shape_round"
             android:text="@string/save_profile"

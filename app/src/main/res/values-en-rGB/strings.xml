@@ -67,7 +67,7 @@
 
     <string name="edit_profile">Edit Profile</string>
     <string name="edit_image">Change image</string>
-    <string name="username_profile">Name</string>
+    <string name="username_profile">Username</string>
     <string name="email_profile">Email</string>
     <string name="password_profile">Password</string>
     <string name="save_profile">Save</string>

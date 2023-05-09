@@ -36,8 +36,6 @@ class ResumeFragment : Fragment() {
         gameViewModel.setGameEnded()
 
         binding.btnEndGame.setOnClickListener {
-            //TODO (Enviar los datos para que se guarden y tal...)
-
             //Irse al menu principal
             val mainScreen = Intent(activity, MainScreenActivity::class.java)
             startActivity(mainScreen)

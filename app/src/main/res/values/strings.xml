@@ -81,7 +81,7 @@
 
     <string name="edit_profile">Editar Perfil</string>
     <string name="edit_image">Cambiar Imagen</string>
-    <string name="username_profile">Nombre</string>
+    <string name="username_profile">Nombre de usuario</string>
     <string name="email_profile">Correo</string>
     <string name="password_profile">Contraseña</string>
     <string name="save_profile">Guardar</string>
