@@ -66,7 +66,6 @@ class LoginActivity : AppCompatActivity() {
                                             is Resource.Loading -> {}
                                             is Resource.Success -> {
                                                 Application.setUser(user.data!!)
-                                                //GlobalScope.launch { goToMainScreen() }
                                             }
                                             is Resource.Error -> {
                                                 //TODO: Popup error
