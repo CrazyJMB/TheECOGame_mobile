@@ -9,6 +9,7 @@ import android.widget.EditText
 import com.dds.theecogame.R
 import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.repository.UserRepositoryImpl
+import com.dds.theecogame.domain.factory.ValidatorFactory
 import com.dds.theecogame.domain.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -106,6 +107,7 @@ class UserRestrictions(val context: Context) {
     * - Debe contener al menos un número.
     * */
     fun checkPassword(password: String): Boolean {
+
         //check principal
         val lowercase = Regex(".*[a-z].*")
         val uppercase = Regex(".*[A-Z].*")
