@@ -30,9 +30,9 @@ class EditProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
     private val viewModel: EditProfileViewModel by viewModels()
 
-    val usernameValidator = ValidatorFactory.getValidator("username")
-    val emailValidator = ValidatorFactory.getValidator("email")
-    val passwordValidator = ValidatorFactory.getValidator("password")
+    private val usernameValidator = ValidatorFactory.getValidator("username")
+    private val emailValidator = ValidatorFactory.getValidator("email")
+    private val passwordValidator = ValidatorFactory.getValidator("password")
 
 
     private lateinit var imageUri: Uri
