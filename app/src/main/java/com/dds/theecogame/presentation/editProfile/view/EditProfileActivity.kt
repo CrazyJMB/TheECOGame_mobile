@@ -29,8 +29,6 @@ class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditProfileBinding
     private val viewModel: EditProfileViewModel by viewModels()
-    private lateinit var restrictions: UserRestrictions
-    private val userRepository: UserRepository = UserRepositoryImpl()
 
     val usernameValidator = ValidatorFactory.getValidator("username")
     val emailValidator = ValidatorFactory.getValidator("email")
@@ -49,7 +47,6 @@ class EditProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
-        restrictions = UserRestrictions(this)
         setContentView(binding.root)
 
         // Load default values from the user
@@ -72,7 +69,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.etUsername.setOnFocusChangeListener { view, b ->
             if (!b) {
-                if (restrictions.checkUsername(binding.etUsername.text.toString())) {
+                if (usernameValidator.validate(binding.etUsername.text.toString())) {
                     username = binding.etUsername.text.toString()
                     binding.tvUsernameError.visibility = View.INVISIBLE
                 } else {
@@ -86,12 +83,12 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.etEmail.setOnFocusChangeListener { view, b ->
             if (!b) {
-                if (restrictions.checkEmail(binding.etEmail.text.toString())) {
+                if (emailValidator.validate(binding.etEmail.text.toString())) {
                     email = binding.etEmail.text.toString()
                     binding.tvEmailError.visibility = View.INVISIBLE
                 } else {
                     binding.tvEmailError.visibility = View.VISIBLE
-                    binding.tvEmailError.text = restrictions.getError()
+                    binding.tvEmailError.text = emailValidator.getError()
 
                     binding.btnSave.isEnabled = false
                 }
@@ -100,13 +97,13 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.etPassword.setOnFocusChangeListener { view, b ->
             if (!b) {
-                if (restrictions.checkPassword(binding.etPassword.text.toString())) {
+                if (passwordValidator.validate(binding.etPassword.text.toString())) {
                     password = binding.etPassword.text.toString()
                     binding.tvPasswordError.visibility = View.INVISIBLE
 
                 } else {
                     binding.tvPasswordError.visibility = View.VISIBLE
-                    binding.tvPasswordError.text = restrictions.getError()
+                    binding.tvPasswordError.text = passwordValidator.getError()
 
                     binding.btnSave.isEnabled = false
                 }
