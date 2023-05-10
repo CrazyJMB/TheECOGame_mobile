@@ -4,30 +4,22 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.repository.UserRepositoryImpl
-import com.dds.theecogame.presentation.register.viewModel.RegisterViewModel
 import com.dds.theecogame.databinding.ActivityRegisterBinding
 import com.dds.theecogame.domain.factory.ValidatorFactory
 import com.dds.theecogame.domain.repository.UserRepository
-import com.dds.theecogame.domain.userRestrictions.UserRestrictions
-import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import okhttp3.Dispatcher
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
 
-    //private val viewModel: RegisterViewModel by viewModels()
     private val userRepository: UserRepository = UserRepositoryImpl()
 
     private val usernameValidator = ValidatorFactory.getValidator("username")
