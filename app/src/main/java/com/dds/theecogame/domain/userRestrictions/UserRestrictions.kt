@@ -33,7 +33,7 @@ class UserRestrictions(val context: Context) {
         //check principal
         if (username.length > 20) {
             error = context.resources.getString(R.string.username_format_error)
-            check = false
+            return false
         }
         //check con llamada a api
 

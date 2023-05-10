@@ -21,7 +21,7 @@ class UsernameValidator : Validator {
         //check principal
         if (username.length > 20) {
             error = "Introduzca menos de 20 caracteres"
-            check = false
+            return false
         }
         //check con llamada a api
 
