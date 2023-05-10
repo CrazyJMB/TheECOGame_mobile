@@ -14,6 +14,7 @@ import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.repository.UserRepositoryImpl
 import com.dds.theecogame.databinding.ActivityEditProfileBinding
 import com.dds.theecogame.domain.Application
+import com.dds.theecogame.domain.factory.ValidatorFactory
 import com.dds.theecogame.domain.model.User
 import com.dds.theecogame.domain.repository.UserRepository
 import com.dds.theecogame.domain.userRestrictions.UserRestrictions
@@ -30,6 +31,11 @@ class EditProfileActivity : AppCompatActivity() {
     private val viewModel: EditProfileViewModel by viewModels()
     private lateinit var restrictions: UserRestrictions
     private val userRepository: UserRepository = UserRepositoryImpl()
+
+    val usernameValidator = ValidatorFactory.getValidator("username")
+    val emailValidator = ValidatorFactory.getValidator("email")
+    val passwordValidator = ValidatorFactory.getValidator("password")
+
 
     private lateinit var imageUri: Uri
 
@@ -71,7 +77,7 @@ class EditProfileActivity : AppCompatActivity() {
                     binding.tvUsernameError.visibility = View.INVISIBLE
                 } else {
                     binding.tvUsernameError.visibility = View.VISIBLE
-                    binding.tvUsernameError.text = restrictions.getError()
+                    binding.tvUsernameError.text = usernameValidator.getError()
 
                     binding.btnSave.isEnabled = false
                 }
@@ -97,7 +103,7 @@ class EditProfileActivity : AppCompatActivity() {
                 if (restrictions.checkPassword(binding.etPassword.text.toString())) {
                     password = binding.etPassword.text.toString()
                     binding.tvPasswordError.visibility = View.INVISIBLE
-                    
+
                 } else {
                     binding.tvPasswordError.visibility = View.VISIBLE
                     binding.tvPasswordError.text = restrictions.getError()

@@ -1,31 +1,51 @@
 package com.dds.theecogame.domain.factory.validators
 
+import com.dds.theecogame.R
+import com.dds.theecogame.common.Resource
+import com.dds.theecogame.data.repository.UserRepositoryImpl
 import com.dds.theecogame.domain.factory.Validator
 import com.dds.theecogame.domain.repository.UserRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 
 class UsernameValidator : Validator {
-    override var error: String
-        get(): String {
-            return this.error
-        }
-        set(value) {
-            this.error = value
-        }
+    private var error: String = String()
+    private var check: Boolean = true
+    private val userRepository: UserRepository = UserRepositoryImpl()
 
-    override var check: Boolean
-        get(): Boolean {
-            return this.check
-        }
-        set(value) {
-            this.check = value
-        }
-
-    override val userRepository: UserRepository
-        get(): UserRepository {
-            return this.userRepository
-        }
+    override fun getError(): String {
+        return this.error
+    }
 
     override fun validate(username: String): Boolean {
-        return true
+        //check principal
+        if (username.length > 20) {
+            error = "Introduzca menos de 20 caracteres"
+            check = false
+        }
+        //check con llamada a api
+
+        runBlocking(Dispatchers.IO) {
+            userRepository.checkUsername(username).collect {
+                when (it) {
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        check = true
+                    }
+
+                    is Resource.Error -> {
+                        error = if (it.message.isNullOrEmpty()) {
+                            "Usuario no disponible"
+                        } else {
+                            it.message
+                        }
+                        //error =
+                        check = false
+                    }
+                }
+            }
+        }
+
+        return check
     }
 }
