@@ -9,20 +9,12 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.widget.addTextChangedListener
-import com.dds.theecogame.common.Resource
-import com.dds.theecogame.data.repository.UserRepositoryImpl
 import com.dds.theecogame.databinding.ActivityEditProfileBinding
 import com.dds.theecogame.domain.Application
 import com.dds.theecogame.domain.factory.ValidatorFactory
 import com.dds.theecogame.domain.model.User
-import com.dds.theecogame.domain.repository.UserRepository
-import com.dds.theecogame.domain.userRestrictions.UserRestrictions
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.editProfile.viewModel.EditProfileViewModel
-import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import java.io.File
 
 class EditProfileActivity : AppCompatActivity() {
