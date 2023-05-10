@@ -35,6 +35,7 @@ class EditProfileActivity : AppCompatActivity() {
 
     private val user: User = Application.getUser()!!
 
+    //¿?
     private var username = user.username
     private var email = user.email
     private var password = user.password
