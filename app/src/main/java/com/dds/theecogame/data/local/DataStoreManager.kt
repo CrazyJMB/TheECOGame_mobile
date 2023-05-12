@@ -1,26 +1,22 @@
 package com.dds.theecogame.data.local
 
-import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
-import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
-class DataStoreManager(context: Context) {
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "SETTINGS")
-    private val dataStore = context.dataStore
+class DataStoreManager(private val dataStore: DataStore<Preferences>) {
 
     companion object {
-        val userIdKey = intPreferencesKey("USER_ID")
+        val userIdKey = stringPreferencesKey("USER_ID")
         val generalVolumeKey = intPreferencesKey("GENERAL_VOLUME")
         val musicVolumeKey = intPreferencesKey("MUSIC_VOLUME")
         val soundVolumeKey = intPreferencesKey("SOUND_VOLUME")
     }
 
-    suspend fun setUserId(userId: Int) {
+    suspend fun setUserId(userId: String) {
         dataStore.edit {
             it[userIdKey] = userId
         }
@@ -44,7 +40,7 @@ class DataStoreManager(context: Context) {
         }
     }
 
-    suspend fun getUserId(): Flow<Int> {
+    suspend fun getUserId(): Flow<String> {
         return dataStore.data
             .catch {
                 if (it is IOException) {
@@ -54,7 +50,7 @@ class DataStoreManager(context: Context) {
                 }
             }
             .map {
-                it[userIdKey] ?: -1
+                it[userIdKey] ?: String()
             }
     }
 

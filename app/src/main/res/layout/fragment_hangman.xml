@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.game.view.HangmanFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_green">
+
+        <TextView
+            android:id="@+id/tvPointsNumberHangman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="47dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/points"
+            app:layout_constraintStart_toEndOf="@+id/tvPointsHangman"
+            app:layout_constraintTop_toBottomOf="@+id/ivPointsHangman" />
+
+        <TextView
+            android:id="@+id/tvPointsHangman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="75dp"
+            android:text="@string/points"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tvpoints"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivPointsHangman" />
+
+        <TextView
+            android:id="@+id/tvHangmanNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="1dp"
+            android:text="@string/num_question"
+            android:textColor="@color/black"
+            android:textSize="@dimen/question_number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvRestantTimeHangman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="164dp"
+            android:text="@string/remaining_time"
+            android:textColor="@color/black"
+            android:textSize="@dimen/time_left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTimerHangman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/timer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRestantTimeHangman" />
+
+        <ImageView
+            android:id="@+id/ivPointsHangman"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/background_green"
+            android:contentDescription="@string/warning"
+            android:src="@android:drawable/ic_menu_info_details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black"
+            tools:ignore="ImageContrastCheck" />
+
+        <ImageView
+            android:id="@+id/ivBackground"
+            android:layout_width="256dp"
+            android:layout_height="256dp"
+            android:layout_marginStart="77dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="78dp"
+            android:contentDescription="@string/background_hangman"
+            android:src="@drawable/background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
+
+        <ImageView
+            android:id="@+id/ivHead"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="122dp"
+            android:contentDescription="@string/head_hangman"
+            android:src="@drawable/head"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/ivBackground"
+            app:layout_constraintStart_toStartOf="@+id/ivBackground"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
+
+        <ImageView
+            android:id="@+id/ivBody"
+            android:layout_width="6dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="160dp"
+            android:contentDescription="@string/body_hangman"
+            android:src="@drawable/body"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/ivBackground"
+            app:layout_constraintStart_toStartOf="@+id/ivBackground"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
+
+        <ImageView
+            android:id="@+id/ivRightArm"
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="170dp"
+            android:contentDescription="@string/right_arm_hangman"
+            android:src="@drawable/right_arm"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/ivBackground"
+            app:layout_constraintStart_toStartOf="@+id/ivBackground"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
+
+        <ImageView
+            android:id="@+id/ivLeftArm"
+            android:layout_width="23dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="170dp"
+            android:contentDescription="@string/left_arm_hangman"
+            android:src="@drawable/left_arm"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/ivBackground"
+            app:layout_constraintStart_toStartOf="@+id/ivBackground"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
+
+        <ImageView
+            android:id="@+id/ivRightLeg"
+            android:layout_width="26dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="209dp"
+            android:contentDescription="@string/right_leg_hangman"
+            android:src="@drawable/right_leg"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/ivBackground"
+            app:layout_constraintStart_toStartOf="@+id/ivBackground"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
+
+        <ImageView
+            android:id="@+id/ivLeftLeg"
+            android:layout_width="26dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="209dp"
+            android:contentDescription="@string/left_leg_hangman"
+            android:src="@drawable/left_leg"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/ivBackground"
+            app:layout_constraintStart_toStartOf="@+id/ivBackground"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
+
+        <TextView
+            android:id="@+id/tvHangmanWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="205dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="206dp"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivBackground" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="com.dds.theecogame.presentation.game.view.KeyboardFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout="@layout/fragment_keyboard" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

@@ -1,24 +1,63 @@
 package com.dds.theecogame.domain.builder.concreteBuilder
 
+import com.dds.theecogame.common.Resource
+import com.dds.theecogame.data.remote.api.RetrofitInstance
+import com.dds.theecogame.data.remote.challenge.dto.toQuestion
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameBuilder
-import com.dds.theecogame.domain.model.Question
+import com.dds.theecogame.domain.repository.ChallengesRepository
+import com.dds.theecogame.domain.repository.GameRepository
+import kotlinx.coroutines.runBlocking
 
-class QuestionsGameBuilder : GameBuilder {
+class QuestionGameBuilder(
+    private val challengesRepository: ChallengesRepository,
+    private val gameRepository: GameRepository
+) : GameBuilder {
 
-    private val game: Game = Game()
-
-    override fun setNumberOfChallenges(numberOfChallenges: Int) {
-        require(numberOfChallenges == 10) { "This builder only supports 10 challenges" }
-    }
-
-    override fun addQuestionChallenge(order: Int, question: Question) {
-        val challenge = Game.Challenge.QuestionModel(question)
-        game.challengesList[order] = challenge
-    }
+    private val game = Game()
 
     override fun buildGame(): Game {
-        require(game.challengesList.size == 10) { "Game must have exactly 10 challenges" }
+        require(game.challengesList.size == game.challengesNumber) {
+            "Game must have exactly ${game.challengesNumber} challenges"
+        }
         return game
+    }
+
+    override fun setUser(userId: Int) {
+        game.userId = userId
+    }
+
+    override fun setNumberOfChallenges(numberOfChallenges: Int) {
+        game.challengesNumber = numberOfChallenges
+    }
+
+    override fun addChallenges() {
+        runBlocking {
+            // Create game register on API
+            gameRepository.createGame(game.userId).collect {
+                when (it) {
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        game.gameId = it.data!!
+                    }
+
+                    is Resource.Error -> {}
+
+                }
+            }
+            
+            (1..game.challengesNumber).forEach { order ->
+                challengesRepository.getQuestion((1..5).random(), game.userId).collect {
+                    when (it) {
+                        is Resource.Loading -> {}
+                        is Resource.Success -> {
+                            game.challengesList[order] = Game.Challenge.QuestionModel(it.data!!)
+                        }
+
+                        is Resource.Error -> {}
+                    }
+                }
+            }
+        }
     }
 }

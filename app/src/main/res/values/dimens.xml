@@ -13,4 +13,11 @@
     <dimen name="estadisticas_datos">16.5sp</dimen>
     <dimen name="estadisticas_datos_height">40dp</dimen>
     <dimen name="estadisticas_datos_width">320dp</dimen>
+    <dimen name="question_number">25sp</dimen>
+    <dimen name="time_left">10sp</dimen>
+    <dimen name="timer">40sp</dimen>
+    <dimen name="tvpoints">15sp</dimen>
+    <dimen name="points">20sp</dimen>
+    <dimen name="letters">35sp</dimen>
+    <dimen name="profile">20sp</dimen>
 </resources>

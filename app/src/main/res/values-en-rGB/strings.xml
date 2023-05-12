@@ -43,6 +43,8 @@
     <string name="mean_time">Mean time of games:</string>
     <string name="total_time">Total time of the game:</string>
     <string name="ODS_knowledge">ODS knowledge level</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
     <string name="image">Image</string>
     <string name="lost">GAME OVER</string>
     <string name="victory">VICTORY</string>
@@ -51,7 +53,41 @@
     <string name="obtainedPoints">Obtained points:</string>
     <string name="answeredQuestions">Answered questions:</string>
     <string name="finishGame">Finish Game</string>
-    <string name="congratulations">Congratulations</string>
+    <string name="congratulations">Congratulations!!</string>
+    <string name="abandon">Abandon</string>
+    <string name="abandon_question">Do you want to leave the game?</string>
+    <string name="login">Login</string>
+    <string name="logout">Logot</string>
+    <string name="profile">Profile</string>
+    <string name="points">Points:</string>
+    <string name="alert_points">Points:</string>
+    <string name="total_points">Total Points:</string>
+    <string name="consolidate_points">Consolidate Points:</string>
+    <string name="mute">Mute</string>
+
+    <string name="edit_profile">Edit Profile</string>
+    <string name="edit_image">Change image</string>
+    <string name="username_profile">Username</string>
+    <string name="email_profile">Email</string>
+    <string name="password_profile">Password</string>
+    <string name="save_profile">Save</string>
+
+    <string name="background_hangman">Background</string>
+    <string name="head_hangman">Head</string>
+    <string name="body_hangman">Body</string>
+    <string name="right_arm_hangman">Right arm</string>
+    <string name="left_arm_hangman">Left arm</string>
+    <string name="right_leg_hangman">Right leg</string>
+    <string name="left_leg_hangman">Left leg</string>
+    <string name="challenges_answered_correctly">Completed challenges:</string>
+
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="clues">Clues</string>
+    <string name="clues_description">You can buy a clue for the challenge, the clue is a description,
+        once you buy it, the challenge points that you will be receiving for this challenge will
+        be halved by half </string>
+    <string name="question_logut">Do you want to logout?</string>
 
     <!-- AlertDialog messages -->
     <string name="alert_title_quit">Do you want to quit?</string>
@@ -68,4 +104,57 @@
     <!-- Error messages -->
     <string name="error_msg">An unexpected error occured</string>
     <string name="error_msg_internet">Could not reach server. Check your internet connection</string>
+    <string name="error_msg_emailOrPassword">Email or Password is wrong</string>
+
+    <!-- Keyboard messages -->
+    <string name="a">A</string>
+    <string name="b">B</string>
+    <string name="c">C</string>
+    <string name="d">D</string>
+    <string name="e">E</string>
+    <string name="f">F</string>
+    <string name="g">G</string>
+    <string name="h">H</string>
+    <string name="i">I</string>
+    <string name="j">J</string>
+    <string name="k">K</string>
+    <string name="l">L</string>
+    <string name="m">M</string>
+    <string name="n">N</string>
+    <string name="o">O</string>
+    <string name="p">P</string>
+    <string name="q">Q</string>
+    <string name="r">R</string>
+    <string name="s">S</string>
+    <string name="t">T</string>
+    <string name="u">U</string>
+    <string name="v">V</string>
+    <string name="w">W</string>
+    <string name="x">X</string>
+    <string name="y">Y</string>
+    <string name="z">Z</string>
+
+    <string name="log_in">Log In</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="username_hint">Introduce your username</string>
+    <string name="email_hint">Introduce your e-mail</string>
+    <string name="password_hint">Introduce your password</string>
+    <string name="create_user">Create user</string>
+    <string name="error">error</string>
+    <string name="username_format_error">Introduce less than 20 characters</string>
+    <string name="username_found_error">Already exists, try with another one</string>
+    <string name="email_format_error">Non valid format</string>
+    <string name="password_length_error">Must have at least 8 chracters</string>
+    <string name="password_lowercase_error">Must have at least a lowercase letter</string>
+    <string name="password_uppercase_error">"Must have at least an uppercase letter "</string>
+    <string name="password_number_error">Must have at least a number</string>
+    <string name="num_correct_questions">Correct questions:</string>
+    <string name="num_wrong_questions">Wrong questions:</string>
+    <string name="num_correct_hangman">Correct hangmans:</string>
+    <string name="num_wrong_hangman">Wrong hangmans:</string>
+    <string name="username_db_error">Non-available user</string>
+    <string name="email_db_error">Non-available email</string>
 </resources>

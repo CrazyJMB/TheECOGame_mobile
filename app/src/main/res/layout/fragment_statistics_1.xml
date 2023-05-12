@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.statistics.view.Statistics1Fragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_green">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/background_green"
+            android:contentDescription="@string/back"
+            android:onClick="goToMainScreen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_revert"
+            app:tint="@color/black"
+            tools:ignore="ImageContrastCheck" />
+
+        <TextView
+            android:id="@+id/estadisticas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/varela_round"
+            android:text="@string/statistics"
+            android:textColor="@color/white"
+            android:textSize="60sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnBack" />
+
+        <TextView
+            android:id="@+id/numPartidasJugadas"
+            android:layout_width="@dimen/estadisticas_datos_width"
+            android:layout_height="@dimen/estadisticas_datos_height"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/btn_shape_round"
+            android:fontFamily="@font/varela_round"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/num_games_played"
+            android:textColor="@color/black"
+            android:textSize="@dimen/estadisticas_datos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/estadisticas" />
+
+        <TextView
+            android:id="@+id/numPartidasGanadas"
+            android:layout_width="@dimen/estadisticas_datos_width"
+            android:layout_height="@dimen/estadisticas_datos_height"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_shape_round"
+            android:fontFamily="@font/varela_round"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/num_games_won"
+            android:textColor="@color/black"
+            android:textSize="@dimen/estadisticas_datos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/numPartidasJugadas" />
+
+        <TextView
+            android:id="@+id/numPartidasPerdidas"
+            android:layout_width="@dimen/estadisticas_datos_width"
+            android:layout_height="@dimen/estadisticas_datos_height"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_shape_round"
+            android:fontFamily="@font/varela_round"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/num_games_lost"
+            android:textColor="@color/black"
+            android:textSize="@dimen/estadisticas_datos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/numPartidasGanadas" />
+
+        <TextView
+            android:id="@+id/numPartidasAbandonadas"
+            android:layout_width="@dimen/estadisticas_datos_width"
+            android:layout_height="@dimen/estadisticas_datos_height"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_shape_round"
+            android:fontFamily="@font/varela_round"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/num_abandoned_answers"
+            android:textColor="@color/black"
+            android:textSize="@dimen/estadisticas_datos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/numPartidasPerdidas" />
+
+        <TextView
+            android:id="@+id/tiempoPromedio"
+            android:layout_width="@dimen/estadisticas_datos_width"
+            android:layout_height="@dimen/estadisticas_datos_height"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_shape_round"
+            android:fontFamily="@font/varela_round"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/mean_time"
+            android:textColor="@color/black"
+            android:textSize="@dimen/estadisticas_datos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/numPartidasAbandonadas"
+            tools:ignore="TextSizeCheck" />
+
+        <TextView
+            android:id="@+id/tiempoTotal"
+            android:layout_width="@dimen/estadisticas_datos_width"
+            android:layout_height="@dimen/estadisticas_datos_height"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_shape_round"
+            android:fontFamily="@font/varela_round"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/total_time"
+            android:textColor="@color/black"
+            android:textSize="@dimen/estadisticas_datos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tiempoPromedio" />
+
+        <ImageView
+            android:id="@+id/ivLeft"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginBottom="50dp"
+            android:contentDescription="@string/left"
+            android:src="?attr/actionModeCloseDrawable"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/grey"
+            tools:ignore="ImageContrastCheck" />
+
+        <TextView
+            android:id="@+id/tvPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="89dp"
+            android:layout_marginEnd="89dp"
+            android:layout_marginBottom="55dp"
+            android:text="@string/one"
+            android:textAlignment="center"
+            android:textColor="#212121"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivRight"
+            app:layout_constraintStart_toEndOf="@+id/ivLeft" />
+
+        <ImageView
+            android:id="@+id/ivRight"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="46dp"
+            android:layout_marginBottom="50dp"
+            android:contentDescription="@string/right"
+            android:rotation="180"
+            android:src="?attr/actionModeCloseDrawable"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ImageContrastCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

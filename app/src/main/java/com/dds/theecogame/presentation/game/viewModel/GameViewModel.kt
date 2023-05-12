@@ -2,14 +2,22 @@ package com.dds.theecogame.presentation.game.viewModel
 
 import android.content.Context
 import android.widget.Toast
-import android.content.SharedPreferences
+import android.media.MediaPlayer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dds.theecogame.R
+import com.dds.theecogame.data.repository.ChallengesRepositoryImpl
+import com.dds.theecogame.data.repository.GameRepositoryImpl
+import com.dds.theecogame.data.repository.StatisticsRepositoryImpl
+import com.dds.theecogame.domain.Application
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.builder.GameDirector
-import com.dds.theecogame.domain.builder.concreteBuilder.QuestionsGameBuilder
+import com.dds.theecogame.domain.builder.concreteBuilder.QuestionHangmanGameBuilder
+import com.dds.theecogame.domain.repository.ChallengesRepository
+import com.dds.theecogame.domain.repository.GameRepository
+import com.dds.theecogame.domain.repository.StatisticsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -20,6 +28,12 @@ class GameViewModel : ViewModel() {
     private val _gameLiveData = MutableLiveData<Game>()
     val gameLiveData: LiveData<Game> = _gameLiveData
 
+    private val challengesRepository: ChallengesRepository = ChallengesRepositoryImpl()
+    private val gameRepository: GameRepository = GameRepositoryImpl()
+    private val statisticsRepository: StatisticsRepository = StatisticsRepositoryImpl()
+
+    private lateinit var mediaPlayer: MediaPlayer
+
     private var consolidated: Boolean = false
     private var secondChance: Boolean = false
     private var gameEnded: Boolean = false
@@ -29,6 +43,11 @@ class GameViewModel : ViewModel() {
     private var questionNumber: Int = 1
     private var timeStart: Long = 0L
     private var timeEnd: Long = 0L
+
+    private val _btnPressed = MutableLiveData<Char>()
+    var btnPressed: LiveData<Char> = _btnPressed
+    private val _visibleLetters = MutableLiveData<MutableList<Char>>()
+    var visibleLetters: LiveData<MutableList<Char>> = _visibleLetters
 
     fun getConsolidated() = consolidated
     fun getSecondChance() = secondChance
@@ -79,12 +98,27 @@ class GameViewModel : ViewModel() {
         gameStatus = status
     }
 
+    fun addBtnPressed(char: Char) {
+        _btnPressed.value = char
+    }
+
+    fun changeStartingVisibilityLetters(list: MutableList<Char>) {
+        _visibleLetters.value = list
+    }
+
     fun createGame(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val game = GameDirector(QuestionsGameBuilder()).buildGameWith10Questions()
-                game.sortChallengesByDifficulty()
-                _gameLiveData.postValue(game)
+                val game =
+                    GameDirector(
+                        QuestionHangmanGameBuilder(
+                            challengesRepository,
+                            gameRepository
+                        )
+                    ).construct()
+                if (game.sortChallengesByDifficulty()) {
+                    _gameLiveData.postValue(game)
+                }
             } catch (e: HttpException) {
                 viewModelScope.launch(Dispatchers.Main) {
                     Toast.makeText(
@@ -95,19 +129,6 @@ class GameViewModel : ViewModel() {
                 }
             }
         }
-    }
-
-    internal fun resetGameStats(sharedPref: SharedPreferences) {
-        val editor = sharedPref.edit()
-        val currentDate = System.currentTimeMillis()
-
-        editor.putString("gameStatus", "Defeat")
-        editor.putInt("points", 0)
-        editor.putInt("consolidatedPoints", 0)
-        editor.putLong("timeStarted", currentDate)
-        editor.putLong("timeEnded", 0)
-        editor.putInt("numberChallengesAnswered", 0)
-        editor.apply()
     }
 
     fun getResults(): List<Int> {
@@ -130,4 +151,67 @@ class GameViewModel : ViewModel() {
 
         return summaryStats
     }
+
+    fun startMusic(context: Context) {
+        mediaPlayer = MediaPlayer.create(context, R.raw.fondo)
+        mediaPlayer.isLooping = true
+        mediaPlayer.start()
+    }
+
+    fun pauseMusic() {
+        mediaPlayer.pause()
+    }
+
+    fun releaseMusic() {
+        mediaPlayer.release()
+    }
+
+    fun resumeMusic() {
+        mediaPlayer.start()
+    }
+
+    suspend fun registerChallenge(challengeId: Int, challengeType: String) {
+        gameRepository.addChallengeToGame(
+            gameLiveData.value!!.gameId,
+            challengeId,
+            challengeType
+        )
+    }
+
+    suspend fun registerScore(score: Int) {
+        gameRepository.updateScore(gameLiveData.value!!.gameId, score)
+    }
+
+    suspend fun registerWin() {
+        statisticsRepository.registerWinStatistic(Application.getUser()!!.id)
+    }
+
+    suspend fun registerLose() {
+        statisticsRepository.registerLoseStatistic(Application.getUser()!!.id)
+    }
+
+    suspend fun registerQuit() {
+        statisticsRepository.registerQuitStatistic(Application.getUser()!!.id)
+    }
+
+    suspend fun registerQuestionCorrect() {
+        statisticsRepository.registerQuestionCorrectStatistics(Application.getUser()!!.id)
+    }
+
+    suspend fun registerQuestionFailed() {
+        statisticsRepository.registerQuestionFailedStatistics(Application.getUser()!!.id)
+    }
+
+    suspend fun registerHangmanCorrect() {
+        statisticsRepository.registerHangmanCorrectStatistics(Application.getUser()!!.id)
+    }
+
+    suspend fun registerHangmanFailed() {
+        statisticsRepository.registerHangmanFailedStatistics(Application.getUser()!!.id)
+    }
+
+    suspend fun registerTime(time: Int) {
+        statisticsRepository.registerTimeStatistics(Application.getUser()!!.id, time)
+    }
+
 }

@@ -10,17 +10,28 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 //import androidx.databinding.ObservableInt
 import com.dds.theecogame.R
+import com.dds.theecogame.data.repository.GameRepositoryImpl
+import com.dds.theecogame.data.repository.StatisticsRepositoryImpl
+import com.dds.theecogame.databinding.ActivityGameBinding
 
 
 import com.dds.theecogame.databinding.FragmentQuestionsBinding
 import com.dds.theecogame.domain.builder.Game
-import com.dds.theecogame.domain.model.Question
+import com.dds.theecogame.domain.model.challenges.Question
+import com.dds.theecogame.domain.repository.GameRepository
+import com.dds.theecogame.domain.repository.StatisticsRepository
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import com.dds.theecogame.presentation.game.viewModel.QuestionViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlin.concurrent.timer
 
 class QuestionFragment : Fragment() {
@@ -55,6 +66,10 @@ class QuestionFragment : Fragment() {
                 is Game.Challenge.QuestionModel -> {
                     currentQuestion = nextQuestion.questionModel
 
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        gameViewModel.registerChallenge(currentQuestion.id, "QUESTION")
+                    }
+
                     nextQuestion.let {
                         val questionList = listOf(
                             it.questionModel.option1,
@@ -68,9 +83,12 @@ class QuestionFragment : Fragment() {
                         binding.rbOptionB.text = questionList[1]
                         binding.rbOptionC.text = questionList[2]
                         binding.rbOptionD.text = questionList[3]
+
+                        binding.tvPointsNumber.text = (currentQuestion.difficulty * 10).toString()
                     }
                 }
             }
+
         }
 
         startTimer()
@@ -80,7 +98,7 @@ class QuestionFragment : Fragment() {
         binding.btnContinue.setOnClickListener {
             val correctAnswer = currentQuestion.answer
             val isCorrect = checkAnswer(correctAnswer)
-            stopTimer()
+
             if (isCorrect) {
                 val points = 10 * currentQuestion.difficulty
                 if (gameViewModel.getSecondChance()) {
@@ -93,7 +111,16 @@ class QuestionFragment : Fragment() {
                 }
 
                 gameViewModel.nextQuestionNumber()
-                goToCongratulations()
+                if (gameViewModel.getQuestionNumber() == 11) {
+                    stopTimer()
+                    goToSummary()
+                } else if (gameViewModel.getConsolidated() == false) {
+                    stopTimer()
+                    goToConsolidate()
+                } else {
+                    stopTimer()
+                    goToAbandon()
+                }
 
             } else if (!gameViewModel.getSecondChance()) {
                 gameViewModel.setSecondChange(true)
@@ -102,8 +129,25 @@ class QuestionFragment : Fragment() {
                     mediaPlayer.stop()
                 }
                 gameViewModel.setGameStatus(0) // Game Lost
+                stopTimer()
                 goToSummary()
             }
+        }
+
+        binding.ivPoints.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle(R.string.alert_points)
+            builder.setMessage(
+                getString(R.string.total_points) + " " +
+                        gameViewModel.getPoints().toString() +
+                        "\n\n" +
+                        getString(R.string.consolidate_points) + " " +
+                        gameViewModel.getConsolidatedPoints().toString()
+            )
+            builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
+                //No hace nada
+            }
+            builder.show()
         }
     }
 
@@ -125,6 +169,9 @@ class QuestionFragment : Fragment() {
 
         if (answerSelected.equals(correctAnswer)) {
             onViewCreated(binding.root, null)
+
+            lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerQuestionCorrect() }
+
             return true
         }
 
@@ -145,6 +192,7 @@ class QuestionFragment : Fragment() {
             playLosingMusic(false)
 
         }
+        lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerQuestionFailed() }
         return false
     }
 
@@ -194,11 +242,11 @@ class QuestionFragment : Fragment() {
         mediaPlayer.start()
     }
 
-    private fun goToCongratulations() {
-        val congratulationFragment = CongratulationFragment()
+    private fun goToConsolidate() {
+        val consolidateFragment = ConsolidateFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
-            .replace(R.id.GameContainerView, congratulationFragment)
+            .replace(R.id.GameContainerView, consolidateFragment)
             .commit()
     }
 
@@ -210,9 +258,23 @@ class QuestionFragment : Fragment() {
             .commit()
     }
 
+    private fun goToAbandon() {
+        val abandonFragment = AbandonFragment()
+        val fragmentManager = requireActivity().supportFragmentManager
+        fragmentManager.beginTransaction()
+            .replace(R.id.GameContainerView, abandonFragment)
+            .commit()
+    }
 
     private fun changeViewImage() {
-        binding.ivODS.setImageResource(R.drawable.ods1)
+        binding.ivODS3.setImageResource(R.drawable.ods1)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (tense) {
+            mediaPlayer.stop()
+        }
     }
 }
 

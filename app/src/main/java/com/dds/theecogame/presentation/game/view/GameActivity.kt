@@ -1,61 +1,85 @@
 package com.dds.theecogame.presentation.game.view
 
-import android.content.Context
-import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.activity.viewModels
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.ActivityGameBinding
+import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
-import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 
 class GameActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityGameBinding
     private val viewModel: GameViewModel by viewModels()
+    private lateinit var mediaPlayer: MediaPlayer
+    private var isMusicPlaying = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        viewModel.startMusic(this)
+        isMusicPlaying = true
         viewModel.createGame(this)
+        viewModel.gameLiveData.observe(this) {
+            when (it.getNextChallenge()) {
+                is Game.Challenge.HangmanModel -> {
+                    val fragment = HangmanFragment()
+                    val fragmentManager = this.supportFragmentManager
+                    fragmentManager.beginTransaction()
+                        .replace(R.id.GameContainerView, fragment)
+                        .commit()
+                }
 
+                is Game.Challenge.QuestionModel -> {
+                    val fragment = QuestionFragment()
+                    val fragmentManager = this.supportFragmentManager
+                    fragmentManager.beginTransaction()
+                        .replace(R.id.GameContainerView, fragment)
+                        .commit()
+                }
+            }
+        }
         viewModel.setTimeStart()
 
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnBack.setOnClickListener {
-            if (!viewModel.getGameEnded()) {
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle(R.string.alert_title_quit)
-                builder.setMessage(R.string.alert_msg_quit)
-                builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
-                    viewModel.setGameStatus(1) // Game abandoned
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.GameContainerView, ResumeFragment())
-                        .commit()
-                }
-                builder.setNegativeButton(R.string.alert_cancel) { _, _ ->
-                    //No hace nada
-                }
-                builder.show()
+        binding.btnMute.setOnClickListener {
+            if (isMusicPlaying) {
+                viewModel.pauseMusic()
+                binding.btnMute.setImageResource(R.drawable.sound)
+                isMusicPlaying = false
             } else {
-                val mainScreen = Intent(this, MainScreenActivity::class.java)
-                startActivity(mainScreen)
+                viewModel.resumeMusic()
+                binding.btnMute.setImageResource(R.drawable.mute)
+                isMusicPlaying = true
             }
+        }
+
+        binding.btnClues.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(R.string.clues)
+            builder.setMessage(R.string.clues_description)
+            builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
+                //FIXME PISTAS
+            }
+            builder.setNegativeButton(R.string.alert_cancel) { _, _ ->
+                //No hace nada
+            }
+            builder.show()
         }
     }
 
     override fun onStop() {
         super.onStop()
-        //TODO("Que pasa cuando el usuario miminiza la aplicacion? Se deberia guardar el progreso actual")
+        viewModel.releaseMusic()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        TODO("Que pasa cuando se sale de una partida no acabada")
+        viewModel.releaseMusic()
     }
 
 }
