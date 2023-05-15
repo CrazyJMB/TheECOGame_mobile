@@ -179,4 +179,5 @@
     <string name="num_correct_answers">Respuestas correctas:</string>
     <string name="num_wrong_answers">Respuestas incorrectas:</string>
 
+    <string name="question_quit">¿Deseas salir del reto?</string>
 </resources>

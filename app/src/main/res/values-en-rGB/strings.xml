@@ -157,4 +157,6 @@
     <string name="num_wrong_hangman">Wrong hangmans:</string>
     <string name="username_db_error">Non-available user</string>
     <string name="email_db_error">Non-available email</string>
+
+    <string name="question_quit">Do you want to quit the game?</string>
 </resources>
