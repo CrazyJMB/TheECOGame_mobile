@@ -1,8 +1,11 @@
 package com.dds.theecogame.presentation.game.view
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import androidx.appcompat.app.AlertDialog
 import androidx.activity.viewModels
 import com.dds.theecogame.R
@@ -49,17 +52,17 @@ class GameActivity : AppCompatActivity() {
         binding.btnMute.setOnClickListener {
             if (isMusicPlaying) {
                 viewModel.pauseMusic()
-                binding.btnMute.setImageResource(R.drawable.sound)
+                binding.btnMute.setImageResource(R.drawable.mute)
                 isMusicPlaying = false
             } else {
                 viewModel.resumeMusic()
-                binding.btnMute.setImageResource(R.drawable.mute)
+                binding.btnMute.setImageResource(R.drawable.sound)
                 isMusicPlaying = true
             }
         }
 
         binding.btnClues.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
+            val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.alert_style))
             builder.setTitle(R.string.clues)
             builder.setMessage(R.string.clues_description)
             builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
@@ -68,7 +71,9 @@ class GameActivity : AppCompatActivity() {
             builder.setNegativeButton(R.string.alert_cancel) { _, _ ->
                 //No hace nada
             }
-            builder.show()
+            val alertDialog = builder.create()
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            alertDialog.show()
         }
     }
 

@@ -16,7 +16,7 @@
         android:layout_marginBottom="6dp"
         android:backgroundTint="@color/background_green"
         android:contentDescription="@string/back"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/Linea"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
         android:contentDescription="@string/mute"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mute"
+        app:srcCompat="@drawable/sound"
         app:tint="@color/black" />
 
     <LinearLayout
