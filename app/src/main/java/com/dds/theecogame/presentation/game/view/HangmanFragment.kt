@@ -1,8 +1,11 @@
 package com.dds.theecogame.presentation.game.view
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -47,7 +50,7 @@ class HangmanFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.ivPointsHangman.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
+            val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.alert_style))
             builder.setTitle(R.string.alert_points)
             builder.setMessage(
                 getString(R.string.total_points) + " " +
@@ -59,7 +62,9 @@ class HangmanFragment : Fragment() {
             builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
                 //No hace nada
             }
-            builder.show()
+            val alertDialog = builder.create()
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            alertDialog.show()
         }
 
         gameViewModel.gameLiveData.observe(viewLifecycleOwner) { game ->

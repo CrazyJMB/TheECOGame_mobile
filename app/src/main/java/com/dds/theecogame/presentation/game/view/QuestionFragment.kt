@@ -1,9 +1,12 @@
 package com.dds.theecogame.presentation.game.view
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -135,7 +138,7 @@ class QuestionFragment : Fragment() {
         }
 
         binding.ivPoints.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
+            val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.alert_style))
             builder.setTitle(R.string.alert_points)
             builder.setMessage(
                 getString(R.string.total_points) + " " +
@@ -147,7 +150,9 @@ class QuestionFragment : Fragment() {
             builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
                 //No hace nada
             }
-            builder.show()
+            val alertDialog = builder.create()
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            alertDialog.show()
         }
     }
 
