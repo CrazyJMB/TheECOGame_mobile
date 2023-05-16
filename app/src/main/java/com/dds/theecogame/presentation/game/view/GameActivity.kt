@@ -28,19 +28,16 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
-
             override fun handleOnBackPressed() {
                 if (!viewModel.getGameEnded()) {
                     val builder = AlertDialog.Builder(ContextThemeWrapper(this@GameActivity, R.style.alert_style))
                     builder.setTitle(R.string.question_quit)
                     builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
-
                         val fragment = ResumeFragment()
                         val fragmentManager = supportFragmentManager
                             fragmentManager.beginTransaction()
                             .replace(R.id.GameContainerView, fragment)
                             .commit()
-
                     }
                     builder.setNegativeButton(R.string.alert_cancel) { _, _ ->
                         //No hace nada
