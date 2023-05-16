@@ -26,7 +26,6 @@ class EmailValidator : Validator {
             error = "Formato de correo no válido"
             return false
         }
-        //check con llamada a api
         runBlocking {
             userRepository.checkEmail(email).collect {
                 when (it) {
@@ -34,7 +33,6 @@ class EmailValidator : Validator {
                     is Resource.Success -> {
                         check = true
                     }
-
                     is Resource.Error -> {
                         error = "Email no disponible"
                         //error = it.message.toString()
@@ -43,7 +41,6 @@ class EmailValidator : Validator {
                 }
             }
         }
-
         return true
     }
 }

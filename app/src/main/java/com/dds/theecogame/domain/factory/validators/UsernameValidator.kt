@@ -23,8 +23,6 @@ class UsernameValidator : Validator {
             error = "Introduzca menos de 20 caracteres"
             return false
         }
-        //check con llamada a api
-
         runBlocking(Dispatchers.IO) {
             userRepository.checkUsername(username).collect {
                 when (it) {
@@ -45,7 +43,6 @@ class UsernameValidator : Validator {
                 }
             }
         }
-
         return check
     }
 }
