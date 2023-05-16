@@ -96,6 +96,28 @@
 
     <string name="one">1</string>
     <string name="two">2</string>
+    <string name="three">3</string>
+
+    <string name="scroll_view">Scroll View</string>
+    <string name="level_ods">Nivel De ODS</string>
+
+    <string name="ODS_knowledge_1">ODS 1:                            </string>
+    <string name="ODS_knowledge_2">ODS 2:                            </string>
+    <string name="ODS_knowledge_3">ODS 3:                            </string>
+    <string name="ODS_knowledge_4">ODS 4:                            </string>
+    <string name="ODS_knowledge_5">ODS 5:                            </string>
+    <string name="ODS_knowledge_6">ODS 6:                            </string>
+    <string name="ODS_knowledge_7">ODS 7:                            </string>
+    <string name="ODS_knowledge_8">ODS 8:                            </string>
+    <string name="ODS_knowledge_9">ODS 9:                            </string>
+    <string name="ODS_knowledge_10">ODS 10:                            </string>
+    <string name="ODS_knowledge_11">ODS 11:                            </string>
+    <string name="ODS_knowledge_12">ODS 12:                            </string>
+    <string name="ODS_knowledge_13">ODS 13:                            </string>
+    <string name="ODS_knowledge_14">ODS 14:                            </string>
+    <string name="ODS_knowledge_15">ODS 15:                            </string>
+    <string name="ODS_knowledge_16">ODS 16:                            </string>
+    <string name="ODS_knowledge_17">ODS 17:                            </string>
 
     <string name="clues">Pistas</string>
     <string name="clues_description">Puedes comprar una pista para el reto, la pista es un
@@ -178,5 +200,7 @@
     <string name="password_number_error">Debe contener al menos un número</string>
     <string name="num_correct_answers">Respuestas correctas:</string>
     <string name="num_wrong_answers">Respuestas incorrectas:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
