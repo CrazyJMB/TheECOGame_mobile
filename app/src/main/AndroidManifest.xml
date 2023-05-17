@@ -16,7 +16,12 @@
         android:theme="@style/Theme.TheECOGame"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".RankingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.userManagement.view.UserManagementActivity"
             android:exported="true">
@@ -26,7 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".presentation.register.view.RegisterActivity"
             android:exported="false" />
@@ -36,7 +40,6 @@
         <activity
             android:name=".presentation.mainScreen.view.MainScreenActivity"
             android:exported="false" />
-
         <activity
             android:name=".presentation.game.view.GameActivity"
             android:exported="false" />
