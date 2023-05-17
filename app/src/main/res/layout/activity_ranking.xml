@@ -4,6 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ranking.view.RankingActivity">
+    tools:context=".presentation.ranking.view.RankingActivity"
+    android:background="@color/background_green">
+
+    <TextView
+        android:id="@+id/tvRanking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/title_top_margin"
+        android:text="@string/ranking"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title_font_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="310dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="36dp"
+        android:orientation="horizontal"
+        android:background="@drawable/btn_shape_rounded_square"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRanking">
+
+
+        <TextView
+            android:id="@+id/tvUserRank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.5"
+            android:text="0"
+            android:gravity="center" />
+
+        <ImageView
+            android:id="@+id/ivUserAvatar"
+            android:layout_width="23dp"
+            android:layout_height="27dp"
+            android:layout_weight="0"
+            android:layout_gravity="center_vertical"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvUserUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="5"
+            android:paddingLeft="8dp"
+            android:text="@string/username" />
+        <!--Mirar si es mejor fijar un tamaño o usar dos linear layout-->
+
+        <TextView
+            android:id="@+id/tvUserPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:layout_gravity="center_vertical"
+            android:gravity="center" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
