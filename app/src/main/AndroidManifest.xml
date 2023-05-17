@@ -17,10 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".RankingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
+            android:name=".presentation.ranking.view.RankingActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.userManagement.view.UserManagementActivity"
