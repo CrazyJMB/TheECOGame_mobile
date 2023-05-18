@@ -7,25 +7,38 @@
     tools:context=".presentation.ranking.view.RankingActivity"
     android:background="@color/background_green">
 
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/background_green"
+        android:contentDescription="@string/back"
+        android:onClick="goToMainScreen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        app:tint="@color/black"
+        tools:ignore="ImageContrastCheck" />
+
     <TextView
         android:id="@+id/tvRanking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/title_top_margin"
+        android:layout_marginTop="48dp"
         android:text="@string/ranking"
         android:textColor="@color/white"
         android:textSize="@dimen/title_font_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--Contenedor prpal-->
     <LinearLayout
         android:id="@+id/llActualUser"
         android:layout_width="310dp"
         android:layout_height="37dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn_shape_rounded_square"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,11 +100,28 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tvTop10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/top10"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llActualUser"
+        app:layout_constraintVertical_bias="1.0" />
+
     <!--Contenedor vertical-->
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="330dp"
         android:layout_height="455dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/btn_shape_rounded_square_darker"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,9 +135,9 @@
             android:id="@+id/llRank1"
             android:layout_width="310dp"
             android:layout_height="37dp"
+            android:layout_weight="1"
             android:background="@drawable/btn_shape_rounded_square"
             android:orientation="horizontal"
-            android:layout_weight="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +157,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0" />
+                    android:text="1"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ivUserAvatar1"
@@ -196,7 +227,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0" />
+                    android:text="2"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ivUserAvatar2"
@@ -265,7 +297,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0" />
+                    android:text="3"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ivUserAvatar3"
@@ -334,7 +367,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0" />
+                    android:text="4"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ivUserAvatar4"
@@ -403,7 +437,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0" />
+                    android:text="5"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ivUserAvatar5"
@@ -472,7 +507,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0" />
+                    android:text="6"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ivUserAvatar6"
@@ -541,7 +577,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0" />
+                    android:text="7"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ivUserAvatar7"
@@ -610,7 +647,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0" />
+                    android:text="8"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ivUserAvatar8"
@@ -679,7 +717,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0" />
+                    android:text="9"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ivUserAvatar9"
@@ -748,7 +787,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="0" />
+                    android:text="10"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ivUserAvatar10"

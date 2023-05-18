@@ -203,6 +203,7 @@
 
     <!--Ranking Activity-->
     <string name="ranking" translatable="false">Ranking</string>
+    <string name="top10" translatable="false">Top 10</string>
 
 
 </resources>
