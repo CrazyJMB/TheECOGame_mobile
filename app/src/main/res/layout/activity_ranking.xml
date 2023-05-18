@@ -20,54 +20,775 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--Contenedor prpal-->
     <LinearLayout
+        android:id="@+id/llActualUser"
         android:layout_width="310dp"
         android:layout_height="37dp"
-        android:layout_marginTop="36dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="25dp"
         android:background="@drawable/btn_shape_rounded_square"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRanking">
 
+        <!--Contenedor izq-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvUserRank"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.5"
-            android:text="0"
-            android:gravity="center" />
+            <TextView
+                android:id="@+id/tvUserRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="0" />
 
-        <ImageView
-            android:id="@+id/ivUserAvatar"
-            android:layout_width="23dp"
-            android:layout_height="27dp"
-            android:layout_weight="0"
-            android:layout_gravity="center_vertical"
-            tools:src="@tools:sample/avatars" />
+            <ImageView
+                android:id="@+id/ivUserAvatar"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                tools:src="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/tvUserUsername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="5"
-            android:paddingLeft="8dp"
-            android:text="@string/username" />
-        <!--Mirar si es mejor fijar un tamaño o usar dos linear layout-->
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvUserPoints"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <!--Contenedor der-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="TextView"
-            android:layout_gravity="center_vertical"
-            android:gravity="center" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvUserUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:paddingLeft="8dp"
+                android:text="@string/username" />
+            <!--Mirar si es mejor fijar un tamaño o usar dos linear layout-->
+
+            <TextView
+                android:id="@+id/tvUserPoints"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="5" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+    <!--Contenedor vertical-->
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="455dp"
+        android:layout_marginTop="36dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llActualUser">
+
+        <!--User 1-->
+        <!--Contenedor prpal-->
+        <LinearLayout
+            android:id="@+id/llRank1"
+            android:layout_width="310dp"
+            android:layout_height="37dp"
+            android:background="@drawable/btn_shape_rounded_square"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRanking">
+
+            <!--Contenedor izq-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserRank1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0" />
+
+                <ImageView
+                    android:id="@+id/ivUserAvatar1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    tools:src="@tools:sample/avatars" />
+
+            </LinearLayout>
+
+            <!--Contenedor der-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserUsername1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp"
+                    android:text="@string/username" />
+                <!--Mirar si es mejor fijar un tamaño o usar dos linear layout-->
+
+                <TextView
+                    android:id="@+id/tvUserPoints1"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--User 2-->
+        <!--Contenedor prpal-->
+        <LinearLayout
+            android:id="@+id/llRank2"
+            android:layout_width="310dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_shape_rounded_square"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRanking">
+
+            <!--Contenedor izq-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserRank2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0" />
+
+                <ImageView
+                    android:id="@+id/ivUserAvatar2"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    tools:src="@tools:sample/avatars" />
+
+            </LinearLayout>
+
+            <!--Contenedor der-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserUsername2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp"
+                    android:text="@string/username" />
+                <!--Mirar si es mejor fijar un tamaño o usar dos linear layout-->
+
+                <TextView
+                    android:id="@+id/tvUserPoints2"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--User 3-->
+        <!--Contenedor prpal-->
+        <LinearLayout
+            android:id="@+id/llRank3"
+            android:layout_width="310dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_shape_rounded_square"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRanking">
+
+            <!--Contenedor izq-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserRank3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0" />
+
+                <ImageView
+                    android:id="@+id/ivUserAvatar3"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    tools:src="@tools:sample/avatars" />
+
+            </LinearLayout>
+
+            <!--Contenedor der-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserUsername3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp"
+                    android:text="@string/username" />
+                <!--Mirar si es mejor fijar un tamaño o usar dos linear layout-->
+
+                <TextView
+                    android:id="@+id/tvUserPoints3"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--User 4-->
+        <!--Contenedor prpal-->
+        <LinearLayout
+            android:id="@+id/llRank4"
+            android:layout_width="310dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_shape_rounded_square"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRanking">
+
+            <!--Contenedor izq-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserRank4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0" />
+
+                <ImageView
+                    android:id="@+id/ivUserAvatar4"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    tools:src="@tools:sample/avatars" />
+
+            </LinearLayout>
+
+            <!--Contenedor der-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserUsername4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp"
+                    android:text="@string/username" />
+                <!--Mirar si es mejor fijar un tamaño o usar dos linear layout-->
+
+                <TextView
+                    android:id="@+id/tvUserPoints4"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--User 5-->
+        <!--Contenedor prpal-->
+        <LinearLayout
+            android:id="@+id/llRank5"
+            android:layout_width="310dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_shape_rounded_square"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRanking">
+
+            <!--Contenedor izq-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserRank5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0" />
+
+                <ImageView
+                    android:id="@+id/ivUserAvatar5"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    tools:src="@tools:sample/avatars" />
+
+            </LinearLayout>
+
+            <!--Contenedor der-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserUsername5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp"
+                    android:text="@string/username" />
+                <!--Mirar si es mejor fijar un tamaño o usar dos linear layout-->
+
+                <TextView
+                    android:id="@+id/tvUserPoints5"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--User 6-->
+        <!--Contenedor prpal-->
+        <LinearLayout
+            android:id="@+id/llRank6"
+            android:layout_width="310dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_shape_rounded_square"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRanking">
+
+            <!--Contenedor izq-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserRank6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0" />
+
+                <ImageView
+                    android:id="@+id/ivUserAvatar6"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    tools:src="@tools:sample/avatars" />
+
+            </LinearLayout>
+
+            <!--Contenedor der-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserUsername6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp"
+                    android:text="@string/username" />
+                <!--Mirar si es mejor fijar un tamaño o usar dos linear layout-->
+
+                <TextView
+                    android:id="@+id/tvUserPoints6"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--User 7-->
+        <!--Contenedor prpal-->
+        <LinearLayout
+            android:id="@+id/llRank7"
+            android:layout_width="310dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_shape_rounded_square"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRanking">
+
+            <!--Contenedor izq-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserRank7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0" />
+
+                <ImageView
+                    android:id="@+id/ivUserAvatar7"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    tools:src="@tools:sample/avatars" />
+
+            </LinearLayout>
+
+            <!--Contenedor der-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserUsername7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp"
+                    android:text="@string/username" />
+                <!--Mirar si es mejor fijar un tamaño o usar dos linear layout-->
+
+                <TextView
+                    android:id="@+id/tvUserPoints7"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--User 8-->
+        <!--Contenedor prpal-->
+        <LinearLayout
+            android:id="@+id/llRank8"
+            android:layout_width="310dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_shape_rounded_square"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRanking">
+
+            <!--Contenedor izq-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserRank8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0" />
+
+                <ImageView
+                    android:id="@+id/ivUserAvatar8"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    tools:src="@tools:sample/avatars" />
+
+            </LinearLayout>
+
+            <!--Contenedor der-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserUsername8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp"
+                    android:text="@string/username" />
+                <!--Mirar si es mejor fijar un tamaño o usar dos linear layout-->
+
+                <TextView
+                    android:id="@+id/tvUserPoints8"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--User 9-->
+        <!--Contenedor prpal-->
+        <LinearLayout
+            android:id="@+id/llRank9"
+            android:layout_width="310dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_shape_rounded_square"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRanking">
+
+            <!--Contenedor izq-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserRank9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0" />
+
+                <ImageView
+                    android:id="@+id/ivUserAvatar9"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    tools:src="@tools:sample/avatars" />
+
+            </LinearLayout>
+
+            <!--Contenedor der-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserUsername9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp"
+                    android:text="@string/username" />
+                <!--Mirar si es mejor fijar un tamaño o usar dos linear layout-->
+
+                <TextView
+                    android:id="@+id/tvUserPoints9"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--User 10-->
+        <!--Contenedor prpal-->
+        <LinearLayout
+            android:id="@+id/llRank10"
+            android:layout_width="310dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_shape_rounded_square"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRanking">
+
+            <!--Contenedor izq-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserRank10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0" />
+
+                <ImageView
+                    android:id="@+id/ivUserAvatar10"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    tools:src="@tools:sample/avatars" />
+
+            </LinearLayout>
+
+            <!--Contenedor der-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserUsername10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp"
+                    android:text="@string/username" />
+                <!--Mirar si es mejor fijar un tamaño o usar dos linear layout-->
+
+                <TextView
+                    android:id="@+id/tvUserPoints10"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
