@@ -11,6 +11,7 @@ import com.dds.theecogame.domain.Application
 import com.dds.theecogame.presentation.editProfile.view.EditProfileActivity
 import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
 import com.dds.theecogame.presentation.game.view.GameActivity
+import com.dds.theecogame.presentation.ranking.view.RankingActivity
 import com.dds.theecogame.presentation.setting.view.SettingActivity
 import com.dds.theecogame.presentation.statistics.view.ActivityStatistics
 import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
@@ -59,6 +60,10 @@ class MainScreenActivity : AppCompatActivity() {
                 //No hace nada
             }
             builder.show()
+        }
+
+        binding.btnRanking.setOnClickListener {
+            startActivity(Intent(this, RankingActivity::class.java))
         }
     }
 }
