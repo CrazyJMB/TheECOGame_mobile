@@ -106,4 +106,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/logout" />
 
+    <ImageButton
+        android:id="@+id/btnRanking"
+        android:layout_width="75dp"
+        android:layout_height="78dp"
+        android:background="@color/background_green"
+        android:contentDescription="@string/ranking"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
