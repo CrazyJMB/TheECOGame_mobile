@@ -36,6 +36,18 @@ fun StatisticsDto.toStatistics(): Statistics {
         question_failed_count,
         hangman_correct_count,
         hangman_failed_count,
-        ods_knowledge
-    )
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge, ods_knowledge, ods_knowledge, ods_knowledge, ods_knowledge, ods_knowledge,
+
+        )
 }

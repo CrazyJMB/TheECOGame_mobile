@@ -41,6 +41,7 @@
         android:text="@string/sounds"
         android:textSize="@dimen/settings_slider_title_font_size"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sbMusic" />
 
@@ -66,6 +67,7 @@
         android:text="@string/music"
         android:textSize="@dimen/settings_slider_title_font_size"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sbGeneralVolume" />
 
@@ -76,9 +78,10 @@
         android:layout_marginTop="15dp"
         android:max="100"
         android:progress="30"
-        android:thumbTint="@color/black"
-        android:progressTint="@color/white"
         android:progressBackgroundTint="@color/grey"
+        android:progressTint="@color/white"
+        android:thumbTint="@color/black"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,9 +109,10 @@
         android:layout_marginTop="15dp"
         android:max="100"
         android:progress="70"
-        android:thumbTint="@color/black"
-        android:progressTint="@color/white"
         android:progressBackgroundTint="@color/grey"
+        android:progressTint="@color/white"
+        android:thumbTint="@color/black"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"

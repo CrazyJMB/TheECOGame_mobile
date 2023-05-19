@@ -57,77 +57,78 @@ class Statistics3Fragment : Fragment() {
                 when (it) {
                     is Resource.Loading -> {}
                     is Resource.Success -> {
-                        val stats = it.data
+                        val stats = it.data!!
 
-                        val odsKnowledgeLevel1 = stats!!.ods_knowledge1.toString()
+                        val odsKnowledgeLevel1 = stats.ods_knowledge1.toString()
                         binding.tvODS1.text =
                             "${binding.tvODS1.text} $odsKnowledgeLevel1%"
 
-                        val odsKnowledgeLevel2 = stats!!.ods_knowledge2.toString()
+                        val odsKnowledgeLevel2 = stats.ods_knowledge2.toString()
                         binding.tvODS2.text =
                             "${binding.tvODS2.text} $odsKnowledgeLevel2%"
 
-                        val odsKnowledgeLevel3 = stats!!.ods_knowledge3.toString()
+                        val odsKnowledgeLevel3 = stats.ods_knowledge3.toString()
                         binding.tvODS3.text =
                             "${binding.tvODS3.text} $odsKnowledgeLevel3%"
 
-                        val odsKnowledgeLevel4 = stats!!.ods_knowledge4.toString()
+                        val odsKnowledgeLevel4 = stats.ods_knowledge4.toString()
                         binding.tvODS4.text =
                             "${binding.tvODS4.text} $odsKnowledgeLevel4%"
 
-                        val odsKnowledgeLevel5 = stats!!.ods_knowledge5.toString()
+                        val odsKnowledgeLevel5 = stats.ods_knowledge5.toString()
                         binding.tvODS5.text =
                             "${binding.tvODS5.text} $odsKnowledgeLevel5%"
 
-                        val odsKnowledgeLevel6 = stats!!.ods_knowledge6.toString()
+                        val odsKnowledgeLevel6 = stats.ods_knowledge6.toString()
                         binding.tvODS6.text =
                             "${binding.tvODS6.text} $odsKnowledgeLevel6%"
 
-                        val odsKnowledgeLevel7 = stats!!.ods_knowledge7.toString()
+                        val odsKnowledgeLevel7 = stats.ods_knowledge7.toString()
                         binding.tvODS7.text =
                             "${binding.tvODS7.text} $odsKnowledgeLevel7%"
 
-                        val odsKnowledgeLevel8 = stats!!.ods_knowledge8.toString()
+                        val odsKnowledgeLevel8 = stats.ods_knowledge8.toString()
                         binding.tvODS8.text =
                             "${binding.tvODS8.text} $odsKnowledgeLevel8%"
 
-                        val odsKnowledgeLevel9 = stats!!.ods_knowledge9.toString()
+                        val odsKnowledgeLevel9 = stats.ods_knowledge9.toString()
                         binding.tvODS9.text =
                             "${binding.tvODS9.text} $odsKnowledgeLevel9%"
 
-                        val odsKnowledgeLevel10 = stats!!.ods_knowledge10.toString()
+                        val odsKnowledgeLevel10 = stats.ods_knowledge10.toString()
                         binding.tvODS10.text =
                             "${binding.tvODS10.text} $odsKnowledgeLevel10%"
 
-                        val odsKnowledgeLevel11 = stats!!.ods_knowledge11.toString()
+                        val odsKnowledgeLevel11 = stats.ods_knowledge11.toString()
                         binding.tvODS11.text =
                             "${binding.tvODS11.text} $odsKnowledgeLevel11%"
 
-                        val odsKnowledgeLevel12 = stats!!.ods_knowledge12.toString()
+                        val odsKnowledgeLevel12 = stats.ods_knowledge12.toString()
                         binding.tvODS12.text =
                             "${binding.tvODS12.text} $odsKnowledgeLevel12%"
 
-                        val odsKnowledgeLevel13 = stats!!.ods_knowledge13.toString()
+                        val odsKnowledgeLevel13 = stats.ods_knowledge13.toString()
                         binding.tvODS13.text =
                             "${binding.tvODS13.text} $odsKnowledgeLevel13%"
 
-                        val odsKnowledgeLevel14 = stats!!.ods_knowledge14.toString()
+                        val odsKnowledgeLevel14 = stats.ods_knowledge14.toString()
                         binding.tvODS14.text =
                             "${binding.tvODS14.text} $odsKnowledgeLevel14%"
 
-                        val odsKnowledgeLevel15 = stats!!.ods_knowledge15.toString()
+                        val odsKnowledgeLevel15 = stats.ods_knowledge15.toString()
                         binding.tvODS15.text =
                             "${binding.tvODS15.text} $odsKnowledgeLevel15%"
 
-                        val odsKnowledgeLevel16 = stats!!.ods_knowledge16.toString()
+                        val odsKnowledgeLevel16 = stats.ods_knowledge16.toString()
                         binding.tvODS16.text =
                             "${binding.tvODS16.text} $odsKnowledgeLevel16%"
 
-                        val odsKnowledgeLevel17 = stats!!.ods_knowledge17.toString()
+                        val odsKnowledgeLevel17 = stats.ods_knowledge17.toString()
                         binding.tvODS17.text =
                             "${binding.tvODS17.text} $odsKnowledgeLevel17%"
 
                     }
+
                     is Resource.Error -> {}
                 }
             }
