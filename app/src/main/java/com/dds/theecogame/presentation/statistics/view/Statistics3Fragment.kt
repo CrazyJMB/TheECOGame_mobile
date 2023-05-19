@@ -38,6 +38,8 @@ class Statistics3Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initializeStats()
 
+        binding.scrollView.overScrollMode = View.OVER_SCROLL_NEVER
+
         binding.btnBack.setOnClickListener {
             goToMainScreen()
         }
@@ -128,7 +130,6 @@ class Statistics3Fragment : Fragment() {
                             "${binding.tvODS17.text} $odsKnowledgeLevel17%"
 
                     }
-
                     is Resource.Error -> {}
                 }
             }
