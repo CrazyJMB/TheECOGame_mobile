@@ -9,4 +9,21 @@
     <color name="red">#F63521</color>
     <color name="black_title">#212121</color>
     <color name="error_red">#800101</color>
+    <color name="ods1">#E5333F</color>
+    <color name="ods2">#D09F2D</color>
+    <color name="ods3">#2B9B4A</color>
+    <color name="ods4">#C42738</color>
+    <color name="ods5">#FF3A21</color>
+    <color name="ods6">#00ACD8</color>
+    <color name="ods7">#FBB617</color>
+    <color name="ods8">#972E47</color>
+    <color name="ods9">#F16E25</color>
+    <color name="ods10">#E11484</color>
+    <color name="ods11">#F79C26</color>
+    <color name="ods12">#CD8C2E</color>
+    <color name="ods13">#507A47</color>
+    <color name="ods14">#007CBA</color>
+    <color name="ods15">#3EB049</color>
+    <color name="ods16">#00548E</color>
+    <color name="ods17">#19486A</color>
 </resources>
