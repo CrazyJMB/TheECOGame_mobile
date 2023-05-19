@@ -9,27 +9,23 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.widget.addTextChangedListener
-import com.dds.theecogame.common.Resource
-import com.dds.theecogame.data.repository.UserRepositoryImpl
 import com.dds.theecogame.databinding.ActivityEditProfileBinding
 import com.dds.theecogame.domain.Application
+import com.dds.theecogame.domain.factory.ValidatorFactory
 import com.dds.theecogame.domain.model.User
-import com.dds.theecogame.domain.repository.UserRepository
-import com.dds.theecogame.domain.userRestrictions.UserRestrictions
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.editProfile.viewModel.EditProfileViewModel
-import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import java.io.File
 
 class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditProfileBinding
     private val viewModel: EditProfileViewModel by viewModels()
-    private lateinit var restrictions: UserRestrictions
-    private val userRepository: UserRepository = UserRepositoryImpl()
+
+    private val usernameValidator = ValidatorFactory.getValidator("username")
+    private val emailValidator = ValidatorFactory.getValidator("email")
+    private val passwordValidator = ValidatorFactory.getValidator("password")
+
 
     private lateinit var imageUri: Uri
 
@@ -43,7 +39,6 @@ class EditProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
-        restrictions = UserRestrictions(this)
         setContentView(binding.root)
 
         // Load default values from the user
@@ -66,12 +61,12 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.etUsername.setOnFocusChangeListener { view, b ->
             if (!b) {
-                if (restrictions.checkUsername(binding.etUsername.text.toString())) {
+                if (usernameValidator.validate(binding.etUsername.text.toString())) {
                     username = binding.etUsername.text.toString()
                     binding.tvUsernameError.visibility = View.INVISIBLE
                 } else {
                     binding.tvUsernameError.visibility = View.VISIBLE
-                    binding.tvUsernameError.text = restrictions.getError()
+                    binding.tvUsernameError.text = usernameValidator.getError()
 
                     binding.btnSave.isEnabled = false
                 }
@@ -80,12 +75,12 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.etEmail.setOnFocusChangeListener { view, b ->
             if (!b) {
-                if (restrictions.checkEmail(binding.etEmail.text.toString())) {
+                if (emailValidator.validate(binding.etEmail.text.toString())) {
                     email = binding.etEmail.text.toString()
                     binding.tvEmailError.visibility = View.INVISIBLE
                 } else {
                     binding.tvEmailError.visibility = View.VISIBLE
-                    binding.tvEmailError.text = restrictions.getError()
+                    binding.tvEmailError.text = emailValidator.getError()
 
                     binding.btnSave.isEnabled = false
                 }
@@ -94,13 +89,13 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.etPassword.setOnFocusChangeListener { view, b ->
             if (!b) {
-                if (restrictions.checkPassword(binding.etPassword.text.toString())) {
+                if (passwordValidator.validate(binding.etPassword.text.toString())) {
                     password = binding.etPassword.text.toString()
                     binding.tvPasswordError.visibility = View.INVISIBLE
-                    
+
                 } else {
                     binding.tvPasswordError.visibility = View.VISIBLE
-                    binding.tvPasswordError.text = restrictions.getError()
+                    binding.tvPasswordError.text = passwordValidator.getError()
 
                     binding.btnSave.isEnabled = false
                 }
