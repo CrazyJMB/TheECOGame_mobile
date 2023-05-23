@@ -104,8 +104,11 @@ class QuestionFragment : Fragment() {
 
             if (isCorrect) {
                 val points = 10 * currentQuestion.difficulty
-                if (gameViewModel.getSecondChance()) {
+                if (gameViewModel.getSecondChance() && gameViewModel.getUsedHelp()) {
+                    gameViewModel.addPoints(points / 4)
+                } else if (gameViewModel.getSecondChance() || gameViewModel.getUsedHelp()){
                     gameViewModel.addPoints(points / 2)
+                    if (gameViewModel.getUsedHelp()){gameViewModel.setUsedHelp(false)}
                 } else {
                     gameViewModel.addPoints(points)
                 }

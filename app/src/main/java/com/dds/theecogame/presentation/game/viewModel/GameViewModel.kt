@@ -43,6 +43,10 @@ class GameViewModel : ViewModel() {
     private var questionNumber: Int = 1
     private var timeStart: Long = 0L
     private var timeEnd: Long = 0L
+    private var usedHelp: Boolean = false
+
+    private val _numberUsedHelp = MutableLiveData<Int>()
+    var numberUsedHelp: LiveData<Int> = _numberUsedHelp
 
     private val _btnPressed = MutableLiveData<Char>()
     var btnPressed: LiveData<Char> = _btnPressed
@@ -58,6 +62,7 @@ class GameViewModel : ViewModel() {
     fun getConsolidatedPoints() = consolidatedPoints
     fun getTimeStart() = timeStart
     fun getTimeEnd() = timeEnd
+    fun getUsedHelp() = usedHelp
 
     fun setConsolidated(consolidate: Boolean) {
         consolidated = consolidate
@@ -96,6 +101,18 @@ class GameViewModel : ViewModel() {
         // 1 -> Abandoned
         // 2 -> Victory
         gameStatus = status
+    }
+
+    fun setUsedHelp(used: Boolean){
+        usedHelp = used
+    }
+
+    fun startNumberHelp(){
+        _numberUsedHelp.value = 0
+    }
+
+    fun addNumberHelp (){
+        _numberUsedHelp.value = _numberUsedHelp.value?.plus(1)
     }
 
     fun addBtnPressed(char: Char) {

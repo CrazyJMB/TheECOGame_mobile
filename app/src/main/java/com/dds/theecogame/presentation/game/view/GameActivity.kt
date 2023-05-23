@@ -1,6 +1,8 @@
 package com.dds.theecogame.presentation.game.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
@@ -10,12 +12,17 @@ import android.view.ContextThemeWrapper
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.activity.viewModels
+import androidx.appcompat.app.ActionBarDrawerToggle.Delegate
+import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.ActivityGameBinding
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlin.properties.Delegates
 
 class GameActivity : AppCompatActivity() {
 
@@ -27,7 +34,10 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        viewModel.startNumberHelp()
+
         val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+            @SuppressLint("SuspiciousIndentation")
             override fun handleOnBackPressed() {
                 if (!viewModel.getGameEnded()) {
                     val builder = AlertDialog.Builder(ContextThemeWrapper(this@GameActivity, R.style.alert_style))
@@ -35,7 +45,7 @@ class GameActivity : AppCompatActivity() {
                     builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
                         val fragment = ResumeFragment()
                         val fragmentManager = supportFragmentManager
-                            fragmentManager.beginTransaction()
+                        fragmentManager.beginTransaction()
                             .replace(R.id.GameContainerView, fragment)
                             .commit()
                     }
@@ -93,12 +103,22 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
+        viewModel.numberUsedHelp.observe(this){
+            if (viewModel.numberUsedHelp.value == 2){
+                binding.btnClues.isEnabled = false
+                binding.btnClues.imageTintList = ColorStateList.valueOf(Color.GRAY)
+            }
+        }
+
         binding.btnClues.setOnClickListener {
+            //FIXME -> STOP TIMER
             val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.alert_style))
             builder.setTitle(R.string.clues)
             builder.setMessage(R.string.clues_description)
             builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
-                //FIXME PISTAS
+                viewModel.setUsedHelp(true)
+                viewModel.addNumberHelp()
+                //FIXME -> show help text
             }
             builder.setNegativeButton(R.string.alert_cancel) { _, _ ->
                 //No hace nada

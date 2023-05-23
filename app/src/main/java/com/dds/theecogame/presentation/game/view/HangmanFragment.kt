@@ -112,7 +112,14 @@ class HangmanFragment : Fragment() {
                     lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerHangmanCorrect() }
 
                     gameViewModel.nextQuestionNumber()
-                    gameViewModel.addPoints(dificulty * 10)
+
+                    if (gameViewModel.getUsedHelp()) {
+                        gameViewModel.addPoints((dificulty * 10)/2)
+                        gameViewModel.setUsedHelp(false)
+                    } else {
+                        gameViewModel.addPoints(dificulty * 10)
+                    }
+
                     if (gameViewModel.getQuestionNumber() == 11) {
                         stopTimer()
                         goToSummary()
