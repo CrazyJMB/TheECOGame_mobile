@@ -3,9 +3,11 @@ package com.dds.theecogame.data.repository
 import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.remote.api.RetrofitInstance
 import com.dds.theecogame.data.remote.session.dto.ResponseDto
+import com.dds.theecogame.data.remote.session.dto.toUser
 import com.dds.theecogame.data.remote.statistics.dto.TimeDto
 import com.dds.theecogame.data.remote.statistics.dto.toStatistics
 import com.dds.theecogame.domain.model.Statistics
+import com.dds.theecogame.domain.model.User
 import com.dds.theecogame.domain.repository.StatisticsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -55,6 +57,29 @@ class StatisticsRepositoryImpl : StatisticsRepository {
 
     override suspend fun registerHangmanFailedStatistics(userId: Int) {
         api.registerHangmanFailedStatistics(userId)
+    }
+
+    // Ranking
+    override suspend fun getRanking(): Flow<Resource<List<User>>> = flow {
+        emit(Resource.Loading())
+
+        val response = api.getRanking()
+
+        if (response.isSuccessful)
+            emit(Resource.Success(response.body()!!.map { it.toUser() }))
+        else
+            emit(Resource.Error(response.message()))
+    }
+
+    override suspend fun getUserRanking(userId: Int): Flow<Resource<Int>> = flow {
+        emit(Resource.Loading())
+
+        val response = api.getRankingFromUser(userId)
+
+        if (response.isSuccessful)
+            emit(Resource.Success(response.body()!!.posicion))
+        else
+            emit(Resource.Error(response.message()))
     }
 
 }

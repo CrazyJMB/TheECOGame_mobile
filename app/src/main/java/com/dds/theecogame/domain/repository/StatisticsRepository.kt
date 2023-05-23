@@ -3,6 +3,7 @@ package com.dds.theecogame.domain.repository
 import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.remote.session.dto.ResponseDto
 import com.dds.theecogame.domain.model.Statistics
+import com.dds.theecogame.domain.model.User
 import kotlinx.coroutines.flow.Flow
 
 interface StatisticsRepository {
@@ -20,4 +21,9 @@ interface StatisticsRepository {
 
     suspend fun registerHangmanCorrectStatistics(userId: Int)
     suspend fun registerHangmanFailedStatistics(userId: Int)
+
+    // Ranking
+    suspend fun getRanking(): Flow<Resource<List<User>>>
+
+    suspend fun getUserRanking(userId: Int): Flow<Resource<Int>>
 }

@@ -47,7 +47,11 @@ fun StatisticsDto.toStatistics(): Statistics {
         ods_knowledge,
         ods_knowledge,
         ods_knowledge,
-        ods_knowledge, ods_knowledge, ods_knowledge, ods_knowledge, ods_knowledge, ods_knowledge,
-
-        )
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge,
+        ods_knowledge,
+    )
 }
