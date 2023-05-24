@@ -13,6 +13,8 @@
     <dimen name="estadisticas_datos">16.5sp</dimen>
     <dimen name="estadisticas_datos_height">40dp</dimen>
     <dimen name="estadisticas_datos_width">320dp</dimen>
+    <dimen name="nivel_ods_height">60dp</dimen>
+    <dimen name="nivel_ods_width">320dp</dimen>
     <dimen name="question_number">25sp</dimen>
     <dimen name="time_left">10sp</dimen>
     <dimen name="timer">40sp</dimen>
