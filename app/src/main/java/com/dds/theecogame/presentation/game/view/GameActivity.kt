@@ -13,6 +13,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle.Delegate
+import androidx.databinding.Observable
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.ActivityGameBinding
@@ -30,6 +32,7 @@ class GameActivity : AppCompatActivity() {
     private val viewModel: GameViewModel by viewModels()
     private lateinit var mediaPlayer: MediaPlayer
     private var isMusicPlaying = false
+    private val pistasEnabled = ObservableBoolean()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,6 +106,7 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
+        val normalTint = binding.btnClues.imageTintList
         viewModel.numberUsedHelp.observe(this){
             if (viewModel.numberUsedHelp.value == 2){
                 binding.btnClues.isEnabled = false
@@ -111,14 +115,25 @@ class GameActivity : AppCompatActivity() {
         }
 
         binding.btnClues.setOnClickListener {
-            //FIXME -> STOP TIMER
             val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.alert_style))
             builder.setTitle(R.string.clues)
             builder.setMessage(R.string.clues_description)
             builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
                 viewModel.setUsedHelp(true)
                 viewModel.addNumberHelp()
-                //FIXME -> show help text
+                viewModel.stopCountDownTimer()
+
+                val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.alert_style))
+                //FIXME: Cambiar "PISTA: " por la pista
+                builder.setMessage("PISTA: ")
+                builder.setPositiveButton("OK") { _, _ ->
+                    viewModel.resumeCountDownTimer()
+                    pistasEnabled.set(false)
+                }
+                val alertDialog = builder.create()
+                alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                alertDialog.show()
+
             }
             builder.setNegativeButton(R.string.alert_cancel) { _, _ ->
                 //No hace nada
@@ -126,6 +141,30 @@ class GameActivity : AppCompatActivity() {
             val alertDialog = builder.create()
             alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             alertDialog.show()
+        }
+
+        pistasEnabled.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                val newValue = pistasEnabled.get()
+
+                if (newValue) {
+                    binding.btnClues.isEnabled = true
+                    binding.btnClues.imageTintList = normalTint
+                } else {
+                    binding.btnClues.isEnabled = false
+                    binding.btnClues.imageTintList = ColorStateList.valueOf(Color.GRAY)
+                }
+            }
+        })
+
+        viewModel.inFragmentChallenges.observe(this){
+            if (it && (viewModel.numberUsedHelp.value!! < 2)){
+                binding.btnClues.isEnabled = true
+                binding.btnClues.imageTintList = normalTint
+            } else {
+                binding.btnClues.isEnabled = false
+                binding.btnClues.imageTintList = ColorStateList.valueOf(Color.GRAY)
+            }
         }
     }
 
