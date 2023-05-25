@@ -1,15 +1,13 @@
 package com.dds.theecogame.data.remote.statistics.api
 
-import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.remote.session.dto.ResponseDto
-import com.dds.theecogame.data.remote.session.dto.UserDto
 import com.dds.theecogame.data.remote.statistics.dto.PositionDto
+import com.dds.theecogame.data.remote.statistics.dto.RankingDto
 import com.dds.theecogame.data.remote.statistics.dto.StatisticsDto
 import com.dds.theecogame.data.remote.statistics.dto.TimeDto
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 
@@ -48,7 +46,7 @@ interface StatisticsApi {
 
     // Ranking
     @GET("/rankings")
-    suspend fun getRanking(): Response<List<UserDto>>
+    suspend fun getRanking(): Response<List<RankingDto>>
 
     @GET("/rankings/{userId}")
     suspend fun getRankingFromUser(@Path("userId") userId: Int): Response<PositionDto>
