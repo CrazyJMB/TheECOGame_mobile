@@ -206,4 +206,5 @@
     <string name="top10" translatable="false">Top 10</string>
 
 
+    <string name="question_quit">¿Deseas salir del reto?</string>
 </resources>

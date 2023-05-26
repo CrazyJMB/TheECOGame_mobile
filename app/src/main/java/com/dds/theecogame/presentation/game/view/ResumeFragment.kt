@@ -34,6 +34,7 @@ class ResumeFragment : Fragment() {
         initializeSummary()
 
         gameViewModel.setGameEnded()
+        gameViewModel.pauseMusic()
 
         binding.btnEndGame.setOnClickListener {
             //Irse al menu principal

@@ -4,6 +4,13 @@ import com.dds.theecogame.data.remote.challenge.dto.HangmanDto
 
 data class Hangman(
     val id: Int,
+    val difficulty: Int,
+    val time: Int,
+
     val word: String,
-    val difficulty: Int
+
+    val clue: String,
+
+    val ods: Int
+
 )

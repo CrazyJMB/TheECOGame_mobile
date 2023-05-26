@@ -4,16 +4,25 @@ import com.dds.theecogame.domain.model.challenges.Hangman
 
 data class HangmanDto(
     val challenge_details_id: Int,
-    val word: String,
+    val difficulty: Int,
     val time: Int,
-    val difficulty: Int
+
+    val word: String,
+
+    val clue: String,
+
+    val ods_id: Int
 )
 
 fun HangmanDto.toHangman(): Hangman {
     return Hangman(
-        id = challenge_details_id,
-        word = word,
-        difficulty = difficulty
+        challenge_details_id,
+        difficulty,
+        time,
+
+        word,
+        clue,
+        ods_id
     )
 }
 
