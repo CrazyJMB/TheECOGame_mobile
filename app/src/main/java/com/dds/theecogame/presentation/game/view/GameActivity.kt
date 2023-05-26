@@ -32,7 +32,6 @@ class GameActivity : AppCompatActivity() {
     private val viewModel: GameViewModel by viewModels()
     private lateinit var mediaPlayer: MediaPlayer
     private var isMusicPlaying = false
-    private val pistasEnabled = ObservableBoolean()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -128,7 +127,8 @@ class GameActivity : AppCompatActivity() {
                 builder.setMessage("PISTA: ")
                 builder.setPositiveButton("OK") { _, _ ->
                     viewModel.resumeCountDownTimer()
-                    pistasEnabled.set(false)
+                    binding.btnClues.isEnabled = false
+                    binding.btnClues.imageTintList = ColorStateList.valueOf(Color.GRAY)
                 }
                 val alertDialog = builder.create()
                 alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -142,20 +142,6 @@ class GameActivity : AppCompatActivity() {
             alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             alertDialog.show()
         }
-
-        pistasEnabled.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                val newValue = pistasEnabled.get()
-
-                if (newValue) {
-                    binding.btnClues.isEnabled = true
-                    binding.btnClues.imageTintList = normalTint
-                } else {
-                    binding.btnClues.isEnabled = false
-                    binding.btnClues.imageTintList = ColorStateList.valueOf(Color.GRAY)
-                }
-            }
-        })
 
         viewModel.inFragmentChallenges.observe(this){
             if (it && (viewModel.numberUsedHelp.value!! < 2)){
