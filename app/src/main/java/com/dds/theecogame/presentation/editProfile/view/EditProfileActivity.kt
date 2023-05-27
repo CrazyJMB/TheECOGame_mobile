@@ -9,13 +9,16 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
 import androidx.activity.viewModels
+import com.dds.theecogame.R
 import com.dds.theecogame.databinding.ActivityEditProfileBinding
 import com.dds.theecogame.domain.Application
 import com.dds.theecogame.domain.factory.ValidatorFactory
 import com.dds.theecogame.domain.model.User
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.editProfile.viewModel.EditProfileViewModel
+import com.squareup.picasso.Picasso
 import java.io.File
+import java.lang.Exception
 
 class EditProfileActivity : AppCompatActivity() {
 
@@ -42,11 +45,21 @@ class EditProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Load default values from the user
+        //FIXME: Los borramos?
         val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         val imageFile = File(storageDir, "avatar.jpg")
-        if (imageFile.exists()) {
-            val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
-            binding.ivProfile.setImageBitmap(bitmap)
+
+        if (user.avatar.isNullOrEmpty()) {
+            //Set default avatar
+            binding.ivProfile.setImageResource(R.drawable.empty_avatar)
+        } else {
+            try {
+                Picasso.get()
+                    .load(user.avatar)
+                    .into(binding.ivProfile)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
 
         binding.etUsername.hint = user.username
@@ -101,31 +114,6 @@ class EditProfileActivity : AppCompatActivity() {
                 }
             }
         }
-
-//        binding.etUsername.addTextChangedListener {
-//            binding.btnSave.isEnabled = (!binding.etUsername.text.toString().isEmpty()
-//                    && !binding.etEmail.text.toString().isEmpty()
-//                    && !binding.etPassword.text.toString().isEmpty()
-//                    && restrictions.checkUsername(binding.etUsername.text.toString())
-//                    && restrictions.checkEmail(binding.etEmail.text.toString())
-//                    && restrictions.checkPassword(binding.etPassword.text.toString()))
-//        }
-//        binding.etEmail.addTextChangedListener {
-//            binding.btnSave.isEnabled = (!binding.etUsername.text.toString().isEmpty()
-//                    && !binding.etEmail.text.toString().isEmpty()
-//                    && !binding.etPassword.text.toString().isEmpty()
-//                    && restrictions.checkUsername(binding.etUsername.text.toString())
-//                    && restrictions.checkEmail(binding.etEmail.text.toString())
-//                    && restrictions.checkPassword(binding.etPassword.text.toString()))
-//        }
-//        binding.etPassword.addTextChangedListener {
-//            binding.btnSave.isEnabled = (!binding.etUsername.text.toString().isEmpty()
-//                    && !binding.etEmail.text.toString().isEmpty()
-//                    && !binding.etPassword.text.toString().isEmpty()
-//                    && restrictions.checkUsername(binding.etUsername.text.toString())
-//                    && restrictions.checkEmail(binding.etEmail.text.toString())
-//                    && restrictions.checkPassword(binding.etPassword.text.toString()))
-//        }
 
         binding.btnSave.setOnClickListener {
 

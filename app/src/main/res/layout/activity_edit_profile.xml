@@ -30,7 +30,7 @@
             android:id="@+id/ivProfile"
             android:layout_width="125dp"
             android:layout_height="125dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="80dp"
             android:contentDescription="@string/profile"
             android:src="@drawable/empty_avatar"
             app:layout_constraintEnd_toEndOf="parent"
