@@ -73,6 +73,8 @@ class QuestionFragment : Fragment() {
 
                     gameViewModel.currentChallengeClue = currentQuestion.clue
 
+                    changeViewImage(currentQuestion.ods)
+
                     lifecycleScope.launch(Dispatchers.IO) {
                         gameViewModel.registerChallenge(currentQuestion.id, "QUESTION")
                     }
@@ -117,7 +119,7 @@ class QuestionFragment : Fragment() {
         startTimer()
 
         binding.tvQuestionNumber.text = gameViewModel.getQuestionNumber().toString()
-        changeViewImage()
+
 
         binding.btnContinue.setOnClickListener {
             val correctAnswer = currentQuestion.answer
@@ -284,9 +286,31 @@ class QuestionFragment : Fragment() {
             .commit()
     }
 
-    private fun changeViewImage() {
-        binding.ivODS3.setImageResource(R.drawable.ods1)
+    private val odsDrawableMap = mapOf(
+        1 to R.drawable.ods1,
+        2 to R.drawable.ods2,
+        3 to R.drawable.ods3,
+        4 to R.drawable.ods4,
+        5 to R.drawable.ods5,
+        6 to R.drawable.ods6,
+        7 to R.drawable.ods7,
+        8 to R.drawable.ods8,
+        9 to R.drawable.ods9,
+        10 to R.drawable.ods10,
+        11 to R.drawable.ods11,
+        12 to R.drawable.ods12,
+        13 to R.drawable.ods13,
+        14 to R.drawable.ods14,
+        15 to R.drawable.ods15,
+        16 to R.drawable.ods16,
+        17 to R.drawable.ods17
+    )
+
+    private fun changeViewImage(ods: Int) {
+        val resourceId = odsDrawableMap[ods] ?: R.drawable.ods1
+        binding.ivODS3.setImageResource(resourceId)
     }
+
 
     override fun onStop() {
         super.onStop()
