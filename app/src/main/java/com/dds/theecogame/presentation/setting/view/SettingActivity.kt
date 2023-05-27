@@ -8,16 +8,25 @@ import android.os.Bundle
 import android.widget.SeekBar
 import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.databinding.ActivitySettingBinding
-import com.dds.theecogame.data.local.DataStoreManager
+import com.dds.theecogame.data.local.SettingsRepository
 import com.dds.theecogame.dataStore
+import com.dds.theecogame.domain.memento.Settings
+import com.dds.theecogame.domain.memento.SettingsCareTaker
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SettingActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingBinding
     private lateinit var audioManager: AudioManager
+
+    private lateinit var settingsRepository: SettingsRepository
+
+    private lateinit var settings: Settings
+    private var careTaker: SettingsCareTaker = SettingsCareTaker()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,20 +34,19 @@ class SettingActivity : AppCompatActivity() {
         setContentView(binding.root)
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
-        val dataStoreManager = DataStoreManager(dataStore)
+        settingsRepository = SettingsRepository(dataStore)
+
 
         // Default values
         lifecycleScope.launch(Dispatchers.IO) {
-            dataStoreManager.getGeneralVolume().collect {
-                binding.sbGeneralVolume.progress = it
-            }
+            settings = loadSettings() ?: Settings(100, 100, 100, 100)
+            careTaker.saveState(settings)
 
-            dataStoreManager.getSoundVolume().collect {
-                binding.sbSounds.progress = it
-            }
-
-            dataStoreManager.getMusicVolume().collect {
-                binding.sbMusic.progress = it
+            // Update UI
+            withContext(Dispatchers.Main) {
+                binding.sbGeneralVolume.progress = settings.volume
+                binding.sbMusic.progress = settings.music
+                binding.sbSounds.progress = settings.sound
             }
         }
 
@@ -55,9 +63,7 @@ class SettingActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(general_volume: SeekBar) {
-                lifecycleScope.launch(Dispatchers.IO) {
-                    dataStoreManager.setGeneralVolume(general_volume.progress)
-                }
+                settings.volume = general_volume.progress
             }
 
         })
@@ -72,9 +78,7 @@ class SettingActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(music: SeekBar) {
-                lifecycleScope.launch(Dispatchers.IO) {
-                    dataStoreManager.setMusicVolume(music.progress)
-                }
+                settings.music = music.progress
             }
 
         })
@@ -90,16 +94,25 @@ class SettingActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(sounds: SeekBar) {
-                lifecycleScope.launch(Dispatchers.IO) {
-                    dataStoreManager.setSoundVolume(sounds.progress)
-                }
+                settings.sound = sounds.progress
             }
 
         })
 
         binding.btnSave.setOnClickListener {
-            startActivity(Intent(this, MainScreenActivity::class.java))
+            lifecycleScope.launch(Dispatchers.IO) {
+                settingsRepository.saveSettings(settings)
+
+                withContext(Dispatchers.Main) {
+                    startActivity(Intent(this@SettingActivity, MainScreenActivity::class.java))
+                }
+            }
         }
+
+    }
+
+    private suspend fun loadSettings(): Settings? {
+        return settingsRepository.settingsFlow.firstOrNull()
     }
 
 }
