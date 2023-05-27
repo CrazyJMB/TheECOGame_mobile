@@ -18,6 +18,8 @@ import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
 import com.dds.theecogame.presentation.ranking.viewModel.RankingViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import com.squareup.picasso.Picasso
+import java.lang.Exception
 
 class RankingActivity : AppCompatActivity() {
 
@@ -46,10 +48,21 @@ class RankingActivity : AppCompatActivity() {
                 when (it) {
                     is Resource.Loading -> {}
                     is Resource.Success -> {
-                        binding.tvUserRank.text = it.data!!.toString()
+                        binding.tvUserRank.text = it.data!!.position.toString()
+                        if (actualUser.avatar.isNullOrEmpty()) {
+                            //Set default avatar
+                            binding.ivUserAvatar.setImageResource(R.drawable.empty_avatar)
+                        } else {
+                            try {
+                                Picasso.get()
+                                    .load(actualUser.avatar)
+                                    .into(binding.ivUserAvatar)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                         binding.tvUserUsername.text = actualUser.username
-                        binding.tvUserPoints.text = "0"
-                        //FIXME: No puedo obtener los puntos totales del usuario actual
+                        binding.tvUserPoints.text = it.data!!.score.toString()
                     }
                     is Resource.Error -> {
                     }
@@ -66,52 +79,162 @@ class RankingActivity : AppCompatActivity() {
                         val ranking = it.data!!
 
                         //User 1
-                        //binding.ivUserAvatar1 //FIXME: Obtener imagen desde URL
+                        if (ranking[0].avatar.isNullOrEmpty()) {
+                            //Set default avatar
+                            binding.ivUserAvatar1.setImageResource(R.drawable.empty_avatar)
+                        } else {
+                            try {
+                                Picasso.get()
+                                    .load(ranking[0].avatar)
+                                    .into(binding.ivUserAvatar1)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                         binding.tvUserUsername1.text = ranking[0].username
                         binding.tvUserPoints1.text = ranking[0].score.toString()
 
                         //User 2
-                        //binding.ivUserAvatar2 //FIXME: Obtener imagen desde URL
+                        if (ranking[1].avatar.isNullOrEmpty()) {
+                            //Set default avatar
+                            binding.ivUserAvatar2.setImageResource(R.drawable.empty_avatar)
+                        } else {
+                            try {
+                                Picasso.get()
+                                    .load(ranking[1].avatar)
+                                    .into(binding.ivUserAvatar2)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                         binding.tvUserUsername2.text = ranking[1].username
                         binding.tvUserPoints2.text = ranking[1].score.toString()
 
                         //User 3
-                        //binding.ivUserAvatar3 //FIXME: Obtener imagen desde URL
+                        if (ranking[2].avatar.isNullOrEmpty()) {
+                            //Set default avatar
+                            binding.ivUserAvatar3.setImageResource(R.drawable.empty_avatar)
+                        } else {
+                            try {
+                                Picasso.get()
+                                    .load(ranking[2].avatar)
+                                    .into(binding.ivUserAvatar3)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                         binding.tvUserUsername3.text = ranking[2].username
                         binding.tvUserPoints3.text = ranking[2].score.toString()
 
                         //User 4
-                        //binding.ivUserAvatar4 //FIXME: Obtener imagen desde URL
+                        if (ranking[3].avatar.isNullOrEmpty()) {
+                            //Set default avatar
+                            binding.ivUserAvatar4.setImageResource(R.drawable.empty_avatar)
+                        } else {
+                            try {
+                                Picasso.get()
+                                    .load(ranking[3].avatar)
+                                    .into(binding.ivUserAvatar4)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                         binding.tvUserUsername4.text = ranking[3].username
                         binding.tvUserPoints4.text = ranking[3].score.toString()
 
                         //User 5
-                        //binding.ivUserAvatar5 //FIXME: Obtener imagen desde URL
+                        if (ranking[4].avatar.isNullOrEmpty()) {
+                            //Set default avatar
+                            binding.ivUserAvatar5.setImageResource(R.drawable.empty_avatar)
+                        } else {
+                            try {
+                                Picasso.get()
+                                    .load(ranking[4].avatar)
+                                    .into(binding.ivUserAvatar5)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                         binding.tvUserUsername5.text = ranking[4].username
                         binding.tvUserPoints5.text = ranking[4].score.toString()
 
                         //User 6
-                        //binding.ivUserAvatar6 //FIXME: Obtener imagen desde URL
+                        if (ranking[5].avatar.isNullOrEmpty()) {
+                            //Set default avatar
+                            binding.ivUserAvatar6.setImageResource(R.drawable.empty_avatar)
+                        } else {
+                            try {
+                                Picasso.get()
+                                    .load(ranking[5].avatar)
+                                    .into(binding.ivUserAvatar6)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                         binding.tvUserUsername6.text = ranking[5].username
                         binding.tvUserPoints6.text = ranking[5].score.toString()
 
                         //User 7
-                        //binding.ivUserAvatar7 //FIXME: Obtener imagen desde URL
+                        if (ranking[6].avatar.isNullOrEmpty()) {
+                            //Set default avatar
+                            binding.ivUserAvatar7.setImageResource(R.drawable.empty_avatar)
+                        } else {
+                            try {
+                                Picasso.get()
+                                    .load(ranking[6].avatar)
+                                    .into(binding.ivUserAvatar7)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                         binding.tvUserUsername7.text = ranking[6].username
                         binding.tvUserPoints7.text = ranking[6].score.toString()
 
                         //User 8
-                        //binding.ivUserAvatar8 //FIXME: Obtener imagen desde URL
+                        if (ranking[7].avatar.isNullOrEmpty()) {
+                            //Set default avatar
+                            binding.ivUserAvatar8.setImageResource(R.drawable.empty_avatar)
+                        } else {
+                            try {
+                                Picasso.get()
+                                    .load(ranking[7].avatar)
+                                    .into(binding.ivUserAvatar8)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                         binding.tvUserUsername8.text = ranking[7].username
                         binding.tvUserPoints8.text = ranking[7].score.toString()
 
                         //User 9
-                        //binding.ivUserAvatar9 //FIXME: Obtener imagen desde URL
+                        if (ranking[8].avatar.isNullOrEmpty()) {
+                            //Set default avatar
+                            binding.ivUserAvatar9.setImageResource(R.drawable.empty_avatar)
+                        } else {
+                            try {
+                                Picasso.get()
+                                    .load(ranking[8].avatar)
+                                    .into(binding.ivUserAvatar9)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                         binding.tvUserUsername9.text = ranking[8].username
                         binding.tvUserPoints9.text = ranking[8].score.toString()
 
                         //User 10
-                        //binding.ivUserAvatar10 //FIXME: Obtener imagen desde URL
+                        if (ranking[9].avatar.isNullOrEmpty()) {
+                            //Set default avatar
+                            binding.ivUserAvatar10.setImageResource(R.drawable.empty_avatar)
+                        } else {
+                            try {
+                                Picasso.get()
+                                    .load(ranking[9].avatar)
+                                    .into(binding.ivUserAvatar10)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                         binding.tvUserUsername10.text = ranking[9].username
                         binding.tvUserPoints10.text = ranking[9].score.toString()
 
