@@ -51,7 +51,8 @@ class HangmanFragment : Fragment() {
         gameViewModel.setInFragmentChallenges(true)
 
         binding.ivPointsHangman.setOnClickListener {
-            val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.alert_style))
+            val builder =
+                AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.alert_style))
             builder.setTitle(R.string.alert_points)
             builder.setMessage(
                 getString(R.string.total_points) + " " +
@@ -73,6 +74,8 @@ class HangmanFragment : Fragment() {
                 is Game.Challenge.HangmanModel -> {
                     currentHangman = nextQuestion.hangmanModel
 
+                    gameViewModel.currentChallengeClue = currentHangman.clue
+
                     lifecycleScope.launch(Dispatchers.IO) {
                         gameViewModel.registerChallenge(currentHangman.id, "HANGMAN")
                     }
@@ -88,14 +91,14 @@ class HangmanFragment : Fragment() {
             }
         }
 
-        gameViewModel.countdownLiveData.observe(viewLifecycleOwner){
+        gameViewModel.countdownLiveData.observe(viewLifecycleOwner) {
             binding.tvTimerHangman.text = it.toString()
             if (it.toInt() == 10 && !timerCancelledManually) {
                 playTenseMusic()
                 tense = true
             }
 
-            if (it.toInt() == 0){
+            if (it.toInt() == 0) {
                 if (!timerCancelledManually) {
                     mediaPlayer.stop()
                     playLosingMusic(false)
@@ -130,7 +133,7 @@ class HangmanFragment : Fragment() {
                     gameViewModel.nextQuestionNumber()
 
                     if (gameViewModel.getUsedHelp()) {
-                        gameViewModel.addPoints((dificulty * 10)/2)
+                        gameViewModel.addPoints((dificulty * 10) / 2)
                         gameViewModel.setUsedHelp(false)
                     } else {
                         gameViewModel.addPoints(dificulty * 10)
@@ -225,7 +228,7 @@ class HangmanFragment : Fragment() {
             }
 
             else -> {
-                
+
                 lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerHangmanFailed() }
 
                 binding.ivRightLeg.visibility = View.VISIBLE; playLosingMusic(true)
@@ -241,7 +244,7 @@ class HangmanFragment : Fragment() {
     }
 
     private fun startTimer() {
-        gameViewModel.startCountDownTimer(120*1000)
+        gameViewModel.startCountDownTimer(120 * 1000)
     }
 
     private fun stopTimer() {

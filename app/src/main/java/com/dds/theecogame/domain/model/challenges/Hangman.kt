@@ -1,7 +1,5 @@
 package com.dds.theecogame.domain.model.challenges
 
-import com.dds.theecogame.data.remote.challenge.dto.HangmanDto
-
 data class Hangman(
     val id: Int,
     val difficulty: Int,
@@ -9,7 +7,7 @@ data class Hangman(
 
     val word: String,
 
-    val clue: String,
+    val clue: String?,
 
     val ods: Int
 

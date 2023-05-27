@@ -42,7 +42,12 @@ class GameActivity : AppCompatActivity() {
             @SuppressLint("SuspiciousIndentation")
             override fun handleOnBackPressed() {
                 if (!viewModel.getGameEnded()) {
-                    val builder = AlertDialog.Builder(ContextThemeWrapper(this@GameActivity, R.style.alert_style))
+                    val builder = AlertDialog.Builder(
+                        ContextThemeWrapper(
+                            this@GameActivity,
+                            R.style.alert_style
+                        )
+                    )
                     builder.setTitle(R.string.question_quit)
                     builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
                         val fragment = ResumeFragment()
@@ -106,8 +111,8 @@ class GameActivity : AppCompatActivity() {
         }
 
         val normalTint = binding.btnClues.imageTintList
-        viewModel.numberUsedHelp.observe(this){
-            if (viewModel.numberUsedHelp.value == 2){
+        viewModel.numberUsedHelp.observe(this) {
+            if (viewModel.numberUsedHelp.value == 2) {
                 binding.btnClues.isEnabled = false
                 binding.btnClues.imageTintList = ColorStateList.valueOf(Color.GRAY)
             }
@@ -123,8 +128,7 @@ class GameActivity : AppCompatActivity() {
                 viewModel.stopCountDownTimer()
 
                 val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.alert_style))
-                //FIXME: Cambiar "PISTA: " por la pista
-                builder.setMessage("PISTA: ")
+                builder.setMessage("PISTA: " + viewModel.currentChallengeClue)
                 builder.setPositiveButton("OK") { _, _ ->
                     viewModel.resumeCountDownTimer()
                     binding.btnClues.isEnabled = false
@@ -143,8 +147,8 @@ class GameActivity : AppCompatActivity() {
             alertDialog.show()
         }
 
-        viewModel.inFragmentChallenges.observe(this){
-            if (it && (viewModel.numberUsedHelp.value!! < 2)){
+        viewModel.inFragmentChallenges.observe(this) {
+            if (it && (viewModel.numberUsedHelp.value!! < 2)) {
                 binding.btnClues.isEnabled = true
                 binding.btnClues.imageTintList = normalTint
             } else {

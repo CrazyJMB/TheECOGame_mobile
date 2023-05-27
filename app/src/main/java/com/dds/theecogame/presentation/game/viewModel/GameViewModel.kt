@@ -45,6 +45,7 @@ class GameViewModel : ViewModel() {
     private var timeStart: Long = 0L
     private var timeEnd: Long = 0L
     private var usedHelp: Boolean = false
+    var currentChallengeClue: String? = null
 
     private val _numberUsedHelp = MutableLiveData<Int>()
     var numberUsedHelp: LiveData<Int> = _numberUsedHelp
@@ -113,19 +114,19 @@ class GameViewModel : ViewModel() {
         gameStatus = status
     }
 
-    fun setUsedHelp(used: Boolean){
+    fun setUsedHelp(used: Boolean) {
         usedHelp = used
     }
 
-    fun setInFragmentChallenges (isIn: Boolean){
+    fun setInFragmentChallenges(isIn: Boolean) {
         _inFragmentChallenges.value = isIn
     }
 
-    fun startNumberHelp(){
+    fun startNumberHelp() {
         _numberUsedHelp.value = 0
     }
 
-    fun addNumberHelp (){
+    fun addNumberHelp() {
         _numberUsedHelp.value = _numberUsedHelp.value?.plus(1)
     }
 
@@ -246,11 +247,11 @@ class GameViewModel : ViewModel() {
     }
 
     //TIMER
-    fun startCountDownTimer (duration: Long){
+    fun startCountDownTimer(duration: Long) {
         countDownTimer?.cancel()
         secondsLeft = duration
 
-        countDownTimer = object : CountDownTimer(duration, 1000){
+        countDownTimer = object : CountDownTimer(duration, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 secondsLeft = millisUntilFinished
                 countdownLiveData.value = millisUntilFinished / 1000

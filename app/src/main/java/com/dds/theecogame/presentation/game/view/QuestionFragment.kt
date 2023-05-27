@@ -71,6 +71,8 @@ class QuestionFragment : Fragment() {
                 is Game.Challenge.QuestionModel -> {
                     currentQuestion = nextQuestion.questionModel
 
+                    gameViewModel.currentChallengeClue = currentQuestion.clue
+
                     lifecycleScope.launch(Dispatchers.IO) {
                         gameViewModel.registerChallenge(currentQuestion.id, "QUESTION")
                     }
@@ -96,14 +98,14 @@ class QuestionFragment : Fragment() {
 
         }
 
-        gameViewModel.countdownLiveData.observe(viewLifecycleOwner){
+        gameViewModel.countdownLiveData.observe(viewLifecycleOwner) {
             binding.tvTimer.text = it.toString()
             if (it.toInt() == 10 && !timerCancelledManually) {
                 playTenseMusic()
                 tense = true
             }
 
-            if (it.toInt() == 0){
+            if (it.toInt() == 0) {
                 if (!timerCancelledManually) {
                     mediaPlayer.stop()
                     playLosingMusic(false)
@@ -125,9 +127,11 @@ class QuestionFragment : Fragment() {
                 val points = 10 * currentQuestion.difficulty
                 if (gameViewModel.getSecondChance() && gameViewModel.getUsedHelp()) {
                     gameViewModel.addPoints(points / 4)
-                } else if (gameViewModel.getSecondChance() || gameViewModel.getUsedHelp()){
+                } else if (gameViewModel.getSecondChance() || gameViewModel.getUsedHelp()) {
                     gameViewModel.addPoints(points / 2)
-                    if (gameViewModel.getUsedHelp()){gameViewModel.setUsedHelp(false)}
+                    if (gameViewModel.getUsedHelp()) {
+                        gameViewModel.setUsedHelp(false)
+                    }
                 } else {
                     gameViewModel.addPoints(points)
                 }
@@ -160,7 +164,8 @@ class QuestionFragment : Fragment() {
         }
 
         binding.ivPoints.setOnClickListener {
-            val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.alert_style))
+            val builder =
+                AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.alert_style))
             builder.setTitle(R.string.alert_points)
             builder.setMessage(
                 getString(R.string.total_points) + " " +
@@ -227,7 +232,7 @@ class QuestionFragment : Fragment() {
     }
 
     fun startTimer() {
-       gameViewModel.startCountDownTimer(30*1000)
+        gameViewModel.startCountDownTimer(30 * 1000)
     }
 
     fun stopTimer() {
