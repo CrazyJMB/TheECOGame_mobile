@@ -1,6 +1,7 @@
 package com.dds.theecogame.presentation.game.view
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
@@ -45,7 +46,7 @@ class QuestionFragment : Fragment() {
     private val viewModel: QuestionViewModel by viewModels()
     private val gameViewModel: GameViewModel by activityViewModels()
 
-    private var countDownTimer: CountDownTimer? = null
+    var countDownTimer: CountDownTimer? = null
     private var timerCancelledManually: Boolean = false
     private var tense: Boolean = false
     private lateinit var currentQuestion: Question
@@ -62,12 +63,15 @@ class QuestionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        gameViewModel.setInFragmentChallenges(true)
 
         // Set question information
         gameViewModel.gameLiveData.observe(viewLifecycleOwner) { game ->
             when (val nextQuestion = game.deleteFirstChallenge()) {
                 is Game.Challenge.QuestionModel -> {
                     currentQuestion = nextQuestion.questionModel
+
+                    gameViewModel.currentChallengeClue = currentQuestion.clue
 
                     lifecycleScope.launch(Dispatchers.IO) {
                         gameViewModel.registerChallenge(currentQuestion.id, "QUESTION")
@@ -94,7 +98,24 @@ class QuestionFragment : Fragment() {
 
         }
 
+        gameViewModel.countdownLiveData.observe(viewLifecycleOwner) {
+            binding.tvTimer.text = it.toString()
+            if (it.toInt() == 10 && !timerCancelledManually) {
+                playTenseMusic()
+                tense = true
+            }
+
+            if (it.toInt() == 0) {
+                if (!timerCancelledManually) {
+                    mediaPlayer.stop()
+                    playLosingMusic(false)
+                    goToSummary()
+                }
+            }
+        }
+
         startTimer()
+
         binding.tvQuestionNumber.text = gameViewModel.getQuestionNumber().toString()
         changeViewImage()
 
@@ -104,8 +125,13 @@ class QuestionFragment : Fragment() {
 
             if (isCorrect) {
                 val points = 10 * currentQuestion.difficulty
-                if (gameViewModel.getSecondChance()) {
+                if (gameViewModel.getSecondChance() && gameViewModel.getUsedHelp()) {
+                    gameViewModel.addPoints(points / 4)
+                } else if (gameViewModel.getSecondChance() || gameViewModel.getUsedHelp()) {
                     gameViewModel.addPoints(points / 2)
+                    if (gameViewModel.getUsedHelp()) {
+                        gameViewModel.setUsedHelp(false)
+                    }
                 } else {
                     gameViewModel.addPoints(points)
                 }
@@ -138,7 +164,8 @@ class QuestionFragment : Fragment() {
         }
 
         binding.ivPoints.setOnClickListener {
-            val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.alert_style))
+            val builder =
+                AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.alert_style))
             builder.setTitle(R.string.alert_points)
             builder.setMessage(
                 getString(R.string.total_points) + " " +
@@ -154,6 +181,15 @@ class QuestionFragment : Fragment() {
             alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             alertDialog.show()
         }
+
+        binding.btnContinue.isEnabled = false
+        val normalTint = binding.btnContinue.backgroundTintList
+        binding.btnContinue.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+
+        binding.radioGroup.setOnCheckedChangeListener { group, id ->
+            binding.btnContinue.isEnabled = (id != -1)
+            binding.btnContinue.backgroundTintList = normalTint
+        }
     }
 
     override fun onDestroyView() {
@@ -165,12 +201,6 @@ class QuestionFragment : Fragment() {
         val rbSelected = binding.radioGroup.checkedRadioButtonId
         val answerSelected =
             binding.radioGroup.findViewById<RadioButton>(rbSelected).text.toString()
-
-        if (rbSelected == -1) {
-            Toast.makeText(requireContext(), R.string.msg_empty_answer, Toast.LENGTH_SHORT)
-                .show()
-            return false
-        }
 
         if (answerSelected.equals(correctAnswer)) {
             onViewCreated(binding.root, null)
@@ -201,32 +231,12 @@ class QuestionFragment : Fragment() {
         return false
     }
 
-    private fun startTimer() {
-        countDownTimer = object : CountDownTimer(30000, 1000) {
-
-            // Callback function, fired on regular interval
-            override fun onTick(millisUntilFinished: Long) {
-                binding.tvTimer.text = (millisUntilFinished / 1000).toString()
-                if ((millisUntilFinished / 1000).toInt() == 10 && !timerCancelledManually) {
-                    playTenseMusic()
-                    tense = true
-                }
-            }
-
-            // Callback function, fired
-            // when the time is up
-            override fun onFinish() {
-                if (!timerCancelledManually) {
-                    mediaPlayer.stop()
-                    playLosingMusic(false)
-                    goToSummary()
-                }
-            }
-        }.start()
+    fun startTimer() {
+        gameViewModel.startCountDownTimer(30 * 1000)
     }
 
-    private fun stopTimer() {
-        countDownTimer?.cancel()
+    fun stopTimer() {
+        gameViewModel.stopCountDownTimer()
         timerCancelledManually = true
         countDownTimer = null
     }
@@ -248,6 +258,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun goToConsolidate() {
+        gameViewModel.setInFragmentChallenges(false)
         val consolidateFragment = ConsolidateFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
@@ -256,6 +267,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun goToSummary() {
+        gameViewModel.setInFragmentChallenges(false)
         val summaryFragment = ResumeFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
@@ -264,6 +276,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun goToAbandon() {
+        gameViewModel.setInFragmentChallenges(false)
         val abandonFragment = AbandonFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
