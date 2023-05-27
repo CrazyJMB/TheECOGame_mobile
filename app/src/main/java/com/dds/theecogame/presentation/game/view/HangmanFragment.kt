@@ -48,9 +48,11 @@ class HangmanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        gameViewModel.setInFragmentChallenges(true)
 
         binding.ivPointsHangman.setOnClickListener {
-            val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.alert_style))
+            val builder =
+                AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.alert_style))
             builder.setTitle(R.string.alert_points)
             builder.setMessage(
                 getString(R.string.total_points) + " " +
@@ -72,6 +74,8 @@ class HangmanFragment : Fragment() {
                 is Game.Challenge.HangmanModel -> {
                     currentHangman = nextQuestion.hangmanModel
 
+                    gameViewModel.currentChallengeClue = currentHangman.clue
+
                     lifecycleScope.launch(Dispatchers.IO) {
                         gameViewModel.registerChallenge(currentHangman.id, "HANGMAN")
                     }
@@ -87,8 +91,23 @@ class HangmanFragment : Fragment() {
             }
         }
 
+        gameViewModel.countdownLiveData.observe(viewLifecycleOwner) {
+            binding.tvTimerHangman.text = it.toString()
+            if (it.toInt() == 10 && !timerCancelledManually) {
+                playTenseMusic()
+                tense = true
+            }
+
+            if (it.toInt() == 0) {
+                if (!timerCancelledManually) {
+                    mediaPlayer.stop()
+                    playLosingMusic(false)
+                    goToSummary()
+                }
+            }
+        }
+
         startTimer()
-        println(word)
 
         gameViewModel.btnPressed.observe(viewLifecycleOwner) {
             if (listMissingChar.contains(it)) {
@@ -112,7 +131,14 @@ class HangmanFragment : Fragment() {
                     lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerHangmanCorrect() }
 
                     gameViewModel.nextQuestionNumber()
-                    gameViewModel.addPoints(dificulty * 10)
+
+                    if (gameViewModel.getUsedHelp()) {
+                        gameViewModel.addPoints((dificulty * 10) / 2)
+                        gameViewModel.setUsedHelp(false)
+                    } else {
+                        gameViewModel.addPoints(dificulty * 10)
+                    }
+
                     if (gameViewModel.getQuestionNumber() == 11) {
                         stopTimer()
                         goToSummary()
@@ -202,7 +228,7 @@ class HangmanFragment : Fragment() {
             }
 
             else -> {
-                
+
                 lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerHangmanFailed() }
 
                 binding.ivRightLeg.visibility = View.VISIBLE; playLosingMusic(true)
@@ -218,31 +244,11 @@ class HangmanFragment : Fragment() {
     }
 
     private fun startTimer() {
-        countDownTimer = object : CountDownTimer(120000, 1000) {
-
-            // Callback function, fired on regular interval
-            override fun onTick(millisUntilFinished: Long) {
-                binding.tvTimerHangman.text = (millisUntilFinished / 1000).toString()
-                if ((millisUntilFinished / 1000).toInt() == 10 && !timerCancelledManually) {
-                    playTenseMusic()
-                    tense = true
-                }
-            }
-
-            // Callback function, fired
-            // when the time is up
-            override fun onFinish() {
-                if (!timerCancelledManually) {
-                    mediaPlayer.stop()
-                    playLosingMusic(false)
-                    goToSummary()
-                }
-            }
-        }.start()
+        gameViewModel.startCountDownTimer(120 * 1000)
     }
 
     private fun stopTimer() {
-        countDownTimer?.cancel()
+        gameViewModel.stopCountDownTimer()
         timerCancelledManually = true
         countDownTimer = null
     }
@@ -264,6 +270,7 @@ class HangmanFragment : Fragment() {
     }
 
     private fun goToConsolidate() {
+        gameViewModel.setInFragmentChallenges(false)
         val consolidateFragment = ConsolidateFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
@@ -272,6 +279,7 @@ class HangmanFragment : Fragment() {
     }
 
     private fun goToSummary() {
+        gameViewModel.setInFragmentChallenges(false)
         val summaryFragment = ResumeFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
@@ -280,6 +288,7 @@ class HangmanFragment : Fragment() {
     }
 
     private fun goToAbandon() {
+        gameViewModel.setInFragmentChallenges(false)
         val abandonFragment = AbandonFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()

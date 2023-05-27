@@ -7,6 +7,20 @@
     tools:context=".presentation.setting.view.SettingActivity"
     android:background="@color/background_green">
 
+    <ImageButton
+        android:id="@+id/ibBack3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/background_green"
+        android:contentDescription="@string/back"
+        android:src="@android:drawable/ic_menu_revert"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/black"
+        tools:ignore="ImageContrastCheck" />
+
     <TextView
         android:id="@+id/tvSettings"
         android:layout_width="wrap_content"
@@ -32,61 +46,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
 
-    <TextView
-        android:id="@+id/tvSounds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/sounds"
-        android:textSize="@dimen/settings_slider_title_font_size"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sbMusic" />
-
-    <TextView
-        android:id="@+id/tvActualTopic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/topic"
-        android:textSize="@dimen/settings_slider_title_font_size"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sbSounds" />
-
-    <TextView
-        android:id="@+id/tvMusic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/music"
-        android:textSize="@dimen/settings_slider_title_font_size"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sbGeneralVolume" />
-
-    <SeekBar
-        android:id="@+id/sbSounds"
-        android:layout_width="304dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="15dp"
-        android:max="100"
-        android:progress="30"
-        android:progressBackgroundTint="@color/grey"
-        android:progressTint="@color/white"
-        android:thumbTint="@color/black"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSounds" />
-
     <SeekBar
         android:id="@+id/sbGeneralVolume"
         android:layout_width="304dp"
@@ -102,11 +61,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvGeneralVolume" />
 
+    <Spinner
+        android:id="@+id/spTopic"
+        android:layout_width="214dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="28dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvActualTopic" />
+
     <SeekBar
         android:id="@+id/sbMusic"
         android:layout_width="304dp"
         android:layout_height="25dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:max="100"
         android:progress="70"
         android:progressBackgroundTint="@color/grey"
@@ -118,27 +87,84 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMusic" />
 
-    <Spinner
-        android:id="@+id/spTopic"
-        android:layout_width="214dp"
-        android:layout_height="52dp"
+    <SeekBar
+        android:id="@+id/sbSounds"
+        android:layout_width="304dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="20dp"
+        android:max="100"
+        android:progress="30"
+        android:progressBackgroundTint="@color/grey"
+        android:progressTint="@color/white"
+        android:thumbTint="@color/black"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSounds" />
+
+    <TextView
+        android:id="@+id/tvSounds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/sounds"
+        android:textSize="@dimen/settings_slider_title_font_size"
+        android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvActualTopic" />
+        app:layout_constraintTop_toBottomOf="@+id/sbMusic" />
+
+    <TextView
+        android:id="@+id/tvMusic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/music"
+        android:textSize="@dimen/settings_slider_title_font_size"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sbGeneralVolume" />
+
+    <TextView
+        android:id="@+id/tvActualTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/topic"
+        android:textSize="@dimen/settings_slider_title_font_size"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sbSounds" />
+
+    <Button
+        android:id="@+id/btnRestore"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_shape_round"
+        android:text="@string/restore"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spTopic"
+        android:layout_marginTop="10sp" />
 
     <Button
         android:id="@+id/btnSave"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:background="@drawable/btn_shape_round"
         android:text="@string/save"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spTopic" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRestore"
+        android:layout_marginTop="10sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

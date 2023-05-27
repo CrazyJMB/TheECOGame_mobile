@@ -26,7 +26,7 @@ class SettingActivity : AppCompatActivity() {
     private lateinit var settingsRepository: SettingsRepository
 
     private lateinit var settings: Settings
-    private var careTaker: SettingsCareTaker = SettingsCareTaker()
+    private val careTaker: SettingsCareTaker = SettingsCareTaker()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,13 +40,11 @@ class SettingActivity : AppCompatActivity() {
         // Default values
         lifecycleScope.launch(Dispatchers.IO) {
             settings = loadSettings() ?: Settings(100, 100, 100, 100)
-            careTaker.saveState(settings)
 
             // Update UI
             withContext(Dispatchers.Main) {
-                binding.sbGeneralVolume.progress = settings.volume
-                binding.sbMusic.progress = settings.music
-                binding.sbSounds.progress = settings.sound
+                careTaker.saveState(settings)
+                updateUI(settings)
             }
         }
 
@@ -99,6 +97,12 @@ class SettingActivity : AppCompatActivity() {
 
         })
 
+        binding.btnRestore.setOnClickListener {
+            updateSettings(careTaker.restoreState())
+
+            updateUI(settings)
+        }
+
         binding.btnSave.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {
                 settingsRepository.saveSettings(settings)
@@ -109,6 +113,25 @@ class SettingActivity : AppCompatActivity() {
             }
         }
 
+        binding.ibBack3.setOnClickListener {
+            startActivity(Intent(this, MainScreenActivity::class.java))
+        }
+
+    }
+
+    private fun updateSettings(restoreState: Settings?) {
+        if (restoreState != null) {
+            settings.volume = restoreState.volume
+            settings.sound = restoreState.sound
+            settings.music = restoreState.music
+            settings.brightness = restoreState.brightness
+        }
+    }
+
+    private fun updateUI(settings: Settings) {
+        binding.sbGeneralVolume.progress = settings.volume
+        binding.sbMusic.progress = settings.music
+        binding.sbSounds.progress = settings.sound
     }
 
     private suspend fun loadSettings(): Settings? {

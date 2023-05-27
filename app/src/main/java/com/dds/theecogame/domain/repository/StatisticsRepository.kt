@@ -2,6 +2,7 @@ package com.dds.theecogame.domain.repository
 
 import com.dds.theecogame.common.Resource
 import com.dds.theecogame.domain.model.Statistics
+import com.dds.theecogame.domain.model.ranking.CurrentUserRanking
 import com.dds.theecogame.domain.model.ranking.RankingUser
 import kotlinx.coroutines.flow.Flow
 
@@ -24,5 +25,5 @@ interface StatisticsRepository {
     // Ranking
     suspend fun getRanking(): Flow<Resource<List<RankingUser>>>
 
-    suspend fun getUserRanking(userId: Int): Flow<Resource<Int>>
+    suspend fun getUserRanking(userId: Int): Flow<Resource<CurrentUserRanking>>
 }
