@@ -1,7 +1,7 @@
 package com.dds.theecogame.data.remote.statistics.api
 
 import com.dds.theecogame.data.remote.session.dto.ResponseDto
-import com.dds.theecogame.data.remote.statistics.dto.PositionDto
+import com.dds.theecogame.data.remote.statistics.dto.RankingUserData
 import com.dds.theecogame.data.remote.statistics.dto.RankingDto
 import com.dds.theecogame.data.remote.statistics.dto.StatisticsDto
 import com.dds.theecogame.data.remote.statistics.dto.TimeDto
@@ -49,5 +49,5 @@ interface StatisticsApi {
     suspend fun getRanking(): Response<List<RankingDto>>
 
     @GET("/rankings/{userId}")
-    suspend fun getRankingFromUser(@Path("userId") userId: Int): Response<PositionDto>
+    suspend fun getRankingFromUser(@Path("userId") userId: Int): Response<RankingUserData>
 }
