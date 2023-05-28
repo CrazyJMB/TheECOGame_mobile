@@ -74,7 +74,7 @@ class HangmanFragment : Fragment() {
         gameViewModel.gameLiveData.observe(viewLifecycleOwner) { game ->
             when (val nextQuestion = game.challengesList[gameViewModel.getQuestionNumber()]) {
                 is Game.Challenge.HangmanModel -> {
-                    println("Question: " + game.challengesList)
+                    println("Question: " + game.challengesList[gameViewModel.getQuestionNumber()])
                     currentHangman = nextQuestion.hangmanModel
 
                     gameViewModel.currentChallengeClue = currentHangman.clue

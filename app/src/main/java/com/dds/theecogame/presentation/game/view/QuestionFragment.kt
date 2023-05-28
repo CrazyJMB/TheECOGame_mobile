@@ -200,6 +200,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun checkAnswer(correctAnswer: String): Boolean {
+        return true
         val rbSelected = binding.radioGroup.checkedRadioButtonId
         val answerSelected =
             binding.radioGroup.findViewById<RadioButton>(rbSelected).text.toString()

@@ -84,7 +84,7 @@ class ConsolidateFragment : Fragment() {
             // when the time is up
             override fun onFinish() {
                 if (!timerCancelledManually) {
-                    goToQuestions()
+                    nextChallenge()
                 }
             }
         }.start()
