@@ -9,7 +9,7 @@
     <string name="button_setting">Ajustes</string>
     <!-- Strings related to activity_questions NAME REFACTOR -->
     <string name="back">Volver</string>
-    <string name="question_challenge">Reto: Preguntas</string>
+    <string name="question_challenge">Reto</string>
     <string name="question">Pregunta:</string>
     <string name="remaining_time">Tiempo restante:</string>
     <string name="ods" translatable="false">ODS</string>

@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/reto_Preguntas"
-            android:layout_width="216dp"
+            android:layout_width="75dp"
             android:layout_height="34dp"
             android:text="@string/question_challenge"
             android:textColor="@color/white"
