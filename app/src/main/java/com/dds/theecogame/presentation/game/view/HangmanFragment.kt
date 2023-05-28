@@ -19,7 +19,9 @@ import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.model.challenges.Hangman
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class HangmanFragment : Fragment() {
 
@@ -70,8 +72,9 @@ class HangmanFragment : Fragment() {
         }
 
         gameViewModel.gameLiveData.observe(viewLifecycleOwner) { game ->
-            when (val nextQuestion = game.deleteFirstChallenge()) {
+            when (val nextQuestion = game.challengesList[gameViewModel.getQuestionNumber()]) {
                 is Game.Challenge.HangmanModel -> {
+                    println("HANGMAN: " + game.challengesList[gameViewModel.getQuestionNumber()])
                     currentHangman = nextQuestion.hangmanModel
 
                     gameViewModel.currentChallengeClue = currentHangman.clue
