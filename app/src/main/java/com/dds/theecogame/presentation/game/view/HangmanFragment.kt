@@ -72,8 +72,9 @@ class HangmanFragment : Fragment() {
         }
 
         gameViewModel.gameLiveData.observe(viewLifecycleOwner) { game ->
-            when (val nextQuestion = game.deleteFirstChallenge()) {
+            when (val nextQuestion = game.challengesList[gameViewModel.getQuestionNumber()]) {
                 is Game.Challenge.HangmanModel -> {
+                    println("Question: " + game.challengesList)
                     currentHangman = nextQuestion.hangmanModel
 
                     gameViewModel.currentChallengeClue = currentHangman.clue
@@ -143,15 +144,12 @@ class HangmanFragment : Fragment() {
 
                     if (gameViewModel.getQuestionNumber() == 11) {
                         stopTimer()
-                        runBlocking {delay(2000)}
                         goToSummary()
                     } else if (gameViewModel.getConsolidated()) {
                         stopTimer()
-                        runBlocking {delay(2000)}
                         goToAbandon()
                     } else {
                         stopTimer()
-                        runBlocking {delay(2000)}
                         goToConsolidate()
                     }
                 }

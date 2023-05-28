@@ -108,7 +108,7 @@ class ConsolidateFragment : Fragment() {
 
     private fun nextChallenge() {
         gameViewModel.gameLiveData.observe(requireActivity()) {
-            when (it.getNextChallenge()) {
+            when (it.challengesList[gameViewModel.getQuestionNumber()]) {
                 is Game.Challenge.HangmanModel -> {
                     goToHangman()
                 }
