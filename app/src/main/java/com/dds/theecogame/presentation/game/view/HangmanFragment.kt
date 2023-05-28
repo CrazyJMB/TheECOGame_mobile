@@ -19,7 +19,9 @@ import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.model.challenges.Hangman
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class HangmanFragment : Fragment() {
 
@@ -141,12 +143,15 @@ class HangmanFragment : Fragment() {
 
                     if (gameViewModel.getQuestionNumber() == 11) {
                         stopTimer()
+                        runBlocking {delay(2000)}
                         goToSummary()
                     } else if (gameViewModel.getConsolidated()) {
                         stopTimer()
+                        runBlocking {delay(2000)}
                         goToAbandon()
                     } else {
                         stopTimer()
+                        runBlocking {delay(2000)}
                         goToConsolidate()
                     }
                 }
