@@ -2,7 +2,6 @@ package com.dds.theecogame.data.remote.session.api
 
 import com.dds.theecogame.data.remote.session.dto.ResponseDto
 import com.dds.theecogame.data.remote.session.dto.UserDto
-import com.dds.theecogame.data.remote.session.dto.input.ImageDto
 import com.dds.theecogame.data.remote.session.dto.input.PasswordDto
 import com.dds.theecogame.data.remote.session.dto.input.UserCreationDto
 import okhttp3.MultipartBody
