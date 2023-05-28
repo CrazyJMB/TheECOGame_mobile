@@ -47,6 +47,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tvQuestionNumberFixed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:text="@string/num_question_fixed"
+            android:textColor="@color/black"
+            android:textSize="@dimen/question_number"
+            app:layout_constraintStart_toEndOf="@+id/tvHangmanNumber"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/tvRestantTimeHangman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

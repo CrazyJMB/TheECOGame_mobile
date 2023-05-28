@@ -41,8 +41,8 @@
     <string name="num_wrong_questions">Preguntas incorrectas:</string>
     <string name="num_correct_hangman">Ahorcados acertadas:</string>
     <string name="num_wrong_hangman">Ahorcados incorrectas:</string>
-    <string name="mean_time">Tiempo promedio de las partidas:</string>
-    <string name="total_time">Tiempo total de partida:</string>
+    <string name="mean_time">Tiempo promedio en partida:</string>
+    <string name="total_time">Tiempo total jugado:</string>
     <string name="ODS_knowledge">Nivel conocimiento de ODS:</string>
     <string name="left">Izquierda</string>
     <string name="right">Derecha</string>
@@ -57,6 +57,7 @@
     <string name="invalid_password">La contraseña debe tener más de 5 caracteres</string>
     <string name="login_failed">Inicio de sesión fallido</string>
     <string name="num_question" translatable="false">1</string>
+    <string name="num_question_fixed" translatable="false">/10</string>
     <string name="image">Imagen</string>
     <string name="lost">GAME OVER</string>
     <string name="victory">VICTORIA</string>

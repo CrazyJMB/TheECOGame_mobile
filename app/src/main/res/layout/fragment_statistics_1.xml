@@ -138,6 +138,7 @@
             android:layout_marginBottom="50dp"
             android:contentDescription="@string/left"
             android:src="?attr/actionModeCloseDrawable"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:tint="@color/grey"
