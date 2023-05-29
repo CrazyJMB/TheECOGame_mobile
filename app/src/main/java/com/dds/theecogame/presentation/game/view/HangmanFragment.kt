@@ -51,6 +51,7 @@ class HangmanFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         gameViewModel.setInFragmentChallenges(true)
+        gameViewModel.addBtnPressed('_')
 
         binding.ivPointsHangman.setOnClickListener {
             val builder =
@@ -113,52 +114,56 @@ class HangmanFragment : Fragment() {
         startTimer()
 
         gameViewModel.btnPressed.observe(viewLifecycleOwner) {
-            if (listMissingChar.contains(it)) {
-                var listIndexChange: MutableList<Int> = mutableListOf()
-                var hangmanWord = binding.tvHangmanWord.text.toString().toMutableList()
+            if (!it.equals('_')){
+                if (listMissingChar.contains(it)) {
+                    var listIndexChange: MutableList<Int> = mutableListOf()
+                    var hangmanWord = binding.tvHangmanWord.text.toString().toMutableList()
 
-                for ((index, char) in word.withIndex()) {
-                    if (char == it) {
-                        listIndexChange.add(index)
-                    }
-                }
-
-                for (index in listIndexChange) {
-                    hangmanWord[index] = it
-                }
-
-                binding.tvHangmanWord.text = hangmanWord.joinToString("")
-
-                if (binding.tvHangmanWord.text.equals(word)) {
-
-                    lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerHangmanCorrect() }
-
-                    gameViewModel.nextQuestionNumber()
-
-                    if (gameViewModel.getUsedHelp()) {
-                        gameViewModel.addPoints((dificulty * 10) / 2)
-                        gameViewModel.setUsedHelp(false)
-                    } else {
-                        gameViewModel.addPoints(dificulty * 10)
+                    for ((index, char) in word.withIndex()) {
+                        if (char == it) {
+                            listIndexChange.add(index)
+                        }
                     }
 
-                    if (gameViewModel.getQuestionNumber() == 11) {
-                        stopTimer()
-                        goToSummary()
-                    } else if (gameViewModel.getConsolidated()) {
-                        stopTimer()
-                        goToAbandon()
-                    } else {
-                        stopTimer()
-                        goToConsolidate()
+                    for (index in listIndexChange) {
+                        hangmanWord[index] = it
                     }
+
+                    binding.tvHangmanWord.text = hangmanWord.joinToString("")
+
+                    if (binding.tvHangmanWord.text.equals(word)) {
+
+                        lifecycleScope.launch(Dispatchers.IO) {gameViewModel.registerHangmanCorrect()}
+
+                        gameViewModel.nextQuestionNumber()
+
+                        if (gameViewModel.getUsedHelp()) {
+                            gameViewModel.addPoints((dificulty * 10) / 2)
+                            gameViewModel.setUsedHelp(false)
+                        } else {
+                            gameViewModel.addPoints(dificulty * 10)
+                        }
+
+                        if (gameViewModel.getQuestionNumber() == 11) {
+                            stopTimer()
+                            goToSummary()
+                        } else if (gameViewModel.getConsolidated()) {
+                            stopTimer()
+                            goToAbandon()
+                        } else {
+                            stopTimer()
+                            goToConsolidate()
+                        }
+                    }
+                } else {
+                    mistakes++
+                    userMistake()
                 }
-            } else {
-                mistakes++
-                userMistake()
             }
         }
 
+        mistakes = 0
+        userMistake()
     }
 
     private fun makeWordDificulty() {
@@ -210,6 +215,14 @@ class HangmanFragment : Fragment() {
 
     private fun userMistake() {
         when (mistakes) {
+            0 -> {
+                binding.ivHead.visibility = View.INVISIBLE;
+                binding.ivBody.visibility = View.INVISIBLE;
+                binding.ivLeftArm.visibility = View.INVISIBLE;
+                binding.ivRightArm.visibility = View.INVISIBLE;
+                binding.ivLeftLeg.visibility = View.INVISIBLE;
+            }
+
             1 -> {
                 binding.ivHead.visibility = View.VISIBLE; playLosingMusic(true)
             }
