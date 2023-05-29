@@ -11,8 +11,8 @@
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/background_green"
         android:contentDescription="@string/back"
         android:onClick="goToMainScreen"
@@ -26,7 +26,7 @@
         android:id="@+id/tvRanking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="70dp"
         android:text="@string/ranking"
         android:textColor="@color/white"
         android:textSize="@dimen/title_font_size"
@@ -36,11 +36,15 @@
 
     <LinearLayout
         android:id="@+id/llActualUser"
-        android:layout_width="310dp"
-        android:layout_height="37dp"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="17dp"
         android:background="@drawable/btn_shape_rounded_square"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/tvTop10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,6 +72,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
+                android:contentDescription="@string/image"
                 tools:src="@tools:sample/avatars" />
 
         </LinearLayout>
@@ -105,10 +110,10 @@
         android:id="@+id/tvTop10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/top10"
         android:textColor="@color/white"
         android:textSize="18dp"
-        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -119,23 +124,27 @@
     <!--Contenedor vertical-->
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="330dp"
-        android:layout_height="455dp"
-        android:layout_marginTop="45dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="70dp"
         android:background="@drawable/btn_shape_rounded_square_darker"
         android:orientation="vertical"
         android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llActualUser">
+        app:layout_constraintTop_toBottomOf="@+id/tvTop10">
 
         <!--User 1-->
         <!--Contenedor prpal-->
         <LinearLayout
             android:id="@+id/llRank1"
-            android:layout_width="310dp"
-            android:layout_height="37dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@drawable/btn_shape_rounded_square"
             android:orientation="horizontal"
@@ -203,8 +212,8 @@
         <!--Contenedor prpal-->
         <LinearLayout
             android:id="@+id/llRank2"
-            android:layout_width="310dp"
-            android:layout_height="37dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginTop="7dp"
             android:layout_weight="1"
             android:background="@drawable/btn_shape_rounded_square"
@@ -273,8 +282,8 @@
         <!--Contenedor prpal-->
         <LinearLayout
             android:id="@+id/llRank3"
-            android:layout_width="310dp"
-            android:layout_height="37dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginTop="7dp"
             android:layout_weight="1"
             android:background="@drawable/btn_shape_rounded_square"
@@ -343,8 +352,8 @@
         <!--Contenedor prpal-->
         <LinearLayout
             android:id="@+id/llRank4"
-            android:layout_width="310dp"
-            android:layout_height="37dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginTop="7dp"
             android:layout_weight="1"
             android:background="@drawable/btn_shape_rounded_square"
@@ -413,8 +422,8 @@
         <!--Contenedor prpal-->
         <LinearLayout
             android:id="@+id/llRank5"
-            android:layout_width="310dp"
-            android:layout_height="37dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginTop="7dp"
             android:layout_weight="1"
             android:background="@drawable/btn_shape_rounded_square"
@@ -483,8 +492,8 @@
         <!--Contenedor prpal-->
         <LinearLayout
             android:id="@+id/llRank6"
-            android:layout_width="310dp"
-            android:layout_height="37dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginTop="7dp"
             android:layout_weight="1"
             android:background="@drawable/btn_shape_rounded_square"
@@ -553,8 +562,8 @@
         <!--Contenedor prpal-->
         <LinearLayout
             android:id="@+id/llRank7"
-            android:layout_width="310dp"
-            android:layout_height="37dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginTop="7dp"
             android:layout_weight="1"
             android:background="@drawable/btn_shape_rounded_square"
@@ -623,8 +632,8 @@
         <!--Contenedor prpal-->
         <LinearLayout
             android:id="@+id/llRank8"
-            android:layout_width="310dp"
-            android:layout_height="37dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginTop="7dp"
             android:layout_weight="1"
             android:background="@drawable/btn_shape_rounded_square"
@@ -693,8 +702,8 @@
         <!--Contenedor prpal-->
         <LinearLayout
             android:id="@+id/llRank9"
-            android:layout_width="310dp"
-            android:layout_height="37dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginTop="7dp"
             android:layout_weight="1"
             android:background="@drawable/btn_shape_rounded_square"
@@ -763,8 +772,8 @@
         <!--Contenedor prpal-->
         <LinearLayout
             android:id="@+id/llRank10"
-            android:layout_width="310dp"
-            android:layout_height="37dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginTop="7dp"
             android:layout_weight="1"
             android:background="@drawable/btn_shape_rounded_square"
