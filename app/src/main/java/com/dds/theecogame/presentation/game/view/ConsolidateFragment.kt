@@ -101,7 +101,7 @@ class ConsolidateFragment : Fragment() {
     }
 
     private fun startMusic() {
-        mediaPlayer = if (gameViewModel.getQuestionNumber() == 11) {
+        mediaPlayer = if (gameViewModel.getQuestionNumber() > 10) {
             MediaPlayer.create(requireContext(), R.raw.victoria)
         } else {
             MediaPlayer.create(requireContext(), R.raw.ganar_reto)
@@ -111,20 +111,14 @@ class ConsolidateFragment : Fragment() {
     }
 
     private fun nextChallenge() {
-        val game: Game? = gameViewModel.gameLiveData.value
-
-        if (game != null) {
-            when (game.getNextChallenge()) {
+        gameViewModel.gameLiveData.observe(requireActivity()) {
+            when (it.challengesList[gameViewModel.getQuestionNumber()]) {
                 is Game.Challenge.HangmanModel -> {
                     goToHangman()
                 }
 
                 is Game.Challenge.QuestionModel -> {
                     goToQuestions()
-                }
-
-                else -> {
-                    goToSummary()
                 }
             }
         }

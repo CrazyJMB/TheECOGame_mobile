@@ -142,7 +142,7 @@ class HangmanFragment : Fragment() {
                         gameViewModel.addPoints(dificulty * 10)
                     }
 
-                    if (gameViewModel.getQuestionNumber() == 11) {
+                    if (gameViewModel.getQuestionNumber() > 10) {
                         stopTimer()
                         goToSummary()
                     } else if (gameViewModel.getConsolidated()) {

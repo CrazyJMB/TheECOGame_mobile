@@ -36,7 +36,7 @@ class AbandonFragment : Fragment() {
         }
 
         binding.btnCancel.setOnClickListener {
-            if (gameViewModel.getQuestionNumber() == 11) {
+            if (gameViewModel.getQuestionNumber() > 10) {
                 goToSummary()
             } else {
                 nextChallenge()
@@ -47,13 +47,9 @@ class AbandonFragment : Fragment() {
     private fun nextChallenge() {
         gameViewModel.gameLiveData.observe(requireActivity()) {
             when (it.challengesList[gameViewModel.getQuestionNumber()]) {
-                is Game.Challenge.HangmanModel -> {
-                    goToHangman()
-                }
-
-                is Game.Challenge.QuestionModel -> {
-                    goToQuestions()
-                }
+                
+                is Game.Challenge.HangmanModel -> goToHangman()
+                is Game.Challenge.QuestionModel -> goToQuestions()
             }
         }
     }

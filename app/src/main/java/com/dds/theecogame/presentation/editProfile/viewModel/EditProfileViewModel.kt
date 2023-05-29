@@ -1,7 +1,6 @@
 package com.dds.theecogame.presentation.editProfile.viewModel
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Environment
 import androidx.lifecycle.ViewModel
@@ -10,8 +9,8 @@ import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.repository.UserRepositoryImpl
 import com.dds.theecogame.domain.Application
 import com.dds.theecogame.domain.repository.UserRepository
-import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
@@ -41,11 +40,11 @@ class EditProfileViewModel() : ViewModel() {
         }
     }
 
-    fun saveImageRemote(imageUri: String) {
+    fun saveImageRemote(imageUri: Uri) {
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.updateAvatar(
                 Application.getUser()!!.id,
-                imageUri
+                imageUri.toString()
             )
         }
 

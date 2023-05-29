@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.ActivityEditProfileBinding
@@ -29,10 +30,15 @@ class EditProfileActivity : AppCompatActivity() {
     private val emailValidator = ValidatorFactory.getValidator("email")
     private val passwordValidator = ValidatorFactory.getValidator("password")
 
-
-    private lateinit var imageUri: Uri
-
     private val user: User = Application.getUser()!!
+
+    private var imageUpdated = false
+    private lateinit var imageUri: Uri
+    private val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        imageUpdated = true
+        imageUri = it!!
+        binding.ivProfile.setImageURI(it)
+    }
 
     //¿?
     private var username = user.username
@@ -43,11 +49,6 @@ class EditProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Load default values from the user
-        //FIXME: Los borramos?
-        val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val imageFile = File(storageDir, "avatar.jpg")
 
         if (user.avatar.isNullOrEmpty()) {
             //Set default avatar
@@ -68,8 +69,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         // Listener
         binding.btnEditImage.setOnClickListener {
-            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            startActivityForResult(gallery, 100)
+            contract.launch("image/*")
         }
 
         binding.etUsername.setOnFocusChangeListener { view, b ->
@@ -120,8 +120,8 @@ class EditProfileActivity : AppCompatActivity() {
             // Save data
             viewModel.saveImageLocal(this, imageUri)
 
-            if (imageFile.exists()) {
-                viewModel.saveImageRemote(imageFile.absolutePath)
+            if (imageUpdated) {
+                viewModel.saveImageRemote(imageUri)
             }
 
             viewModel.updateUser(
@@ -136,20 +136,6 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.ibBack.setOnClickListener {
             startActivity(Intent(this, MainScreenActivity::class.java))
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100 && resultCode == RESULT_OK) {
-            val imageUri = data?.data
-            if (imageUri != null) {
-
-                // Show the imagen
-                binding.ivProfile.setImageURI(imageUri)
-
-                this.imageUri = imageUri
-            }
         }
     }
 }

@@ -31,7 +31,9 @@ class ResumeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (gameViewModel.getQuestionNumber() == 11){gameViewModel.setGameStatus(2)}
+        if (gameViewModel.getQuestionNumber() > 10) {
+            gameViewModel.setGameStatus(2)
+        }
 
         initializeSummary()
 
