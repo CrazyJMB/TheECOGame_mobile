@@ -4,23 +4,33 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.R
+import com.dds.theecogame.common.Resource
+import com.dds.theecogame.data.repository.UserRepositoryImpl
 import com.dds.theecogame.databinding.ActivityEditProfileBinding
 import com.dds.theecogame.domain.Application
 import com.dds.theecogame.domain.factory.ValidatorFactory
 import com.dds.theecogame.domain.model.User
+import com.dds.theecogame.domain.repository.UserRepository
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.editProfile.viewModel.EditProfileViewModel
-import com.squareup.picasso.Picasso
-import java.lang.Exception
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import java.io.File
 
 class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditProfileBinding
     private val viewModel: EditProfileViewModel by viewModels()
+
+    private val userRepository: UserRepository = UserRepositoryImpl()
 
     private val usernameValidator = ValidatorFactory.getValidator("username")
     private val emailValidator = ValidatorFactory.getValidator("email")
@@ -47,15 +57,15 @@ class EditProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (user.avatar.isNullOrEmpty()) {
-            //Set default avatar
             binding.ivProfile.setImageResource(R.drawable.empty_avatar)
         } else {
-            try {
-                Picasso.get()
-                    .load(user.avatar)
-                    .into(binding.ivProfile)
-            } catch (e: Exception) {
-                e.printStackTrace()
+            MainScope().launch {
+                val bitmap = viewModel.loadImageFromUrl(user.avatar)
+                if (bitmap != null) {
+                    binding.ivProfile.setImageBitmap(bitmap)
+                } else {
+                    binding.ivProfile.setImageResource(R.drawable.empty_avatar)
+                }
             }
         }
 
@@ -116,9 +126,11 @@ class EditProfileActivity : AppCompatActivity() {
             // Save data
             viewModel.saveImageLocal(this, imageUri)
 
-            if (imageUpdated) {
-                viewModel.saveImageRemote(imageUri)
-            }
+
+            val storageDir = applicationContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+            val imageFile = File(storageDir, "avatar.png")
+
+            val result = viewModel.saveImageRemote(imageFile)
 
             viewModel.updateUser(
                 user.id,
@@ -128,6 +140,24 @@ class EditProfileActivity : AppCompatActivity() {
                 email,
                 password
             )
+
+            if (result) {
+                lifecycleScope.launch(Dispatchers.IO) {
+                    userRepository.getUser(email).collect {
+                        when (it) {
+                            is Resource.Loading -> {}
+                            is Resource.Success -> {
+                                Application.setUser(it.data)
+                            }
+
+                            is Resource.Error -> {}
+                        }
+                    }
+                }
+                Toast.makeText(this, "Datos actualizados con exito", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, MainScreenActivity::class.java))
+            }
+
         }
 
         binding.ibBack.setOnClickListener {

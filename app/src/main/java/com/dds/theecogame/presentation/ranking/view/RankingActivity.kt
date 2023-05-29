@@ -8,18 +8,13 @@ import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.R
 import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.repository.StatisticsRepositoryImpl
-import com.dds.theecogame.databinding.ActivityMainScreenBinding
 import com.dds.theecogame.databinding.ActivityRankingBinding
 import com.dds.theecogame.domain.Application
 import com.dds.theecogame.domain.repository.StatisticsRepository
-import com.dds.theecogame.domain.repository.UserRepository
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
-import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
 import com.dds.theecogame.presentation.ranking.viewModel.RankingViewModel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import com.squareup.picasso.Picasso
-import java.lang.Exception
+import kotlinx.coroutines.MainScope
 
 class RankingActivity : AppCompatActivity() {
 
@@ -53,17 +48,20 @@ class RankingActivity : AppCompatActivity() {
                             //Set default avatar
                             binding.ivUserAvatar.setImageResource(R.drawable.empty_avatar)
                         } else {
-                            try {
-                                Picasso.get()
-                                    .load(actualUser.avatar)
-                                    .into(binding.ivUserAvatar)
-                            } catch (e: Exception) {
-                                e.printStackTrace()
+                            MainScope().launch {
+                                val bitmap = viewModel.loadImageFromUrl(actualUser.avatar)
+                                if (bitmap != null) {
+                                    // Mostrar la imagen en un ImageView
+                                    binding.ivUserAvatar.setImageBitmap(bitmap)
+                                } else {
+                                    binding.ivUserAvatar.setImageResource(R.drawable.empty_avatar)
+                                }
                             }
                         }
                         binding.tvUserUsername.text = actualUser.username
                         binding.tvUserPoints.text = it.data!!.score.toString()
                     }
+
                     is Resource.Error -> {
                     }
                 }
@@ -83,12 +81,14 @@ class RankingActivity : AppCompatActivity() {
                             //Set default avatar
                             binding.ivUserAvatar1.setImageResource(R.drawable.empty_avatar)
                         } else {
-                            try {
-                                Picasso.get()
-                                    .load(ranking[0].avatar)
-                                    .into(binding.ivUserAvatar1)
-                            } catch (e: Exception) {
-                                e.printStackTrace()
+                            MainScope().launch {
+                                val bitmap = viewModel.loadImageFromUrl(ranking[0].avatar!!)
+                                if (bitmap != null) {
+                                    // Mostrar la imagen en un ImageView
+                                    binding.ivUserAvatar1.setImageBitmap(bitmap)
+                                } else {
+                                    binding.ivUserAvatar1.setImageResource(R.drawable.empty_avatar)
+                                }
                             }
                         }
                         binding.tvUserUsername1.text = ranking[0].username
@@ -99,12 +99,14 @@ class RankingActivity : AppCompatActivity() {
                             //Set default avatar
                             binding.ivUserAvatar2.setImageResource(R.drawable.empty_avatar)
                         } else {
-                            try {
-                                Picasso.get()
-                                    .load(ranking[1].avatar)
-                                    .into(binding.ivUserAvatar2)
-                            } catch (e: Exception) {
-                                e.printStackTrace()
+                            MainScope().launch {
+                                val bitmap = viewModel.loadImageFromUrl(ranking[1].avatar!!)
+                                if (bitmap != null) {
+                                    // Mostrar la imagen en un ImageView
+                                    binding.ivUserAvatar2.setImageBitmap(bitmap)
+                                } else {
+                                    binding.ivUserAvatar2.setImageResource(R.drawable.empty_avatar)
+                                }
                             }
                         }
                         binding.tvUserUsername2.text = ranking[1].username
@@ -115,12 +117,14 @@ class RankingActivity : AppCompatActivity() {
                             //Set default avatar
                             binding.ivUserAvatar3.setImageResource(R.drawable.empty_avatar)
                         } else {
-                            try {
-                                Picasso.get()
-                                    .load(ranking[2].avatar)
-                                    .into(binding.ivUserAvatar3)
-                            } catch (e: Exception) {
-                                e.printStackTrace()
+                            MainScope().launch {
+                                val bitmap = viewModel.loadImageFromUrl(ranking[2].avatar!!)
+                                if (bitmap != null) {
+                                    // Mostrar la imagen en un ImageView
+                                    binding.ivUserAvatar3.setImageBitmap(bitmap)
+                                } else {
+                                    binding.ivUserAvatar3.setImageResource(R.drawable.empty_avatar)
+                                }
                             }
                         }
                         binding.tvUserUsername3.text = ranking[2].username
@@ -131,12 +135,14 @@ class RankingActivity : AppCompatActivity() {
                             //Set default avatar
                             binding.ivUserAvatar4.setImageResource(R.drawable.empty_avatar)
                         } else {
-                            try {
-                                Picasso.get()
-                                    .load(ranking[3].avatar)
-                                    .into(binding.ivUserAvatar4)
-                            } catch (e: Exception) {
-                                e.printStackTrace()
+                            MainScope().launch {
+                                val bitmap = viewModel.loadImageFromUrl(ranking[3].avatar!!)
+                                if (bitmap != null) {
+                                    // Mostrar la imagen en un ImageView
+                                    binding.ivUserAvatar4.setImageBitmap(bitmap)
+                                } else {
+                                    binding.ivUserAvatar4.setImageResource(R.drawable.empty_avatar)
+                                }
                             }
                         }
                         binding.tvUserUsername4.text = ranking[3].username
@@ -147,12 +153,14 @@ class RankingActivity : AppCompatActivity() {
                             //Set default avatar
                             binding.ivUserAvatar5.setImageResource(R.drawable.empty_avatar)
                         } else {
-                            try {
-                                Picasso.get()
-                                    .load(ranking[4].avatar)
-                                    .into(binding.ivUserAvatar5)
-                            } catch (e: Exception) {
-                                e.printStackTrace()
+                            MainScope().launch {
+                                val bitmap = viewModel.loadImageFromUrl(ranking[4].avatar!!)
+                                if (bitmap != null) {
+                                    // Mostrar la imagen en un ImageView
+                                    binding.ivUserAvatar5.setImageBitmap(bitmap)
+                                } else {
+                                    binding.ivUserAvatar5.setImageResource(R.drawable.empty_avatar)
+                                }
                             }
                         }
                         binding.tvUserUsername5.text = ranking[4].username
@@ -163,12 +171,14 @@ class RankingActivity : AppCompatActivity() {
                             //Set default avatar
                             binding.ivUserAvatar6.setImageResource(R.drawable.empty_avatar)
                         } else {
-                            try {
-                                Picasso.get()
-                                    .load(ranking[5].avatar)
-                                    .into(binding.ivUserAvatar6)
-                            } catch (e: Exception) {
-                                e.printStackTrace()
+                            MainScope().launch {
+                                val bitmap = viewModel.loadImageFromUrl(ranking[5].avatar!!)
+                                if (bitmap != null) {
+                                    // Mostrar la imagen en un ImageView
+                                    binding.ivUserAvatar6.setImageBitmap(bitmap)
+                                } else {
+                                    binding.ivUserAvatar6.setImageResource(R.drawable.empty_avatar)
+                                }
                             }
                         }
                         binding.tvUserUsername6.text = ranking[5].username
@@ -179,12 +189,14 @@ class RankingActivity : AppCompatActivity() {
                             //Set default avatar
                             binding.ivUserAvatar7.setImageResource(R.drawable.empty_avatar)
                         } else {
-                            try {
-                                Picasso.get()
-                                    .load(ranking[6].avatar)
-                                    .into(binding.ivUserAvatar7)
-                            } catch (e: Exception) {
-                                e.printStackTrace()
+                            MainScope().launch {
+                                val bitmap = viewModel.loadImageFromUrl(ranking[6].avatar!!)
+                                if (bitmap != null) {
+                                    // Mostrar la imagen en un ImageView
+                                    binding.ivUserAvatar7.setImageBitmap(bitmap)
+                                } else {
+                                    binding.ivUserAvatar7.setImageResource(R.drawable.empty_avatar)
+                                }
                             }
                         }
                         binding.tvUserUsername7.text = ranking[6].username
@@ -195,12 +207,14 @@ class RankingActivity : AppCompatActivity() {
                             //Set default avatar
                             binding.ivUserAvatar8.setImageResource(R.drawable.empty_avatar)
                         } else {
-                            try {
-                                Picasso.get()
-                                    .load(ranking[7].avatar)
-                                    .into(binding.ivUserAvatar8)
-                            } catch (e: Exception) {
-                                e.printStackTrace()
+                            MainScope().launch {
+                                val bitmap = viewModel.loadImageFromUrl(ranking[7].avatar!!)
+                                if (bitmap != null) {
+                                    // Mostrar la imagen en un ImageView
+                                    binding.ivUserAvatar8.setImageBitmap(bitmap)
+                                } else {
+                                    binding.ivUserAvatar8.setImageResource(R.drawable.empty_avatar)
+                                }
                             }
                         }
                         binding.tvUserUsername8.text = ranking[7].username
@@ -211,12 +225,14 @@ class RankingActivity : AppCompatActivity() {
                             //Set default avatar
                             binding.ivUserAvatar9.setImageResource(R.drawable.empty_avatar)
                         } else {
-                            try {
-                                Picasso.get()
-                                    .load(ranking[8].avatar)
-                                    .into(binding.ivUserAvatar9)
-                            } catch (e: Exception) {
-                                e.printStackTrace()
+                            MainScope().launch {
+                                val bitmap = viewModel.loadImageFromUrl(ranking[8].avatar!!)
+                                if (bitmap != null) {
+                                    // Mostrar la imagen en un ImageView
+                                    binding.ivUserAvatar9.setImageBitmap(bitmap)
+                                } else {
+                                    binding.ivUserAvatar9.setImageResource(R.drawable.empty_avatar)
+                                }
                             }
                         }
                         binding.tvUserUsername9.text = ranking[8].username
@@ -227,18 +243,21 @@ class RankingActivity : AppCompatActivity() {
                             //Set default avatar
                             binding.ivUserAvatar10.setImageResource(R.drawable.empty_avatar)
                         } else {
-                            try {
-                                Picasso.get()
-                                    .load(ranking[9].avatar)
-                                    .into(binding.ivUserAvatar10)
-                            } catch (e: Exception) {
-                                e.printStackTrace()
+                            MainScope().launch {
+                                val bitmap = viewModel.loadImageFromUrl(ranking[9].avatar!!)
+                                if (bitmap != null) {
+                                    // Mostrar la imagen en un ImageView
+                                    binding.ivUserAvatar10.setImageBitmap(bitmap)
+                                } else {
+                                    binding.ivUserAvatar10.setImageResource(R.drawable.empty_avatar)
+                                }
                             }
                         }
                         binding.tvUserUsername10.text = ranking[9].username
                         binding.tvUserPoints10.text = ranking[9].score.toString()
 
                     }
+
                     is Resource.Error -> {
                     }
                 }
