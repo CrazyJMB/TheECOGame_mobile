@@ -42,6 +42,7 @@ class QuestionFragment : Fragment() {
 
     private lateinit var binding: FragmentQuestionsBinding
     private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var tenseMusic: MediaPlayer
 
     private val viewModel: QuestionViewModel by viewModels()
     private val gameViewModel: GameViewModel by activityViewModels()
@@ -108,8 +109,10 @@ class QuestionFragment : Fragment() {
 
             if (it.toInt() == 0) {
                 if (!timerCancelledManually) {
-                    mediaPlayer.stop()
                     playLosingMusic(false)
+                    if (tense) {
+                        tenseMusic.stop()
+                    }
                     goToSummary()
                 }
             }
@@ -136,8 +139,9 @@ class QuestionFragment : Fragment() {
                 } else {
                     gameViewModel.addPoints(points)
                 }
+
                 if (tense) {
-                    mediaPlayer.stop()
+                    tenseMusic.stop()
                 }
 
                 gameViewModel.nextQuestionNumber()
@@ -155,11 +159,11 @@ class QuestionFragment : Fragment() {
             } else if (!gameViewModel.getSecondChance()) {
                 gameViewModel.setSecondChange(true)
             } else {
-                if (tense) {
-                    mediaPlayer.stop()
-                }
                 gameViewModel.setGameStatus(0) // Game Lost
                 stopTimer()
+                if (tense) {
+                    tenseMusic.stop()
+                }
                 goToSummary()
             }
         }
@@ -196,6 +200,9 @@ class QuestionFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         stopTimer()
+        if (tense) {
+            tenseMusic.stop()
+        }
     }
 
     private fun checkAnswer(correctAnswer: String): Boolean {
@@ -253,9 +260,9 @@ class QuestionFragment : Fragment() {
     }
 
     private fun playTenseMusic() {
-        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.tensa)
-        mediaPlayer.isLooping = false
-        mediaPlayer.start()
+        tenseMusic = MediaPlayer.create(requireContext(), R.raw.tensa)
+        tenseMusic.isLooping = false
+        tenseMusic.start()
     }
 
     private fun goToConsolidate() {
@@ -314,7 +321,7 @@ class QuestionFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         if (tense) {
-            mediaPlayer.stop()
+            tenseMusic.stop()
         }
     }
 }
