@@ -1,12 +1,9 @@
 package com.dds.theecogame.presentation.editProfile.view
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -18,7 +15,6 @@ import com.dds.theecogame.domain.model.User
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.editProfile.viewModel.EditProfileViewModel
 import com.squareup.picasso.Picasso
-import java.io.File
 import java.lang.Exception
 
 class EditProfileActivity : AppCompatActivity() {
