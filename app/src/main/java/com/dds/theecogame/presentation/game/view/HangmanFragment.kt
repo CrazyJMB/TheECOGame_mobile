@@ -27,6 +27,7 @@ class HangmanFragment : Fragment() {
 
     private lateinit var binding: FragmentHangmanBinding
     private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var tenseMusic: MediaPlayer
     private val gameViewModel: GameViewModel by activityViewModels()
 
     private var countDownTimer: CountDownTimer? = null
@@ -104,8 +105,10 @@ class HangmanFragment : Fragment() {
 
             if (it.toInt() == 0) {
                 if (!timerCancelledManually) {
-                    mediaPlayer.stop()
                     playLosingMusic(false)
+                    if (tense) {
+                        tenseMusic.stop()
+                    }
                     goToSummary()
                 }
             }
@@ -142,6 +145,10 @@ class HangmanFragment : Fragment() {
                             gameViewModel.setUsedHelp(false)
                         } else {
                             gameViewModel.addPoints(dificulty * 10)
+                        }
+
+                        if (tense) {
+                            tenseMusic.stop()
                         }
 
                         if (gameViewModel.getQuestionNumber() == 11) {
@@ -250,7 +257,7 @@ class HangmanFragment : Fragment() {
                 binding.ivRightLeg.visibility = View.VISIBLE; playLosingMusic(true)
                 stopTimer()
                 if (tense) {
-                    mediaPlayer.stop()
+                    tenseMusic.stop()
                 }
                 playLosingMusic(false)
                 gameViewModel.setGameStatus(0)
@@ -280,9 +287,9 @@ class HangmanFragment : Fragment() {
     }
 
     private fun playTenseMusic() {
-        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.tensa)
-        mediaPlayer.isLooping = false
-        mediaPlayer.start()
+        tenseMusic = MediaPlayer.create(requireContext(), R.raw.tensa)
+        tenseMusic.isLooping = false
+        tenseMusic.start()
     }
 
     private fun goToConsolidate() {
