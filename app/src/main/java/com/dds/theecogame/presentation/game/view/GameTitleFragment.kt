@@ -22,7 +22,5 @@ class GameTitleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Cosas a cambiar
     }
 }

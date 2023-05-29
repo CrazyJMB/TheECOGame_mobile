@@ -3,7 +3,11 @@ package com.dds.theecogame.presentation.register.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.common.Resource
@@ -33,7 +37,7 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.etUsername.setOnFocusChangeListener { view, b ->
             if (!b) {
-                var check = usernameValidator.validate(binding.etUsername.text.toString())
+                val check = usernameValidator.validate(binding.etUsername.text.toString())
                 if (!check) {
                     binding.tvUsernameError.visibility = View.VISIBLE
                     binding.tvUsernameError.text = usernameValidator.getError()
@@ -43,9 +47,34 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        binding.etUsername.addTextChangedListener { text: Editable? ->
+            text.let {
+                val check = usernameValidator.validate(it.toString())
+                if (!check) {
+                    binding.tvUsernameError.visibility = View.VISIBLE
+                    binding.tvUsernameError.text = usernameValidator.getError()
+                } else {
+                    binding.tvUsernameError.visibility = View.INVISIBLE
+                }
+            }
+        }
+
+
         binding.etEmail.setOnFocusChangeListener { view, b ->
             if (!b) {
-                var check = emailValidator.validate(binding.etEmail.text.toString())
+                val check = emailValidator.validate(binding.etEmail.text.toString())
+                if (!check) {
+                    binding.tvEmailError.visibility = View.VISIBLE
+                    binding.tvEmailError.text = emailValidator.getError()
+                } else {
+                    binding.tvEmailError.visibility = View.INVISIBLE
+                }
+            }
+        }
+
+        binding.etEmail.addTextChangedListener { text: Editable? ->
+            text.let {
+                val check = emailValidator.validate(it.toString())
                 if (!check) {
                     binding.tvEmailError.visibility = View.VISIBLE
                     binding.tvEmailError.text = emailValidator.getError()
@@ -57,7 +86,19 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.etPassword.setOnFocusChangeListener { view, b ->
             if (!b) {
-                var check = passwordValidator.validate(binding.etPassword.text.toString())
+                val check = passwordValidator.validate(binding.etPassword.text.toString())
+                if (!check) {
+                    binding.tvPasswordError.visibility = View.VISIBLE
+                    binding.tvPasswordError.text = passwordValidator.getError()
+                } else {
+                    binding.tvPasswordError.visibility = View.INVISIBLE
+                }
+            }
+        }
+
+        binding.etPassword.addTextChangedListener { text: Editable? ->
+            text.let {
+                val check = passwordValidator.validate(it.toString())
                 if (!check) {
                     binding.tvPasswordError.visibility = View.VISIBLE
                     binding.tvPasswordError.text = passwordValidator.getError()
