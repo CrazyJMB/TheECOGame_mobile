@@ -1,65 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_green"
     tools:context=".presentation.game.view.ResumeFragment">
-    
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/header_margin_top"
-        android:text="@string/lost"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="@dimen/title_font_size"
-        android:typeface="normal" />
 
-    <TextView
-        android:id="@+id/tvTimePlayed"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="120sp"
-        android:text="@string/timePlayed"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/header_font_size" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvPointsObtained"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="180sp"
-        android:text="@string/obtainedPoints"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/header_font_size" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/lost"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_font_size"
+            android:typeface="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvQuestionsAnswered"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="240sp"
-        android:text="@string/challenges_answered_correctly"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/header_font_size" />
+        <TextView
+            android:id="@+id/tvTimePlayed"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/timePlayed"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/header_font_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-    <Button
-        android:id="@+id/btnEndGame"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_marginLeft="50sp"
-        android:layout_marginTop="400sp"
-        android:layout_marginRight="50sp"
-        android:layout_marginBottom="150sp"
-        android:background="@drawable/btn_shape_round"
-        android:onClick="finishGame"
-        android:text="@string/finishGame"
-        android:textColor="@color/black"
-        android:textSize="@dimen/header_font_size" />
+        <TextView
+            android:id="@+id/tvQuestionsAnswered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/challenges_answered_correctly"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/header_font_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPointsObtained" />
+
+        <TextView
+            android:id="@+id/tvPointsObtained"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/obtainedPoints"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/header_font_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimePlayed" />
+
+        <Button
+            android:id="@+id/btnEndGame"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/btn_shape_round"
+            android:onClick="finishGame"
+            android:text="@string/finishGame"
+            android:textColor="@color/black"
+            android:textSize="@dimen/header_font_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

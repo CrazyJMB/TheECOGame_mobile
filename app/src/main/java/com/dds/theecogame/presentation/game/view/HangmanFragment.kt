@@ -80,6 +80,8 @@ class HangmanFragment : Fragment() {
 
                     gameViewModel.currentChallengeClue = currentHangman.clue
 
+                    changeViewImage(currentHangman.ods)
+
                     lifecycleScope.launch(Dispatchers.IO) {
                         gameViewModel.registerChallenge(currentHangman.id, "HANGMAN")
                     }
@@ -114,7 +116,7 @@ class HangmanFragment : Fragment() {
         startTimer()
 
         gameViewModel.btnPressed.observe(viewLifecycleOwner) {
-            if (!it.equals('_')){
+            if (!it.equals('_')) {
                 if (listMissingChar.contains(it)) {
                     var listIndexChange: MutableList<Int> = mutableListOf()
                     var hangmanWord = binding.tvHangmanWord.text.toString().toMutableList()
@@ -133,7 +135,7 @@ class HangmanFragment : Fragment() {
 
                     if (binding.tvHangmanWord.text.equals(word)) {
 
-                        lifecycleScope.launch(Dispatchers.IO) {gameViewModel.registerHangmanCorrect()}
+                        lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerHangmanCorrect() }
 
                         gameViewModel.nextQuestionNumber()
 
@@ -310,6 +312,31 @@ class HangmanFragment : Fragment() {
         fragmentManager.beginTransaction()
             .replace(R.id.GameContainerView, abandonFragment)
             .commit()
+    }
+
+    private val odsDrawableMap = mapOf(
+        1 to R.drawable.ods1,
+        2 to R.drawable.ods2,
+        3 to R.drawable.ods3,
+        4 to R.drawable.ods4,
+        5 to R.drawable.ods5,
+        6 to R.drawable.ods6,
+        7 to R.drawable.ods7,
+        8 to R.drawable.ods8,
+        9 to R.drawable.ods9,
+        10 to R.drawable.ods10,
+        11 to R.drawable.ods11,
+        12 to R.drawable.ods12,
+        13 to R.drawable.ods13,
+        14 to R.drawable.ods14,
+        15 to R.drawable.ods15,
+        16 to R.drawable.ods16,
+        17 to R.drawable.ods17
+    )
+
+    private fun changeViewImage(ods: Int) {
+        val resourceId = odsDrawableMap[ods] ?: R.drawable.ods1
+        binding.ivODSHangman.setImageResource(resourceId)
     }
 
     override fun onStop() {

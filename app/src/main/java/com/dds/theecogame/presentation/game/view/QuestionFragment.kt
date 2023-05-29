@@ -307,7 +307,7 @@ class QuestionFragment : Fragment() {
 
     private fun changeViewImage(ods: Int) {
         val resourceId = odsDrawableMap[ods] ?: R.drawable.ods1
-        binding.ivODS3.setImageResource(resourceId)
+        binding.ivODS.setImageResource(resourceId)
     }
 
 

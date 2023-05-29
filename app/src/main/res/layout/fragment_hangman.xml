@@ -11,14 +11,32 @@
         android:layout_height="match_parent"
         android:background="@color/background_green">
 
+        <ImageView
+            android:id="@+id/ivODSHangman"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:contentDescription="@string/image"
+            app:layout_constraintBottom_toTopOf="@+id/ivBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvQuestionNumberFixed"
+            tools:ignore="ImageContrastCheck"
+            tools:src="@tools:sample/avatars" />
+
         <TextView
             android:id="@+id/tvPointsNumberHangman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="47dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="10dp"
             android:textColor="@color/black"
             android:textSize="@dimen/points"
+            app:layout_constraintBottom_toTopOf="@+id/ivBackground"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvPointsHangman"
             app:layout_constraintTop_toBottomOf="@+id/ivPointsHangman" />
 
@@ -26,11 +44,13 @@
             android:id="@+id/tvPointsHangman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="35dp"
             android:layout_marginEnd="75dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/points"
             android:textColor="@color/black"
             android:textSize="@dimen/tvpoints"
+            app:layout_constraintBottom_toTopOf="@+id/ivBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivPointsHangman" />
 
@@ -38,8 +58,8 @@
             android:id="@+id/tvHangmanNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
             android:text="@string/num_question"
             android:textColor="@color/black"
             android:textSize="@dimen/question_number"
@@ -50,8 +70,7 @@
             android:id="@+id/tvQuestionNumberFixed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="15dp"
             android:text="@string/num_question_fixed"
             android:textColor="@color/black"
             android:textSize="@dimen/question_number"
@@ -62,19 +81,19 @@
             android:id="@+id/tvRestantTimeHangman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="164dp"
+            android:layout_marginTop="5dp"
             android:text="@string/remaining_time"
             android:textColor="@color/black"
             android:textSize="@dimen/time_left"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvTimerHangman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="10dp"
             android:textColor="@color/black"
             android:textSize="@dimen/timer"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,8 +105,8 @@
             android:id="@+id/ivPointsHangman"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
             android:backgroundTint="@color/background_green"
             android:contentDescription="@string/warning"
             android:src="@android:drawable/ic_menu_info_details"
@@ -105,6 +124,7 @@
             android:layout_marginEnd="78dp"
             android:contentDescription="@string/background_hangman"
             android:src="@drawable/background"
+            app:layout_constraintBottom_toTopOf="@+id/tvHangmanWord"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
@@ -114,87 +134,80 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="122dp"
+            android:layout_marginTop="72dp"
             android:contentDescription="@string/head_hangman"
             android:src="@drawable/head"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/ivBackground"
+            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="@+id/ivBackground"
-            app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
+            app:layout_constraintTop_toTopOf="@+id/ivBackground" />
 
         <ImageView
             android:id="@+id/ivBody"
             android:layout_width="6dp"
             android:layout_height="56dp"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="160dp"
             android:contentDescription="@string/body_hangman"
             android:src="@drawable/body"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/ivBackground"
+            app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="@+id/ivBackground"
-            app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
+            app:layout_constraintTop_toBottomOf="@+id/ivHead" />
 
         <ImageView
             android:id="@+id/ivRightArm"
             android:layout_width="24dp"
             android:layout_height="16dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/right_arm_hangman"
             android:src="@drawable/right_arm"
             android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@+id/ivBackground"
-            app:layout_constraintStart_toStartOf="@+id/ivBackground"
-            app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
+            app:layout_constraintStart_toEndOf="@+id/ivBody"
+            app:layout_constraintTop_toBottomOf="@+id/ivHead" />
 
         <ImageView
             android:id="@+id/ivLeftArm"
             android:layout_width="23dp"
             android:layout_height="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/left_arm_hangman"
             android:src="@drawable/left_arm"
             android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@+id/ivBackground"
-            app:layout_constraintStart_toStartOf="@+id/ivBackground"
-            app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
+            app:layout_constraintEnd_toStartOf="@+id/ivBody"
+            app:layout_constraintTop_toBottomOf="@+id/ivHead" />
 
         <ImageView
             android:id="@+id/ivRightLeg"
             android:layout_width="26dp"
             android:layout_height="28dp"
-            android:layout_marginStart="62dp"
-            android:layout_marginTop="209dp"
+            android:layout_marginTop="25dp"
             android:contentDescription="@string/right_leg_hangman"
             android:src="@drawable/right_leg"
             android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@+id/ivBackground"
-            app:layout_constraintStart_toStartOf="@+id/ivBackground"
-            app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
+            app:layout_constraintStart_toEndOf="@+id/ivBody"
+            app:layout_constraintTop_toBottomOf="@+id/ivRightArm" />
 
         <ImageView
             android:id="@+id/ivLeftLeg"
             android:layout_width="26dp"
             android:layout_height="28dp"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="209dp"
+            android:layout_marginTop="25dp"
             android:contentDescription="@string/left_leg_hangman"
             android:src="@drawable/left_leg"
             android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@+id/ivBackground"
-            app:layout_constraintStart_toStartOf="@+id/ivBackground"
-            app:layout_constraintTop_toBottomOf="@+id/tvTimerHangman" />
+            app:layout_constraintEnd_toStartOf="@+id/ivBody"
+            app:layout_constraintTop_toBottomOf="@+id/ivLeftArm" />
 
         <TextView
             android:id="@+id/tvHangmanWord"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="205dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="205dp"
-            android:layout_marginBottom="80dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
             android:textAlignment="center"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/fragmentContainerView"
@@ -205,15 +218,14 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
             android:name="com.dds.theecogame.presentation.game.view.KeyboardFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="143dp"
-            android:layout_marginEnd="5dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivBackground"
             tools:layout="@layout/fragment_keyboard" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
