@@ -21,7 +21,7 @@ import com.dds.theecogame.presentation.statistics.viewModel.StatisticsViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class Statistics2Fragment: Fragment() {
+class Statistics2Fragment : Fragment() {
 
     private lateinit var binding: FragmentStatistics2Binding
     private val viewModel: StatisticsViewModel by viewModels()
@@ -49,46 +49,50 @@ class Statistics2Fragment: Fragment() {
                 .replace(R.id.fragmentContainerView3, Statistics1Fragment())
                 .commit()
         }
+
+        binding.ivRight.setOnClickListener {
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView3, Statistics3Fragment())
+                .commit()
+        }
     }
 
-    private fun initializeStats (){
+    private fun initializeStats() {
 
         lifecycleScope.launch {
-           statisticsRepository.getStatistics(Application.getUser()!!.id).collect{
-               when (it) {
-                   is Resource.Loading -> {}
-                   is Resource.Success -> {
-                       val stats = it.data
+            statisticsRepository.getStatistics(Application.getUser()!!.id).collect {
+                when (it) {
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        val stats = it.data
 
-                       val numCorrectQuestion = stats!!.question_correct_count.toString()
-                       binding.numPreguntasAcertadas.text =
-                           "${binding.numPreguntasAcertadas.text} $numCorrectQuestion"
+                        val numCorrectQuestion = stats!!.question_correct_count.toString()
+                        binding.numPreguntasAcertadas.text =
+                            "${binding.numPreguntasAcertadas.text} $numCorrectQuestion"
 
-                       val numIncorrectQuestion = stats!!.question_failed_count.toString()
-                       binding.numPreguntasIncorrectas.text =
-                           "${binding.numPreguntasIncorrectas.text} $numIncorrectQuestion"
+                        val numIncorrectQuestion = stats!!.question_failed_count.toString()
+                        binding.numPreguntasIncorrectas.text =
+                            "${binding.numPreguntasIncorrectas.text} $numIncorrectQuestion"
 
-                       val numCorrectHangman = stats!!.hangman_correct_count.toString()
-                       binding.numAhorcadosAcertadas.text =
-                           "${binding.numAhorcadosAcertadas.text} $numCorrectHangman"
+                        val numCorrectHangman = stats!!.hangman_correct_count.toString()
+                        binding.numAhorcadosAcertadas.text =
+                            "${binding.numAhorcadosAcertadas.text} $numCorrectHangman"
 
-                       val numIncorrectHangman = stats!!.hangman_failed_count.toString()
-                       binding.numAhorcadosIncorrectas.text =
-                           "${binding.numAhorcadosIncorrectas.text} $numIncorrectHangman"
+                        val numIncorrectHangman = stats!!.hangman_failed_count.toString()
+                        binding.numAhorcadosIncorrectas.text =
+                            "${binding.numAhorcadosIncorrectas.text} $numIncorrectHangman"
 
-                       val odsKnowledgeLevel = stats!!.ods_knowledge.toString()
-                       binding.nivelConocimientoODS.text =
-                           "${binding.nivelConocimientoODS.text} $odsKnowledgeLevel%"
-                   }
-                   is Resource.Error -> {}
-               }
-           }
+                    }
+                    is Resource.Error -> {}
+                }
+            }
 
         }
 
     }
 
-    private fun goToMainScreen (){
+    private fun goToMainScreen() {
         val mainScreen = Intent(activity, MainScreenActivity::class.java)
         startActivity(mainScreen)
     }

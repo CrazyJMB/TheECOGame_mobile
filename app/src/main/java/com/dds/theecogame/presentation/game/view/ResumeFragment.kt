@@ -31,9 +31,14 @@ class ResumeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (gameViewModel.getQuestionNumber() > 10) {
+            gameViewModel.setGameStatus(2)
+        }
+
         initializeSummary()
 
         gameViewModel.setGameEnded()
+        gameViewModel.pauseMusic()
 
         binding.btnEndGame.setOnClickListener {
             //Irse al menu principal

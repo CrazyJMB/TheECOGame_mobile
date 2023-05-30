@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="alert_style">
+
+    <!-- Cambia el color de fondo del diálogo de alerta -->
+    <item name="android:background">@drawable/btn_shape_round</item>
+
+    <!-- Cambia el color del título del diálogo de alerta -->
+    <item name="android:textColorPrimary">@color/black</item>
+
+    <!-- Cambia el color del texto del contenido del diálogo de alerta -->
+    <item name="android:textColor">@android:color/black</item>
+
+    </style>
+</resources>

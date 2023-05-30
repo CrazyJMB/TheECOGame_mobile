@@ -1,0 +1,1106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.statistics.view.Statistics3Fragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_green">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/background_green"
+            android:contentDescription="@string/back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_revert"
+            app:tint="@color/black"
+            tools:ignore="ImageContrastCheck" />
+
+        <TextView
+            android:id="@+id/estadisticas3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/varela_round"
+            android:text="@string/statistics"
+            android:textColor="@color/white"
+            android:textSize="60sp"
+            app:layout_constraintBottom_toTopOf="@+id/nivelOds"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nivelOds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/varela_round"
+            android:text="@string/level_ods"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/estadisticas3" />
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/scroll_view"
+            app:layout_constraintBottom_toTopOf="@+id/tvPage3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nivelOds">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvODS1"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:contentDescription="@string/ODS_knowledge_1"
+                    android:src="@drawable/ods1"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS1"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS1"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS1" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS1"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods1"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS1"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS1"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS1"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS1" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS1"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS1"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS1"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS1" />
+
+                <TextView
+                    android:id="@+id/tvODS2"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS1"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:contentDescription="@string/ODS_knowledge_2"
+                    android:src="@drawable/ods2"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS2"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS2"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS2" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS2"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods2"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS2"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS2"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS2"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS2" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS2"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS2"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS2"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS2" />
+
+                <TextView
+                    android:id="@+id/tvODS3"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS2"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/ODS_knowledge_3"
+                    android:src="@drawable/ods3"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS3"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS3"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS3" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS3"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods3"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS3"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS3"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS3"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS3" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS3"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS3"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS3"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS3" />
+
+                <TextView
+                    android:id="@+id/tvODS4"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS3"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS4"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/ODS_knowledge_4"
+                    android:src="@drawable/ods4"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS4"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS4"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS4" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS4"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods4"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS4"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS4"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS4"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS4" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS4"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS4"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS4"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS4" />
+
+                <TextView
+                    android:id="@+id/tvODS5"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS4"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS5"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/ODS_knowledge_5"
+                    android:src="@drawable/ods5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS5"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS5"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS5" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS5"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods5"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS5"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS5"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS5"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS5" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS5"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS5"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS5"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS5" />
+
+                <TextView
+                    android:id="@+id/tvODS6"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS7"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS5"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS6"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:contentDescription="@string/ODS_knowledge_6"
+                    android:src="@drawable/ods6"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS6"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS6" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS6"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods6"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS6"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS6"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS6"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS6" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS6"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS6"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS6"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS6" />
+
+                <TextView
+                    android:id="@+id/tvODS7"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS6"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS7"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/ODS_knowledge_7"
+                    android:src="@drawable/ods7"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS7"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS7"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS7" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS7"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods7"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS7"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS7"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS7"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS7" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS7"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS7"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS7"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS7" />
+
+                <TextView
+                    android:id="@+id/tvODS8"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS7"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS8"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/ODS_knowledge_8"
+                    android:src="@drawable/ods8"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS8"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS8"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS8" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS8"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods8"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS8"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS8"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS8"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS8" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS8"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS8"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS8"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS8" />
+
+                <TextView
+                    android:id="@+id/tvODS9"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS8"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS9"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/ODS_knowledge_9"
+                    android:src="@drawable/ods9"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS9"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS9"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS9" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS9"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods9"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS9"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS9"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS9"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS9" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS9"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS9"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS9"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS9" />
+
+                <TextView
+                    android:id="@+id/tvODS10"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS11"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS9"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS10"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/ODS_knowledge_10"
+                    android:src="@drawable/ods10"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS10"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS10"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS10" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS10"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods10"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS10"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS10"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS10"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS10" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS10"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS10"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS10"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS10" />
+
+                <TextView
+                    android:id="@+id/tvODS11"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS12"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS10"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS11"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:contentDescription="@string/ODS_knowledge_11"
+                    android:src="@drawable/ods11"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS11"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS11" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS11"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods11"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS11"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS11"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS11"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS11" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS11"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS11"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS11"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS11" />
+
+                <TextView
+                    android:id="@+id/tvODS12"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS13"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS11"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS12"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/ODS_knowledge_12"
+                    android:src="@drawable/ods12"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS12"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS12"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS12" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS12"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods12"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS12"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS12"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS12"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS12" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS12"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS12"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS12"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS12" />
+
+                <TextView
+                    android:id="@+id/tvODS13"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS14"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS12"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS13"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/ODS_knowledge_13"
+                    android:src="@drawable/ods13"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS13"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS13"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS13" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS13"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods13"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS13"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS13"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS13"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS13" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS13"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS13"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS13"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS13" />
+
+                <TextView
+                    android:id="@+id/tvODS14"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS13"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS14"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="6dp"
+                    android:contentDescription="@string/ODS_knowledge_14"
+                    android:src="@drawable/ods14"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS14"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS14"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS14" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS14"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods14"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS14"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS14"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS14"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS14" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS14"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS14"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS14"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS14" />
+
+                <TextView
+                    android:id="@+id/tvODS15"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS14"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS15"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/ODS_knowledge_15"
+                    android:src="@drawable/ods15"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS15"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS15"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS15" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS15"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods15"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS15"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS15"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS15"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS15" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS15"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS15"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS15"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS15" />
+
+                <TextView
+                    android:id="@+id/tvODS16"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toTopOf="@+id/tvODS17"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS15"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS16"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/ODS_knowledge_16"
+                    android:src="@drawable/ods16"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS16"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS16"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS16" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS16"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods16"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS16"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS16"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS16"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS16" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS16"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS16"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS16"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS16" />
+
+                <TextView
+                    android:id="@+id/tvODS17"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/nivel_ods_height"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/btn_shape_round"
+                    android:fontFamily="@font/varela_round"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/estadisticas_datos"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvODS16"
+                    tools:ignore="TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/ivODS17"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/ODS_knowledge_17"
+                    android:src="@drawable/ods17"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS17"
+                    app:layout_constraintStart_toStartOf="@+id/tvODS17"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS17" />
+
+                <ProgressBar
+                    android:id="@+id/pbODS17"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:progressBackgroundTint="@color/grey"
+                    android:progressTint="@color/ods17"
+                    android:scaleY="5"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvODS17"
+                    app:layout_constraintEnd_toEndOf="@+id/tvODS17"
+                    app:layout_constraintHorizontal_bias="0.357"
+                    app:layout_constraintStart_toEndOf="@+id/ivODS17"
+                    app:layout_constraintTop_toTopOf="@+id/tvODS17" />
+
+                <TextView
+                    android:id="@+id/tvPercentageODS17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbODS17"
+                    app:layout_constraintEnd_toEndOf="@+id/pbODS17"
+                    app:layout_constraintStart_toStartOf="@+id/pbODS17"
+                    app:layout_constraintTop_toTopOf="@+id/pbODS17" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/ivLeft"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp"
+            android:contentDescription="@string/left"
+            android:src="?attr/actionModeCloseDrawable"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvPage3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView"
+            tools:ignore="ImageContrastCheck" />
+
+        <TextView
+            android:id="@+id/tvPage3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="89dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="89dp"
+            android:layout_marginBottom="50dp"
+            android:text="@string/three"
+            android:textAlignment="center"
+            android:textColor="#212121"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivRight"
+            app:layout_constraintStart_toEndOf="@+id/ivLeft"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView" />
+
+        <ImageView
+            android:id="@+id/ivRight"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="50dp"
+            android:contentDescription="@string/right"
+            android:rotation="180"
+            android:src="?attr/actionModeCloseDrawable"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvPage3"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView"
+            app:tint="@color/grey"
+            tools:ignore="ImageContrastCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

@@ -48,7 +48,7 @@ class ConsolidateFragment : Fragment() {
             gameViewModel.setConsolidated(true)
             gameViewModel.setConsolidatedPoints()
             stopTimer()
-            if (gameViewModel.getQuestionNumber() == 11) {
+            if (gameViewModel.getQuestionNumber() > 10) {
                 goToSummary()
             } else {
                 nextChallenge()
@@ -57,7 +57,7 @@ class ConsolidateFragment : Fragment() {
 
         binding.btnCancel.setOnClickListener {
             stopTimer()
-            if (gameViewModel.getQuestionNumber() == 11) {
+            if (gameViewModel.getQuestionNumber() > 10) {
                 goToSummary()
             } else {
                 nextChallenge()
@@ -84,7 +84,11 @@ class ConsolidateFragment : Fragment() {
             // when the time is up
             override fun onFinish() {
                 if (!timerCancelledManually) {
-                    goToQuestions()
+                    if (gameViewModel.getQuestionNumber() > 10) {
+                        goToSummary()
+                    } else {
+                        nextChallenge()
+                    }
                 }
             }
         }.start()
@@ -97,7 +101,7 @@ class ConsolidateFragment : Fragment() {
     }
 
     private fun startMusic() {
-        mediaPlayer = if (gameViewModel.getQuestionNumber() == 11) {
+        mediaPlayer = if (gameViewModel.getQuestionNumber() > 10) {
             MediaPlayer.create(requireContext(), R.raw.victoria)
         } else {
             MediaPlayer.create(requireContext(), R.raw.ganar_reto)
@@ -108,7 +112,7 @@ class ConsolidateFragment : Fragment() {
 
     private fun nextChallenge() {
         gameViewModel.gameLiveData.observe(requireActivity()) {
-            when (it.getNextChallenge()) {
+            when (it.challengesList[gameViewModel.getQuestionNumber()]) {
                 is Game.Challenge.HangmanModel -> {
                     goToHangman()
                 }

@@ -12,7 +12,7 @@
         android:background="@color/background_green"
         tools:context=".presentation.mainScreen.view.MainScreenActivity"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="-16dp">
 
         <TextView
             android:id="@+id/textView6"
@@ -43,73 +43,63 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="261dp"
+            android:layout_width="0dp"
             android:layout_height="261dp"
-            android:layout_marginTop="71dp"
+            android:layout_marginTop="20dp"
             android:contentDescription="@string/app_logo_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.533"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
             app:srcCompat="@drawable/theecogame_logo"
             tools:ignore="ImageContrastCheck" />
-
-        <TextView
-            android:id="@+id/tvError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:textAlignment="center"
-            android:textColor="@color/red"
-            android:textStyle="bold"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <EditText
             android:id="@+id/inputEmail"
             android:layout_width="250dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="55dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/btn_shape_rounded_square"
             android:ems="10"
             android:hint="@string/prompt_email"
-            android:paddingLeft="10dp"
-            android:singleLine="true"
             android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/edit_text_start_margin"
+            android:singleLine="true"
             android:textColor="@color/black"
+            android:translationY="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/inputPassword"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvError" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <EditText
             android:id="@+id/inputPassword"
-            android:layout_width="249dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="33dp"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
             android:background="@drawable/btn_shape_rounded_square"
             android:ems="10"
             android:hint="@string/prompt_password"
-            android:paddingLeft="10dp"
-            android:singleLine="true"
             android:inputType="textPassword"
+            android:paddingStart="@dimen/edit_text_start_margin"
+            android:singleLine="true"
             android:textColor="@color/black"
+            android:translationY="-20dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
 
         <Button
             android:id="@+id/btnLogin"
-            android:layout_width="250sp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="33dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/btn_shape_round"
             android:text="@string/login"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 

@@ -1,9 +1,13 @@
 package com.dds.theecogame.presentation.game.view
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,11 +42,12 @@ class QuestionFragment : Fragment() {
 
     private lateinit var binding: FragmentQuestionsBinding
     private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var tenseMusic: MediaPlayer
 
     private val viewModel: QuestionViewModel by viewModels()
     private val gameViewModel: GameViewModel by activityViewModels()
 
-    private var countDownTimer: CountDownTimer? = null
+    var countDownTimer: CountDownTimer? = null
     private var timerCancelledManually: Boolean = false
     private var tense: Boolean = false
     private lateinit var currentQuestion: Question
@@ -53,18 +58,22 @@ class QuestionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentQuestionsBinding.inflate(inflater)
-        viewModel.setSharedViewModel(gameViewModel)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        gameViewModel.setInFragmentChallenges(true)
 
         // Set question information
         gameViewModel.gameLiveData.observe(viewLifecycleOwner) { game ->
-            when (val nextQuestion = game.deleteFirstChallenge()) {
+            when (val nextQuestion = game.challengesList[gameViewModel.getQuestionNumber()]) {
                 is Game.Challenge.QuestionModel -> {
                     currentQuestion = nextQuestion.questionModel
+
+                    gameViewModel.currentChallengeClue = currentQuestion.clue
+
+                    changeViewImage(currentQuestion.ods)
 
                     lifecycleScope.launch(Dispatchers.IO) {
                         gameViewModel.registerChallenge(currentQuestion.id, "QUESTION")
@@ -91,9 +100,28 @@ class QuestionFragment : Fragment() {
 
         }
 
+        gameViewModel.countdownLiveData.observe(viewLifecycleOwner) {
+            binding.tvTimer.text = it.toString()
+            if (it.toInt() == 10 && !timerCancelledManually) {
+                playTenseMusic()
+                tense = true
+            }
+
+            if (it.toInt() == 0) {
+                if (!timerCancelledManually) {
+                    playLosingMusic(false)
+                    if (tense) {
+                        tenseMusic.stop()
+                    }
+                    goToSummary()
+                }
+            }
+        }
+
         startTimer()
+
         binding.tvQuestionNumber.text = gameViewModel.getQuestionNumber().toString()
-        changeViewImage()
+
 
         binding.btnContinue.setOnClickListener {
             val correctAnswer = currentQuestion.answer
@@ -101,20 +129,26 @@ class QuestionFragment : Fragment() {
 
             if (isCorrect) {
                 val points = 10 * currentQuestion.difficulty
-                if (gameViewModel.getSecondChance()) {
+                if (gameViewModel.getSecondChance() && gameViewModel.getUsedHelp()) {
+                    gameViewModel.addPoints(points / 4)
+                } else if (gameViewModel.getSecondChance() || gameViewModel.getUsedHelp()) {
                     gameViewModel.addPoints(points / 2)
+                    if (gameViewModel.getUsedHelp()) {
+                        gameViewModel.setUsedHelp(false)
+                    }
                 } else {
                     gameViewModel.addPoints(points)
                 }
+
                 if (tense) {
-                    mediaPlayer.stop()
+                    tenseMusic.stop()
                 }
 
                 gameViewModel.nextQuestionNumber()
-                if (gameViewModel.getQuestionNumber() == 11) {
+                if (gameViewModel.getQuestionNumber() > 10) {
                     stopTimer()
                     goToSummary()
-                } else if (gameViewModel.getConsolidated() == false) {
+                } else if (!gameViewModel.getConsolidated()) {
                     stopTimer()
                     goToConsolidate()
                 } else {
@@ -125,17 +159,18 @@ class QuestionFragment : Fragment() {
             } else if (!gameViewModel.getSecondChance()) {
                 gameViewModel.setSecondChange(true)
             } else {
-                if (tense) {
-                    mediaPlayer.stop()
-                }
                 gameViewModel.setGameStatus(0) // Game Lost
                 stopTimer()
+                if (tense) {
+                    tenseMusic.stop()
+                }
                 goToSummary()
             }
         }
 
         binding.ivPoints.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
+            val builder =
+                AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.alert_style))
             builder.setTitle(R.string.alert_points)
             builder.setMessage(
                 getString(R.string.total_points) + " " +
@@ -147,25 +182,33 @@ class QuestionFragment : Fragment() {
             builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
                 //No hace nada
             }
-            builder.show()
+            val alertDialog = builder.create()
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            alertDialog.show()
+        }
+
+        binding.btnContinue.isEnabled = false
+        val normalTint = binding.btnContinue.backgroundTintList
+        binding.btnContinue.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+
+        binding.radioGroup.setOnCheckedChangeListener { group, id ->
+            binding.btnContinue.isEnabled = (id != -1)
+            binding.btnContinue.backgroundTintList = normalTint
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         stopTimer()
+        if (tense) {
+            tenseMusic.stop()
+        }
     }
 
     private fun checkAnswer(correctAnswer: String): Boolean {
         val rbSelected = binding.radioGroup.checkedRadioButtonId
         val answerSelected =
             binding.radioGroup.findViewById<RadioButton>(rbSelected).text.toString()
-
-        if (rbSelected == -1) {
-            Toast.makeText(requireContext(), R.string.msg_empty_answer, Toast.LENGTH_SHORT)
-                .show()
-            return false
-        }
 
         if (answerSelected.equals(correctAnswer)) {
             onViewCreated(binding.root, null)
@@ -196,32 +239,12 @@ class QuestionFragment : Fragment() {
         return false
     }
 
-    private fun startTimer() {
-        countDownTimer = object : CountDownTimer(30000, 1000) {
-
-            // Callback function, fired on regular interval
-            override fun onTick(millisUntilFinished: Long) {
-                binding.tvTimer.text = (millisUntilFinished / 1000).toString()
-                if ((millisUntilFinished / 1000).toInt() == 10 && !timerCancelledManually) {
-                    playTenseMusic()
-                    tense = true
-                }
-            }
-
-            // Callback function, fired
-            // when the time is up
-            override fun onFinish() {
-                if (!timerCancelledManually) {
-                    mediaPlayer.stop()
-                    playLosingMusic(false)
-                    goToSummary()
-                }
-            }
-        }.start()
+    fun startTimer() {
+        gameViewModel.startCountDownTimer(30 * 1000)
     }
 
-    private fun stopTimer() {
-        countDownTimer?.cancel()
+    fun stopTimer() {
+        gameViewModel.stopCountDownTimer()
         timerCancelledManually = true
         countDownTimer = null
     }
@@ -237,12 +260,13 @@ class QuestionFragment : Fragment() {
     }
 
     private fun playTenseMusic() {
-        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.tensa)
-        mediaPlayer.isLooping = false
-        mediaPlayer.start()
+        tenseMusic = MediaPlayer.create(requireContext(), R.raw.tensa)
+        tenseMusic.isLooping = false
+        tenseMusic.start()
     }
 
     private fun goToConsolidate() {
+        gameViewModel.setInFragmentChallenges(false)
         val consolidateFragment = ConsolidateFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
@@ -251,6 +275,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun goToSummary() {
+        gameViewModel.setInFragmentChallenges(false)
         val summaryFragment = ResumeFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
@@ -259,6 +284,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun goToAbandon() {
+        gameViewModel.setInFragmentChallenges(false)
         val abandonFragment = AbandonFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
@@ -266,14 +292,36 @@ class QuestionFragment : Fragment() {
             .commit()
     }
 
-    private fun changeViewImage() {
-        binding.ivODS3.setImageResource(R.drawable.ods1)
+    private val odsDrawableMap = mapOf(
+        1 to R.drawable.ods1,
+        2 to R.drawable.ods2,
+        3 to R.drawable.ods3,
+        4 to R.drawable.ods4,
+        5 to R.drawable.ods5,
+        6 to R.drawable.ods6,
+        7 to R.drawable.ods7,
+        8 to R.drawable.ods8,
+        9 to R.drawable.ods9,
+        10 to R.drawable.ods10,
+        11 to R.drawable.ods11,
+        12 to R.drawable.ods12,
+        13 to R.drawable.ods13,
+        14 to R.drawable.ods14,
+        15 to R.drawable.ods15,
+        16 to R.drawable.ods16,
+        17 to R.drawable.ods17
+    )
+
+    private fun changeViewImage(ods: Int) {
+        val resourceId = odsDrawableMap[ods] ?: R.drawable.ods1
+        binding.ivODS.setImageResource(resourceId)
     }
+
 
     override fun onStop() {
         super.onStop()
         if (tense) {
-            mediaPlayer.stop()
+            tenseMusic.stop()
         }
     }
 }

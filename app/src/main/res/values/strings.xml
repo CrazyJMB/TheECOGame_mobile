@@ -9,7 +9,7 @@
     <string name="button_setting">Ajustes</string>
     <!-- Strings related to activity_questions NAME REFACTOR -->
     <string name="back">Volver</string>
-    <string name="question_challenge">Reto: Preguntas</string>
+    <string name="question_challenge">Reto</string>
     <string name="question">Pregunta:</string>
     <string name="remaining_time">Tiempo restante:</string>
     <string name="ods" translatable="false">ODS</string>
@@ -41,8 +41,8 @@
     <string name="num_wrong_questions">Preguntas incorrectas:</string>
     <string name="num_correct_hangman">Ahorcados acertadas:</string>
     <string name="num_wrong_hangman">Ahorcados incorrectas:</string>
-    <string name="mean_time">Tiempo promedio de las partidas:</string>
-    <string name="total_time">Tiempo total de partida:</string>
+    <string name="mean_time">Tiempo promedio en partida:</string>
+    <string name="total_time">Tiempo total jugado:</string>
     <string name="ODS_knowledge">Nivel conocimiento de ODS:</string>
     <string name="left">Izquierda</string>
     <string name="right">Derecha</string>
@@ -57,6 +57,7 @@
     <string name="invalid_password">La contraseña debe tener más de 5 caracteres</string>
     <string name="login_failed">Inicio de sesión fallido</string>
     <string name="num_question" translatable="false">1</string>
+    <string name="num_question_fixed" translatable="false">/10</string>
     <string name="image">Imagen</string>
     <string name="lost">GAME OVER</string>
     <string name="victory">VICTORIA</string>
@@ -96,6 +97,28 @@
 
     <string name="one">1</string>
     <string name="two">2</string>
+    <string name="three">3</string>
+
+    <string name="scroll_view">Scroll View</string>
+    <string name="level_ods">Nivel De ODS</string>
+
+    <string name="ODS_knowledge_1">ODS 1:                            </string>
+    <string name="ODS_knowledge_2">ODS 2:                            </string>
+    <string name="ODS_knowledge_3">ODS 3:                            </string>
+    <string name="ODS_knowledge_4">ODS 4:                            </string>
+    <string name="ODS_knowledge_5">ODS 5:                            </string>
+    <string name="ODS_knowledge_6">ODS 6:                            </string>
+    <string name="ODS_knowledge_7">ODS 7:                            </string>
+    <string name="ODS_knowledge_8">ODS 8:                            </string>
+    <string name="ODS_knowledge_9">ODS 9:                            </string>
+    <string name="ODS_knowledge_10">ODS 10:                            </string>
+    <string name="ODS_knowledge_11">ODS 11:                            </string>
+    <string name="ODS_knowledge_12">ODS 12:                            </string>
+    <string name="ODS_knowledge_13">ODS 13:                            </string>
+    <string name="ODS_knowledge_14">ODS 14:                            </string>
+    <string name="ODS_knowledge_15">ODS 15:                            </string>
+    <string name="ODS_knowledge_16">ODS 16:                            </string>
+    <string name="ODS_knowledge_17">ODS 17:                            </string>
 
     <string name="clues">Pistas</string>
     <string name="clues_description">Puedes comprar una pista para el reto, la pista es un
@@ -179,4 +202,10 @@
     <string name="num_correct_answers">Respuestas correctas:</string>
     <string name="num_wrong_answers">Respuestas incorrectas:</string>
 
+    <!--Ranking Activity-->
+    <string name="ranking" translatable="false">Ranking</string>
+    <string name="top10" translatable="false">Top 10</string>
+
+
+    <string name="question_quit">¿Deseas salir del reto?</string>
 </resources>

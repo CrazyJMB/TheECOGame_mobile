@@ -1,39 +1,50 @@
 package com.dds.theecogame.presentation.editProfile.view
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
-import android.provider.MediaStore
 import android.view.View
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
+import com.dds.theecogame.R
 import com.dds.theecogame.common.Resource
 import com.dds.theecogame.data.repository.UserRepositoryImpl
 import com.dds.theecogame.databinding.ActivityEditProfileBinding
 import com.dds.theecogame.domain.Application
+import com.dds.theecogame.domain.factory.ValidatorFactory
 import com.dds.theecogame.domain.model.User
 import com.dds.theecogame.domain.repository.UserRepository
-import com.dds.theecogame.domain.userRestrictions.UserRestrictions
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.editProfile.viewModel.EditProfileViewModel
-import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import java.io.File
 
 class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditProfileBinding
     private val viewModel: EditProfileViewModel by viewModels()
-    private lateinit var restrictions: UserRestrictions
+
     private val userRepository: UserRepository = UserRepositoryImpl()
 
-    private lateinit var imageUri: Uri
+    private val usernameValidator = ValidatorFactory.getValidator("username")
+    private val emailValidator = ValidatorFactory.getValidator("email")
+    private val passwordValidator = ValidatorFactory.getValidator("password")
 
     private val user: User = Application.getUser()!!
+
+    private var imageUpdated = false
+    private lateinit var imageUri: Uri
+    private val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        imageUpdated = true
+        imageUri = it!!
+        binding.ivProfile.setImageURI(it)
+    }
 
     //¿?
     private var username = user.username
@@ -43,15 +54,19 @@ class EditProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
-        restrictions = UserRestrictions(this)
         setContentView(binding.root)
 
-        // Load default values from the user
-        val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val imageFile = File(storageDir, "avatar.jpg")
-        if (imageFile.exists()) {
-            val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
-            binding.ivProfile.setImageBitmap(bitmap)
+        if (user.avatar.isNullOrEmpty()) {
+            binding.ivProfile.setImageResource(R.drawable.empty_avatar)
+        } else {
+            MainScope().launch {
+                val bitmap = viewModel.loadImageFromUrl(user.avatar)
+                if (bitmap != null) {
+                    binding.ivProfile.setImageBitmap(bitmap)
+                } else {
+                    binding.ivProfile.setImageResource(R.drawable.empty_avatar)
+                }
+            }
         }
 
         binding.etUsername.hint = user.username
@@ -60,18 +75,17 @@ class EditProfileActivity : AppCompatActivity() {
 
         // Listener
         binding.btnEditImage.setOnClickListener {
-            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            startActivityForResult(gallery, 100)
+            contract.launch("image/*")
         }
 
         binding.etUsername.setOnFocusChangeListener { view, b ->
             if (!b) {
-                if (restrictions.checkUsername(binding.etUsername.text.toString())) {
+                if (usernameValidator.validate(binding.etUsername.text.toString())) {
                     username = binding.etUsername.text.toString()
                     binding.tvUsernameError.visibility = View.INVISIBLE
                 } else {
                     binding.tvUsernameError.visibility = View.VISIBLE
-                    binding.tvUsernameError.text = restrictions.getError()
+                    binding.tvUsernameError.text = usernameValidator.getError()
 
                     binding.btnSave.isEnabled = false
                 }
@@ -80,12 +94,12 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.etEmail.setOnFocusChangeListener { view, b ->
             if (!b) {
-                if (restrictions.checkEmail(binding.etEmail.text.toString())) {
+                if (emailValidator.validate(binding.etEmail.text.toString())) {
                     email = binding.etEmail.text.toString()
                     binding.tvEmailError.visibility = View.INVISIBLE
                 } else {
                     binding.tvEmailError.visibility = View.VISIBLE
-                    binding.tvEmailError.text = restrictions.getError()
+                    binding.tvEmailError.text = emailValidator.getError()
 
                     binding.btnSave.isEnabled = false
                 }
@@ -94,52 +108,29 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.etPassword.setOnFocusChangeListener { view, b ->
             if (!b) {
-                if (restrictions.checkPassword(binding.etPassword.text.toString())) {
+                if (passwordValidator.validate(binding.etPassword.text.toString())) {
                     password = binding.etPassword.text.toString()
                     binding.tvPasswordError.visibility = View.INVISIBLE
-                    
+
                 } else {
                     binding.tvPasswordError.visibility = View.VISIBLE
-                    binding.tvPasswordError.text = restrictions.getError()
+                    binding.tvPasswordError.text = passwordValidator.getError()
 
                     binding.btnSave.isEnabled = false
                 }
             }
         }
 
-//        binding.etUsername.addTextChangedListener {
-//            binding.btnSave.isEnabled = (!binding.etUsername.text.toString().isEmpty()
-//                    && !binding.etEmail.text.toString().isEmpty()
-//                    && !binding.etPassword.text.toString().isEmpty()
-//                    && restrictions.checkUsername(binding.etUsername.text.toString())
-//                    && restrictions.checkEmail(binding.etEmail.text.toString())
-//                    && restrictions.checkPassword(binding.etPassword.text.toString()))
-//        }
-//        binding.etEmail.addTextChangedListener {
-//            binding.btnSave.isEnabled = (!binding.etUsername.text.toString().isEmpty()
-//                    && !binding.etEmail.text.toString().isEmpty()
-//                    && !binding.etPassword.text.toString().isEmpty()
-//                    && restrictions.checkUsername(binding.etUsername.text.toString())
-//                    && restrictions.checkEmail(binding.etEmail.text.toString())
-//                    && restrictions.checkPassword(binding.etPassword.text.toString()))
-//        }
-//        binding.etPassword.addTextChangedListener {
-//            binding.btnSave.isEnabled = (!binding.etUsername.text.toString().isEmpty()
-//                    && !binding.etEmail.text.toString().isEmpty()
-//                    && !binding.etPassword.text.toString().isEmpty()
-//                    && restrictions.checkUsername(binding.etUsername.text.toString())
-//                    && restrictions.checkEmail(binding.etEmail.text.toString())
-//                    && restrictions.checkPassword(binding.etPassword.text.toString()))
-//        }
-
         binding.btnSave.setOnClickListener {
 
             // Save data
             viewModel.saveImageLocal(this, imageUri)
 
-            if (imageFile.exists()) {
-                viewModel.saveImageRemote(imageFile.absolutePath)
-            }
+
+            val storageDir = applicationContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+            val imageFile = File(storageDir, "avatar.png")
+
+            val result = viewModel.saveImageRemote(imageFile)
 
             viewModel.updateUser(
                 user.id,
@@ -149,24 +140,28 @@ class EditProfileActivity : AppCompatActivity() {
                 email,
                 password
             )
+
+            if (result) {
+                lifecycleScope.launch(Dispatchers.IO) {
+                    userRepository.getUser(email).collect {
+                        when (it) {
+                            is Resource.Loading -> {}
+                            is Resource.Success -> {
+                                Application.setUser(it.data)
+                            }
+
+                            is Resource.Error -> {}
+                        }
+                    }
+                }
+                Toast.makeText(this, "Datos actualizados con exito", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, MainScreenActivity::class.java))
+            }
+
         }
 
         binding.ibBack.setOnClickListener {
             startActivity(Intent(this, MainScreenActivity::class.java))
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100 && resultCode == RESULT_OK) {
-            val imageUri = data?.data
-            if (imageUri != null) {
-
-                // Show the imagen
-                binding.ivProfile.setImageURI(imageUri)
-
-                this.imageUri = imageUri
-            }
         }
     }
 }

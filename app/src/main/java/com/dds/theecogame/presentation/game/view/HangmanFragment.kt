@@ -1,8 +1,11 @@
 package com.dds.theecogame.presentation.game.view
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +19,15 @@ import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.model.challenges.Hangman
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class HangmanFragment : Fragment() {
 
     private lateinit var binding: FragmentHangmanBinding
     private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var tenseMusic: MediaPlayer
     private val gameViewModel: GameViewModel by activityViewModels()
 
     private var countDownTimer: CountDownTimer? = null
@@ -45,9 +51,12 @@ class HangmanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        gameViewModel.setInFragmentChallenges(true)
+        gameViewModel.addBtnPressed('_')
 
         binding.ivPointsHangman.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
+            val builder =
+                AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.alert_style))
             builder.setTitle(R.string.alert_points)
             builder.setMessage(
                 getString(R.string.total_points) + " " +
@@ -59,13 +68,20 @@ class HangmanFragment : Fragment() {
             builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
                 //No hace nada
             }
-            builder.show()
+            val alertDialog = builder.create()
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            alertDialog.show()
         }
 
         gameViewModel.gameLiveData.observe(viewLifecycleOwner) { game ->
-            when (val nextQuestion = game.deleteFirstChallenge()) {
+            when (val nextQuestion = game.challengesList[gameViewModel.getQuestionNumber()]) {
                 is Game.Challenge.HangmanModel -> {
+                    println("HANGMAN: " + game.challengesList[gameViewModel.getQuestionNumber()])
                     currentHangman = nextQuestion.hangmanModel
+
+                    gameViewModel.currentChallengeClue = currentHangman.clue
+
+                    changeViewImage(currentHangman.ods)
 
                     lifecycleScope.launch(Dispatchers.IO) {
                         gameViewModel.registerChallenge(currentHangman.id, "HANGMAN")
@@ -82,49 +98,81 @@ class HangmanFragment : Fragment() {
             }
         }
 
-        startTimer()
-        println(word)
+        gameViewModel.countdownLiveData.observe(viewLifecycleOwner) {
+            binding.tvTimerHangman.text = it.toString()
+            if (it.toInt() == 10 && !timerCancelledManually) {
+                playTenseMusic()
+                tense = true
+            }
 
-        gameViewModel.btnPressed.observe(viewLifecycleOwner) {
-            if (listMissingChar.contains(it)) {
-                var listIndexChange: MutableList<Int> = mutableListOf()
-                var hangmanWord = binding.tvHangmanWord.text.toString().toMutableList()
-
-                for ((index, char) in word.withIndex()) {
-                    if (char == it) {
-                        listIndexChange.add(index)
+            if (it.toInt() == 0) {
+                if (!timerCancelledManually) {
+                    playLosingMusic(false)
+                    if (tense) {
+                        tenseMusic.stop()
                     }
+                    goToSummary()
                 }
-
-                for (index in listIndexChange) {
-                    hangmanWord[index] = it
-                }
-
-                binding.tvHangmanWord.text = hangmanWord.joinToString("")
-
-                if (binding.tvHangmanWord.text.equals(word)) {
-
-                    lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerHangmanCorrect() }
-
-                    gameViewModel.nextQuestionNumber()
-                    gameViewModel.addPoints(dificulty * 10)
-                    if (gameViewModel.getQuestionNumber() == 11) {
-                        stopTimer()
-                        goToSummary()
-                    } else if (gameViewModel.getConsolidated()) {
-                        stopTimer()
-                        goToAbandon()
-                    } else {
-                        stopTimer()
-                        goToConsolidate()
-                    }
-                }
-            } else {
-                mistakes++
-                userMistake()
             }
         }
 
+        startTimer()
+
+        gameViewModel.btnPressed.observe(viewLifecycleOwner) {
+            if (!it.equals('_')) {
+                if (listMissingChar.contains(it)) {
+                    var listIndexChange: MutableList<Int> = mutableListOf()
+                    var hangmanWord = binding.tvHangmanWord.text.toString().toMutableList()
+
+                    for ((index, char) in word.withIndex()) {
+                        if (char == it) {
+                            listIndexChange.add(index)
+                        }
+                    }
+
+                    for (index in listIndexChange) {
+                        hangmanWord[index] = it
+                    }
+
+                    binding.tvHangmanWord.text = hangmanWord.joinToString("")
+
+                    if (binding.tvHangmanWord.text.equals(word)) {
+
+                        lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerHangmanCorrect() }
+
+                        gameViewModel.nextQuestionNumber()
+
+                        if (gameViewModel.getUsedHelp()) {
+                            gameViewModel.addPoints((dificulty * 10) / 2)
+                            gameViewModel.setUsedHelp(false)
+                        } else {
+                            gameViewModel.addPoints(dificulty * 10)
+                        }
+
+                        if (tense) {
+                            tenseMusic.stop()
+                        }
+
+                        if (gameViewModel.getQuestionNumber() == 11) {
+                            stopTimer()
+                            goToSummary()
+                        } else if (gameViewModel.getConsolidated()) {
+                            stopTimer()
+                            goToAbandon()
+                        } else {
+                            stopTimer()
+                            goToConsolidate()
+                        }
+                    }
+                } else {
+                    mistakes++
+                    userMistake()
+                }
+            }
+        }
+
+        mistakes = 0
+        userMistake()
     }
 
     private fun makeWordDificulty() {
@@ -176,6 +224,14 @@ class HangmanFragment : Fragment() {
 
     private fun userMistake() {
         when (mistakes) {
+            0 -> {
+                binding.ivHead.visibility = View.INVISIBLE;
+                binding.ivBody.visibility = View.INVISIBLE;
+                binding.ivLeftArm.visibility = View.INVISIBLE;
+                binding.ivRightArm.visibility = View.INVISIBLE;
+                binding.ivLeftLeg.visibility = View.INVISIBLE;
+            }
+
             1 -> {
                 binding.ivHead.visibility = View.VISIBLE; playLosingMusic(true)
             }
@@ -197,13 +253,13 @@ class HangmanFragment : Fragment() {
             }
 
             else -> {
-                
+
                 lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerHangmanFailed() }
 
                 binding.ivRightLeg.visibility = View.VISIBLE; playLosingMusic(true)
                 stopTimer()
                 if (tense) {
-                    mediaPlayer.stop()
+                    tenseMusic.stop()
                 }
                 playLosingMusic(false)
                 gameViewModel.setGameStatus(0)
@@ -213,31 +269,11 @@ class HangmanFragment : Fragment() {
     }
 
     private fun startTimer() {
-        countDownTimer = object : CountDownTimer(120000, 1000) {
-
-            // Callback function, fired on regular interval
-            override fun onTick(millisUntilFinished: Long) {
-                binding.tvTimerHangman.text = (millisUntilFinished / 1000).toString()
-                if ((millisUntilFinished / 1000).toInt() == 10 && !timerCancelledManually) {
-                    playTenseMusic()
-                    tense = true
-                }
-            }
-
-            // Callback function, fired
-            // when the time is up
-            override fun onFinish() {
-                if (!timerCancelledManually) {
-                    mediaPlayer.stop()
-                    playLosingMusic(false)
-                    goToSummary()
-                }
-            }
-        }.start()
+        gameViewModel.startCountDownTimer(120 * 1000)
     }
 
     private fun stopTimer() {
-        countDownTimer?.cancel()
+        gameViewModel.stopCountDownTimer()
         timerCancelledManually = true
         countDownTimer = null
     }
@@ -253,12 +289,13 @@ class HangmanFragment : Fragment() {
     }
 
     private fun playTenseMusic() {
-        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.tensa)
-        mediaPlayer.isLooping = false
-        mediaPlayer.start()
+        tenseMusic = MediaPlayer.create(requireContext(), R.raw.tensa)
+        tenseMusic.isLooping = false
+        tenseMusic.start()
     }
 
     private fun goToConsolidate() {
+        gameViewModel.setInFragmentChallenges(false)
         val consolidateFragment = ConsolidateFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
@@ -267,6 +304,7 @@ class HangmanFragment : Fragment() {
     }
 
     private fun goToSummary() {
+        gameViewModel.setInFragmentChallenges(false)
         val summaryFragment = ResumeFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
@@ -275,11 +313,37 @@ class HangmanFragment : Fragment() {
     }
 
     private fun goToAbandon() {
+        gameViewModel.setInFragmentChallenges(false)
         val abandonFragment = AbandonFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
             .replace(R.id.GameContainerView, abandonFragment)
             .commit()
+    }
+
+    private val odsDrawableMap = mapOf(
+        1 to R.drawable.ods1,
+        2 to R.drawable.ods2,
+        3 to R.drawable.ods3,
+        4 to R.drawable.ods4,
+        5 to R.drawable.ods5,
+        6 to R.drawable.ods6,
+        7 to R.drawable.ods7,
+        8 to R.drawable.ods8,
+        9 to R.drawable.ods9,
+        10 to R.drawable.ods10,
+        11 to R.drawable.ods11,
+        12 to R.drawable.ods12,
+        13 to R.drawable.ods13,
+        14 to R.drawable.ods14,
+        15 to R.drawable.ods15,
+        16 to R.drawable.ods16,
+        17 to R.drawable.ods17
+    )
+
+    private fun changeViewImage(ods: Int) {
+        val resourceId = odsDrawableMap[ods] ?: R.drawable.ods1
+        binding.ivODSHangman.setImageResource(resourceId)
     }
 
     override fun onStop() {

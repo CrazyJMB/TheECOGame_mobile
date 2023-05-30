@@ -11,5 +11,7 @@ data class Question(
     val option2: String,
     val option3: String,
 
-//    val ods: List<Ods>
+    val clue: String?,
+
+    val ods: Int
 )

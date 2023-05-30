@@ -16,8 +16,8 @@
             android:id="@+id/tvQuestionNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
             android:text="@string/num_question"
             android:textColor="@color/black"
             android:textSize="@dimen/question_number"
@@ -25,22 +25,33 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tvQuestionNumberFixed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/num_question_fixed"
+            android:textColor="@color/black"
+            android:textSize="@dimen/question_number"
+            app:layout_constraintStart_toEndOf="@+id/tvQuestionNumber"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/tvRestantTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="164dp"
+            android:layout_marginTop="5dp"
             android:text="@string/remaining_time"
             android:textColor="@color/black"
             android:textSize="@dimen/time_left"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="10dp"
             android:textColor="@color/black"
             android:textSize="@dimen/timer"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +62,7 @@
             android:id="@+id/ivPoints"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="@color/background_green"
             android:contentDescription="@string/warning"
@@ -64,12 +75,13 @@
         <TextView
             android:id="@+id/tvQuestion"
             android:layout_width="match_parent"
-            android:layout_height="110sp"
+            android:layout_height="0dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/btn_shape_round"
             android:gravity="center"
+            android:padding="5dp"
             android:text="@string/question"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -83,59 +95,35 @@
             android:id="@+id/tvPoints"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="283dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="75dp"
             android:text="@string/points"
             android:textColor="@color/black"
             android:textSize="@dimen/tvpoints"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvQuestion" />
 
         <TextView
             android:id="@+id/tvPointsNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="50dp"
             android:textColor="@color/black"
             android:textSize="@dimen/points"
-            app:layout_constraintStart_toEndOf="@+id/tvPoints"
-            app:layout_constraintTop_toBottomOf="@+id/tvQuestion" />
-
-        <ImageView
-            android:id="@+id/ivODS2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="15dp"
-            android:contentDescription="@string/image"
-            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPoints"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvQuestion"
-            tools:ignore="ImageContrastCheck"
-            tools:src="@tools:sample/avatars" />
-
-        <ImageView
-            android:id="@+id/ivODS3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="5dp"
-            android:contentDescription="@string/image"
-            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
-            app:layout_constraintEnd_toStartOf="@+id/ivODS2"
-            app:layout_constraintStart_toEndOf="@+id/ivODS"
-            app:layout_constraintTop_toBottomOf="@+id/tvQuestion"
-            tools:ignore="ImageContrastCheck"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintStart_toEndOf="@+id/tvPoints"
+            app:layout_constraintTop_toTopOf="@+id/tvPoints" />
 
         <ImageView
             android:id="@+id/ivODS"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:contentDescription="@string/image"
             app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvQuestion"
             tools:ignore="ImageContrastCheck"
@@ -143,13 +131,17 @@
 
         <RadioGroup
             android:id="@+id/radioGroup"
-            android:layout_width="320dp"
-            android:layout_height="280dp"
-            android:layout_marginBottom="25dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/btnContinue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivODS"
             tools:ignore="TextSizeCheck">
 
             <RadioButton
@@ -197,7 +189,7 @@
             android:id="@+id/btnContinue"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/btn_shape_round"
             android:backgroundTint="@color/background_white_green"
             android:text="@string/continue_next"
@@ -205,7 +197,8 @@
             app:cornerRadius="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
