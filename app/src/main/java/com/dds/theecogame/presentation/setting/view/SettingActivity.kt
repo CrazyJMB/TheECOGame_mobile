@@ -6,13 +6,17 @@ import android.media.AudioManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.databinding.ActivitySettingBinding
 import com.dds.theecogame.data.local.SettingsRepository
 import com.dds.theecogame.dataStore
-import com.dds.theecogame.domain.memento.Settings
+import com.dds.theecogame.domain.memento.Memento
+import com.dds.theecogame.domain.model.Settings
 import com.dds.theecogame.domain.memento.SettingsCareTaker
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
+import com.dds.theecogame.presentation.setting.viewModel.SettingViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
@@ -24,28 +28,19 @@ class SettingActivity : AppCompatActivity() {
     private lateinit var audioManager: AudioManager
 
     private lateinit var settingsRepository: SettingsRepository
-
-    private lateinit var settings: Settings
-    private val careTaker: SettingsCareTaker = SettingsCareTaker()
+    private lateinit var viewModel: SettingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-
         settingsRepository = SettingsRepository(dataStore)
+        viewModel = SettingViewModel(settingsRepository)
 
-
-        // Default values
-        lifecycleScope.launch(Dispatchers.IO) {
-            settings = loadSettings() ?: Settings(100, 100, 100, 100)
-
-            // Update UI
-            withContext(Dispatchers.Main) {
-                careTaker.saveState(settings)
-                updateUI(settings)
-            }
+        viewModel.settingsLiveData.observe(this) { settings ->
+            updateUI(settings)
         }
 
 
@@ -61,7 +56,7 @@ class SettingActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(general_volume: SeekBar) {
-                settings.volume = general_volume.progress
+                viewModel.updateGeneralVolume(general_volume.progress)
             }
 
         })
@@ -76,7 +71,7 @@ class SettingActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(music: SeekBar) {
-                settings.music = music.progress
+                viewModel.updateMusicVolume(music.progress)
             }
 
         })
@@ -92,20 +87,18 @@ class SettingActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(sounds: SeekBar) {
-                settings.sound = sounds.progress
+                viewModel.updateSoundVolume(sounds.progress)
             }
 
         })
 
         binding.btnRestore.setOnClickListener {
-            updateSettings(careTaker.restoreState())
-
-            updateUI(settings)
+            viewModel.restorePreviousSettings()
         }
 
         binding.btnSave.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {
-                settingsRepository.saveSettings(settings)
+                viewModel.saveSettings()
 
                 withContext(Dispatchers.Main) {
                     startActivity(Intent(this@SettingActivity, MainScreenActivity::class.java))
@@ -119,23 +112,9 @@ class SettingActivity : AppCompatActivity() {
 
     }
 
-    private fun updateSettings(restoreState: Settings?) {
-        if (restoreState != null) {
-            settings.volume = restoreState.volume
-            settings.sound = restoreState.sound
-            settings.music = restoreState.music
-            settings.brightness = restoreState.brightness
-        }
-    }
-
     private fun updateUI(settings: Settings) {
         binding.sbGeneralVolume.progress = settings.volume
         binding.sbMusic.progress = settings.music
         binding.sbSounds.progress = settings.sound
     }
-
-    private suspend fun loadSettings(): Settings? {
-        return settingsRepository.settingsFlow.firstOrNull()
-    }
-
 }

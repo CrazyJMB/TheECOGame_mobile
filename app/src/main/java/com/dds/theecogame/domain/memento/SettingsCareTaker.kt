@@ -1,17 +1,13 @@
 package com.dds.theecogame.domain.memento
 
 class SettingsCareTaker {
-    private var settingsCareTaker: Settings? = null
-    private var isStateSaved = false
+    private var settingMemento: Memento? = null
 
-    fun saveState(settings: Settings) {
-        if (!isStateSaved) {
-            this.settingsCareTaker = settings.copy()
-            isStateSaved = true
-        }
+    fun saveMemento(memento: Memento) {
+        settingMemento = memento
     }
 
-    fun restoreState(): Settings? {
-        return settingsCareTaker
+    fun restoreMemento(): Memento? {
+        return settingMemento
     }
 }

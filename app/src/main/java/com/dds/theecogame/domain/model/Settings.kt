@@ -1,4 +1,4 @@
-package com.dds.theecogame.domain.memento
+package com.dds.theecogame.domain.model
 
 data class Settings(
     var volume: Int,
