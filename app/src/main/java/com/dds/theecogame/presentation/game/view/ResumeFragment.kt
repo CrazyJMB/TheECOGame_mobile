@@ -50,7 +50,6 @@ class ResumeFragment : Fragment() {
     private fun initializeSummary() {
         gameViewModel.setTimeEnd()
         val statValues = gameViewModel.getResults()
-
         val minutes = statValues[0] / 60
         val seconds = statValues[0] % 60
 
@@ -64,6 +63,10 @@ class ResumeFragment : Fragment() {
         binding.tvQuestionsAnswered.text =
             "${binding.tvQuestionsAnswered.text} ${statValues[2] - 1}/10"
 
+        setTitle()
+    }
+
+    private fun setTitle () {
         if (gameViewModel.getGameStatus() == 1) {
             binding.tvTitle.setText(R.string.abandoned)
             lifecycleScope.launch(Dispatchers.IO) { gameViewModel.registerQuit() }
