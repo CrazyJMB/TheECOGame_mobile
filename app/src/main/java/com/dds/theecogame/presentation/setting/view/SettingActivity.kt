@@ -6,19 +6,14 @@ import android.media.AudioManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.databinding.ActivitySettingBinding
 import com.dds.theecogame.data.local.SettingsRepository
 import com.dds.theecogame.dataStore
-import com.dds.theecogame.domain.memento.Memento
 import com.dds.theecogame.domain.model.Settings
-import com.dds.theecogame.domain.memento.SettingsCareTaker
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
 import com.dds.theecogame.presentation.setting.viewModel.SettingViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
