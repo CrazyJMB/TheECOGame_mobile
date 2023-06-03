@@ -19,7 +19,7 @@ class ConsolidateFragment : Fragment() {
 
     private val gameViewModel: GameViewModel by activityViewModels()
 
-    private var countDownTimer: CountDownTimer? = null
+    private var timer: CountDownTimer? = null
     private var timerCancelledManually: Boolean = false
     private lateinit var mediaPlayer: MediaPlayer
 
@@ -74,7 +74,7 @@ class ConsolidateFragment : Fragment() {
     }
 
     private fun startTimer() {
-        countDownTimer = object : CountDownTimer(15000, 1000) {
+        timer = object : CountDownTimer(15000, 1000) {
 
             // Callback function, fired on regular interval
             override fun onTick(millisUntilFinished: Long) {
@@ -95,9 +95,9 @@ class ConsolidateFragment : Fragment() {
     }
 
     private fun stopTimer() {
-        countDownTimer?.cancel()
+        timer?.cancel()
         timerCancelledManually = true
-        countDownTimer = null
+        timer = null
     }
 
     private fun startMusic() {
