@@ -24,9 +24,6 @@ class RankingActivity : AppCompatActivity() {
     private val viewModel: RankingViewModel by viewModels()
     private val rankingRepository: StatisticsRepository = StatisticsRepositoryImpl()
 
-    //Variables para ranking
-    private var actualUserRanking: Int = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRankingBinding.inflate(layoutInflater)
@@ -37,8 +34,6 @@ class RankingActivity : AppCompatActivity() {
             startActivity(Intent(this, MainScreenActivity::class.java))
         }
 
-        //Establecer datos usuario actual
-
         //1: Obtener ranking del usuario actual
         lifecycleScope.launch {
             rankingRepository.getUserRanking(Application.getUser()!!.id).collect {
@@ -47,7 +42,7 @@ class RankingActivity : AppCompatActivity() {
                     is Resource.Success -> {
                         binding.tvUserRank.text = it.data!!.position.toString()
 
-                        setUserAvatar(binding.ivUserAvatar, actualUser.avatar)
+                        viewModel.setUserAvatar(binding.ivUserAvatar, actualUser.avatar)
                         binding.tvUserUsername.text = actualUser.username
                         binding.tvUserPoints.text = it.data!!.score.toString()
                     }
@@ -79,7 +74,7 @@ class RankingActivity : AppCompatActivity() {
                             val userPointsView = userPointsField.get(binding) as TextView
                             val userAvatarView = userAvatarField.get(binding) as ImageView
 
-                            setUserAvatar(userAvatarView, user.avatar)
+                            viewModel.setUserAvatar(userAvatarView, user.avatar)
 
                             userNameView.text = user.username
                             userPointsView.text = user.score.toString()
@@ -87,23 +82,6 @@ class RankingActivity : AppCompatActivity() {
                     }
 
                     is Resource.Error -> {}
-                }
-            }
-        }
-    }
-
-    private suspend fun setUserAvatar(imageView: ImageView, avatar: String?) {
-        if (avatar.isNullOrEmpty()) {
-            // Set default avatar
-            imageView.setImageResource(R.drawable.empty_avatar)
-        } else {
-            MainScope().launch {
-                val bitmap = viewModel.loadImageFromUrl(avatar)
-                if (bitmap != null) {
-                    // Mostrar la imagen en un ImageView
-                    imageView.setImageBitmap(bitmap)
-                } else {
-                    imageView.setImageResource(R.drawable.empty_avatar)
                 }
             }
         }
