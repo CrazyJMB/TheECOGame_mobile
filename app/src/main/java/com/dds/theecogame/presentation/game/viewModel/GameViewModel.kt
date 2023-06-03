@@ -175,9 +175,7 @@ class GameViewModel : ViewModel() {
             gamePoints = consolidatedPoints
         }
 
-        val timePlayed = (timeEnd - timeStart) / 1000
-
-        summaryStats.add(timePlayed.toInt())
+        summaryStats.add(((timeEnd - timeStart) / 1000).toInt())
         summaryStats.add(gamePoints)
         summaryStats.add(questionNumber)
 
