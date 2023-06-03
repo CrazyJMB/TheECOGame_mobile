@@ -46,20 +46,8 @@ class RankingActivity : AppCompatActivity() {
                     is Resource.Loading -> {}
                     is Resource.Success -> {
                         binding.tvUserRank.text = it.data!!.position.toString()
-                        if (actualUser.avatar.isNullOrEmpty()) {
-                            //Set default avatar
-                            binding.ivUserAvatar.setImageResource(R.drawable.empty_avatar)
-                        } else {
-                            MainScope().launch {
-                                val bitmap = viewModel.loadImageFromUrl(actualUser.avatar)
-                                if (bitmap != null) {
-                                    // Mostrar la imagen en un ImageView
-                                    binding.ivUserAvatar.setImageBitmap(bitmap)
-                                } else {
-                                    binding.ivUserAvatar.setImageResource(R.drawable.empty_avatar)
-                                }
-                            }
-                        }
+
+                        setUserAvatar(binding.ivUserAvatar, actualUser.avatar)
                         binding.tvUserUsername.text = actualUser.username
                         binding.tvUserPoints.text = it.data!!.score.toString()
                     }
@@ -91,20 +79,7 @@ class RankingActivity : AppCompatActivity() {
                             val userPointsView = userPointsField.get(binding) as TextView
                             val userAvatarView = userAvatarField.get(binding) as ImageView
 
-                            if (user.avatar.isNullOrEmpty()) {
-                                // Set default avatar
-                                userAvatarView.setImageResource(R.drawable.empty_avatar)
-                            } else {
-                                MainScope().launch {
-                                    val bitmap = viewModel.loadImageFromUrl(user.avatar!!)
-                                    if (bitmap != null) {
-                                        // Mostrar la imagen en un ImageView
-                                        userAvatarView.setImageBitmap(bitmap)
-                                    } else {
-                                        userAvatarView.setImageResource(R.drawable.empty_avatar)
-                                    }
-                                }
-                            }
+                            setUserAvatar(userAvatarView, user.avatar)
 
                             userNameView.text = user.username
                             userPointsView.text = user.score.toString()
@@ -112,6 +87,23 @@ class RankingActivity : AppCompatActivity() {
                     }
 
                     is Resource.Error -> {}
+                }
+            }
+        }
+    }
+
+    private suspend fun setUserAvatar(imageView: ImageView, avatar: String?) {
+        if (avatar.isNullOrEmpty()) {
+            // Set default avatar
+            imageView.setImageResource(R.drawable.empty_avatar)
+        } else {
+            MainScope().launch {
+                val bitmap = viewModel.loadImageFromUrl(avatar)
+                if (bitmap != null) {
+                    // Mostrar la imagen en un ImageView
+                    imageView.setImageBitmap(bitmap)
+                } else {
+                    imageView.setImageResource(R.drawable.empty_avatar)
                 }
             }
         }
