@@ -1,4 +1,4 @@
-package com.dds.theecogame.presentation.game.view
+package com.dds.theecogame.presentation.game.challenges.hangman.view
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -17,11 +17,12 @@ import com.dds.theecogame.R
 import com.dds.theecogame.databinding.FragmentHangmanBinding
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.model.challenges.Hangman
+import com.dds.theecogame.presentation.game.consolidate.view.AbandonFragment
+import com.dds.theecogame.presentation.game.consolidate.view.ConsolidateFragment
+import com.dds.theecogame.presentation.game.resume.ResumeFragment
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class HangmanFragment : Fragment() {
 

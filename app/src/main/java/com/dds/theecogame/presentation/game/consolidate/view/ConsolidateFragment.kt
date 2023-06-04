@@ -1,4 +1,4 @@
-package com.dds.theecogame.presentation.game.view
+package com.dds.theecogame.presentation.game.consolidate.view
 
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -11,6 +11,9 @@ import androidx.fragment.app.activityViewModels
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.FragmentConsolidateBinding
 import com.dds.theecogame.domain.builder.Game
+import com.dds.theecogame.presentation.game.challenges.hangman.view.HangmanFragment
+import com.dds.theecogame.presentation.game.challenges.question.view.QuestionFragment
+import com.dds.theecogame.presentation.game.resume.ResumeFragment
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 
 class ConsolidateFragment : Fragment() {

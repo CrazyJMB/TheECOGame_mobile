@@ -1,6 +1,5 @@
-package com.dds.theecogame.presentation.game.view
+package com.dds.theecogame.presentation.game.challenges.question.view
 
-import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -17,26 +16,21 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 //import androidx.databinding.ObservableInt
 import com.dds.theecogame.R
-import com.dds.theecogame.data.repository.GameRepositoryImpl
-import com.dds.theecogame.data.repository.StatisticsRepositoryImpl
-import com.dds.theecogame.databinding.ActivityGameBinding
 
 
 import com.dds.theecogame.databinding.FragmentQuestionsBinding
 import com.dds.theecogame.domain.builder.Game
 import com.dds.theecogame.domain.model.challenges.Question
-import com.dds.theecogame.domain.repository.GameRepository
-import com.dds.theecogame.domain.repository.StatisticsRepository
+import com.dds.theecogame.presentation.game.consolidate.view.AbandonFragment
+import com.dds.theecogame.presentation.game.consolidate.view.ConsolidateFragment
+import com.dds.theecogame.presentation.game.resume.ResumeFragment
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
-import com.dds.theecogame.presentation.game.viewModel.QuestionViewModel
+import com.dds.theecogame.presentation.game.challenges.question.viewModel.QuestionViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.concurrent.timer
 
 class QuestionFragment : Fragment() {
 

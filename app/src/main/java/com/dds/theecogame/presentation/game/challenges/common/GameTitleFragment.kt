@@ -1,4 +1,4 @@
-package com.dds.theecogame.presentation.game.view
+package com.dds.theecogame.presentation.game.challenges.common
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

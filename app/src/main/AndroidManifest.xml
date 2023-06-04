@@ -20,7 +20,7 @@
             android:name=".presentation.ranking.view.RankingActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.userManagement.view.UserManagementActivity"
+            android:name=".presentation.auth.userManagement.view.UserManagementActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,10 +29,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.register.view.RegisterActivity"
+            android:name=".presentation.auth.register.view.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.mainScreen.view.LoginActivity"
+            android:name=".presentation.auth.login.view.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.mainScreen.view.MainScreenActivity"

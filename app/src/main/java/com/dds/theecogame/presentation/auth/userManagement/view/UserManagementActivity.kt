@@ -1,16 +1,13 @@
-package com.dds.theecogame.presentation.userManagement.view
+package com.dds.theecogame.presentation.auth.userManagement.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.dds.theecogame.R
-import com.dds.theecogame.databinding.ActivityMainScreenBinding
 import com.dds.theecogame.databinding.ActivityUserManagementBinding
-import com.dds.theecogame.presentation.game.view.GameActivity
-import com.dds.theecogame.presentation.mainScreen.view.LoginActivity
-import com.dds.theecogame.presentation.register.view.RegisterActivity
-import com.dds.theecogame.presentation.userManagement.viewModel.UserManagementViewModel
+import com.dds.theecogame.presentation.auth.login.view.LoginActivity
+import com.dds.theecogame.presentation.auth.register.view.RegisterActivity
+import com.dds.theecogame.presentation.auth.userManagement.viewModel.UserManagementViewModel
 
 class UserManagementActivity : AppCompatActivity() {
 

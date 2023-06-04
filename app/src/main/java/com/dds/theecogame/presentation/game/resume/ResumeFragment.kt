@@ -1,4 +1,4 @@
-package com.dds.theecogame.presentation.game.view
+package com.dds.theecogame.presentation.game.resume
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.dds.theecogame.presentation.userManagement.viewModel
+package com.dds.theecogame.presentation.auth.userManagement.viewModel
 
 import androidx.lifecycle.ViewModel
 

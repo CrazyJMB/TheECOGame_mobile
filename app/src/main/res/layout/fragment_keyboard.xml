@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_green"
-    tools:context=".presentation.game.view.KeyboardFragment">
+    tools:context=".presentation.game.challenges.hangman.view.KeyboardFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

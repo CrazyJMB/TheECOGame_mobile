@@ -12,19 +12,14 @@ import android.view.ContextThemeWrapper
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.activity.viewModels
-import androidx.appcompat.app.ActionBarDrawerToggle.Delegate
-import androidx.databinding.Observable
-import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.lifecycleScope
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.ActivityGameBinding
 import com.dds.theecogame.domain.builder.Game
+import com.dds.theecogame.presentation.game.challenges.hangman.view.HangmanFragment
+import com.dds.theecogame.presentation.game.challenges.question.view.QuestionFragment
+import com.dds.theecogame.presentation.game.resume.ResumeFragment
 import com.dds.theecogame.presentation.game.viewModel.GameViewModel
 import com.dds.theecogame.presentation.mainScreen.view.MainScreenActivity
-import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlin.properties.Delegates
 
 class GameActivity : AppCompatActivity() {
 
