@@ -11,15 +11,13 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.dds.theecogame.R
 import com.dds.theecogame.databinding.ActivityMainScreenBinding
-import com.dds.theecogame.domain.Application
 import com.dds.theecogame.presentation.editProfile.view.EditProfileActivity
 import com.dds.theecogame.presentation.mainScreen.viewModel.MainScreenViewModel
 import com.dds.theecogame.presentation.game.view.GameActivity
 import com.dds.theecogame.presentation.ranking.view.RankingActivity
-import com.dds.theecogame.presentation.game.view.ResumeFragment
 import com.dds.theecogame.presentation.setting.view.SettingActivity
 import com.dds.theecogame.presentation.statistics.view.ActivityStatistics
-import com.dds.theecogame.presentation.userManagement.view.UserManagementActivity
+import com.dds.theecogame.presentation.auth.userManagement.view.UserManagementActivity
 
 class MainScreenActivity : AppCompatActivity() {
 
@@ -72,7 +70,12 @@ class MainScreenActivity : AppCompatActivity() {
         val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
 
-                val builder = AlertDialog.Builder(ContextThemeWrapper(this@MainScreenActivity, R.style.alert_style))
+                val builder = AlertDialog.Builder(
+                    ContextThemeWrapper(
+                        this@MainScreenActivity,
+                        R.style.alert_style
+                    )
+                )
                 builder.setTitle(R.string.question_logut)
                 builder.setPositiveButton(R.string.alert_confirm) { _, _ ->
 

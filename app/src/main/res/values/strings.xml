@@ -24,6 +24,7 @@
     <string name="sounds">Sonidos</string>
     <string name="topic">Temática actual</string>
     <string name="save">Guardar</string>
+    <string name="restore">Deshacer</string>
 
     <string name="yes">Si</string>
     <string name="no">No</string>

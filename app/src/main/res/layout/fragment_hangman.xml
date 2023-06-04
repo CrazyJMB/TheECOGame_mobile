@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.game.view.HangmanFragment">
+    tools:context=".presentation.game.challenges.hangman.view.HangmanFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -217,7 +217,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
-            android:name="com.dds.theecogame.presentation.game.view.KeyboardFragment"
+            android:name="com.dds.theecogame.presentation.game.challenges.hangman.view.KeyboardFragment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"

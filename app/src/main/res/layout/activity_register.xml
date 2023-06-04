@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.register.view.RegisterActivity"
+    tools:context=".presentation.auth.register.view.RegisterActivity"
     android:background="@color/background_green">
 
     <TextView
@@ -21,6 +21,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/etUsername"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -122,8 +123,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="159dp"
-        android:layout_height="162dp"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
         android:layout_marginTop="40dp"
         android:src="@drawable/empty_avatar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -202,5 +203,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
+
+    <Switch
+        android:id="@+id/swValidationType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contraseña muy segura"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCreateUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPasswordError"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

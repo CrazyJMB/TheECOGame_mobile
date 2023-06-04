@@ -62,7 +62,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView2"
-        android:name="com.dds.theecogame.presentation.game.view.GameTitleFragment"
+        android:name="com.dds.theecogame.presentation.game.challenges.common.GameTitleFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/Linea"

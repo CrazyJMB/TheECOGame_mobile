@@ -106,6 +106,7 @@ class Statistics1Fragment : Fragment() {
                             binding.tiempoPromedio.text = "${binding.tiempoPromedio.text} 0"
                         }
                     }
+
                     is Resource.Error -> {}
                 }
             }

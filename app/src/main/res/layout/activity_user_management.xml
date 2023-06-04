@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.userManagement.view.UserManagementActivity"
+    tools:context=".presentation.auth.userManagement.view.UserManagementActivity"
     android:background="@color/background_green">
 
     <TextView

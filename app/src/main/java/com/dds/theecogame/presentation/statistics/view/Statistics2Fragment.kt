@@ -84,6 +84,7 @@ class Statistics2Fragment : Fragment() {
                             "${binding.numAhorcadosIncorrectas.text} $numIncorrectHangman"
 
                     }
+
                     is Resource.Error -> {}
                 }
             }

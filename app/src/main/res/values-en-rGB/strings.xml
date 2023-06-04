@@ -182,4 +182,5 @@
     <string name="email_db_error">Non-available email</string>
 
     <string name="question_quit">Do you want to quit the game?</string>
+    <string name="restore">Undo</string>
 </resources>
