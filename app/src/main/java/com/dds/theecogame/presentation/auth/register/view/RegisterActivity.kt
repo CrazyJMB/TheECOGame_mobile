@@ -42,6 +42,8 @@ class RegisterActivity : AppCompatActivity() {
         addActivationCreateUserListener()
         addCreateUserListener()
 
+        addSwitchListener()
+
         binding.ibBack.setOnClickListener {
             goToUserManagement()
         }
@@ -136,6 +138,17 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun addSwitchListener() {
+        binding.swValidationType.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                viewModel.setStrongPassword()
+            } else {
+                viewModel.setWeakPassword()
+            }
+        }
+
     }
 
     private fun goToUserManagement() {

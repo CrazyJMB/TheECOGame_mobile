@@ -16,6 +16,8 @@ class RegisterViewModel(
     private val emailValidator = ValidatorFactory.getValidator("email")
     private val passwordValidator = ValidatorFactory.getValidator("password")
 
+    private var strongPassword = false
+
     fun checkUsername(username: String): Boolean {
         return usernameValidator.validate(username)
     }
@@ -48,5 +50,13 @@ class RegisterViewModel(
         password: String
     ): Flow<Resource<Response>> {
         return userRepository.createUser(username, name, surname, email, password)
+    }
+
+    fun setStrongPassword() {
+        strongPassword = true
+    }
+
+    fun setWeakPassword() {
+        strongPassword = false
     }
 }
