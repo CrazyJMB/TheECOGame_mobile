@@ -9,14 +9,14 @@ import com.dds.theecogame.domain.strategy.passwordValidators.WeakPasswordValidat
 
 class PasswordValidator : Validator {
     private var error: String = String()
-    private var validationType: Boolean = false
+    private var strongType: Boolean = false
 
     override fun getError(): String {
         return this.error
     }
 
     override fun validate(password: String): Boolean {
-        if (validationType) {
+        if (strongType) {
             val strongValidationType = StrongPasswordValidation()
             val result = strongValidationType.validatePassword(password)
             error = strongValidationType.getError()
@@ -31,6 +31,6 @@ class PasswordValidator : Validator {
     }
 
     override fun setPasswordValidation(type: Boolean) {
-        validationType = type
+        strongType = type
     }
 }
