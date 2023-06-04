@@ -16,8 +16,6 @@ class RegisterViewModel(
     private val emailValidator = ValidatorFactory.getValidator("email")
     private val passwordValidator = ValidatorFactory.getValidator("password")
 
-    private var strongPassword = false
-
     fun checkUsername(username: String): Boolean {
         return usernameValidator.validate(username)
     }
@@ -53,10 +51,10 @@ class RegisterViewModel(
     }
 
     fun setStrongPassword() {
-        strongPassword = true
+        passwordValidator.setPasswordValidation(true)
     }
 
     fun setWeakPassword() {
-        strongPassword = false
+        passwordValidator.setPasswordValidation(false)
     }
 }

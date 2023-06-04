@@ -46,4 +46,7 @@ class EmailValidator : Validator {
 
         return true
     }
+
+    override fun setPasswordValidation(type: Boolean) {
+    }
 }

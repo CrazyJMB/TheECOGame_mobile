@@ -48,4 +48,7 @@ class UsernameValidator : Validator {
 
         return check
     }
+
+    override fun setPasswordValidation(type: Boolean) {
+    }
 }
